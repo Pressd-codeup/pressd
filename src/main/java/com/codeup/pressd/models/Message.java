@@ -25,6 +25,12 @@ public class Message {
 	public Message() {
 	}
 
+	public Message(String body, User sentFrom, User sentTo){
+		this.body = body;
+		this.sentFrom = sentFrom;
+		this.sentTo = sentTo;
+	}
+
 	public Message(String body) {
 		this.body = body;
 	}

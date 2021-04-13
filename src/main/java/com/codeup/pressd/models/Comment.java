@@ -31,6 +31,11 @@ public class Comment {
 	public Comment() {
 	}
 
+	public Comment(String body, User user) {
+		this.body = body;
+		this.user = user;
+	}
+
 	public Comment(String body) {
 		this.body = body;
 	}
