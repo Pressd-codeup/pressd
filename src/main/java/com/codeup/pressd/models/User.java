@@ -51,6 +51,128 @@ public class User {
 	public User() {
 	}
 
+	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Rating> ratings) {
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.isCoach = isCoach;
+		this.isAdmin = isAdmin;
+		this.dateJoined = dateJoined;
+		this.about = about;
+		this.posts = posts;
+		this.workouts = workouts;
+		this.comments = comments;
+		this.ratings = ratings;
+	}
 
+	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Rating> ratings) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.isCoach = isCoach;
+		this.isAdmin = isAdmin;
+		this.dateJoined = dateJoined;
+		this.about = about;
+		this.posts = posts;
+		this.workouts = workouts;
+		this.comments = comments;
+		this.ratings = ratings;
+	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isCoach() {
+		return isCoach;
+	}
+
+	public void setCoach(boolean coach) {
+		isCoach = coach;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean admin) {
+		isAdmin = admin;
+	}
+
+	public LocalDateTime getDateJoined() {
+		return dateJoined;
+	}
+
+	public void setDateJoined(LocalDateTime dateJoined) {
+		this.dateJoined = dateJoined;
+	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public List<Workout> getWorkouts() {
+		return workouts;
+	}
+
+	public void setWorkouts(List<Workout> workouts) {
+		this.workouts = workouts;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
 }
