@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,25 +13,20 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 </head>
 
+
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Home')"></head>
+
+<body>
+
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Home')"></head>
 
 <body>
 <!--Navbar-->
-<nav class="navbar">
-    <div class="logo">
-        <a href="#">
-            <span>P</span>ressd
-        </a>
-    </div>
-    <div class="nav-list">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="#" class="nav-link">Workout Plans</a>
-        <a href="#" class="nav-link">Find Trainers</a>
-        <a href="#" class="nav-link">Contact</a>
-    </div>
-</nav>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
 <!--End of Navbar-->
 
 <!--Menu-->
