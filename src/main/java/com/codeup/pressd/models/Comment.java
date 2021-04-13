@@ -9,21 +9,21 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 
-	@Column(columnDefinition = "TEXT", length = 3000, nullable = false)
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String body;
 
 	@Column(name = "date_posted", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime dateJoined;
+	private LocalDateTime datePosted;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "workout_id")
 	private Workout workout;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
