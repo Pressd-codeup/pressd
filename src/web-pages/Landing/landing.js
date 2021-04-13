@@ -3,7 +3,7 @@
 const menu = document.querySelector('.menu');
 const navbar = document.querySelector('.navbar');
 
-menu.addEventListener('click',() => {
+menu.addEventListener('click', () => {
     navbar.classList.toggle('change');
     menu.classList.toggle('change');
 });
@@ -15,10 +15,23 @@ const btn = document.querySelector('.buttons i');
 const bar = document.querySelector('.video-bar');
 
 const playPause = () => {
-    video.play();
+    if (video.paused) {
+        video.play();
+        btn.className = 'far fa-pause-circle'
+        video.style.opacity = '.7'
+    } else {
+        video.pause();
+        btn.className = 'far fa-play-circle'
+        video.style.opacity = '.3'
+    }
 }
 
 btn.addEventListener('click', () => {
     playPause();
+});
+
+video.addEventListener('timeupdate', () => {
+    const barWidth = video.currentTime / video.duration
+    bar.style.width = `${barWidth * 100}%`
 });
 // End of Section 2 Video
