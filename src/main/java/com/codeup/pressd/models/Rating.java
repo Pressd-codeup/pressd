@@ -11,14 +11,14 @@ public class Rating {
 	private long id;
 
 	@OneToOne()
-	@JoinColumn(name = "workout_id")
+	@JoinColumn(name = "workout_id", nullable = false)
 	private Workout workout;
 
 	@OneToOne()
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@Column(name = "stars")
+	@Column(name = "stars", nullable = false)
 	private long stars;
 
 	public Rating() {

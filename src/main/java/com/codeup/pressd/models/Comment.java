@@ -12,7 +12,7 @@ public class Comment {
 	private long id;
 
 
-	@Column(columnDefinition = "TEXT", nullable = false)
+	@Column(length = 500, nullable = false)
 	private String body;
 
 	@Column(name = "date_posted", nullable = false)
