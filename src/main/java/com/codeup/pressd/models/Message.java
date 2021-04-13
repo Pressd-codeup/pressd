@@ -16,11 +16,11 @@ public class Message {
 
 	@ManyToOne()
 	@JoinColumn(name = "to_id")
-	private User sentFrom;
+	private User sentTo;
 
 	@ManyToOne()
 	@JoinColumn(name = "from_id")
-	private User sentTo;
+	private User sentFrom;
 
 	public Message() {
 	}
