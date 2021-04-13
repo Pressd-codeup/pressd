@@ -364,6 +364,7 @@ html {
     height: 100%;
     width: 0;
     background-color: #d30819;
+    transition: width .2s linear;
 }
 
 .buttons {
