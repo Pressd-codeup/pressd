@@ -1,32 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>App</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Home')"></head>
 <body>
 
 <!--Navbar-->
-<nav class="navbar">
-    <div class="logo">
-        <a href="#">
-            <span>W</span>ork
-        </a>
-    </div>
-    <div class="nav-list">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="#" class="nav-link">Workout Plans</a>
-        <a href="#" class="nav-link">Find Trainers</a>
-        <a href="#" class="nav-link">Contact</a>
-    </div>
-</nav>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
 <!--End of Navbar-->
 
 <!--Menu-->
