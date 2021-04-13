@@ -1,6 +1,7 @@
 package com.codeup.pressd.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -14,11 +15,15 @@ public class Message {
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String body;
 
-	@ManyToOne()
+	@Column(name = "date_posted", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime datePosted;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "to_id")
 	private User sentTo;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "from_id")
 	private User sentFrom;
 

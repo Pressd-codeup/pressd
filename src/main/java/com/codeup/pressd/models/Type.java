@@ -10,6 +10,7 @@ public class Type {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Column(length = 45)
 	private String name;
 
 	public Type() {
