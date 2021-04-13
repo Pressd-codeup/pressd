@@ -3,6 +3,7 @@ package com.codeup.pressd.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name="categories")
 public class Category {
 
 	@Id
