@@ -1,6 +1,7 @@
 package com.codeup.pressd.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -8,25 +9,40 @@ public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 
-	@Column(columnDefinition = "TEXT", length = 3000, nullable = false)
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String body;
 
-	@ManyToOne()
+	@Column(name = "date_posted", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime datePosted;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "to_id")
 	private User sentFrom;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "from_id")
 	private User sentTo;
 
 	public Message() {
 	}
 
-	public Message(String body) {
+	public Message(long id, String body, LocalDateTime datePosted, User sentFrom, User sentTo) {
+		this.id = id;
 		this.body = body;
+		this.datePosted = datePosted;
+		this.sentFrom = sentFrom;
+		this.sentTo = sentTo;
+	}
+
+	public Message(String body, LocalDateTime datePosted, User sentFrom, User sentTo) {
+		this.body = body;
+		this.datePosted = datePosted;
+		this.sentFrom = sentFrom;
+		this.sentTo = sentTo;
 	}
 
 	public User getSentTo() {

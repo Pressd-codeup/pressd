@@ -9,7 +9,7 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 
 	@Column(columnDefinition = "TEXT", length = 3000, nullable = false)
@@ -17,13 +17,13 @@ public class Comment {
 
 	@Column(name = "date_posted", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime dateJoined;
+	private LocalDateTime datePosted;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "workout_id")
 	private Workout workout;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -31,8 +31,19 @@ public class Comment {
 	public Comment() {
 	}
 
-	public Comment(String body) {
+	public Comment(long id, String body, LocalDateTime datePosted, Workout workout, User user) {
+		this.id = id;
 		this.body = body;
+		this.datePosted = datePosted;
+		this.workout = workout;
+		this.user = user;
+	}
+
+	public Comment(String body, LocalDateTime datePosted, Workout workout, User user) {
+		this.body = body;
+		this.datePosted = datePosted;
+		this.workout = workout;
+		this.user = user;
 	}
 
 	public String getBody() {
@@ -43,11 +54,11 @@ public class Comment {
 		this.body = body;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
