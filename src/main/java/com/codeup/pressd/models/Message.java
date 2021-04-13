@@ -8,10 +8,10 @@ public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 
-	@Column(columnDefinition = "TEXT", length = 3000, nullable = false)
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String body;
 
 	@ManyToOne()
@@ -25,14 +25,17 @@ public class Message {
 	public Message() {
 	}
 
-	public Message(String body, User sentFrom, User sentTo){
+	public Message(long id, String body, User sentFrom, User sentTo) {
+		this.id = id;
 		this.body = body;
 		this.sentFrom = sentFrom;
 		this.sentTo = sentTo;
 	}
 
-	public Message(String body) {
+	public Message(String body, User sentFrom, User sentTo) {
 		this.body = body;
+		this.sentFrom = sentFrom;
+		this.sentTo = sentTo;
 	}
 
 	public User getSentTo() {
@@ -59,11 +62,11 @@ public class Message {
 		this.body = body;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 }

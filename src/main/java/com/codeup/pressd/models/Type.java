@@ -8,18 +8,27 @@ public class Type {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 	private String name;
 
 	public Type() {
 	}
 
-	public Long getId() {
+	public Type(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public Type(String name) {
+		this.name = name;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -19,22 +19,29 @@ public class Rating {
 	private User user;
 
 	@Column(name = "stars")
-	private int stars;
+	private long stars;
 
 	public Rating() {
 	}
 
-	public Rating(Workout workout, User user, int stars) {
+	public Rating(long id, Workout workout, User user, long stars) {
+		this.id = id;
 		this.workout = workout;
 		this.user = user;
 		this.stars = stars;
 	}
 
-	public int getStars() {
+	public Rating(Workout workout, User user, long stars) {
+		this.workout = workout;
+		this.user = user;
+		this.stars = stars;
+	}
+
+	public long getStars() {
 		return stars;
 	}
 
-	public void setStars(int stars) {
+	public void setStars(long stars) {
 		this.stars = stars;
 	}
 
