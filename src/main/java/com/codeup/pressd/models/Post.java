@@ -1,6 +1,7 @@
 package com.codeup.pressd.models;
 
 import javax.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
