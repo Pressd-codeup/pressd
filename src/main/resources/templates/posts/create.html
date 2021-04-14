@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('create post')"></head>
 <body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<form th:action="@{/posts/create}" th:method="POST" th:object="${post}">
+
+    <h2>Create a Post</h2>
+
+    <br>
+
+    Title:
+    <input th:field="*{title}" />
+
+    <br>
+
+    Body:
+    <input th:field="*{body}" />
+
+    <br>
+
+    <input type="submit" value="Submit Post!">
+
+</form>
 
 </body>
 </html>
