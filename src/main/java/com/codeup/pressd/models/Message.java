@@ -16,15 +16,14 @@ public class Message {
 	private String body;
 
 	@Column(name = "date_posted", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime datePosted;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "to_id")
+	@JoinColumn(name = "to_id", nullable = false)
 	private User sentTo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "from_id")
+	@JoinColumn(name = "from_id", nullable = false)
 	private User sentFrom;
 
 	public Message() {

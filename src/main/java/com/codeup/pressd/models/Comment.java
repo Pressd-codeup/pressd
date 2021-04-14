@@ -16,28 +16,41 @@ public class Comment {
 	private String body;
 
 	@Column(name = "date_posted", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime datePosted;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "workout_id")
+	@JoinColumn(name = "workout_id", nullable = false)
 	private Workout workout;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 
 	public Comment() {
 	}
 
-	public Comment(String body, User user) {
+	public Comment(long id, String body, LocalDateTime datePosted, Workout workout, User user) {
+		this.id = id;
 		this.body = body;
+		this.datePosted = datePosted;
+		this.workout = workout;
 		this.user = user;
 	}
 
-	public Comment(String body) {
+	public Comment(String body, LocalDateTime datePosted, Workout workout, User user) {
 		this.body = body;
+		this.datePosted = datePosted;
+		this.workout = workout;
+		this.user = user;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getBody() {
@@ -48,12 +61,12 @@ public class Comment {
 		this.body = body;
 	}
 
-	public Long getId() {
-		return id;
+	public LocalDateTime getDatePosted() {
+		return datePosted;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setDatePosted(LocalDateTime datePosted) {
+		this.datePosted = datePosted;
 	}
 
 	public Workout getWorkout() {

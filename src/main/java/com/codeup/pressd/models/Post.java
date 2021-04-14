@@ -22,36 +22,37 @@ public class Post {
 	private long zipcode;
 
 	@Column(name = "date_posted", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime datePosted;
 
-	@Column(name = "type_id", nullable = false)
-	private long typeId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type_id", nullable = false)
+	private Type type;
 
-	@Column(name = "user_id", nullable = false)
-	private long userId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 
 
 	public Post() {
 	}
 
-	public Post(long id, String title, String body, long zipcode, LocalDateTime datePosted, long typeId, long userId) {
+	public Post(long id, String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
 		this.zipcode = zipcode;
 		this.datePosted = datePosted;
-		this.typeId = typeId;
-		this.userId = userId;
+		this.type = type;
+		this.user = user;
 	}
 
-	public Post(String title, String body, long zipcode, LocalDateTime datePosted, long typeId, long userId) {
+	public Post(String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user) {
 		this.title = title;
 		this.body = body;
 		this.zipcode = zipcode;
 		this.datePosted = datePosted;
-		this.typeId = typeId;
-		this.userId = userId;
+		this.type = type;
+		this.user = user;
 	}
 
 	public long getId() {
@@ -94,19 +95,19 @@ public class Post {
 		this.datePosted = datePosted;
 	}
 
-	public long getTypeId() {
-		return typeId;
+	public Type getType() {
+		return type;
 	}
 
-	public void setTypeId(long typeId) {
-		this.typeId = typeId;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
