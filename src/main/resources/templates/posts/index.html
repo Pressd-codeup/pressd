@@ -22,9 +22,9 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <div th:each="post : ${posts}" class="container">
-    <h1 th:text="${post.getTitle()}"></h1>
-    <p th:text="${post.getBody()}"></p>
-    <p th:text="${post.getUser().getEmail()}"></p>
+    <h1 th:text="${posts.getTitle()}"></h1>
+    <p th:text="${posts.getBody()}"></p>
+    <p th:text="${posts.getUser().getEmail()}"></p>
 
     <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">
         <input type="submit" value="View Post">
