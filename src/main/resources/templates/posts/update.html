@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>update</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('update post')"></head>
 <body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<form th:action="@{/posts/{id}/update(id=${posts.getId()})}" method="post" th:object="${post}">
+
+    <h2>Update Your Post</h2>
+
+    <br>
+
+    <label for="title">Title</label>
+    <input id="title" th:field="*{title}">
+    <p>Your previous title: <span th:text="${posts.getTitle()}"></span></p>
+
+    <br>
+
+    <label for="body">Body</label>
+    <input id="body" th:field="*{body}">
+    <p>Your previous body: <span th:text="${posts.getBody()}"></span></p>
+    <br>
+
+    <input type="submit" value="Update Post!">
+
+</form>
 
 </body>
 </html>

@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Post</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title th:text="${title}"></title>
 </head>
 <body>
-<h1>index</h1>
+
+
+</body>
+</html>
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <title> All Posts</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+
+<div th:each="post : ${posts}" class="container">
+    <h1 th:text="${post.getTitle()}"></h1>
+    <p th:text="${post.getBody()}"></p>
+    <p th:text="${post.getUser().getEmail()}"></p>
+
+    <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">
+        <input type="submit" value="View Post">
+    </form>
+</div>
+<div>
+    <form th:action="@{/posts/create}" method="GET">
+        <input type="submit" value="Create Post">
+    </form>
+</div>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
