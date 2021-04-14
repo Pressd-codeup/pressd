@@ -2,6 +2,7 @@ package com.codeup.pressd.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "workouts")
@@ -17,35 +18,48 @@ public class Workout {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String body;
 
-	@Column(nullable = false)
-	private double stars;
-
 	@Column(name = "date_posted", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime datePosted;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workout")
+	private List<Comment> comments;
+
+	@ManyToMany
+	@JoinTable(name = "workout_categories", joinColumns = @JoinColumn(name = "workout_id"),
+			inverseJoinColumns = @JoinColumn(name = "category_id"))
+	List<Category> categories;
+
+	@ManyToMany
+	@JoinTable(name = "workout_ratings", joinColumns = @JoinColumn(name = "workout_id"),
+			inverseJoinColumns = @JoinColumn(name = "rating_id"))
+	List<Rating> ratings;
 
 	public Workout() {
 	}
 
-	public Workout(long id, String title, String body, double stars, LocalDateTime datePosted, User user) {
+	public Workout(long id, String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories, List<Rating> ratings) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
-		this.stars = stars;
 		this.datePosted = datePosted;
 		this.user = user;
+		this.comments = comments;
+		this.categories = categories;
+		this.ratings = ratings;
 	}
 
-	public Workout(String title, String body, double stars, LocalDateTime datePosted, User user) {
+	public Workout(String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories, List<Rating> ratings) {
 		this.title = title;
 		this.body = body;
-		this.stars = stars;
 		this.datePosted = datePosted;
 		this.user = user;
+		this.comments = comments;
+		this.categories = categories;
+		this.ratings = ratings;
 	}
 
 	public long getId() {
@@ -72,14 +86,6 @@ public class Workout {
 		this.body = body;
 	}
 
-	public double getStars() {
-		return stars;
-	}
-
-	public void setStars(double stars) {
-		this.stars = stars;
-	}
-
 	public LocalDateTime getDatePosted() {
 		return datePosted;
 	}
@@ -94,5 +100,29 @@ public class Workout {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
 	}
 }

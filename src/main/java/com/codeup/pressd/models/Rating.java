@@ -1,6 +1,7 @@
 package com.codeup.pressd.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ratings")
@@ -10,13 +11,12 @@ public class Rating {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@OneToOne()
-	@JoinColumn(name = "workout_id", nullable = false)
-	private Workout workout;
+	@ManyToMany(mappedBy = "ratings")
+	List<Workout> workouts;
 
-	@OneToOne()
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+	@ManyToMany(mappedBy = "ratings")
+	List<User> users;
+
 
 	@Column(name = "stars", nullable = false)
 	private long stars;
@@ -24,41 +24,17 @@ public class Rating {
 	public Rating() {
 	}
 
-	public Rating(long id, Workout workout, User user, long stars) {
+	public Rating(long id, List<Workout> workouts, List<User> users, long stars) {
 		this.id = id;
-		this.workout = workout;
-		this.user = user;
+		this.workouts = workouts;
+		this.users = users;
 		this.stars = stars;
 	}
 
-	public Rating(Workout workout, User user, long stars) {
-		this.workout = workout;
-		this.user = user;
+	public Rating(List<Workout> workouts, List<User> users, long stars) {
+		this.workouts = workouts;
+		this.users = users;
 		this.stars = stars;
-	}
-
-	public long getStars() {
-		return stars;
-	}
-
-	public void setStars(long stars) {
-		this.stars = stars;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Workout getWorkout() {
-		return workout;
-	}
-
-	public void setWorkout(Workout workout) {
-		this.workout = workout;
 	}
 
 	public long getId() {
@@ -67,5 +43,29 @@ public class Rating {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public List<Workout> getWorkouts() {
+		return workouts;
+	}
+
+	public void setWorkouts(List<Workout> workouts) {
+		this.workouts = workouts;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public long getStars() {
+		return stars;
+	}
+
+	public void setStars(long stars) {
+		this.stars = stars;
 	}
 }

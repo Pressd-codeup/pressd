@@ -29,29 +29,36 @@ public class User {
 	private boolean isAdmin;
 
 	@Column(name = "date_joined", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime dateJoined;
 
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String about;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Post> posts;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Workout> workouts;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Comment> comments;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-	private List<Rating> ratings;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sentTo")
+	private List<Message> messagesTo;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sentFrom")
+	private List<Message> messagesFrom;
+
+	@ManyToMany
+	@JoinTable(name = "user_ratings", joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "rating_id"))
+	List<Rating> ratings;
 
 
 	public User() {
 	}
 
-	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Rating> ratings) {
+	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Rating> ratings) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
@@ -63,10 +70,12 @@ public class User {
 		this.posts = posts;
 		this.workouts = workouts;
 		this.comments = comments;
+		this.messagesTo = messagesTo;
+		this.messagesFrom = messagesFrom;
 		this.ratings = ratings;
 	}
 
-	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Rating> ratings) {
+	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Rating> ratings) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -77,6 +86,8 @@ public class User {
 		this.posts = posts;
 		this.workouts = workouts;
 		this.comments = comments;
+		this.messagesTo = messagesTo;
+		this.messagesFrom = messagesFrom;
 		this.ratings = ratings;
 	}
 
@@ -166,6 +177,22 @@ public class User {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public List<Message> getMessagesTo() {
+		return messagesTo;
+	}
+
+	public void setMessagesTo(List<Message> messagesTo) {
+		this.messagesTo = messagesTo;
+	}
+
+	public List<Message> getMessagesFrom() {
+		return messagesFrom;
+	}
+
+	public void setMessagesFrom(List<Message> messagesFrom) {
+		this.messagesFrom = messagesFrom;
 	}
 
 	public List<Rating> getRatings() {
