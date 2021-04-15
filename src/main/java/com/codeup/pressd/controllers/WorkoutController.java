@@ -54,7 +54,7 @@ public class WorkoutController {
 	}
 
 	@GetMapping("/workouts/create")
-	public String viewCreateWorkout(Model viewModel) {
+	public String showCreateWorkout(Model viewModel) {
 		viewModel.addAttribute("workout", new Workout());
 		return "workouts/create";
 	}
@@ -65,6 +65,12 @@ public class WorkoutController {
 		//workout.setUser(user);
 		workoutDao.save(workout);
 		return "redirect:/workouts";
+	}
+
+	@GetMapping("/workouts/{id}/delete")
+	public String viewDeleteWorkout(@PathVariable long id, Model viewModel){
+		viewModel.addAttribute("workout", workoutDao.getOne(id));
+		return "workouts/delete";
 	}
 
 	@PostMapping("/workouts/{id}/delete")
