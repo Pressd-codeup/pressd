@@ -19,7 +19,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String showSignupForm(Model viewModel) {
         viewModel.addAttribute("user", new User());
-        return "users/register";
+        return "users/sign-up";
     }
 
     @PostMapping("/sign-up")
