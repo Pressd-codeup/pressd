@@ -12,7 +12,7 @@
 		<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
 
 			<!--/*@thymesVar id="type" type="com.codeup.pressd.models.Type"*/-->
-			<div class="dropdown" th:field="${type}" th:object="${type}">
+			<div class="dropdown" th:field="${type}">
 				<button type="button" class="btn bg-dark text-center btn-outline-danger dropdown-toggle"
 						data-toggle="dropdown">
 					Type

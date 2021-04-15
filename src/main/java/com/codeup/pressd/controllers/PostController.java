@@ -83,6 +83,8 @@ public class PostController {
 //		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userDao.getOne(1L);
 		post.setUser(user);
+		type.setName(typeDao.getOne(type.getId()).getName());
+		post.setType(type);
 		post.setDatePosted(LocalDateTime.now());
 
 		postDao.save(post);
