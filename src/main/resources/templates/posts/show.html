@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('post')"></head>
+<head th:replace="fragments/header :: main-head('Show a post')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<div class="container">
-    <h1 th:text="${post.getTitle()}"></h1>
-    <p th:text="${post.getBody()}"></p>
-    <p th:text="${post.user.getEmail()}"></p>
-    <form th:action="@{/posts/{id}/update(id=${post.getId()})}" method="GET">
-        <input type="submit" value="Update Post">
+<main class="container">
+    <div class="post">
+        <h1 th:text="${post.title}"></h1>
+        <p th:text="${post.body}"></p>
+        <p>Contact me at <span th:text="${post.user.email}"></span></p>
+    </div>
+
+    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
+        <input type="submit" value="delete ad">
     </form>
-    <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="GET">
-        <input type="submit" value="Delete Post">
-    </form>
-</div>
+
+</main>
 </body>
 </html>
