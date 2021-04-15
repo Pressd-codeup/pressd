@@ -2,6 +2,7 @@ package com.codeup.pressd.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -39,6 +40,15 @@ public class Workout {
 	List<Rating> ratings;
 
 	public Workout() {
+	}
+	
+	public Workout(String title, String body, List<Category> categories) {
+		this.title = title;
+		this.body = body;
+		this.categories = categories;
+		this.comments = new ArrayList<>();
+		this.ratings = new ArrayList<>();
+		this.datePosted = LocalDateTime.now();
 	}
 
 	public Workout(long id, String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories, List<Rating> ratings) {
@@ -124,5 +134,15 @@ public class Workout {
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
+	}
+
+	public double getRatingAverage(List<Rating> ratings) {
+
+		if (ratings.isEmpty()) return 0.0;
+		long sum = 0;
+		for (Rating rating : ratings) {
+			sum += rating.getStars();
+		}
+		return (sum * 1.0) / ratings.size();
 	}
 }
