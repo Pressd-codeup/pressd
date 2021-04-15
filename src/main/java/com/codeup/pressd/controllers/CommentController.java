@@ -23,7 +23,7 @@ public class CommentController {
 		this.workoutDao = workoutDao;
 	}
 
-	@PostMapping("/comment/create")
+	@PostMapping("/comments/create")
 	public String createComment(@ModelAttribute Comment comment){
 //		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //		comment.setUser(user);
@@ -32,12 +32,21 @@ public class CommentController {
 		return "redirect:/workouts/index";
 	}
 
-	@PostMapping("/comment/{id}/delete")
-	public String deleteComment(@ModelAttribute Comment commenToDelete, @PathVariable long id){
+	@PostMapping("/comments/{id}/update")
+	public String editComment(@ModelAttribute Comment commentToUpdate, @PathVariable long id) {
 
 		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
 
-		commentDao.delete(commenToDelete);
+		commentDao.save(commentToUpdate);
+		return "redirect:/posts";
+	}
+
+	@PostMapping("/comments/{id}/delete")
+	public String deleteComment(@ModelAttribute Comment commentToDelete, @PathVariable long id){
+
+		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
+
+		commentDao.delete(commentToDelete);
 		return "redirect:/workouts/index";
 	}
 }
