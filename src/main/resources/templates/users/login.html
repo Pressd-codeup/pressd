@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials.html::head('Login Here')" >
-    <meta charset="UTF-8" />
-    <title>Log In</title>
-</head>
-<div th:replace="partials.html::navbar">You shouldn't see this.</div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Login')"></head>
 <body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+
 <div class="container-md text-center">
     <h1>Log In</h1>
     <div th:if="${param.error}">
@@ -32,7 +31,7 @@
                 <button type="submit" class="btn">Log in</button>
             </form>
         </div></div></div>
-<footer th:replace="partials.html::footer"></footer>
+<footer th:fragment="footer"></footer>
 
 <script>
 

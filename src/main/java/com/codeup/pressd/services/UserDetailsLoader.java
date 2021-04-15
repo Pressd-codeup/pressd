@@ -1,8 +1,8 @@
 package com.codeup.pressd.services;
 
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.UserWithRoles;
 import com.codeup.pressd.repository.UserRepository;
-import com.codeup.pressd.repository.UserWithRoles;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

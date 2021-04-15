@@ -6,6 +6,7 @@ import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.TypeRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -76,8 +77,7 @@ public class PostController {
 							 @RequestParam(name = "zipcode") int zipcode,
 							 @RequestParam(name = "type_id") int type_id){
 
-//		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User userToAdd = userDao.getOne(1L);
+		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Post newPost = new Post();
 		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
 
@@ -105,8 +105,7 @@ public class PostController {
 						   @RequestParam(name = "zipcode") int zipcode,
 						   @RequestParam(name = "type_id") int type_id){
 
-//		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User userToAdd = userDao.getOne(1L);
+		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
 
 		postToUpdate.setId(id);

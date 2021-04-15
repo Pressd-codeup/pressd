@@ -1,6 +1,5 @@
-package com.codeup.pressd.repository;
+package com.codeup.pressd.models;
 
-import com.codeup.pressd.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
