@@ -6,7 +6,6 @@ import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.TypeRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +24,13 @@ public class PostController {
 		this.postDao = postDao;
 		this.userDao = userDao;
 		this.typeDao = typeDao;
+	}
+
+	@GetMapping("/posts")
+	public String allPosts(Model viewModel){
+		List<Post> posts = postDao.findAll();
+		viewModel.addAttribute("posts", posts);
+		return "posts/index";
 	}
 
 	@GetMapping("/partners")
@@ -59,14 +65,19 @@ public class PostController {
 		viewModel.addAttribute("user", user);
 		return "posts/show";
 	}
-
+	@GetMapping("/posts/create")
+	public String viewPostForm(Model model){
+		model.addAttribute("post", new Post());
+		return "posts/create";
+	}
 	@PostMapping("/posts/create")
 	public String createPost(@RequestParam(name = "body") String body,
 							 @RequestParam(name = "title") String title,
 							 @RequestParam(name = "zipcode") int zipcode,
 							 @RequestParam(name = "type_id") int type_id){
 
-		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User userToAdd = userDao.getOne(1L);
 		Post newPost = new Post();
 		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
 
@@ -94,7 +105,8 @@ public class PostController {
 						   @RequestParam(name = "zipcode") int zipcode,
 						   @RequestParam(name = "type_id") int type_id){
 
-		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User userToAdd = userDao.getOne(1L);
 		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
 
 		postToUpdate.setId(id);

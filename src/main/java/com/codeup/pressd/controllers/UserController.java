@@ -10,20 +10,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private final UserRepository userDao;
+    private UserRepository userDao;
+
 
     public UserController(UserRepository userDao) {
         this.userDao = userDao;
+
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model viewModel) {
-        viewModel.addAttribute("user", new User());
+    public String showSignupForm(Model model){
+        model.addAttribute("user", new User());
+        User user = new User();
+        System.out.println("user.getUsername() = " + user.getUsername());
         return "users/sign-up";
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, Model model){
         userDao.save(user);
         return "redirect:/login";
     }
