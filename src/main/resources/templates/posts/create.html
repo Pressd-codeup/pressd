@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('create post')"></head>
+
+<th:block th:if="${post.id == null}">
+    <head th:replace="fragments/header :: main-head('create post')"></head>
+</th:block>
+
+
+<th:block th:unless="${post.id == null}">
+    <head th:replace="fragments/header :: main-head('edit post')"></head>
+</th:block>
+
 <body>
+
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<form th:action="@{/posts/create}" th:method="POST" th:object="${post}">
 
-    <h2>Create a Post</h2>
+<th:block th:if="${post.id == null}">
 
-    <br>
+    <form th:action="@{/posts/create}" method="post" th:object="${post}">
 
-    Title:
-    <input th:field="*{title}" />
+        <h2>Create Post Form</h2>
 
-    <br>
+        <br>
 
-    Body:
-    <input th:field="*{body}" />
+        <label for="title">Title</label>
+        <input th:field="*{title}" type="text">
 
-    <br>
+        <br>
 
-    <input type="submit" value="Submit Post!">
+        <label for="body">body</label>
+        <input th:field="*{body}" type="text">
 
-</form>
+        <br>
+
+        <input type="submit" value="create post">
+
+    </form>
+
+</th:block>
+
+<th:block th:unless="${post.id == null}">
+
+    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" th:object="${post}">
+
+        <h2>Edit Post Form</h2>
+
+        <br>
+
+        <label for="title">Title</label>
+        <input th:field="*{title}" type="text">
+
+        <br>
+
+        <label for="body">body</label>
+        <input th:field="*{body}" type="text">
+
+        <br>
+
+        <input type="submit" value="create post">
+
+    </form>
+
+</th:block>
+
+
 
 </body>
 </html>
