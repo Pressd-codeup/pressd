@@ -6,7 +6,7 @@ import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.TypeRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,67 +66,52 @@ public class PostController {
 		viewModel.addAttribute("user", user);
 		return "posts/show";
 	}
+
+
 	@GetMapping("/posts/create")
-	public String viewPostForm(Model model){
-		model.addAttribute("post", new Post());
+	public String showCreatePost(Model viewModel) {
+		viewModel.addAttribute("post", new Post());
 		return "posts/create";
 	}
+
+
 	@PostMapping("/posts/create")
-	public String createPost(@RequestParam(name = "body") String body,
-							 @RequestParam(name = "title") String title,
-							 @RequestParam(name = "zipcode") int zipcode,
-							 @RequestParam(name = "type_id") int type_id){
+	public String createPost(@ModelAttribute Post post){
 
-		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Post newPost = new Post();
-		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
+		//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//post.setUser(user);
 
-
-		newPost.setUser(userToAdd);
-		newPost.setBody(body);
-		newPost.setTitle(title);
-		newPost.setZipcode(zipcode);
-		newPost.setType(type);
-		postDao.save(newPost);
+		postDao.save(post);
 		return "redirect:/posts";
 	}
 
 	@GetMapping("/posts/{id}/update")
 	public String viewEditForm(Model vModel, @PathVariable long id){
-		vModel.addAttribute("post",postDao.getOne(id));
+		vModel.addAttribute("post", postDao.getOne(id));
 		return "posts/update";
 	}
 
 	@PostMapping("/posts/{id}/update")
-	public String editPost(@ModelAttribute Post postToUpdate,
-						   @PathVariable long id,
-						   @RequestParam(name = "body") String body,
-						   @RequestParam(name = "title") String title,
-						   @RequestParam(name = "zipcode") int zipcode,
-						   @RequestParam(name = "type_id") int type_id){
+	public String editPost(@ModelAttribute Post postToUpdate, @PathVariable long id) {
 
-		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
+		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
 
-		postToUpdate.setId(id);
-		postToUpdate.setUser(userToAdd);
-		postToUpdate.setBody(body);
-		postToUpdate.setTitle(title);
-		postToUpdate.setZipcode(zipcode);
-		postToUpdate.setType(type);
 		postDao.save(postToUpdate);
 		return "redirect:/posts";
 	}
 
 	@GetMapping("/posts/{id}/delete")
-	public String viewDeleteForm(Model vModel, @PathVariable Long id){
+	public String viewDeletePost(Model vModel, @PathVariable long id){
+
 		vModel.addAttribute("post",postDao.getOne(id));
 		return "posts/delete";
 	}
 
 	@PostMapping("/posts/{id}/delete")
-	public String deletePost(@ModelAttribute Post postToDelete, @PathVariable Long id){
-		postToDelete.setId(id);
+	public String deletePost(@ModelAttribute Post postToDelete, @PathVariable long id){
+
+		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
+
 		postDao.delete(postToDelete);
 		return "redirect:/posts";
 	}
