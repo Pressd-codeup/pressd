@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: main-head('Home Page')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
@@ -10,6 +10,21 @@
     <div th:if="${post.id == 0}">
         <h1>Please Create a New Post!</h1>
         <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+
+            <div class="dropdown">
+                <button type="button" class="btn bg-dark text-center btn-outline-danger dropdown-toggle" data-toggle="dropdown">
+                    Type
+                </button>
+                <div class="dropdown-menu bg-dark" style="color: red">
+                    <a class="dropdown-item" value="1">Partners</a>
+                    <a class="dropdown-item" value="2">Coaches</a>
+                    <a class="dropdown-item" value="3">Clients</a>
+                </div>
+                <div class="mb-3">
+                    <label for="zipcode" class="form-label">Zip Code</label>
+                    <input class="form-control" th:field="*{zipcode}" type="text">
+                </div>
+            </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Title of the post</label>
                 <input class="form-control" th:field="*{title}" type="text">
@@ -18,25 +33,23 @@
                 <label for="body" class="form-label">Body of the blog post</label>
                 <textarea class="form-control" rows="6" th:field="*{body}">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>
             </div>
-            <button class="btn btn-secondary text-center">Submit Post</button>
+            <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Post</button>
         </form></div>
 
     <div th:if="${post.id != 0}">
-        <h1>Use the form below to edit an existing post!</h1>
+        <h1>Edit your post</h1>
         <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
             <div class="mb-3">
-                <label for="title" class="form-label">Title of the post</label>
+                <label for="title" class="form-label">Title</label>
                 <input class="form-control" type="text" th:field="*{title}">
             </div>
             <div class="mb-3">
-                <label for="body" class="form-label">Body of the blog post</label>
+                <label for="body" class="form-label">Body</label>
                 <textarea class="form-control" rows="6" th:field="*{body}"></textarea>
             </div>
-            <button class="btn btn-secondary text-center">Submit Post</button>
+            <button class="btn btn-dark text-center bg-dark btn-outline-danger">Submit Post</button>
         </form>
     </div>
-
-
 </div>
 
 
