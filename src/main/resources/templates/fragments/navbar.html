@@ -3,17 +3,22 @@
 <head>
 </head>
 <body>
-
 <nav th:fragment="mainNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<<<<<<< HEAD
     <a class="navbar-brand" href="/home">Pressd</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+=======
+    <a class="navbar-brand" href="/home">Pressed</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+>>>>>>> cfa3636f0db0f3de125316a905616ae7c4ae8a5a
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
+<<<<<<< HEAD
                 <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -38,6 +43,33 @@
                 <a class="nav-link" href="#">Log Out</a>
             </li>
 
+=======
+                <a class="nav-link" href="/posts">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Plans</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/posts/create">Create</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Find
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/coaches">Trainers</a>
+                    <a class="dropdown-item" href="/partners">Buddies</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/clients">Clients</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sign-up">Sign-up</a>
+            </li>
+>>>>>>> cfa3636f0db0f3de125316a905616ae7c4ae8a5a
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -45,7 +77,6 @@
         </form>
     </div>
 </nav>
-
-
+<script th:include="fragments/script"></script>
 </body>
 </html>
