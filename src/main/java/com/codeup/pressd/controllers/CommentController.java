@@ -29,8 +29,15 @@ public class CommentController {
 //		comment.setUser(user);
 
 		commentDao.save(comment);
-		return "workouts/index";
+		return "redirect:/workouts/index";
 	}
 
+	@PostMapping("/comment/{id}/delete")
+	public String deleteComment(@ModelAttribute Comment commenToDelete, @PathVariable long id){
 
+		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
+
+		commentDao.delete(commenToDelete);
+		return "redirect:/workouts/index";
+	}
 }
