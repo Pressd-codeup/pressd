@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <title>Pressd Landing</title>
@@ -11,9 +11,9 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="../../../public/css/landing/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../public/css/landing/font-awesome.min.css">
-    <link rel="stylesheet" href="../../../public/css/landing/aos.css">
+    <link rel="stylesheet" th:href="@{../../../public/css/landing/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../../../public/css/landing/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../../../public/css/landing/aos.css}">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="../../../public/css/landing/style.css">
