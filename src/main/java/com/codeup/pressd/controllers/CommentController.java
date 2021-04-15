@@ -24,16 +24,13 @@ public class CommentController {
 	}
 
 	@PostMapping("/comment/create")
-	public String createComment(@RequestParam(name = "body") String body,
-								@RequestParam(name = "workout_id") long workout_id){
-		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Comment newComment = new Comment();
-		Workout workout = workoutDao.getOne(workout_id);
-		newComment.setBody(body);
-		newComment.setUser(userToAdd);
-		newComment.setWorkout(workout);
-		workoutDao.save(workout);
+	public String createComment(@ModelAttribute Comment comment){
+//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		comment.setUser(user);
 
+		commentDao.save(comment);
 		return "workouts/index";
 	}
+
+
 }
