@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-import java.util.List;
-
 @Controller
 public class PostController {
 
@@ -62,18 +60,6 @@ public class PostController {
 		return "posts/show";
 	}
 
-	@GetMapping("/posts/{id}")
-	public String showOnePost(@PathVariable Long id, Model vModel){
-		vModel.addAttribute("post", postDao.getOne(id));
-		return "posts/show";
-	}
-
-	@GetMapping("/posts/create")
-	public String viewPostForm(Model vModel){
-		vModel.addAttribute("post",new Post());
-		return "posts/create";
-	}
-
 	@PostMapping("/posts/create")
 	public String createPost(@RequestParam(name = "body") String body,
 							 @RequestParam(name = "title") String title,
@@ -82,10 +68,8 @@ public class PostController {
 
 		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Post newPost = new Post();
-		Type type = new Type();
+		Type type = new Type(type_id, typeDao.getName(type_id));
 
-		type.setId(type_id);
-		type.setName(typeDao.getName(type_id));
 
 		newPost.setUser(userToAdd);
 		newPost.setBody(body);
@@ -103,15 +87,36 @@ public class PostController {
 	}
 
 	@PostMapping("/posts/{id}/update")
-	public String editPost(@ModelAttribute Post postToUpdate, @PathVariable Long id){
+	public String editPost(@ModelAttribute Post postToUpdate,
+						   @PathVariable Long id,
+						   @RequestParam(name = "body") String body,
+						   @RequestParam(name = "title") String title,
+						   @RequestParam(name = "zipcode") int zipcode,
+						   @RequestParam(name = "type_id") int type_id){
 
 		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Type type = new Type(type_id, typeDao.getName(type_id));
 
-		System.out.println();
 		postToUpdate.setId(id);
 		postToUpdate.setUser(userToAdd);
+		postToUpdate.setBody(body);
+		postToUpdate.setTitle(title);
+		postToUpdate.setZipcode(zipcode);
+		postToUpdate.setType(type);
 		postDao.save(postToUpdate);
+		return "redirect:/posts";
+	}
 
+	@GetMapping("/posts/{id}/delete")
+	public String viewDeleteForm(Model vModel, @PathVariable Long id){
+		vModel.addAttribute("post",postDao.getOne(id));
+		return "posts/delete";
+	}
+
+	@PostMapping("/posts/{id}/delete")
+	public String deletePost(@ModelAttribute Post postToDelete, @PathVariable Long id){
+		postToDelete.setId(id);
+		postDao.delete(postToDelete);
 		return "redirect:/posts";
 	}
 }
