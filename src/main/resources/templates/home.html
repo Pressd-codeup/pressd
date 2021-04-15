@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Home Page')"></head>
+
+
+
+<!--<link rel="stylesheet" th:href="../../../public/css/landing/bootstrap.min.css">-->
+<!--<link rel="stylesheet" th:href="../../../public/css/landing/font-awesome.min.css">-->
+<!--<link rel="stylesheet" th:href="../../../public/css/landing/aos.css">-->
+
+<head th:replace="fragments/header :: main-head('Home Page')">
+</head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <h1>This will be home</h1>
 
+<!-- HERO -->
+<section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
+
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 col-md-10 mx-auto col-12">
+                <div class="hero-text mt-5 text-center">
+
+                    <h6 data-aos="fade-up" data-aos-delay="300">new way to build a healthy lifestyle!</h6>
+
+                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Upgrade your body at Pressd Fitness</h1>
+
+                    <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
+
+                    <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">learn more</a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
 
 
