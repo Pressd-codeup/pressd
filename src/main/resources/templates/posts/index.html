@@ -4,20 +4,12 @@
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<div th:each="post : ${posts}" class="container">
-    <h1 th:text="${posts.getTitle()}"></h1>
-    <p th:text="${posts.getBody()}"></p>
-    <p th:text="${posts.getUser().getEmail()}"></p>
-
-    <form th:action="@{/posts/{id}(id=${posts.getId()})}" method="GET">
-        <input type="submit" value="View Post">
-    </form>
-</div>
-<div>
-    <form th:action="@{/posts/create}" method="GET">
-        <input type="submit" value="Create Post">
-    </form>
-</div>
+<main class="container">
+    <div class="post" th:each="post : ${posts}">
+        <h1 th:text="${post.title}"></h1>
+        <p th:text="${post.body}"></p>
+    </div>
+</main>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 <script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>

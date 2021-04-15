@@ -27,6 +27,13 @@ public class PostController {
 		this.typeDao = typeDao;
 	}
 
+	@GetMapping("/posts")
+	public String allPosts(Model viewModel){
+		List<Post> posts = postDao.findAll();
+		viewModel.addAttribute("posts", posts);
+		return "posts/index";
+	}
+
 	@GetMapping("/partners")
 	public String seeBuddyPosts(Model viewModel){
 
@@ -60,11 +67,13 @@ public class PostController {
 		return "posts/show";
 	}
 
+
 	@GetMapping("/posts/create")
 	public String showCreatePost(Model viewModel) {
 		viewModel.addAttribute("post", new Post());
 		return "posts/create";
 	}
+
 
 	@PostMapping("/posts/create")
 	public String createPost(@ModelAttribute Post post){

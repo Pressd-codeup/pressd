@@ -30,7 +30,7 @@ public class Comment {
 	public Comment() {
 	}
 
-	public Comment(long id, String body, LocalDateTime datePosted, Workout workout, User user) {
+	public Comment(long id, String body, LocalDateTime datePosted, Workout workout, User user, Post postId) {
 		this.id = id;
 		this.body = body;
 		this.datePosted = datePosted;
