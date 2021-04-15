@@ -36,6 +36,14 @@ public class Post {
 	public Post() {
 	}
 
+	public Post(String title, String body, long zipcode, Type type) {
+		this.title = title;
+		this.body = body;
+		this.zipcode = zipcode;
+		this.type = type;
+		this.datePosted = LocalDateTime.now();
+	}
+
 	public Post(long id, String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user) {
 		this.id = id;
 		this.title = title;
