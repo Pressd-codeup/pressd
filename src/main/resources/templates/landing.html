@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Home</title>
-</head>
+<head th:replace="fragments/header :: main-head('Home Page')"></head>
 <body>
 <!--Navbar-->
 <nav th:replace="fragments/navbar :: mainNav"></nav>
@@ -45,7 +36,7 @@
         <h1 class="section-heading">About Us</h1>
         <div class="section-heading-line"></div>
         <div class="video-wrapper">
-            <video src="../../../public/css/landing/images/boxing.mp4" class="video"></video>
+            <video src="images/boxing.mp4" class="video"></video>
             <div class="controls">
                 <div class="video-bar-wrapper">
                     <div class="video-bar"></div>
@@ -109,12 +100,9 @@
     <!--End of Section 3-->
 </div>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-<script src="../../../public/js/landing/landing.js"></script>
-</body>
+<script src="landing.js"></script>
 
-<body>
-
-<script src=""></script>
+<script src="fragments/script.js"></script>
 </body>
 
 </html>

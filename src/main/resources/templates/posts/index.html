@@ -12,13 +12,6 @@
 </head>
 <body>
 
-</body>
-</html>
-
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-    <title> All Posts</title>
-</head>
-<body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <div th:each="post : ${posts}" class="container">
@@ -26,7 +19,7 @@
     <p th:text="${posts.getBody()}"></p>
     <p th:text="${posts.getUser().getEmail()}"></p>
 
-    <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">
+    <form th:action="@{/posts/{id}(id=${posts.getId()})}" method="GET">
         <input type="submit" value="View Post">
     </form>
 </div>
