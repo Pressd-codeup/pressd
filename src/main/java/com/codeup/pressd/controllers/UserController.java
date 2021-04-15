@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class UserController {
     private UserRepository userDao;
@@ -23,7 +25,6 @@ public class UserController {
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
         User user = new User();
-        System.out.println("user.getUsername() = " + user.getUsername());
         return "users/sign-up";
     }
 
@@ -31,6 +32,8 @@ public class UserController {
     public String saveUser(@ModelAttribute User user, Model model){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setAbout("Tell people about you!");
+        user.setDateJoined(LocalDateTime.now());
         userDao.save(user);
         return "redirect:/login";
     }
