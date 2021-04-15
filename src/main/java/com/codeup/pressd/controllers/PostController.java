@@ -7,10 +7,12 @@ import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.TypeRepository;
 //import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -76,10 +78,14 @@ public class PostController {
 
 
 	@PostMapping("/posts/create")
-	public String createPost(@ModelAttribute Post post){
+	public String createPost(@ModelAttribute Post post, @ModelAttribute Type type){
 
-		//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//post.setUser(user);
+//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userDao.getOne(1L);
+		post.setUser(user);
+		type.setName(typeDao.getOne(type.getId()).getName());
+		post.setType(type);
+		post.setDatePosted(LocalDateTime.now());
 
 		postDao.save(post);
 		return "redirect:/posts";
