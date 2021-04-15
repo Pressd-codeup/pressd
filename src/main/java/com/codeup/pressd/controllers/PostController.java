@@ -68,7 +68,7 @@ public class PostController {
 
 		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Post newPost = new Post();
-		Type type = new Type(type_id, typeDao.getName(type_id));
+		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
 
 
 		newPost.setUser(userToAdd);
@@ -81,21 +81,21 @@ public class PostController {
 	}
 
 	@GetMapping("/posts/{id}/update")
-	public String viewEditForm(Model vModel, @PathVariable Long id){
+	public String viewEditForm(Model vModel, @PathVariable long id){
 		vModel.addAttribute("post",postDao.getOne(id));
 		return "posts/update";
 	}
 
 	@PostMapping("/posts/{id}/update")
 	public String editPost(@ModelAttribute Post postToUpdate,
-						   @PathVariable Long id,
+						   @PathVariable long id,
 						   @RequestParam(name = "body") String body,
 						   @RequestParam(name = "title") String title,
 						   @RequestParam(name = "zipcode") int zipcode,
 						   @RequestParam(name = "type_id") int type_id){
 
 		User userToAdd = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Type type = new Type(type_id, typeDao.getName(type_id));
+		Type type = new Type(type_id, typeDao.getOne((long)type_id).getName());
 
 		postToUpdate.setId(id);
 		postToUpdate.setUser(userToAdd);
