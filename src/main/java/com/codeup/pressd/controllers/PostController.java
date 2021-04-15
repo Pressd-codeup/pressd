@@ -78,15 +78,14 @@ public class PostController {
 
 
 	@PostMapping("/posts/create")
-	public String createPost(@ModelAttribute Post post, @ModelAttribute Type type){
+	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id){
 
 //		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDao.getOne(1L);
+		User user = userDao.getOne(2L);
+		Type type = typeDao.getOne(type_id);
 		post.setUser(user);
-		type.setName(typeDao.getOne(type.getId()).getName());
 		post.setType(type);
 		post.setDatePosted(LocalDateTime.now());
-
 		postDao.save(post);
 		return "redirect:/posts";
 	}
