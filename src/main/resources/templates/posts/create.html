@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="fragments/header :: main-head('Home Page')"></head>
+<head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<section class="leg1 d-flex flex-column justify-content-center align-items-center" id="home">
-
+<section class="leg d-flex flex-column justify-content-center align-items-center" id="home">
 
     <div class="container">
         <div th:if="${post.id == 0}">
@@ -65,26 +63,6 @@
 
 
 </section>
-
-
-<div th:if="${post.id != 0}">
-    <h1>Edit your post</h1>
-    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input class="form-control" type="text" th:field="*{title}">
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label">Body</label>
-            <textarea class="form-control" rows="6" th:field="*{body}"></textarea>
-        </div>
-        <button class="btn btn-dark text-center bg-dark btn-outline-danger">Submit Post</button>
-    </form>
-
-</div>
-
-
-</div>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
