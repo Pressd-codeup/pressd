@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Controller
 public class UserController {
@@ -37,6 +38,10 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setAbout("Tell people about you!");
+        user.setMessagesFrom(new ArrayList<>());
+        user.setMessagesTo(new ArrayList<>());
+        user.setComments(new ArrayList<>());
+        user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
         userDao.save(user);
         return "redirect:login";
