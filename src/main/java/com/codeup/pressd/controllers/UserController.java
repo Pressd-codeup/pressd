@@ -38,7 +38,7 @@ public class UserController {
         user.setAbout("Tell people about you!");
         user.setDateJoined(LocalDateTime.now());
         userDao.save(user);
-        return "redirect:users/login";
+        return "redirect:login";
     }
 
     @GetMapping("/users/editProfile")
