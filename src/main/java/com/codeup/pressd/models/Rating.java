@@ -11,11 +11,6 @@ public class Rating {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToMany(mappedBy = "ratings")
-	List<Workout> workouts;
-
-	@ManyToMany(mappedBy = "ratings")
-	List<User> users;
 
 
 	@Column(name = "stars", nullable = false)
@@ -24,16 +19,13 @@ public class Rating {
 	public Rating() {
 	}
 
-	public Rating(long id, List<Workout> workouts, List<User> users, long stars) {
+	public Rating(long id, long stars) {
 		this.id = id;
-		this.workouts = workouts;
-		this.users = users;
 		this.stars = stars;
 	}
 
-	public Rating(List<Workout> workouts, List<User> users, long stars) {
-		this.workouts = workouts;
-		this.users = users;
+	public Rating(long stars) {
+
 		this.stars = stars;
 	}
 
@@ -45,21 +37,7 @@ public class Rating {
 		this.id = id;
 	}
 
-	public List<Workout> getWorkouts() {
-		return workouts;
-	}
 
-	public void setWorkouts(List<Workout> workouts) {
-		this.workouts = workouts;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
 
 	public long getStars() {
 		return stars;

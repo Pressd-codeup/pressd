@@ -49,10 +49,6 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sentFrom")
 	private List<Message> messagesFrom;
 
-	@ManyToMany
-	@JoinTable(name = "user_ratings", joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "rating_id"))
-	List<Rating> ratings;
 
 
 	public User() {
@@ -72,7 +68,6 @@ public class User {
 		this.comments = comments;
 		this.messagesTo = messagesTo;
 		this.messagesFrom = messagesFrom;
-		this.ratings = ratings;
 	}
 
 	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Rating> ratings) {
@@ -88,7 +83,7 @@ public class User {
 		this.comments = comments;
 		this.messagesTo = messagesTo;
 		this.messagesFrom = messagesFrom;
-		this.ratings = ratings;
+
 	}
 	public User(User copy) {
 		id = copy.id; // This line is SUPER important! Many things won't work if it's absent
@@ -201,11 +196,4 @@ public class User {
 		this.messagesFrom = messagesFrom;
 	}
 
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
 }
