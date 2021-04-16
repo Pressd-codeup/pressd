@@ -7,6 +7,7 @@ import com.codeup.pressd.models.Workout;
 import com.codeup.pressd.repository.CategoryRepository;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.WorkoutRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,8 +62,8 @@ public class WorkoutController {
 
 	@PostMapping("/workouts/create")
 	public String createWorkout(@ModelAttribute Workout workout) {
-		//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//workout.setUser(user);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		workout.setUser(user);
 		workoutDao.save(workout);
 		return "redirect:/workouts";
 	}
@@ -76,12 +77,10 @@ public class WorkoutController {
 	@PostMapping("/workouts/{id}/delete")
 	public String deleteWorkout(@PathVariable long id) {
 		Workout workout = workoutDao.getOne(id);
-		//User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//if (currentUser != userDao.getUserByWorkoutsContains(workout)) return "redirect:/workouts";
-		//^THIS AUTH MIGHT NOT WORK BECAUSE OF '==' OBJECT EQUALITY BEHAVIOR- MIGHT NEED TO USE SERVICES/USERSERVICE CUSTOM METHODS FOR AUTH
-
-
-		workoutDao.deleteById(id);
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (currentUser.getId() == workout.getUser().getId()) {
+			workoutDao.deleteById(id);
+		}
 		return "redirect:/workouts";
 	}
 
@@ -92,12 +91,12 @@ public class WorkoutController {
 		return "/workouts/update";
 	}
 
-	@PostMapping("/workouts/{id}/update")
-	public String updateWorkout(@PathVariable long id, @ModelAttribute Workout workout) {
-
-		//WILL NEED AUTHENTICATION OF CURRENTUSER == WORKOUTUSER
-
-		workoutDao.save(workout);
+	@PostMapping("/workouts/update")
+	public String updateWorkout(@ModelAttribute Workout workout) {
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (currentUser.getId() == workout.getUser().getId()) {
+			workoutDao.save(workout);
+		}
 		return "redirect:/workouts";
 	}
 
