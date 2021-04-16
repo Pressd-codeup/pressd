@@ -4,13 +4,11 @@
 <head th:replace="fragments/header :: main-head('Home Page')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<h1>Create a Post</h1>
-<section class="leg d-flex flex-column justify-content-center align-items-center" id="home">
+<section class="leg1 d-flex flex-column justify-content-center align-items-center" id="home">
 
-    <div class="bg-overlay"></div>
+    <div class="bg-overlay1"></div>
     <div class="container">
         <div th:if="${post.id == 0}">
-            <h1>Please Create a New Post!</h1>
             <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
 
                 <!--/*@thymesVar id="type" type="com.codeup.pressd.models.Type"*/-->
@@ -28,6 +26,7 @@
                         <input class="dropdown-item" type="radio" name="type_id" value="3" id="type3">
                     </div>
                 </div>
+
 
                 <div class="mb-3">
                     <label for="zipcode" class="form-label">Zip Code</label>
