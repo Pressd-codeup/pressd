@@ -34,10 +34,6 @@ public class Workout {
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
 	List<Category> categories;
 
-	@ManyToMany
-	@JoinTable(name = "workout_ratings", joinColumns = @JoinColumn(name = "workout_id"),
-			inverseJoinColumns = @JoinColumn(name = "rating_id"))
-	List<Rating> ratings;
 
 	public Workout() {
 	}
@@ -47,11 +43,10 @@ public class Workout {
 		this.body = body;
 		this.categories = categories;
 		this.comments = new ArrayList<>();
-		this.ratings = new ArrayList<>();
 		this.datePosted = LocalDateTime.now();
 	}
 
-	public Workout(long id, String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories, List<Rating> ratings) {
+	public Workout(long id, String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
@@ -59,17 +54,17 @@ public class Workout {
 		this.user = user;
 		this.comments = comments;
 		this.categories = categories;
-		this.ratings = ratings;
+
 	}
 
-	public Workout(String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories, List<Rating> ratings) {
+	public Workout(String title, String body, LocalDateTime datePosted, User user, List<Comment> comments, List<Category> categories) {
 		this.title = title;
 		this.body = body;
 		this.datePosted = datePosted;
 		this.user = user;
 		this.comments = comments;
 		this.categories = categories;
-		this.ratings = ratings;
+
 	}
 
 	public long getId() {
@@ -128,13 +123,6 @@ public class Workout {
 		this.categories = categories;
 	}
 
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
 
 	public double getRatingAverage(List<Rating> ratings) {
 
