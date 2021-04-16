@@ -21,18 +21,19 @@ public class UserController {
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
-        this.passwordEncoder = passwordEncoder;;
+        this.passwordEncoder = passwordEncoder;
+        ;
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
         User user = new User();
         return "users/sign-up";
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user, Model model){
+    public String saveUser(@ModelAttribute User user, Model model) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setAbout("Tell people about you!");
@@ -42,17 +43,19 @@ public class UserController {
     }
 
     @GetMapping("/users/editProfile")
-    public String profileEditor(Model viewModel){
+    public String profileEditor(Model viewModel) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("user", loggedIn);
         return "users/editProfile";
 
     }
-@PostMapping("/users/edit")
-    public String saveEditProfile(@ModelAttribute User user){
+
+    @PostMapping("/users/edit")
+    public String saveEditProfile(@ModelAttribute User user) {
         userDao.save(user);
 
-    return "users/show";
+        return "users/show";
     }
+
 
 }
