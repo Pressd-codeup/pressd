@@ -4,9 +4,7 @@ import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.Type;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.PostRepository;
-import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.TypeRepository;
-//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +18,10 @@ import java.util.List;
 public class PostController {
 
 	private final PostRepository postDao;
-	private final UserRepository userDao;
 	private final TypeRepository typeDao;
 
-	PostController(PostRepository postDao, UserRepository userDao, TypeRepository typeDao){
+	PostController(PostRepository postDao, TypeRepository typeDao){
 		this.postDao = postDao;
-		this.userDao = userDao;
 		this.typeDao = typeDao;
 	}
 
@@ -58,8 +54,6 @@ public class PostController {
 		return "posts/index";
 	}
 
-
-
 	@GetMapping("/posts/{id}")
 	public String showOnePost(@PathVariable long id, Model viewModel){
 		Post post = postDao.getOne(id);
@@ -69,19 +63,15 @@ public class PostController {
 		return "posts/show";
 	}
 
-
 	@GetMapping("/posts/create")
 	public String showCreatePost(Model viewModel) {
 		viewModel.addAttribute("post", new Post());
 		return "posts/create";
 	}
 
-
 	@PostMapping("/posts/create")
 	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id){
-
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDao.getOne(2L);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = typeDao.getOne(type_id);
 		post.setUser(user);
 		post.setType(type);
@@ -96,28 +86,27 @@ public class PostController {
 		return "posts/update";
 	}
 
-	@PostMapping("/posts/{id}/update")
-	public String editPost(@ModelAttribute Post postToUpdate, @PathVariable long id) {
-
-		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
-
-		postDao.save(postToUpdate);
+	@PostMapping("/posts/update")
+	public String editPost(@ModelAttribute Post postToUpdate) {
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (currentUser.getId() == postToUpdate.getUser().getId()) {
+			postDao.save(postToUpdate);
+		}
 		return "redirect:/posts";
 	}
 
 	@GetMapping("/posts/{id}/delete")
 	public String viewDeletePost(Model vModel, @PathVariable long id){
-
 		vModel.addAttribute("post",postDao.getOne(id));
 		return "posts/delete";
 	}
 
-	@PostMapping("/posts/{id}/delete")
-	public String deletePost(@ModelAttribute Post postToDelete, @PathVariable long id){
-
-		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
-
-		postDao.delete(postToDelete);
+	@PostMapping("/posts/delete")
+	public String deletePost(@ModelAttribute Post postToDelete){
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (currentUser.getId() == postToDelete.getUser().getId()) {
+			postDao.delete(postToDelete);
+		}
 		return "redirect:/posts";
 	}
 }
