@@ -4,21 +4,27 @@
 <head th:replace="fragments/header :: main-head('Sign Up')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
-<br>
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
-    <br>
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
-    <br>
-    <label for="about">About</label>
-    <textarea id="about" th:field="*{about}"></textarea>
-    <br>
-    <input value="Sign me up!" type="submit" />
-</form>
+<div class="container-md text-center">
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-8 col-md-6 p-3">
+            <h1>Create an account</h1>
+            <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+                <label class="form-label mt-3" for="username">Username</label>
+                <input class="form-control mb-3"  id="username" th:field="*{username}"/>
+                <br>
+                <label class="form-label mt-3" for="email">Email</label>
+                <input class="form-control mb-3"  id="email" th:field="*{email}"/>
+                <br>
+                <label class="form-label mt-3" for="password">Password</label>
+                <input class="form-control mb-3"  id="password" type="password" th:field="*{password}"/>
+                <br>
+                <label class="form-label mt-3" for="about">About</label>
+                <textarea class="form-control mb-3"  id="about" th:field="*{about}"></textarea>
+                <br>
+                <input value="Sign me up!" type="submit"/>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
