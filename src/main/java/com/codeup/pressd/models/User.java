@@ -86,10 +86,19 @@ public class User {
 
 	}
 	public User(User copy) {
-		id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-		email = copy.email;
-		username = copy.username;
-		password = copy.password;
+		this.id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+		this.email = copy.email;
+		this.username = copy.username;
+		this.password = copy.password;
+		this.isCoach = copy.isCoach;
+		this.isAdmin = copy.isAdmin;
+		this.dateJoined = copy.dateJoined;
+		this.about = copy.about;
+		this.posts = copy.posts;
+		this.workouts = copy.workouts;
+		this.comments = copy.comments;
+		this.messagesTo = copy.messagesTo;
+		this.messagesFrom = copy.messagesFrom;
 	}
 
 	public long getId() {

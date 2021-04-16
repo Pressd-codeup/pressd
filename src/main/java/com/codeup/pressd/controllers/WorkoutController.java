@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -64,6 +66,8 @@ public class WorkoutController {
 	public String createWorkout(@ModelAttribute Workout workout) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		workout.setUser(user);
+		workout.setComments(new ArrayList<>());
+		workout.setDatePosted(LocalDateTime.now());
 		workoutDao.save(workout);
 		return "redirect:/workouts";
 	}

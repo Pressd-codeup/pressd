@@ -1,97 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="fragments/header :: main-head('Home Page')"></head>
+<head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<section class="leg1 d-flex flex-column justify-content-center align-items-center" id="home">
+<section class="leg d-flex flex-column justify-content-center align-items-center" id="home">
 
-<<<<<<< HEAD
     <div class="container">
         <div th:if="${post.id == 0}">
-            <h1 style="color: white">Please Create a New Post!</h1>
-=======
-    <div class="bg-overlay1"></div>
-    <div class="container">
-        <div th:if="${post.id == 0}">
->>>>>>> adc6a34c324d55b707d35d0069b3540bb5cbf8ce
+            <h1  style="color: white">Please Create a New Post!</h1>
             <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+                <div class="dropdown" th:field="${type}">
+                    <button type="button" class="btn bg-dark text-center btn-outline-danger dropdown-toggle"
+                            data-toggle="dropdown">
+                        Type
+                    </button>
+                    <div class="dropdown-menu bg-dark" style="color: red">
+                        <label for="type1" class="form-lable" >Partners</label>
+                        <input class="dropdown-item" type="radio" name="type_id" value="1" id="type1">
+                        <label for="type2" class="form-lable">Coaches</label>
+                        <input class="dropdown-item" type="radio" name="type_id" value="2" id="type2">
+                        <label for="type3" class="form-lable">Clients</label>
+                        <input class="dropdown-item" type="radio" name="type_id" value="3" id="type3">
+                    </div>
+                </div>
 
-
-                <!--                &lt;!&ndash;Form Start&ndash;&gt;-->
-                <!--                <div class="container contact">-->
-                <!--                    <div class="row">-->
-                <!--                        <div class="col-md-3">-->
-                <!--                            <div class="contact-info">-->
-                <!--                                <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>-->
-                <!--                                <h2>Create Post</h2>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="col-md-9">-->
-
-
-<!--                                            <div class="contact-form">-->
-<!--                                                <div class="form-group">-->
-<!--                                                    <label class="control-label col-sm-2" for="fname">First Name:</label>-->
-<!--                                                    <div class="col-sm-10">-->
-<!--                                                        <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname">-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <div class="form-group">-->
-<!--                                                    <label class="control-label col-sm-2" for="lname">Last Name:</label>-->
-<!--                                                    <div class="col-sm-10">-->
-<!--                                                        <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname">-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-                <!--                                <div class="form-group">-->
-                <!--                                    <label class="control-label col-sm-2" for="email">zipcode:</label>-->
-                <!--                                    <div class="col-sm-10">-->
-                <!--                                        <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                                <div class="form-group">-->
-                <!--                                    <label class="control-label col-sm-2" for="email">title:</label>-->
-                <!--                                    <div class="col-sm-10">-->
-                <!--                                        <input class="form-control" th:field="*{title}" type="text" id="title">-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                                <div class="form-group">-->
-                <!--                                    <label class="control-label col-sm-2" for="comment">Body:</label>-->
-                <!--                                    <div class="col-sm-10">-->
-                <!--                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-
-
-<!--                &lt;!&ndash;/*@thymesVar id="type" type="com.codeup.pressd.models.Type"*/&ndash;&gt;-->
-<!--                <div class="dropdown" th:field="${type}">-->
-<!--                    <button type="button" class="btn bg-dark text-center btn-outline-danger dropdown-toggle"-->
-<!--                            data-toggle="dropdown">-->
-<!--                        Type-->
-<!--                    </button>-->
-<!--                    <div class="dropdown-menu bg-dark" style="color: red">-->
-<!--                        <label for="type1" class="form-lable">Partners</label>-->
-<!--                        <input class="dropdown-item" type="radio" name="type_id" value="1" id="type1">-->
-<!--                        <label for="type2" class="form-lable">Coaches</label>-->
-<!--                        <input class="dropdown-item" type="radio" name="type_id" value="2" id="type2">-->
-<!--                        <label for="type3" class="form-lable">Clients</label>-->
-<!--                        <input class="dropdown-item" type="radio" name="type_id" value="3" id="type3">-->
-<!--                    </div>-->
-<!--                </div>-->
-
-                <!--                                <div class="form-group">-->
-                <!--                                    <div class="col-sm-offset-2 col-sm-10">-->
-                <!--                                        <button type="submit" class="btn btn-default">Submit</button>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-                <div id="login-row" class="row justify-content-center align-items-center">
-                    <div id="login-column" class="col-md-6">
-                        <div id="login-box" class="col-md-12">
                 <div class="mb-3">
                     <label for="zipcode" class="form-label">Zip Code</label>
                     <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">
@@ -106,56 +38,12 @@
                     <label for="body" class="form-label">Body of the blog post</label>
                     <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>
                 </div>
-                <!--/*@thymesVar id="type" type="com.codeup.pressd.models.Type"*/-->
-                <div class="dropdown" style="margin: 20px" th:field="${type}">
-                    <button type="button" class="btn bg-dark text-center btn-outline-danger dropdown-toggle"
-                            data-toggle="dropdown">
-                        Type
-                    </button>
-                    <div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">
-                        <label for="type1" class="form-lable">Partners</label>
-                        <input class="dropdown-item" type="radio" name="type_id" value="1" id="type1">
-                        <label for="type2" class="form-lable">Coaches</label>
-                        <input class="dropdown-item" type="radio" name="type_id" value="2" id="type2">
-                        <label for="type3" class="form-lable">Clients</label>
-                        <input class="dropdown-item" type="radio" name="type_id" value="3" id="type3">
-                    </div>
-                </div>
-
-<<<<<<< HEAD
-                <div class="mb-3">
-                    <label for="zipcode" class="form-label bg-dark" style="color: white; border: 2px solid red">Zip Code</label>
-                    <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">
-                </div>
-
-                <div class="mb-3">
-                    <label for="title" class="form-label bg-dark" style="color: white; border: 2px solid red">Title of the post</label>
-                    <input class="form-control" th:field="*{title}" type="text" id="title">
-                </div>
-
-                <div class="mb-3">
-                    <label for="body" class="form-label bg-dark" style="color: white; border: 2px solid red">Body of the post</label>
-                    <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>
-=======
-                <div class="submit-btn">
-                    <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Post
-                    </button>
->>>>>>> adc6a34c324d55b707d35d0069b3540bb5cbf8ce
-                </div>
+                <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Post
+                </button>
             </form>
         </div>
     </div>
-</div>
-    </div>
-    </div>
-
-
 </section>
-<<<<<<< HEAD
-=======
-
-
-
 <div th:if="${post.id != 0}">
     <h1>Edit your post</h1>
     <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
@@ -169,11 +57,9 @@
         </div>
         <button class="btn btn-dark text-center bg-dark btn-outline-danger">Submit Post</button>
     </form>
-
 </div>
->>>>>>> adc6a34c324d55b707d35d0069b3540bb5cbf8ce
-
 </div>
+
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>

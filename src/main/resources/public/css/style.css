@@ -371,6 +371,15 @@ a:focus {
     min-height: 100vh;
     position: relative;
 }
+.create {
+    background-image: url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    min-height: 100vh;
+    position: relative;
+}
 
 /*---------------------------------------
    CLASS
