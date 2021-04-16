@@ -362,7 +362,15 @@ a:focus {
     min-height: 100vh;
     position: relative;
 }
-
+.leg {
+    background-image: url('images/legPress.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    min-height: 100vh;
+    position: relative;
+}
 
 /*---------------------------------------
    CLASS
