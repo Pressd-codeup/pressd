@@ -1,3 +1,13 @@
+.slogan {
+    color: var(--white-color);
+    font-size: var(--h6-font-size);
+    line-height: inherit;
+    margin: 0;
+}
+
+
+
+
 
 @font-face {
     font-family: 'Plain';
@@ -98,12 +108,12 @@ h5 {
     font-size: var(--h5-font-size);
 }
 
-h6 {
-    color: var(--gray-color);
-    font-size: var(--h6-font-size);
-    line-height: inherit;
-    margin: 0;
-}
+/*h6 {*/
+/*    color: var(--gray-color);*/
+/*    font-size: var(--h6-font-size);*/
+/*    line-height: inherit;*/
+/*    margin: 0;*/
+/*}*/
 
 p {
     color: var(--p-color);
