@@ -7,19 +7,18 @@
 <h1>Create a Post</h1>
 <section class="leg d-flex flex-column justify-content-center align-items-center" id="home">
 
-    <div class="bg-overlay"></div>
     <div class="container">
         <div th:if="${post.id == 0}">
-            <h1>Please Create a New Post!</h1>
+            <h1 style="color: white">Please Create a New Post!</h1>
             <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
 
                 <!--/*@thymesVar id="type" type="com.codeup.pressd.models.Type"*/-->
-                <div class="dropdown" th:field="${type}">
+                <div class="dropdown" style="margin: 20px" th:field="${type}">
                     <button type="button" class="btn bg-dark text-center btn-outline-danger dropdown-toggle"
                             data-toggle="dropdown">
                         Type
                     </button>
-                    <div class="dropdown-menu bg-dark" style="color: red">
+                    <div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">
                         <label for="type1" class="form-lable">Partners</label>
                         <input class="dropdown-item" type="radio" name="type_id" value="1" id="type1">
                         <label for="type2" class="form-lable">Coaches</label>
@@ -30,17 +29,17 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="zipcode" class="form-label">Zip Code</label>
+                    <label for="zipcode" class="form-label bg-dark" style="color: white; border: 2px solid red">Zip Code</label>
                     <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">
                 </div>
 
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title of the post</label>
+                    <label for="title" class="form-label bg-dark" style="color: white; border: 2px solid red">Title of the post</label>
                     <input class="form-control" th:field="*{title}" type="text" id="title">
                 </div>
 
                 <div class="mb-3">
-                    <label for="body" class="form-label">Body of the blog post</label>
+                    <label for="body" class="form-label bg-dark" style="color: white; border: 2px solid red">Body of the post</label>
                     <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>
                 </div>
                 <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Post
@@ -49,21 +48,6 @@
         </div>
     </div>
 </section>
-<div th:if="${post.id != 0}">
-    <h1>Edit your post</h1>
-    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input class="form-control" type="text" th:field="*{title}">
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label">Body</label>
-            <textarea class="form-control" rows="6" th:field="*{body}"></textarea>
-        </div>
-        <button class="btn btn-dark text-center bg-dark btn-outline-danger">Submit Post</button>
-    </form>
-</div>
-</div>
 
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
