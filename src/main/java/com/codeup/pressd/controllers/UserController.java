@@ -1,12 +1,15 @@
 package com.codeup.pressd.controllers;
 
+import com.codeup.pressd.SecurityConfiguration;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
@@ -35,7 +38,21 @@ public class UserController {
         user.setAbout("Tell people about you!");
         user.setDateJoined(LocalDateTime.now());
         userDao.save(user);
-        return "redirect:/login";
+        return "redirect:users/login";
+    }
+
+    @GetMapping("/users/editProfile")
+    public String profileEditor(Model viewModel){
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        viewModel.addAttribute("user", loggedIn);
+        return "users/editProfile";
+
+    }
+@PostMapping("/users/edit")
+    public String saveEditProfile(@ModelAttribute User user){
+        userDao.save(user);
+
+    return "users/show";
     }
 
 }
