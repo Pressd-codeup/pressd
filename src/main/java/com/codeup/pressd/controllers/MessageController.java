@@ -37,7 +37,7 @@ public class MessageController {
 			}
 		}
 		viewModel.addAttribute("threads", threads);
-		return "users/messages";
+		return "messages/index";
 	}
 
 	@GetMapping("/messages/{id}")
