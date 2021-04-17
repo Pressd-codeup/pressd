@@ -2,6 +2,8 @@ package com.codeup.pressd.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "messages")
@@ -42,6 +44,8 @@ public class Message {
 		this.sentTo = sentTo;
 	}
 
+
+
 	public User getSentTo() {
 		return sentTo;
 	}
@@ -72,5 +76,13 @@ public class Message {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public LocalDateTime getDatePosted() {
+		return datePosted;
+	}
+
+	public void setDatePosted(LocalDateTime datePosted) {
+		this.datePosted = datePosted;
 	}
 }
