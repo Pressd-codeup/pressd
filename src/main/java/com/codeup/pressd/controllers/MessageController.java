@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +49,14 @@ public class MessageController {
 
 		User otherUser = userDao.getOne(id);
 
-		List<Message> messages = messageDao.findAllBySentFromAndSentToOrSentToAndSentFrom(currentUser, otherUser, otherUser, currentUser);
+		List<Message> m1 = messageDao.findAllBySentFromIsAndSentToIs(currentUser, otherUser);
+		List<Message> m2 = messageDao.findAllBySentFromIsAndSentToIs(otherUser, currentUser);
+		List<Message> messages = messageDao.makeThread(m1, m2);
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("messages", messages);
-		return "messages/show";
+		viewModel.addAttribute("shortF", shortF);
+		viewModel.addAttribute("currentUser", currentUser);
+		return "messages/thread";
 	}
 
 }

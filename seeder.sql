@@ -82,4 +82,8 @@ VALUES (1, 'Hey there just testing', '2020-02-02 01:00:00', 1, 2),
        (3, 'This is yet another test', '2020-02-02 01:01:00', 1, 3),
        (4, 'Roger good buddy', '2020-02-02 02:01:00', 3, 1),
        (5, 'Still out here testing messages', '2020-02-02 01:02:00', 1, 4),
-       (6, '10-4, dinosaur', '2020-02-02 02:02:00', 4, 1);
+       (6, '10-4, dinosaur', '2020-02-02 02:02:00', 4, 1),
+       (7, 'Pretty nice to see that messaging logic works', '2020-02-02 02:03:00', 1, 2),
+       (8, 'Let''s test the date logic', '2020-02-02 02:04:00', 1, 2),
+       (9, 'Date logic works', '2020-02-02 02:06:00', 2, 1),
+       (10, 'Testing date logic', '2020-02-02 02:05:00', 1, 2);
