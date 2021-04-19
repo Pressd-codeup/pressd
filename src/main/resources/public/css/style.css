@@ -796,17 +796,20 @@ input:focus{
 
 /*SIGN-UP PAGE CSS*/
 
-body.sign_up {
-    /*background-image: url('images/group.jpg');*/
-}
-
 /* Required for full background image */
 
 html.sign_up,
 body.sign_up,
 header.sign_up,
 .view {
-    height: 100%;
+    height: auto;
+}
+
+.view {
+    background-image: url('images/running.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 @media (max-width: 740px) {
@@ -826,20 +829,6 @@ header.sign_up,
     }
 }
 
-/*.top-nav-collapse {*/
-/*    background-color: #3f51b5 !important;*/
-/*}*/
-
-/*.navbar:not(.top-nav-collapse) {*/
-/*    background: transparent !important;*/
-/*}*/
-
-/*@media (max-width: 991px) {*/
-/*    .navbar:not(.top-nav-collapse) {*/
-/*        background: #3f51b5 !important;*/
-/*    }*/
-/*}*/
-
 .rgba-gradient {
     background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
     background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
@@ -856,5 +845,9 @@ header.sign_up,
 
 h6.sign {
     line-height: 1.7;
+}
+
+.wow {
+    color: white;
 }
 /*END OF SIGN-UP PAGE CSS*/
