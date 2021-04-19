@@ -29,7 +29,7 @@ public class CommentController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		comment.setUser(user);
 		commentDao.save(comment);
-		return "redirect:/workouts/index";
+		return "redirect:/workouts/show";
 	}
 
 	@PostMapping("/comments/{id}/update")
