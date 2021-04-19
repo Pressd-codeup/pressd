@@ -7,8 +7,25 @@
     <div class="workout">
         <h1 th:text="${workout.title}"></h1>
         <p th:text="${workout.body}"></p>
-        <p th:href="${workout.user}"></p>
+        <p th:href="@{workout.user}"></p>
     </div>
+    <div class="comment" th:each="comment : ${workout.comments}">
+        <h6>Comments</h6>
+        <ul>
+            <li th:text="${comment.user.username}"></li>
+            <ul>
+                <li th:text="${comment.body}">
+
+                <li th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year}"></li>
+
+                </li>
+            </ul>
+        </ul>
+    </div>
+    <form th:action="${'comments/create'}" method="POST">
+
+        <input type="submit" value="add comment">
+    </form>
     <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
         <input type="submit" value="delete workout">
     </form>

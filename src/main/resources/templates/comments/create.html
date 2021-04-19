@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Comment')"></head>
+<body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<section class="comment d-flex flex-column justify-content-center align-items-center" id="comment">
+    <form th:action="@{'/comments/create'}" th:method="POST" th:object="${workout.comment}">
+        <label>Add comment</label>
+        <input class="form-control" th:field="*{body}" type="textarea" id="body" placeholder="Body:">
+    </form>
+</section>
+</body>
+</html>

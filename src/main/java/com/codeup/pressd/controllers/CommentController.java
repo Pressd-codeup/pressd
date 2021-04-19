@@ -26,11 +26,10 @@ public class CommentController {
 
 	@PostMapping("/comments/create")
 	public String createComment(@ModelAttribute Comment comment){
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		comment.setUser(user);
-
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		comment.setUser(user);
 		commentDao.save(comment);
-		return "redirect:/workouts/index";
+		return "redirect:/workouts/show";
 	}
 
 	@PostMapping("/comments/{id}/update")
