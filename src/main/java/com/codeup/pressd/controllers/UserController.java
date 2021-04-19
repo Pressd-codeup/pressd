@@ -1,8 +1,12 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.SecurityConfiguration;
+import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.Workout;
+import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
+import com.codeup.pressd.repository.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,11 +23,16 @@ import java.util.ArrayList;
 public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
+    private  WorkoutRepository workoutDao;
+    private PostRepository postDao;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, PostRepository postDao, WorkoutRepository workoutDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        ;
+        this.postDao= postDao;
+        this.workoutDao=workoutDao;
+
     }
 
     @GetMapping("/sign-up")
@@ -62,6 +71,17 @@ public class UserController {
         return "users/show";
     }
 
+    @GetMapping("/users/{id}")
+    public String showProfile(@PathVariable long id, Model viewModel){
+        User user = userDao.getOne(id);
+        Workout workout = (Workout) workoutDao.findAll();
+        Post post = (Post) postDao.findAll();
+
+        viewModel.addAttribute("user", user);
+        viewModel.addAttribute("workout", workout);
+        viewModel.addAttribute("post", post);
+        return "users/show";
+    }
 
 
 }
