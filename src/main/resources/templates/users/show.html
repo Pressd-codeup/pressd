@@ -8,7 +8,7 @@
         <h1 th:text="${user.username}"></h1>
         <p th:text="${user.about}"></p>
     </div>
-    <form th:action="${'/messages/send'}" method="GET">
+    <form th:action="@{'/messages/send/' +${id}}" method="GET">
         <input type="submit" value="message user">
     </form>
 

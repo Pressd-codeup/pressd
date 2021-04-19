@@ -6,20 +6,22 @@
 <section class="send d-flex flex-column justify-items-center align-content-center" id="send">
     <div class="bg-overlay1"></div>
     <div class="container">
-        <form th:action="@{/messages/send}" th:method="post" th:object="${message}">
+        <form th:action="@{'/messages/send/' + ${id}}" th:method="POST" th:object="${message}">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <h1>Create a New Post!</h1>
+                    <h1>Send new Message</h1>
                     <div class="mb-3">
-                <label class="form-label" for="body" style="color: black;"> Your message</label>
-                        <textarea class="form-control" th:field="*{body}" type="textarea" id="body" placeholder="Body:"></textarea>
+                        <label class="form-label" for="body" style="color: black;"> Your message</label>
+                        <textarea class="form-control" th:field="*{body}" type="textarea" id="body"
+                                  placeholder="Body:"></textarea>
                     </div>
-                <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Send
-                </button>
+                    <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Send
+                    </button>
+                </div>
             </div>
         </form>
     </div>
-    </div>
+
 </section>
 </body>
 </html>

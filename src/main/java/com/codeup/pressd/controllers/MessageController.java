@@ -1,5 +1,6 @@
 package com.codeup.pressd.controllers;
 
+import com.codeup.pressd.models.Comment;
 import com.codeup.pressd.models.Message;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.MessageRepository;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MessageController {
@@ -59,21 +61,19 @@ public class MessageController {
         return "messages/thread";
     }
 
-    @GetMapping("/messages/send")
-    public String sendNew(Model viewModel) {
+    @GetMapping("/messages/send/{id}")
+    public String showSend(@PathVariable long id, Model viewModel) {
         viewModel.addAttribute("message", new Message());
+        viewModel.addAttribute("id", id);
         return "messages/send";
     }
 
-    @PostMapping("/messages/send")
-    public String sendMsg(@ModelAttribute Message message, @RequestParam(name = "to_id") long to_id){
-        User from = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User to = userDao.getOne(to_id);
-      message.setSentFrom(from);
-      message.setSentTo(to);
-      message.setDatePosted(LocalDateTime.now());
-      messageDao.save(message);
-
+    @PostMapping("/messages/send/{id}")
+    public String createMessage(@ModelAttribute Message message, User to_id, User from_id) {
+        message.setSentTo(to_id);
+        message.setSentFrom(from_id);
+        message.setDatePosted(LocalDateTime.now());
+        messageDao.save(message);
         return "redirect:/messages";
     }
 }
