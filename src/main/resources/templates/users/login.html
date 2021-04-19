@@ -4,7 +4,6 @@
 <body class="login_page">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-
 <div class="container-md text-center">
     <div th:if="${param.error}">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -25,6 +24,7 @@
             <div class="card">
                 <div class="card-header">
 
+
                     <form th:action="@{/login}" method="post">
                         <label class="form-label mt-3" for="username">Username</label>
                         <input class="form-control mb-3" id="username" name="username" type="text"/>
@@ -34,30 +34,55 @@
                                                              type="password"/>
                         </div>
                         <!--                            <span class="input-group-text"><i class="" id="togglePassword"></i></span></div>-->
+                        <button type="submit" class="btn login_btn">Log in</button>
 
-                        <button type="submit" class="btn">Log in</button>
                     </form>
+                    <div class="register-card card-footer">
+                        <form th:action="@{/sign-up}" method="get">
+                            <div class="d-flex justify-content-center links">
+                                Don't have an account?
+                                <button class="btn float-right register_btn" type="submit">Register</button>
+
+                            </div>
+                        </form>
+                    </div>
+                    <!--                    <form th:action="@{/sign-up}" method="get">-->
+                    <!--                        <button class="btn float-right register_btn" type="submit">Register</button>-->
+                    <!--                    </form>-->
                 </div>
             </div>
         </div>
-        <footer th:fragment="footer"></footer>
+    </div>
 
-        <script>
+    <!--    <form th:action="@{/sign-up}" method="get">-->
+    <!--        &lt;!&ndash;                            <span class="input-group-text"><i class="" id="togglePassword"></i></span></div>&ndash;&gt;-->
+    <!--        <button type="submit" class="btn float-right register_btn">Register</button>-->
+    <!--    </form>-->
 
-            const togglePassword = document.getElementById("togglePassword");
-            const password = document.getElementById("password");
+    <div class="d-flex justify-content-center">
+        <a href="#">Forgot your password?</a>
+    </div>
 
-            togglePassword.addEventListener('click', function (e) {
-                // toggle the type attribute
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                // toggle the eye slash icon
-                this.classList.toggle('fa-eye-slash');
-                this.classList.toggle('fa-eye')
-            })
+</div>
 
-        </script>
+<footer th:fragment="footer"></footer>
 
-        <footer th:replace="fragments/footer :: main-footer"></footer>
+<script>
+
+    const togglePassword = document.getElementById("togglePassword");
+    const password = document.getElementById("password");
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+        this.classList.toggle('fa-eye')
+    })
+
+</script>
+
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
