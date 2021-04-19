@@ -5,14 +5,25 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <main class="container">
-    <div class="post" th:each="workout : ${workouts}">
-        <h1 th:text="${workout.title}"></h1>
-        <small th:text="${workout.user.username}"></small>
-        <p th:text="${workout.body}"></p>
-        <small th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
-        <form th:action="${'/workouts/'+ workout.id}" method="GET">
-            <input type="submit" value="View Plan">
-        </form>
+    <div class="post" th:each="message : ${messages}">
+      <div th:switch="${message.sentFrom.id}">
+        <div th:case="${currentUser.id}">
+          <div style="background: #007bff; color: white">
+            <small>You</small>
+            <br>
+            <small th:text="${shortF.format(message.datePosted)}"></small>
+            <p th:text="${message.body}" style="color: white"></p>
+          </div>
+        </div>
+        <div th:case="*">
+          <div style="background: #28a745; color: white">
+            <small th:text="${message.sentFrom.username}"></small>
+            <br>
+            <small th:text="${shortF.format(message.datePosted)}"></small>
+            <p th:text="${message.body}" style="color: white"></p>
+          </div>
+        </div>
+      </div>
     </div>
 </main>
 

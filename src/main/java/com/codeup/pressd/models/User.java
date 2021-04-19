@@ -54,7 +54,7 @@ public class User {
 	public User() {
 	}
 
-	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Rating> ratings) {
+	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
@@ -70,7 +70,7 @@ public class User {
 		this.messagesFrom = messagesFrom;
 	}
 
-	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Rating> ratings) {
+	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -86,10 +86,19 @@ public class User {
 
 	}
 	public User(User copy) {
-		id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-		email = copy.email;
-		username = copy.username;
-		password = copy.password;
+		this.id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+		this.email = copy.email;
+		this.username = copy.username;
+		this.password = copy.password;
+		this.isCoach = copy.isCoach;
+		this.isAdmin = copy.isAdmin;
+		this.dateJoined = copy.dateJoined;
+		this.about = copy.about;
+		this.posts = copy.posts;
+		this.workouts = copy.workouts;
+		this.comments = copy.comments;
+		this.messagesTo = copy.messagesTo;
+		this.messagesFrom = copy.messagesFrom;
 	}
 
 	public long getId() {

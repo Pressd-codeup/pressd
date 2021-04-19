@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Workouts')"></head>
 <body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<main class="container">
+    <div class="workout">
+        <h1 th:text="${workout.title}"></h1>
+        <p th:text="${workout.body}"></p>
+        <p th:href="${workout.user}"></p>
+    </div>
+    <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
+        <input type="submit" value="delete workout">
+    </form>
+    <form th:action="${'/users/'+ workout.user.id}" method="GET">
+        <input type="submit" value="View User">
+    </form>
 
+</main>
 </body>
 </html>

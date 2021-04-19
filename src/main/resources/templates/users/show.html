@@ -1,12 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Show a post')"></head>
+<!--<head th:replace="fragments/header :: profile-head('Profile Page')"></head>-->
 <body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<main class="container">
 
+<!--    <div class="post">-->
+<!--        <h1 th:text="${workout.title}"></h1>-->
+<!--        <small th:text="${workout.user.username}"></small>-->
+<!--        <p th:text="${workout.body}"></p>-->
+<!--        <small th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>-->
+<!--        <button th:href="${workout.id}">View Plan</button>-->
+<!--    </div>-->
 
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto">
+            <!-- Profile widget -->
+            <div class="bg-white shadow rounded overflow-hidden">
+                <div class="px-4 pt-0 pb-4 cover">
+                    <div class="media align-items-end profile-head">
+                        <div class="profile mr-3"><img
+                                src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                                alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#"
+                                                                                            class="btn btn-outline-dark btn-sm btn-block">Edit
+                            profile</a></div>
+                        <div class="media-body mb-5 text-white">
+                            <h4 th:text="${user.username}" class="mt-0 mb-0">Mark Williams</h4>
+                            <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light p-4 d-flex justify-content-end text-center">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <h5 class="font-weight-bold mb-0 d-block">15</h5><small class="text-muted"> <i
+                                class="fas fa-image mr-1"></i>Posts</small>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5 class="font-weight-bold mb-0 d-block">5</h5><small class="text-muted"> <i
+                                class="fas fa-user mr-1"></i>Followers</small>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5 class="font-weight-bold mb-0 d-block">40</h5><small class="text-muted"> <i
+                                class="fas fa-user mr-1"></i>Following</small>
+                        </li>
+                    </ul>
+                </div>
+                <div class="px-4 py-3">
+                    <h5 class="mb-0">About</h5>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p th:text="${user.about}" class="font-italic mb-0">User</p>
+                    </div>
+                </div>
+                <div class="py-4 px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-0">Recent Post???</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                    </div>
+                    <div class="row">
+
+                        <!--POST-->
+                        <div th:each="post : ${posts}" class="container">
+                            <h1 th:text="${post.getTitle()}"></h1>
+                            <p th:text="${post.getBody()}"></p>
+                            <p th:text="${post.getUser().getEmail()}"></p>
+                            <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">
+                                <input type="submit" value="View Post">
+                            </form>
+                        </div>
+
+                        <!--EXAMPLE IMAGES-->
+
+<!--                        &lt;!&ndash;IMAGES (Placeholder for post)&ndash;&gt;-->
+<!--                        <div class="col-lg-6 mb-2 pr-lg-1"><img-->
+<!--                                src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                        <div class="col-lg-6 mb-2 pl-lg-1"><img-->
+<!--                                src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                        <div class="col-lg-6 pr-lg-1 mb-2"><img-->
+<!--                                src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+<!--                        <div class="col-lg-6 pl-lg-1"><img-->
+<!--                                src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"-->
+<!--                                alt="" class="img-fluid rounded shadow-sm"></div>-->
+                        <!-- Message User-->
+                        <form th:action="${'/messages/'+ user.id}" method="GET">
+                            <input type="submit" value="message user">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</main>
+</body>
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

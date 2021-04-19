@@ -1,8 +1,12 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.SecurityConfiguration;
+import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.Workout;
+import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
+import com.codeup.pressd.repository.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,16 +17,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Controller
 public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
 
+
+
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        ;
+
+
     }
 
     @GetMapping("/sign-up")
@@ -37,6 +45,10 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setAbout("Tell people about you!");
+        user.setMessagesFrom(new ArrayList<>());
+        user.setMessagesTo(new ArrayList<>());
+        user.setComments(new ArrayList<>());
+        user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
         userDao.save(user);
         return "redirect:login";
@@ -54,6 +66,15 @@ public class UserController {
     public String saveEditProfile(@ModelAttribute User user) {
         userDao.save(user);
 
+        return "users/show";
+    }
+
+    @GetMapping("/users/{id}")
+    public String showProfile(@PathVariable long id, Model viewModel){
+        User user = userDao.getOne(id);
+
+
+        viewModel.addAttribute("user", user);
         return "users/show";
     }
 
