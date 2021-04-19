@@ -757,6 +757,7 @@ input:focus{
     color: black;
     background-color: #FFC312;
     width: 100px;
+    margin-bottom: 20px;
 }
 
 .login_btn:hover{
@@ -774,5 +775,21 @@ input:focus{
 
 .main_container {
     padding-top: 40px;
+}
+
+.register_btn {
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    margin-left: 40px;
+}
+
+.register_btn:hover{
+    color: black;
+    background-color: white;
+}
+
+.register-card {
+    padding-top: 70px;
 }
 /*END OF LOGIN PAGE CSS*/
