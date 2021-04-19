@@ -50,6 +50,7 @@ public class UserController {
         user.setComments(new ArrayList<>());
         user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
+        user.setAvatarId(1L);
         userDao.save(user);
         return "redirect:login";
     }
