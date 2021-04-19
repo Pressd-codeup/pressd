@@ -21,6 +21,9 @@
                 </ul>
                  </ul>-->
         <!--        </div>-->
+        <form th:action="${'/users/'+ post.user.id}" method="GET">
+            <input type="submit" value="View user">
+        </form>
     </div>
 </div>
 

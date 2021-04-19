@@ -8,6 +8,10 @@
         <h1 th:text="${user.username}"></h1>
         <p th:text="${user.about}"></p>
     </div>
+    <form th:action="${'/messages/'+ user.id}" method="GET">
+        <input type="submit" value="message user">
+    </form>
+
 <!--    <div class="post">-->
 <!--        <h1 th:text="${workout.title}"></h1>-->
 <!--        <small th:text="${workout.user.username}"></small>-->
