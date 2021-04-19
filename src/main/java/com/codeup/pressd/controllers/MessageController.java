@@ -63,15 +63,19 @@ public class MessageController {
 
     @GetMapping("/messages/send/{id}")
     public String showSend(@PathVariable long id, Model viewModel) {
+        User from = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("message", new Message());
-        viewModel.addAttribute("id", id);
+        viewModel.addAttribute("to_id", id);
+        viewModel.addAttribute("from", from);
         return "messages/send";
     }
 
     @PostMapping("/messages/send/{id}")
-    public String createMessage(@ModelAttribute Message message, User to_id, User from_id) {
-        message.setSentTo(to_id);
-        message.setSentFrom(from_id);
+    public String createMessage(@ModelAttribute Message message, @PathVariable long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userTo = userDao.getOne(id);
+        message.setSentTo(userTo);
+        message.setSentFrom(user);
         message.setDatePosted(LocalDateTime.now());
         messageDao.save(message);
         return "redirect:/messages";
