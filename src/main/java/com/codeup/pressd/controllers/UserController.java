@@ -1,8 +1,12 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.SecurityConfiguration;
+import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.Workout;
+import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
+import com.codeup.pressd.repository.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,10 +24,13 @@ public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
 
+
+
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        ;
+
+
     }
 
     @GetMapping("/sign-up")
@@ -62,6 +69,14 @@ public class UserController {
         return "users/show";
     }
 
+    @GetMapping("/users/{id}")
+    public String showProfile(@PathVariable long id, Model viewModel){
+        User user = userDao.getOne(id);
+
+
+        viewModel.addAttribute("user", user);
+        return "users/show";
+    }
 
 
 }
