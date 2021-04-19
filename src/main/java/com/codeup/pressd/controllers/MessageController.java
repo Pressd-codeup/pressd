@@ -33,6 +33,7 @@ public class MessageController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Message> messages = messageDao.findAllBySentFromOrSentTo(currentUser, currentUser);
         List<User> threads = new ArrayList<>();
+        DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
         for (Message message : messages) {
             if (message.getSentFrom().getUsername().equals(currentUser.getUsername())) {
                 if (!threads.contains(message.getSentTo())) threads.add(message.getSentTo());
@@ -41,6 +42,7 @@ public class MessageController {
             }
         }
         viewModel.addAttribute("threads", threads);
+
         return "messages/index";
     }
 

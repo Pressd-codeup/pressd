@@ -34,9 +34,8 @@ public class CommentController {
 
 	@PostMapping("/comments/{id}/update")
 	public String editComment(@ModelAttribute Comment commentToUpdate, @PathVariable long id) {
-
 		//WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
-
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		commentDao.save(commentToUpdate);
 		return "redirect:/posts";
 	}
