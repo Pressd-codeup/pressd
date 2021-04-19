@@ -49,7 +49,8 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sentFrom")
 	private List<Message> messagesFrom;
 
-
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Image> images;
 
 	public User() {
 	}
