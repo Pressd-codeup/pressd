@@ -3,10 +3,10 @@
 <head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<section class="leg d-flex flex-column justify-content-center align-items-center" id="home">
+<section class="d-flex flex-column justify-content-center align-items-center" id="comment">
     <div class="container">
         <div th:if="${comment.id == 0}">
-            <form th:action="@{/comments/create}" th:method="POST" th:object="${comment}">
+            <form th:action="@{'/workouts/'+${id}+'/comments/create'}" th:method="POST" th:object="${comment}">
                 <h1>Add your comment</h1>
                 <div>
                     <label for="body" class="form-label">Comment</label>

@@ -48,7 +48,7 @@ public class CommentController {
         //WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentDao.save(commentToUpdate);
-        return "redirect:/posts";
+        return "redirect:/workouts";
     }
 
     @PostMapping("/comments/{id}/delete")
@@ -59,6 +59,6 @@ public class CommentController {
         if (user.getId() == comment.getUser().getId()) {
             commentDao.deleteById(id);
         }
-        return "redirect:/workouts/index";
+        return "redirect:/workouts";
     }
 }
