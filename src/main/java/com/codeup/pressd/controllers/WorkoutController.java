@@ -171,4 +171,5 @@ public class WorkoutController {
 		return "redirect:/workouts";
 	}
 
+
 }

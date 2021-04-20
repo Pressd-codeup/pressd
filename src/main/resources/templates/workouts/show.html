@@ -95,10 +95,10 @@
             </ul>
         </ul>
     </div>
-    <form th:action="${'comments/'+ workout.id +'/create'}" method="POST">
+    <form th:action="${'/workouts/'+ workout.id +'/comments/'+id+'/update'}" method="GET">
         <input type="submit" value="edit workout">
     </form>
-    <form th:action="${'comments/'+ workout.id +'/update'}" method="POST">
+    <form th:action="${'/workouts/'+workout.id + '/comments/create'}" method="GET">
         <input type="submit" value="add comment">
     </form>
     <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
