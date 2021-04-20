@@ -8,19 +8,7 @@
     <div class="post" th:each="post : ${posts}">
         <h1 th:text="${post.title}"></h1>
         <h4 th:text="${post.body}"></h4>
-        <!--        <h6>Comments</h6>-->
-        <!--        <div class="comment" th:each="comment : ${post.user.comments}">-->
-        <!--            <ul>-->
-        <!--                <li th:text="${comment.user.username}"></li>-->
-        <!--                <ul>-->
-        <!--                    <li th:text="${comment.body}">-->
 
-        <!--                    <li th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year}"></li>-->
-        <!--
-                      </li>
-                </ul>
-                 </ul>-->
-        <!--        </div>-->
         <form th:action="${'/users/'+ post.user.id}" method="GET">
             <input type="submit" value="View user">
         </form>

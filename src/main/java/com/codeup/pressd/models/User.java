@@ -34,6 +34,9 @@ public class User {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String about;
 
+	@Column(name= "avatar_id", nullable = false)
+	private long avatarId;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Post> posts;
 
@@ -49,12 +52,31 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sentFrom")
 	private List<Message> messagesFrom;
 
-
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Image> images;
 
 	public User() {
 	}
 
-	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom) {
+	public User(User copy) {
+		this.id = copy.id;
+		this.username = copy.username;
+		this.email = copy.email;
+		this.password = copy.password;
+		this.isCoach = copy.isCoach;
+		this.isAdmin = copy.isAdmin;
+		this.dateJoined = copy.dateJoined;
+		this.about = copy.about;
+		this.avatarId = copy.avatarId;
+		this.posts = copy.posts;
+		this.workouts = copy.workouts;
+		this.comments = copy.comments;
+		this.messagesTo = copy.messagesTo;
+		this.messagesFrom = copy.messagesFrom;
+		this.images = copy.images;
+	}
+
+	public User(long id, String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, long avatarId, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Image> images) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
@@ -63,14 +85,16 @@ public class User {
 		this.isAdmin = isAdmin;
 		this.dateJoined = dateJoined;
 		this.about = about;
+		this.avatarId = avatarId;
 		this.posts = posts;
 		this.workouts = workouts;
 		this.comments = comments;
 		this.messagesTo = messagesTo;
 		this.messagesFrom = messagesFrom;
+		this.images = images;
 	}
 
-	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom) {
+	public User(String username, String email, String password, boolean isCoach, boolean isAdmin, LocalDateTime dateJoined, String about, long avatarId, List<Post> posts, List<Workout> workouts, List<Comment> comments, List<Message> messagesTo, List<Message> messagesFrom, List<Image> images) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -78,27 +102,13 @@ public class User {
 		this.isAdmin = isAdmin;
 		this.dateJoined = dateJoined;
 		this.about = about;
+		this.avatarId = avatarId;
 		this.posts = posts;
 		this.workouts = workouts;
 		this.comments = comments;
 		this.messagesTo = messagesTo;
 		this.messagesFrom = messagesFrom;
-
-	}
-	public User(User copy) {
-		this.id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-		this.email = copy.email;
-		this.username = copy.username;
-		this.password = copy.password;
-		this.isCoach = copy.isCoach;
-		this.isAdmin = copy.isAdmin;
-		this.dateJoined = copy.dateJoined;
-		this.about = copy.about;
-		this.posts = copy.posts;
-		this.workouts = copy.workouts;
-		this.comments = copy.comments;
-		this.messagesTo = copy.messagesTo;
-		this.messagesFrom = copy.messagesFrom;
+		this.images = images;
 	}
 
 	public long getId() {
@@ -205,4 +215,19 @@ public class User {
 		this.messagesFrom = messagesFrom;
 	}
 
+	public long getAvatarId() {
+		return avatarId;
+	}
+
+	public void setAvatarId(long avatarId) {
+		this.avatarId = avatarId;
+	}
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
 }

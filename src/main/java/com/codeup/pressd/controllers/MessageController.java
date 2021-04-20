@@ -1,5 +1,6 @@
 package com.codeup.pressd.controllers;
 
+import com.codeup.pressd.models.Comment;
 import com.codeup.pressd.models.Message;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.MessageRepository;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MessageController {
@@ -31,6 +33,7 @@ public class MessageController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Message> messages = messageDao.findAllBySentFromOrSentTo(currentUser, currentUser);
         List<User> threads = new ArrayList<>();
+        DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
         for (Message message : messages) {
             if (message.getSentFrom().getUsername().equals(currentUser.getUsername())) {
                 if (!threads.contains(message.getSentTo())) threads.add(message.getSentTo());
@@ -39,6 +42,7 @@ public class MessageController {
             }
         }
         viewModel.addAttribute("threads", threads);
+
         return "messages/index";
     }
 
@@ -59,21 +63,23 @@ public class MessageController {
         return "messages/thread";
     }
 
-    @GetMapping("/messages/send")
-    public String sendNew(Model viewModel) {
+    @GetMapping("/messages/send/{id}")
+    public String showSend(@PathVariable long id, Model viewModel) {
+        User from = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("message", new Message());
+        viewModel.addAttribute("to_id", id);
+        viewModel.addAttribute("from", from);
         return "messages/send";
     }
 
-    @PostMapping("/messages/send")
-    public String sendMsg(@ModelAttribute Message message, @RequestParam(name = "to_id") long to_id){
-        User from = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User to = userDao.getOne(to_id);
-      message.setSentFrom(from);
-      message.setSentTo(to);
-      message.setDatePosted(LocalDateTime.now());
-      messageDao.save(message);
-
+    @PostMapping("/messages/send/{id}")
+    public String createMessage(@ModelAttribute Message message, @PathVariable long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userTo = userDao.getOne(id);
+        message.setSentTo(userTo);
+        message.setSentFrom(user);
+        message.setDatePosted(LocalDateTime.now());
+        messageDao.save(message);
         return "redirect:/messages";
     }
 }

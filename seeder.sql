@@ -19,11 +19,11 @@ VALUES (1, 'Strength'),
        (6, 'Back'),
        (7, 'Legs'),
        (8, 'Core');
-INSERT INTO users (id, about, date_joined, email, is_admin, is_coach, password, username)
-VALUES (1, 'Hi my name is testuser1 and I like running.', '2021-01-01 01:00:00', 'testuser1@gmail.com', 0, 0, '$2a$10$ooIUaOiM08pgpjVbVtkK2uuUS.ZAxhC1sgRk.Ly7.f6vF7/C6UYMm', 'testuser1'),
-       (2, 'Hi my name is testuser2 and I like bodybuilding.', '2021-02-02 02:00:00', 'testuser2@gmail.com', 0, 0, '$2a$10$wRLxNNcMOOVsYhjDoYbHPe5mcRhMNmQjRzqJy3hucryaaRF7qCCd6', 'testuser2'),
-       (3, 'Hi my name is testuser3 and I like leg day.', '2021-03-03 03:00:00', 'testuser3@gmail.com', 0, 0, '$2a$10$Yemu5GMAMpXulRjo1cpD7eFgYSU6IsFtsaA.B6z3UUt2gcBTIhPsC', 'testuser3'),
-       (4, 'Hi my name is testuser4 and I am a coach.', '2021-04-04 04:00:00', 'testuser4@gmail.com', 0, 1, '$2a$10$yyXptLKNnz86PQkYukgiLeq4qrW.qAn/QwIn1ftkNw0Lo/8xUYpgy', 'testuser4');
+INSERT INTO users (id, about, date_joined, email, is_admin, is_coach, password, username, avatar_id)
+VALUES (1, 'Hi my name is testuser1 and I like running.', '2021-01-01 01:00:00', 'testuser1@gmail.com', 0, 0, '$2a$10$ooIUaOiM08pgpjVbVtkK2uuUS.ZAxhC1sgRk.Ly7.f6vF7/C6UYMm', 'testuser1', 1),
+       (2, 'Hi my name is testuser2 and I like bodybuilding.', '2021-02-02 02:00:00', 'testuser2@gmail.com', 0, 0, '$2a$10$wRLxNNcMOOVsYhjDoYbHPe5mcRhMNmQjRzqJy3hucryaaRF7qCCd6', 'testuser2', 1),
+       (3, 'Hi my name is testuser3 and I like leg day.', '2021-03-03 03:00:00', 'testuser3@gmail.com', 0, 0, '$2a$10$Yemu5GMAMpXulRjo1cpD7eFgYSU6IsFtsaA.B6z3UUt2gcBTIhPsC', 'testuser3', 1),
+       (4, 'Hi my name is testuser4 and I am a coach.', '2021-04-04 04:00:00', 'testuser4@gmail.com', 0, 1, '$2a$10$yyXptLKNnz86PQkYukgiLeq4qrW.qAn/QwIn1ftkNw0Lo/8xUYpgy', 'testuser4', 1);
 INSERT INTO posts (id, body, date_posted, title, zipcode, type_id, user_id)
 VALUES (1, 'Hi I''m looking for a running partner!', '2021-01-01 01:00:00', 'Come run with me!', 78201, 1, 1),
        (2, 'Hi I''m looking for a coach!', '2021-02-02 02:00:00', 'Teach me how to lift!', 78204, 3, 2),
@@ -87,3 +87,6 @@ VALUES (1, 'Hey there just testing', '2020-02-02 01:00:00', 1, 2),
        (8, 'Let''s test the date logic', '2020-02-02 02:04:00', 1, 2),
        (9, 'Date logic works', '2020-02-02 02:06:00', 2, 1),
        (10, 'Testing date logic', '2020-02-02 02:05:00', 1, 2);
+
+INSERT INTO images (id, delete_url, url, user_id)
+VALUES (1, '#', 'https://i.ibb.co/vjQD0sW/pressd-default.png', 0);
