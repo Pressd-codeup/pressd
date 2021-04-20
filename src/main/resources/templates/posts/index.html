@@ -23,11 +23,11 @@
 </header>
 <!-- details card section starts from here -->
 <section class="details-card">
+    <div class="row-12 m-0">
+        <div class="container post col-6 m-0 float-left" th:each="post : ${posts}">
 
-    <div class="container post" th:each="post : ${posts}">
 
-        <div class="row">
-            <div class="col-lg-9">
+            <div class="col-12 m-0">
                 <div class="card-content">
                     <div class="card-img">
                         <!--ADD IMAGE-->
@@ -75,7 +75,7 @@
             <!--                </div>-->
             <!--            </div>-->
 
-    </div>
+        </div>
     </div>
 </section>
 <!-- details card section starts from here -->
