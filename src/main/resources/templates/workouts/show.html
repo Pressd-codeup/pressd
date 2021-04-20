@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Workouts')"></head>
+<style>
+    span.stars, span.stars span {
+        display: block;
+        background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
+        width: 80px;
+        height: 16px;
+    }
+
+    span.stars span {
+        background-position: 0 0;
+    }
+
+
+</style>
+<script>
+
+    $.fn.stars = function () {
+        return $(this).each(function () {
+            // Get the value
+            let val = parseFloat($(this).html());
+            // Make sure that the value is in 0 - 5 range, multiply to get width
+            let size = Math.max(0, (Math.min(5, val))) * 16;
+            // Create stars holder
+            let $span = $('<span />').width(size);
+            // Replace the numerical value with stars
+            $(this).html($span);
+        });
+    }</script>
+<script>
+    $(function () {
+        $('span.stars').stars();
+    });
+</script>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <main class="container">
     <div class="workout">
         <h1 th:text="${workout.title}"></h1>
         <p th:text="${workout.body}"></p>
+        <span class="stars" th:text="${rating}"></span>
+        <p><span th:text="${df.format(rating)}"></span>/5</p>
+        <p>Total ratings: <span th:text="${totalRatings}"></span></p>
+        <div th:if="${isLoggedIn}">
+            <div th:if="${userRating} == 0">
+                <p>You haven't rated this workout yet!</p>
+
+
+                <form th:action="@{/ratings/{id}/create(id=${workout.getId()})}" method="post">
+                    <label for="newRating">Add your rating: </label>
+                    <select name="newRating" id="newRating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="Submit your rating!">
+                </form>
+
+            </div>
+            <div th:unless="${userRating} == 0">
+                <p>Your current rating:</p>
+                <span class="stars" th:text="${userRating}"></span>
+                <p><span th:text="${userRating}"></span>/5</p>
+
+                <form th:action="@{/ratings/{id}/update(id=${workout.getId()})}" method="post">
+                    <label for="newRating">Change your rating? </label>
+                    <select name="newRating" id="newRating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <input type="submit" value="Update your rating!">
+                </form>
+            </div>
+        </div>
         <p th:href="@{workout.user}"></p>
     </div>
     <div class="comment" th:each="comment : ${workout.comments}">

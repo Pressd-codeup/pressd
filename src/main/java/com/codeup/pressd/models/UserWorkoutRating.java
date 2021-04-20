@@ -23,14 +23,51 @@ public class UserWorkoutRating {
 	@JoinColumn(name = "rating_id")
 	private Rating rating;
 
-	public double getAverageRating(List<UserWorkoutRating> list) {
-		if (list.isEmpty()) return 0.0;
-		long sum = 0L;
-		for (UserWorkoutRating uwr : list) {
-			sum += uwr.rating.getStars();
-		}
-		return (1.0 * sum) / list.size();
+	public UserWorkoutRating() {
 	}
 
+	public UserWorkoutRating(long id, User user, Workout workout, Rating rating) {
+		this.id = id;
+		this.user = user;
+		this.workout = workout;
+		this.rating = rating;
+	}
 
+	public UserWorkoutRating(User user, Workout workout, Rating rating) {
+		this.user = user;
+		this.workout = workout;
+		this.rating = rating;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Workout getWorkout() {
+		return workout;
+	}
+
+	public void setWorkout(Workout workout) {
+		this.workout = workout;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
 }
