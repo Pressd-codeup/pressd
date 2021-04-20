@@ -1,19 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Posts')"></head>
-<body>
+<body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<div class="container">
-    <div class="post" th:each="post : ${posts}">
-        <h1 th:text="${post.title}"></h1>
-        <h4 th:text="${post.body}"></h4>
+<!--<div class="container">-->
+<!--    <div class="post" th:each="post : ${posts}">-->
+<!--        <h1 th:text="${post.title}"></h1>-->
+<!--        <h4 th:text="${post.body}"></h4>-->
 
-        <form th:action="${'/users/'+ post.user.id}" method="GET">
-            <input type="submit" value="View user">
-        </form>
+<!--        <form th:action="${'/users/'+ post.user.id}" method="GET">-->
+<!--            <input type="submit" value="View user">-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!-- details card section starts from here -->
+<section class="details-card">
+    <div class="container">
+        <div class="row" th:each="post : ${posts}">
+            <div class="col-md-4">
+                <div class="card-content">
+                    <div class="card-img">
+                        <!--ADD IMAGE-->
+                        <img src="https://placeimg.com/380/230/nature" alt="">
+<!--                        <span><h4 th:text="${post.title}"></h4></span>-->
+                    </div>
+                    <div class="card-desc">
+                        <h3 th:text="${post.title}"></h3>
+                        <p th:text="${post.body}"></p>
+
+                        <form th:action="${'/users/'+ post.user.id}" method="GET">
+                            <input class="btn-card" type="submit" value="View user">
+                        </form>
+<!--                        <a href="#" class="btn-card">Read</a>-->
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-md-4">-->
+<!--                <div class="card-content">-->
+<!--                    <div class="card-img">-->
+<!--                        <img src="https://placeimg.com/380/230/animals" alt="">-->
+<!--                        <span><h4>heading2</h4></span>-->
+<!--                    </div>-->
+<!--                    <div class="card-desc">-->
+<!--                        <h3>Heading2</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis-->
+<!--                            voluptas totam</p>-->
+<!--                        <a href="#" class="btn-card">Read</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card-content">-->
+<!--                    <div class="card-img">-->
+<!--                        <img src="https://placeimg.com/380/230/tech" alt="">-->
+<!--                        <span><h4>heading3</h4></span>-->
+<!--                    </div>-->
+<!--                    <div class="card-desc">-->
+<!--                        <h3>Heading3</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis-->
+<!--                            voluptas totam</p>-->
+<!--                        <a href="#" class="btn-card">Read</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
     </div>
-</div>
+</section>
+<!-- details card section starts from here -->
+
+
+
 
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
