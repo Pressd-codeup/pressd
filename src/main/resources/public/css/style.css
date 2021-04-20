@@ -685,9 +685,6 @@ button#submit-button:hover {
 /*END HOME PAGE CSS*/
 
 
-
-
-
 /*SIGN-UP PAGE CSS*/
 
 /* Required for full background image */
@@ -756,8 +753,8 @@ header.login,
     height: auto;
 }
 
-.view {
-    background-image: url('images/running.jpg');
+.view-login {
+    background-image: url('images/class/swim.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -767,7 +764,7 @@ header.login,
     html,
     body,
     header,
-    .view {
+    .view-login {
         height: 1000px;
     }
 }
@@ -775,7 +772,7 @@ header.login,
     html,
     body,
     header,
-    .view {
+    .view-login {
         height: 650px;
     }
 }
