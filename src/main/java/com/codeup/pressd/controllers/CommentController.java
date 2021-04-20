@@ -4,12 +4,14 @@ package com.codeup.pressd.controllers;
 import com.codeup.pressd.models.*;
 import com.codeup.pressd.repository.*;
 import org.dom4j.rule.Mode;
+import org.hibernate.jdbc.Work;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -25,6 +27,15 @@ public class CommentController {
         this.userDao = userDao;
         this.workoutDao = workoutDao;
     }
+
+    @GetMapping("/workouts/{id}/comments")
+    public String allComments(@PathVariable long id, WorkoutRepository workoutDao, Model viewModel) {
+        List<Comment> comments = commentDao.findAll();
+        List<Workout> workouts = workoutDao.findAllById(id);
+        viewModel.addAttribute("comments", comments);
+        return "comments/index";
+    }
+
 
     @GetMapping("/workouts/{id}/comments/create")
     public String showCreateComment(@PathVariable long id, Model viewModel) {
@@ -43,11 +54,21 @@ public class CommentController {
         return "redirect:/workouts";
     }
 
+    @GetMapping("/comments/{id}/update")
+    public String editCommentForm(@PathVariable long id, Model viewModel) {
+        Comment comment = commentDao.getOne(id);
+        viewModel.addAttribute("comment", comment);
+        return "comments/update";
+    }
+
     @PostMapping("/comments/{id}/update")
-    public String editComment(@ModelAttribute Comment commentToUpdate, @PathVariable long id) {
-        //WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
+    public String editComment(@ModelAttribute Comment comment, @PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        commentDao.save(commentToUpdate);
+        if (user.getId() == comment.getUser().getId()) {
+            commentDao.save(comment);
+        } else if (user.getId() != comment.getUser().getId()) {
+            return "redirect:/login";
+        }
         return "redirect:/workouts";
     }
 
@@ -58,6 +79,8 @@ public class CommentController {
 
         if (user.getId() == comment.getUser().getId()) {
             commentDao.deleteById(id);
+        } else if (user.getId() != comment.getUser().getId()) {
+            return "redirect:/login";
         }
         return "redirect:/workouts";
     }

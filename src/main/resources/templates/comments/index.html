@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Posts')"></head>
+<body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+
+<div class="workout" th:each="workout : ${workouts}">
+
+    <div class="comment" th:if="">
+        <h1>THIS</h1>
+    </div>
+    <div class="comment" th:if="">
+        <h1>THAT</h1>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: main-footer"></footer>
+</body>
+</html>
