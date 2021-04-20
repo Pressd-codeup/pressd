@@ -13,5 +13,14 @@ public interface UserWorkoutRatingRepository extends JpaRepository<UserWorkoutRa
 
 	List<UserWorkoutRating> getUserWorkoutRatingsByWorkout(Workout workout);
 
-	List<UserWorkoutRating> getUserWorkoutRatingsByWorkoutAndUser(Workout workout, User user);
+	UserWorkoutRating getUserWorkoutRatingByWorkoutAndUser(Workout workout, User user);
+
+	default double getAverageRating(List<UserWorkoutRating> list) {
+		if (list.isEmpty()) return 0.0;
+		long sum = 0L;
+		for (UserWorkoutRating uwr : list) {
+			sum += uwr.getRating().getStars();
+		}
+		return (1.0 * sum) / list.size();
+	}
 }
