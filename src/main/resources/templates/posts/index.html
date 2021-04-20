@@ -24,10 +24,10 @@
 <!-- details card section starts from here -->
 <section class="details-card">
 
-    <div class="container" th:each="post : ${posts}">
+    <div class="container post" th:each="post : ${posts}">
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-lg-9">
                 <div class="card-content">
                     <div class="card-img">
                         <!--ADD IMAGE-->
@@ -45,6 +45,7 @@
                     </div>
                 </div>
             </div>
+
             <!--            <div class="col-md-4">-->
             <!--                <div class="card-content">-->
             <!--                    <div class="card-img">-->
@@ -73,14 +74,11 @@
             <!--                    </div>-->
             <!--                </div>-->
             <!--            </div>-->
-        </div>
+
+    </div>
     </div>
 </section>
 <!-- details card section starts from here -->
-
-
-
-
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>

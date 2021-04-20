@@ -814,8 +814,10 @@ body.post-body {
 section{
     padding: 100px 0;
 }
+
 .details-card {
-    background: #ecf0f1;
+    /*background: #ecf0f1;*/
+    padding-right: 70px;
 }
 
 .card-content {
@@ -910,6 +912,12 @@ section{
 a.btn-card {
     text-decoration: none;
     color: #fff;
+}
+
+.post {
+    padding-bottom: 40px;
+    margin-right: 70px !important;
+    padding-left: 130px !important;
 }
 
 /*END OF POST CSS*/
