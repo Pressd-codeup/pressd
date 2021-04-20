@@ -40,7 +40,7 @@ public class CommentController {
         comment.setDatePosted(LocalDateTime.now());
         comment.setWorkout(workout);
         commentDao.save(comment);
-        return "redirect:/workouts/show";
+        return "redirect:/workouts";
     }
 
     @PostMapping("/comments/{id}/update")
@@ -54,10 +54,9 @@ public class CommentController {
     @PostMapping("/comments/{id}/delete")
     public String deleteComment(@PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //WILL NEED AUTHENTICATION OF CURRENTUSER == POSTUSER
         Comment comment = commentDao.getOne(id);
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (currentUser.getId() == comment.getUser().getId()) {
+
+        if (user.getId() == comment.getUser().getId()) {
             commentDao.deleteById(id);
         }
         return "redirect:/workouts/index";
