@@ -801,10 +801,16 @@ h6.sign {
 /*END OF LOGIN PAGE CSS*/
 
 
-/*START OF POST CSS*/
+/*START OF POST (INDEX) CSS*/
+
+body.post-body {
+    background: #654ea3;
+    background: linear-gradient(to right, #3d3d3d, #904e95);
+    min-height: 100vh
+}
 
 /* card details start  */
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');
+/*@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');*/
 section{
     padding: 100px 0;
 }
@@ -905,11 +911,6 @@ a.btn-card {
     text-decoration: none;
     color: #fff;
 }
-/* End card section */
-
-
-
-
 
 /*END OF POST CSS*/
 
