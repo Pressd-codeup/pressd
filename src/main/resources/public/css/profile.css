@@ -8,8 +8,8 @@
     background-repeat: no-repeat
 }
 
-/*body {*/
-/*    background: #654ea3;*/
-/*    background: linear-gradient(to right, #3d3d3d, #904e95);*/
-/*    min-height: 100vh*/
-/*}*/
+body.profile-page {
+    background: #654ea3;
+    background: linear-gradient(to right, #3d3d3d, #904e95);
+    min-height: 100vh
+}

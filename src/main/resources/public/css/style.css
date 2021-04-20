@@ -684,120 +684,13 @@ button#submit-button:hover {
 }
 /*END HOME PAGE CSS*/
 
-/*LOGIN PAGE CSS*/
 
-html.login_page,body.login_page{
-    background-image: url('images/class/yoga-class.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-    font-family: 'Numans', sans-serif;
-}
 
-.container{
-    height: 100%;
-    align-content: center;
-}
 
-.card{
-    height: 370px;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 400px;
-    background-color: rgba(0,0,0,0.5) !important;
-}
-
-.social_icon span{
-    font-size: 60px;
-    margin-left: 10px;
-    color: #FFC312;
-}
-
-.social_icon span:hover{
-    color: white;
-    cursor: pointer;
-}
-
-.card-header h3{
-    color: white;
-}
-
-.social_icon{
-    position: absolute;
-    right: 20px;
-    top: -45px;
-}
-
-.input-group-prepend span{
-    width: 50px;
-    background-color: #FFC312;
-    color: black;
-    border:0 !important;
-}
-
-input:focus{
-    outline: 0 0 0 0  !important;
-    box-shadow: 0 0 0 0 !important;
-
-}
-
-.remember{
-    color: white;
-}
-
-.remember input
-{
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    margin-right: 5px;
-}
-
-.login_btn{
-    color: black;
-    background-color: #FFC312;
-    width: 100px;
-    margin-bottom: 20px;
-}
-
-.login_btn:hover{
-    color: black;
-    background-color: white;
-}
-
-.links{
-    color: white;
-}
-
-.links a{
-    margin-left: 4px;
-}
-
-.main_container {
-    padding-top: 40px;
-}
-
-.register_btn {
-    color: black;
-    background-color: #FFC312;
-    width: 100px;
-    margin-left: 40px;
-}
-
-.register_btn:hover{
-    color: black;
-    background-color: white;
-}
-
-.register-card {
-    padding-top: 70px;
-}
-/*END OF LOGIN PAGE CSS*/
 
 /*SIGN-UP PAGE CSS*/
 
 /* Required for full background image */
-
 html.sign_up,
 body.sign_up,
 header.sign_up,
@@ -851,3 +744,64 @@ h6.sign {
     color: white;
 }
 /*END OF SIGN-UP PAGE CSS*/
+
+
+/*LOGIN PAGE CSS*/
+
+/* Required for full background image */
+html.login,
+body.login,
+header.login,
+.view-login {
+    height: auto;
+}
+
+.view {
+    background-image: url('images/running.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 1000px;
+    }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 650px;
+    }
+}
+
+.rgba-gradient {
+    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
+    background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+}
+
+.card-sign {
+    background-color: rgba(126, 123, 215, 0.2);
+}
+
+.md-form label {
+    color: #ffffff;
+}
+
+h6.sign {
+    line-height: 1.7;
+}
+
+.wow {
+    color: white;
+}
+/*END OF LOGIN PAGE CSS*/
+
+
+
