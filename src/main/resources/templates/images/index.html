@@ -5,9 +5,14 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <main class="container">
-  <div class="post" th:each="image : ${images}">
-    <img th:src="@{${image.url}}"/>
-    <small th:text="${image.deleteUrl}"></small>
+  <h2>Your uploaded images: </h2>
+  <div class="post" th:each="userImage : ${userImages}">
+    <img th:src="@{${userImage.url}}"/>
+  </div>
+  <br>
+  <h2>Default images: </h2>
+  <div class="post" th:each="defaultImage : ${defaultImages}">
+    <img th:src="@{${defaultImage.url}}"/>
   </div>
 </main>
 

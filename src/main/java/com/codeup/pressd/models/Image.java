@@ -14,9 +14,6 @@ public class Image {
 	@Column(nullable = false, length = 250)
 	private String url;
 
-	@Column(name = "delete_url", nullable = false, length = 250)
-	private String deleteUrl;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
@@ -31,18 +28,16 @@ public class Image {
 
 	}
 
-	public Image(long id, String url, String deleteUrl, User user, List<Workout> workouts, List<Post> posts) {
+	public Image(long id, String url, User user, List<Workout> workouts, List<Post> posts) {
 		this.id = id;
 		this.url = url;
-		this.deleteUrl = deleteUrl;
 		this.user = user;
 		this.workouts = workouts;
 		this.posts = posts;
 	}
 
-	public Image(String url, String deleteUrl, User user, List<Workout> workouts, List<Post> posts) {
+	public Image(String url, User user, List<Workout> workouts, List<Post> posts) {
 		this.url = url;
-		this.deleteUrl = deleteUrl;
 		this.user = user;
 		this.workouts = workouts;
 		this.posts = posts;
@@ -62,14 +57,6 @@ public class Image {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public String getDeleteUrl() {
-		return deleteUrl;
-	}
-
-	public void setDeleteUrl(String deleteUrl) {
-		this.deleteUrl = deleteUrl;
 	}
 
 	public User getUser() {
