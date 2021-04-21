@@ -3,6 +3,9 @@
 <head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+
+<!--ORIGINAL CODE-->
+
 <!--<section class="leg d-flex flex-column justify-content-center align-items-center" id="home">-->
 
 <!--    <div class="container">-->
@@ -67,7 +70,7 @@
 
 <header class="login">
     <!-- Full Page Intro -->
-    <div class="view-login">
+    <div class="view-login-2">
         <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <!-- Content -->
@@ -98,8 +101,8 @@
                                     <!--Body-->
                                     <div class="md-form">
 
-                                        <i class="fa fa-user prefix white-text active"></i>
-                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+                                        <i class="prefix white-text active"></i>
+                                        <!--<input type="text" id="form3" class="white-text form-control">-->
                                         <input class="form-control mb-3" id="zipcode" type="text" th:field="*{zipcode}"/>
                                         <label class="form-label mt-3" for="zipcode">Zip Code</label>
 
@@ -107,14 +110,14 @@
 
                                     <div class="md-form">
 
-                                        <i class="fa fa-user prefix white-text active"></i>
+                                        <i class="prefix white-text active"></i>
                                         <!--                                    <input type="text" id="form3" class="white-text form-control">-->
                                         <input class="form-control mb-3" id="title" type="text" th:field="*{title}"/>
                                         <label class="form-label mt-3" for="title">Title of the post</label>
 
                                     </div>
                                     <div class="md-form">
-                                        <i class="fa fa-lock prefix white-text active"></i>
+                                        <i class="prefix white-text active"></i>
 <!--                                        <input class="form-control" id="password" name="password"-->
 <!--                                               type="password"/>-->
                                         <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>
@@ -123,18 +126,18 @@
 
                                     <div class="dropdown" style="margin: 20px" th:field="${type}">
                                         <button type="button"
-                                                class="btn btn-indigo text-center btn-outline-danger dropdown-toggle"
+                                                class="btn btn-indigo text-center dropdown-toggle"
                                                 data-toggle="dropdown">
                                             Type
                                         </button>
                                         <div class="dropdown-menu bg-dark">
-                                            <label for="type1" class="form-lable">Partners</label>
+                                            <label for="type1" class="form-lable-2">Partners</label>
                                             <input class="dropdown-item" type="radio" name="type_id" value="1"
                                                    id="type1">
-                                            <label for="type2" class="form-lable">Coaches</label>
+                                            <label for="type2" class="form-lable-2">Coaches</label>
                                             <input class="dropdown-item" type="radio" name="type_id" value="2"
                                                    id="type2">
-                                            <label for="type3" class="form-lable">Clients</label>
+                                            <label for="type3" class="form-lable-2">Clients</label>
                                             <input class="dropdown-item" type="radio" name="type_id" value="3"
                                                    id="type3">
                                         </div>
