@@ -32,19 +32,23 @@ public class Post {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "image_id", nullable = false)
+	private Image image;
 
 	public Post() {
 	}
 
-	public Post(String title, String body, long zipcode, Type type) {
+	public Post(String title, String body, long zipcode, Type type, Image image) {
 		this.title = title;
 		this.body = body;
 		this.zipcode = zipcode;
 		this.type = type;
 		this.datePosted = LocalDateTime.now();
+		this.image = image;
 	}
 
-	public Post(long id, String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user) {
+	public Post(long id, String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user, Image image) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
@@ -52,15 +56,17 @@ public class Post {
 		this.datePosted = datePosted;
 		this.type = type;
 		this.user = user;
+		this.image = image;
 	}
 
-	public Post(String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user) {
+	public Post(String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user, Image image) {
 		this.title = title;
 		this.body = body;
 		this.zipcode = zipcode;
 		this.datePosted = datePosted;
 		this.type = type;
 		this.user = user;
+		this.image = image;
 	}
 
 	public long getId() {
@@ -117,5 +123,13 @@ public class Post {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }

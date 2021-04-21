@@ -1,6 +1,7 @@
 package com.codeup.pressd.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="images")
@@ -20,21 +21,31 @@ public class Image {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "image")
+	private List<Workout> workouts;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "image")
+	private List<Post> posts;
+
 	public Image() {
 
 	}
 
-	public Image(long id, String url, String deleteUrl, User user) {
+	public Image(long id, String url, String deleteUrl, User user, List<Workout> workouts, List<Post> posts) {
 		this.id = id;
 		this.url = url;
 		this.deleteUrl = deleteUrl;
 		this.user = user;
+		this.workouts = workouts;
+		this.posts = posts;
 	}
 
-	public Image(String url, String deleteUrl, User user) {
+	public Image(String url, String deleteUrl, User user, List<Workout> workouts, List<Post> posts) {
 		this.url = url;
 		this.deleteUrl = deleteUrl;
 		this.user = user;
+		this.workouts = workouts;
+		this.posts = posts;
 	}
 
 	public long getId() {
@@ -67,5 +78,21 @@ public class Image {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Workout> getWorkouts() {
+		return workouts;
+	}
+
+	public void setWorkouts(List<Workout> workouts) {
+		this.workouts = workouts;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 }
