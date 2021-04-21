@@ -82,24 +82,15 @@
         </div>
         <p th:href="@{workout.user}"></p>
     </div>
-    <div class="comment" th:each="comment : ${workout.comments}">
-        <h6>Comments</h6>
-        <ul>
-            <li th:text="${comment.user.username}"></li>
-            <ul>
-                <li th:text="${comment.body}">
 
-                <li th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year}"></li>
-
-                </li>
-            </ul>
-        </ul>
-    </div>
-    <form th:action="${'/workouts/'+ workout.id +'/comments/'+id+'/update'}" method="GET">
-        <input type="submit" value="edit workout">
-    </form>
-    <form th:action="${'/workouts/'+workout.id + '/comments/create'}" method="GET">
-        <input type="submit" value="add comment">
+<!--    <form th:action="${'/comments/'+id+'/update'}" method="GET">-->
+<!--        <input type="submit" value="edit workout">-->
+<!--    </form>-->
+<!--    <form th:action="${'/workouts/'+workout.id + '/comments/create'}" method="GET">-->
+<!--        <input type="submit" value="add comment">-->
+<!--    </form>-->
+    <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
+        <input type="submit" value="View Comments">
     </form>
     <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
         <input type="submit" value="delete workout">

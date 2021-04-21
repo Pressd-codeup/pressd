@@ -120,7 +120,7 @@ public class WorkoutController {
 		//newUwr.setRating(ratingDao.getOne(ratingLong));
 		uwr.setRating(ratingDao.getOne(ratingLong));
 		userWorkoutRatingDao.save(uwr);
-		return "redirect:/workouts";
+		return "redirect:/workouts/show";
 	}
 
 	@GetMapping("/workouts/create")
