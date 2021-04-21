@@ -27,16 +27,16 @@
                 <div class="bg-light p-4 d-flex justify-content-end text-center">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
-                            <h5 class="font-weight-bold mb-0 d-block">15</h5><small class="text-muted"> <i
-                                class="fas fa-image mr-1"></i>Posts</small>
+                            <h5 class="font-weight-bold mb-0 d-block"></h5><small class="text-muted"> <i
+                                class="fas fa-image mr-1"></i></small>
                         </li>
                         <li class="list-inline-item">
-                            <h5 class="font-weight-bold mb-0 d-block">5</h5><small class="text-muted"> <i
-                                class="fas fa-user mr-1"></i>Followers</small>
+                            <h5 class="font-weight-bold mb-0 d-block"></h5><small class="text-muted"> <i
+                                class="fas fa-user mr-1"></i></small>
                         </li>
                         <li class="list-inline-item">
-                            <h5 class="font-weight-bold mb-0 d-block">40</h5><small class="text-muted"> <i
-                                class="fas fa-user mr-1"></i>Following</small>
+                            <h5 class="font-weight-bold mb-0 d-block"></h5><small class="text-muted"> <i
+                                class=""></i></small>
                         </li>
                     </ul>
                 </div>
@@ -48,19 +48,20 @@
                 </div>
                 <div class="py-4 px-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Recent Post???</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                        <!--RECENT POST/SHOW ALL-->
+                        <h5 class="mb-0"></h5><a href="#" class="btn btn-link text-muted"></a>
                     </div>
                     <div class="row">
 
-                        <!--POST-->
-                        <div th:each="post : ${posts}" class="container">
-                            <h1 th:text="${post.getTitle()}"></h1>
-                            <p th:text="${post.getBody()}"></p>
-                            <p th:text="${post.getUser().getEmail()}"></p>
-                            <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">
-                                <input type="submit" value="View Post">
-                            </form>
-                        </div>
+<!--                        &lt;!&ndash;POST&ndash;&gt;-->
+<!--                        <div th:each="post : ${posts}" class="container">-->
+<!--                            <h1 th:text="${post.getTitle()}"></h1>-->
+<!--                            <p th:text="${post.getBody()}"></p>-->
+<!--                            <p th:text="${post.getUser().getEmail()}"></p>-->
+<!--                            <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">-->
+<!--                                <input type="submit" value="View Post">-->
+<!--                            </form>-->
+<!--                        </div>-->
 
                         <form th:action="@{'/messages/send/' +${id}}" method="GET">
                             <input type="submit" value="message user">

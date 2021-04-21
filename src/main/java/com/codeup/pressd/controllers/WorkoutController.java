@@ -3,18 +3,15 @@ package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.models.Category;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.UserWorkoutRating;
 import com.codeup.pressd.models.Workout;
-import com.codeup.pressd.repository.CategoryRepository;
-import com.codeup.pressd.repository.UserRepository;
-import com.codeup.pressd.repository.WorkoutRepository;
+import com.codeup.pressd.repository.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +22,15 @@ public class WorkoutController {
 	private final WorkoutRepository workoutDao;
 	private final UserRepository userDao;
 	private final CategoryRepository categoryDao;
+	private final RatingRepository ratingDao;
+	private final UserWorkoutRatingRepository userWorkoutRatingDao;
 
-	WorkoutController(WorkoutRepository workoutDao, UserRepository userDao, CategoryRepository categoryDao) {
+	WorkoutController(WorkoutRepository workoutDao, UserRepository userDao, CategoryRepository categoryDao, UserWorkoutRatingRepository userWorkoutRatingDao, RatingRepository ratingDao) {
 		this.workoutDao = workoutDao;
 		this.userDao = userDao;
 		this.categoryDao = categoryDao;
+		this.userWorkoutRatingDao = userWorkoutRatingDao;
+		this.ratingDao = ratingDao;
 
 	}
 
@@ -51,9 +52,75 @@ public class WorkoutController {
 
 	@GetMapping("/workouts/{id}")
 	public String showOneWorkout(@PathVariable long id, Model viewModel) {
+		DecimalFormat df = new DecimalFormat("0.00");
+		viewModel.addAttribute("df", df);
 		Workout workout = workoutDao.getOne(id);
+		boolean isLoggedIn = false;
+
+		try {
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			isLoggedIn = true;
+			UserWorkoutRating tester = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
+			long userRating;
+			if (tester == null) {
+				userRating = 0L;
+			} else {
+				userRating = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user).getRating().getStars();
+				viewModel.addAttribute("uwr", tester);
+				System.out.println("UWR: " + tester);
+			}
+			viewModel.addAttribute("userRating", userRating);
+		} catch (RuntimeException ignored) {
+		}
+		viewModel.addAttribute("isLoggedIn", isLoggedIn);
+
+
+		List<UserWorkoutRating> uwr = userWorkoutRatingDao.getUserWorkoutRatingsByWorkout(workout);
+		long totalRatings = uwr.size();
+		double rating;
+		if (uwr.isEmpty()) {
+			rating = 0.0;
+		}else {
+			rating = userWorkoutRatingDao.getAverageRating(uwr);
+		}
+		viewModel.addAttribute("totalRatings", totalRatings);
+		viewModel.addAttribute("rating", rating);
 		viewModel.addAttribute("workout", workout);
 		return "workouts/show";
+	}
+
+	@PostMapping("/ratings/{id}/create")
+	public String createRating(@RequestParam String newRating, @PathVariable long id) {
+		long ratingLong = Long.parseLong(newRating);
+		System.out.println("RATINGLONG: " + ratingLong);
+		UserWorkoutRating uwr = new UserWorkoutRating();
+		Workout workout = workoutDao.getOne(id);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		uwr.setUser(user);
+		uwr.setWorkout(workout);
+		uwr.setRating(ratingDao.getOne(ratingLong));
+		userWorkoutRatingDao.save(uwr);
+		return "redirect:/workouts";
+	}
+
+	@PostMapping("/ratings/{id}/update")
+	public String updateRating(@RequestParam String newRating, @PathVariable long id) {
+
+		Workout workout = workoutDao.getOne(id);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		UserWorkoutRating uwr = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
+		System.out.println("ID: " + uwr.getId());
+		//userWorkoutRatingDao.deleteById(uwr.getId());
+		long ratingLong = Long.parseLong(newRating);
+		//UserWorkoutRating newUwr = new UserWorkoutRating();
+
+		//newUwr.setUser(user);
+		//newUwr.setWorkout(workout);
+		//newUwr.setRating(ratingDao.getOne(ratingLong));
+		uwr.setRating(ratingDao.getOne(ratingLong));
+		userWorkoutRatingDao.save(uwr);
+		return "redirect:/workouts";
 	}
 
 	@GetMapping("/workouts/create")
@@ -103,5 +170,6 @@ public class WorkoutController {
 		}
 		return "redirect:/workouts";
 	}
+
 
 }

@@ -684,120 +684,10 @@ button#submit-button:hover {
 }
 /*END HOME PAGE CSS*/
 
-/*LOGIN PAGE CSS*/
-
-html.login_page,body.login_page{
-    background-image: url('images/class/yoga-class.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-    font-family: 'Numans', sans-serif;
-}
-
-.container{
-    height: 100%;
-    align-content: center;
-}
-
-.card{
-    height: 370px;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 400px;
-    background-color: rgba(0,0,0,0.5) !important;
-}
-
-.social_icon span{
-    font-size: 60px;
-    margin-left: 10px;
-    color: #FFC312;
-}
-
-.social_icon span:hover{
-    color: white;
-    cursor: pointer;
-}
-
-.card-header h3{
-    color: white;
-}
-
-.social_icon{
-    position: absolute;
-    right: 20px;
-    top: -45px;
-}
-
-.input-group-prepend span{
-    width: 50px;
-    background-color: #FFC312;
-    color: black;
-    border:0 !important;
-}
-
-input:focus{
-    outline: 0 0 0 0  !important;
-    box-shadow: 0 0 0 0 !important;
-
-}
-
-.remember{
-    color: white;
-}
-
-.remember input
-{
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    margin-right: 5px;
-}
-
-.login_btn{
-    color: black;
-    background-color: #FFC312;
-    width: 100px;
-    margin-bottom: 20px;
-}
-
-.login_btn:hover{
-    color: black;
-    background-color: white;
-}
-
-.links{
-    color: white;
-}
-
-.links a{
-    margin-left: 4px;
-}
-
-.main_container {
-    padding-top: 40px;
-}
-
-.register_btn {
-    color: black;
-    background-color: #FFC312;
-    width: 100px;
-    margin-left: 40px;
-}
-
-.register_btn:hover{
-    color: black;
-    background-color: white;
-}
-
-.register-card {
-    padding-top: 70px;
-}
-/*END OF LOGIN PAGE CSS*/
 
 /*SIGN-UP PAGE CSS*/
 
 /* Required for full background image */
-
 html.sign_up,
 body.sign_up,
 header.sign_up,
@@ -851,3 +741,185 @@ h6.sign {
     color: white;
 }
 /*END OF SIGN-UP PAGE CSS*/
+
+
+/*LOGIN PAGE CSS*/
+
+/* Required for full background image */
+html.login,
+body.login,
+header.login,
+.view-login {
+    height: auto;
+}
+
+.view-login {
+    background-image: url('images/class/swim.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view-login {
+        height: 1000px;
+    }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view-login {
+        height: 650px;
+    }
+}
+
+.rgba-gradient {
+    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
+    background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+}
+
+.card-sign {
+    background-color: rgba(126, 123, 215, 0.2);
+}
+
+.md-form label {
+    color: #ffffff;
+}
+
+h6.sign {
+    line-height: 1.7;
+}
+
+.wow {
+    color: white;
+}
+/*END OF LOGIN PAGE CSS*/
+
+
+/*START OF POST (INDEX) CSS*/
+
+body.post-body {
+    background: #654ea3;
+    background: linear-gradient(to right, #3d3d3d, #904e95);
+    min-height: 100vh
+}
+
+/* card details start  */
+/*@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');*/
+section{
+    padding: 100px 0;
+}
+
+.details-card {
+    /*background: #ecf0f1;*/
+    padding-right: 70px;
+}
+
+.card-content {
+    background: #ffffff;
+    border: 4px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.card-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    z-index: 1;
+}
+
+.card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-img span {
+    position: absolute;
+    top: 15%;
+    left: 12%;
+    background: #1ABC9C;
+    padding: 6px;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    transform: translate(-50%,-50%);
+}
+.card-img span h4{
+    font-size: 12px;
+    margin:0;
+    padding:10px 5px;
+    line-height: 0;
+}
+.card-desc {
+    padding: 1.25rem;
+}
+
+.card-desc h3 {
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.5em;
+    line-height: 1.3em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.card-desc p {
+    color: #747373;
+    font-size: 14px;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+.btn-card{
+    background-color: #1ABC9C;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    padding: .84rem 2.14rem;
+    font-size: .81rem;
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    margin: 0;
+    border: 0;
+    -webkit-border-radius: .125rem;
+    border-radius: .125rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #fff;
+}
+.btn-card:hover {
+    background: orange;
+}
+a.btn-card {
+    text-decoration: none;
+    color: #fff;
+}
+
+.post {
+    padding-bottom: 40px;
+    margin-right: 70px !important;
+    padding-left: 130px !important;
+}
+
+/*END OF POST CSS*/
+
+

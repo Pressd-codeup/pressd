@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Comment')"></head>
+<head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<section class="comment d-flex flex-column justify-content-center align-items-center" id="comment">
-    <form th:action="@{'/comments/'+workout.id+'/create'}" th:method="POST" th:object="${comment}">
-        <h4>Add comment</h4>
-        <input class="form-control" th:field="*{body}" type="text" id="body" placeholder="Body:">
-    </form>
+<section class="d-flex flex-column justify-content-center align-items-center" id="comment">
+    <div class="container">
+        <div th:if="${comment.id == 0}">
+            <form th:action="@{'/workouts/'+${id}+'/comments/create'}" th:method="POST" th:object="${comment}">
+                <h1>Add your comment</h1>
+                <div>
+                    <label for="body" class="form-label">Comment</label>
+                    <textarea class="form-control" rows="6" th:field="*{body}" id="body"
+                              placeholder="Your comment here...."></textarea>
+                    <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Plan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 </section>
+
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
