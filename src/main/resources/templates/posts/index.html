@@ -1,24 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Posts')">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+<head th:replace="fragments/header :: main-head('Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <div class="container">
-	<form name="zipcode_form">
-		<div>
-			<label for="zipcode">Zipcode</label>
-			<input type="number" id="zipcode" name="zipcode">
-		</div>
-		<div>
-			<label for="range">Range <em>(miles)</em></label>
-			<input type="number" id="range" name="range" onchange="filterByZip()">
-		</div>
-		<div>
-			<input type="submit" value="submit" id="filter">
-		</div>
-	</form>
 	<div class="post" th:each="post : ${posts}">
 		<h1 th:text="${post.title}"></h1>
 		<h4 th:text="${post.body}"></h4>
@@ -31,33 +16,5 @@
 
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
-<script>
-	function filterByZip() {
-
-		let zipcode = document.forms.zipcode_form.zipcode;
-		let range = document.forms.zipcode_form.range;
-		function zipcodeFilter(zipcode) {
-
-			let settings = {
-				"url": "https://www.zipcodeapi.com/rest/<zipcodeAPP_KEY>/radius.csv/<zipcode.value>/<range.value>/miles?minimal",
-				"method": "GET",
-				"timeout": 0,
-
-			}
-			$.ajax(settings).done(function (response) {
-				console.log(zipcode.value);
-				console.log(response);
-				let info = JSON.parse(response);
-
-				console.log(info);
-			});
-		}
-		document.getElementById("filter").addEventListener("click", function (event){
-			event.preventDefault();
-			zipcodeFilter(zipcode.value)
-		});
-	}
-
-</script>
 </body>
 </html>

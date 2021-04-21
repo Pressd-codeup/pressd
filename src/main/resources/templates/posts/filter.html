@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<form name="zipcode_form">
+	<div>
+		<label for="zipcode">Zipcode</label>
+		<input type="number" id="zipcode" name="zipcode">
+	</div>
+	<div>
+		<label for="range">Range <em>(miles)</em></label>
+		<input type="number" id="range" name="range" onchange="filterByZip()">
+	</div>
+	<div>
+		<input type="submit" value="submit" id="filter">
+	</div>
+</form>
+<script src="../../keys.js"></script>
+<script>
+	function filterByZip() {
+
+		let zipcode = document.forms.zipcode_form.zipcode.value;
+		let range = document.forms.zipcode_form.range.value;
+		function zipcodeFilter(zipcode) {
+
+			let settings = {
+				"url": "https://www.zipcodeapi.com/rest/"+zipKey+"/radius.json/"+zipcode+"/"+range+"/mile",
+				// "url": "https://www.zipcodeapi.com/rest/"+zipKey+"/radius.csv/"+zipcode+"/"+range+"/miles?minimal",
+				"method": "GET"
+			}
+			$.ajax(settings).done(function (response) {
+				console.log(zipcode);
+				console.log(response);
+				let info = JSON.parse(response);
+
+				console.log(info);
+
+
+			});
+		}
+		document.getElementById("filter").addEventListener("click", function (event){
+			event.preventDefault();
+			zipcodeFilter(zipcode)
+		});
+	}
+
+</script>
+</body>
+</html>
