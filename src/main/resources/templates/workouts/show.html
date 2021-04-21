@@ -83,12 +83,10 @@
         <p th:href="@{workout.user}"></p>
     </div>
 
-<!--    <form th:action="${'/comments/'+id+'/update'}" method="GET">-->
-<!--        <input type="submit" value="edit workout">-->
-<!--    </form>-->
-<!--    <form th:action="${'/workouts/'+workout.id + '/comments/create'}" method="GET">-->
-<!--        <input type="submit" value="add comment">-->
-<!--    </form>-->
+    <form th:action="${'/workouts/'+id+'/update'}" method="GET">
+        <input type="submit" value="edit workout">
+    </form>
+
     <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
         <input type="submit" value="View Comments">
     </form>
