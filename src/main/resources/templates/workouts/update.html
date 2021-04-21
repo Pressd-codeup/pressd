@@ -7,15 +7,15 @@
 <body>
 <div th:if="${workout.id != 0}">
     <h1>Edit your Workout</h1>
-    <form th:action="@{'/workouts/' + ${workout.id} + '/edit'}" th:method="post" th:object="${workout}">
+    <form th:action="@{/workouts/{id}/update}" th:method="post" th:object="${workout}">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input class="form-control" type="text" th:field="*{title}">
+            <input class="form-control" id="title" type="text" th:field="*{title}">
         </div>
         <div class="mb-3">
             <label for="body" class="form-label">Body</label>
             <label>
-                <textarea class="form-control" rows="6" th:field="*{body}"></textarea>
+                <textarea class="form-control" rows="6" id="body" th:field="*{body}"></textarea>
             </label>
         </div>
         <button class="btn btn-dark text-center bg-dark btn-outline-danger">Submit Workout</button>

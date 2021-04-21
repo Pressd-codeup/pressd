@@ -922,4 +922,13 @@ a.btn-card {
 
 /*END OF POST CSS*/
 
+.form-lable-2 {
+    color: #fff;
+}
 
+.view-login-2 {
+    background-image: url('images/class/hill.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
