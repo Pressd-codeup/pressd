@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<!--<form name="zipcode_form">-->
+<form name="zipcode_form">
 <button type="button" value="Set Filter" id="set_filter"></button>
 	<div>
 		<label for="zip">Zipcode</label>
@@ -16,10 +16,10 @@
 		<label for="range">Range <em>(miles)</em></label>
 		<input type="number" id="range" name="range">
 	</div>
-<!--</form>-->
+</form>
 <!--/*@thymesVar id="filter" type="com.codeup.pressd.models.Filter"*/-->
 <form name="filter_form" th:action="@{/posts/filter}" th:method="post" th:object="${filter}">
-	<input th:field="*{params}" type="hidden" id="params" name="params">
+	<input th:field="*{params}" type="hidden" id="params">
 <!--	/*@thymesVar id="type_name" type="com.codeup.pressd.models.Filter"*/-->
 	<div class="dropdown" style="margin: 20px" th:field="${type_name}">
 		<button type="button"
