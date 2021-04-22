@@ -8,6 +8,16 @@
         <h1 style="color: white">Create a Workout plan</h1>
         <div>
             <form th:action="@{/workouts/create}" th:method="post" th:object="${workout}">
+
+                <input type="file" id="input_img" onchange="fileChange()" accept="image/*">
+
+                <div id="json"></div>
+
+                <form id="uploadForm" th:action="@{/images/upload/${directory}}" th:method="post" style="display: none">
+                    <input name="url" id="url">
+                    <input type="submit" value="Upload your image!">
+                </form>
+                <br>
                 <div class="form-check" style="color: white; font-weight: bolder" th:field="${workout.categories}">
                     <label>Category</label><hr>
                     <input class="form-check-input" name="1" type="checkbox" value="1" id="strength">
@@ -58,6 +68,8 @@
                     <label for="body" class="form-label">Body</label>
                     <input class="form-control" th:field="*{body}" type="text" id="body">
 
+                    <button  type="submit" class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Plan
+                    </button>
                 </div>
             </form>
         </div>

@@ -798,10 +798,15 @@ h6.sign {
 .wow {
     color: white;
 }
+
+.login-box {
+    margin-top: 100px;
+    padding-bottom: 200px;
+}
 /*END OF LOGIN PAGE CSS*/
 
 
-/*START OF POST (INDEX) CSS*/
+/*START OF SHOW POST (INDEX) CSS*/
 
 body.post-body {
     background: #654ea3;
@@ -920,7 +925,10 @@ a.btn-card {
     padding-left: 130px !important;
 }
 
-/*END OF POST CSS*/
+/*END OF SHOW POST CSS*/
+
+
+/*CREATE POST CSS*/
 
 .form-lable-2 {
     color: #fff;
@@ -932,3 +940,22 @@ a.btn-card {
     background-size: cover;
     background-position: center center;
 }
+
+/*END OF CREATE POST CSS*/
+
+/*FILTER POST CSS*/
+
+.view-filter {
+    background-image: url('images/class/cycle.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.search-post {
+    margin-top: 100px;
+    padding-bottom: 200px;
+    margin-right: 90px;
+}
+/*END OF FILTER POST CSS*/
+

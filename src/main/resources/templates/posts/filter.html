@@ -1,74 +1,178 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-<form name="zipcode_form">
-<button type="button" value="Set Filter" id="set_filter"></button>
-	<div>
-		<label for="zip">Zipcode</label>
-		<input type="number" id="zip" name="zip">
-	</div>
-	<div>
-		<label for="range">Range <em>(miles)</em></label>
-		<input type="number" id="range" name="range">
-	</div>
-</form>
-<!--/*@thymesVar id="filter" type="com.codeup.pressd.models.Filter"*/-->
-<form name="filter_form" th:action="@{/posts/filter}" th:method="post" th:object="${filter}">
-	<input th:field="*{params}" type="hidden" id="params">
-<!--	/*@thymesVar id="type_name" type="com.codeup.pressd.models.Filter"*/-->
-	<div class="dropdown" style="margin: 20px" th:field="${type_name}">
-		<button type="button"
-				class="btn bg-dark text-center btn-outline-danger dropdown-toggle"
-				data-toggle="dropdown">
-			Type
-		</button>
-		<div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">
-			<label for="type1" class="form-lable">Partners</label>
-			<input class="dropdown-item" type="radio" name="type_name" value="partners"
-				   id="type1">
-			<label for="type2" class="form-lable">Coaches</label>
-			<input class="dropdown-item" type="radio" name="type_name" value="coaches"
-				   id="type2">
-			<label for="type3" class="form-lable">Clients</label>
-			<input class="dropdown-item" type="radio" name="type_name" value="clients"
-				   id="type3">
-		</div>
-		<div>
-			<input type="submit" value="submit">
-		</div>
-	</div>
-</form>
-<script src="../../keys.js"></script>
+<head th:replace="fragments/header :: main-head('Filter Posts')"></head>
+<body class="filter">
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+
+<!--ORIGINAL CODE-->
+
+<!--<form name="zipcode_form">-->
+<!--    <button type="button" value="Set Filter" id="set_filter"></button>-->
+<!--    <div>-->
+<!--        <label for="zip">Zipcode</label>-->
+<!--        <input type="number" id="zip" name="zip">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="range">Range <em>(miles)</em></label>-->
+<!--        <input type="number" id="range" name="range">-->
+<!--    </div>-->
+<!--</form>-->
+<!--&lt;!&ndash;/*@thymesVar id="filter" type="com.codeup.pressd.models.Filter"*/&ndash;&gt;-->
+<!--<form name="filter_form" th:action="@{/posts/filter}" th:method="post" th:object="${filter}">-->
+<!--    <input th:field="*{params}" type="hidden" id="params">-->
+<!--    &lt;!&ndash;	/*@thymesVar id="type_name" type="com.codeup.pressd.models.Filter"*/&ndash;&gt;-->
+<!--    <div class="dropdown" style="margin: 20px" th:field="${type_name}">-->
+<!--        <button type="button"-->
+<!--                class="btn bg-dark text-center btn-outline-danger dropdown-toggle"-->
+<!--                data-toggle="dropdown">-->
+<!--            Type-->
+<!--        </button>-->
+<!--        <div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">-->
+<!--            <label for="type1" class="form-lable">Partners</label>-->
+<!--            <input class="dropdown-item" type="radio" name="type_name" value="partners"-->
+<!--                   id="type1">-->
+<!--            <label for="type2" class="form-lable">Coaches</label>-->
+<!--            <input class="dropdown-item" type="radio" name="type_name" value="coaches"-->
+<!--                   id="type2">-->
+<!--            <label for="type3" class="form-lable">Clients</label>-->
+<!--            <input class="dropdown-item" type="radio" name="type_name" value="clients"-->
+<!--                   id="type3">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <input type="submit" value="submit">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
+
+
+<!--START-->
+<header class="login">
+    <!-- Full Page Intro -->
+    <div class="view-filter">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row mt-5">
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
+                        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Filter Post</h1>
+                        <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                        <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                        <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+
+                    <div class="col-md-6 col-xl-5 mb-4 search-post">
+                        <!--Form-->
+                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                            <div class="card-body">
+
+                                <!--                                START-->
+                                <form name="zipcode_form">
+
+                                    <div class="text-center">
+
+                                        <h3 class="white-text">
+                                            <i class="white-text"></i> Search Post:</h3>
+                                        <hr class="hr-light">
+                                    </div>
+                                    <!--BODY-->
+                                    <button type="button" value="Set Filter" id="set_filter"></button>
+                                    <div class="md-form">
+
+                                        <i class="prefix white-text active"></i>
+
+                                        <input type="number" id="zip" name="zip">
+                                        <label for="zip" class="white-text">Zipcode</label>
+                                    </div>
+
+                                    <!--Body-->
+
+                                    <div class="md-form">
+                                        <i class="prefix white-text active"></i>
+
+                                        <input class="form-lable mb-3" id="range" type="number" name="range">
+                                        <label class="form-label mt-3" for="range">Range <em>(miles)</em></label>
+                                    </div>
+
+                                </form>
+                                <!--                                <div class="md-form">-->
+
+                                <!--                                    <i class="prefix white-text active"></i>-->
+                                <!--/*@thymesVar id="filter" type="com.codeup.pressd.models.Filter"*/-->
+
+
+                                <!--POST-->
+                                <form name="filter_form" th:action="@{/posts/filter}" th:method="post"
+                                      th:object="${filter}">
+                                    <input th:field="*{params}" type="hidden" id="params">
+                                    <!--	/*@thymesVar id="type_name" type="com.codeup.pressd.models.Filter"*/-->
+                                    <div class="dropdown" style="margin: 20px" th:field="${type_name}">
+                                        <button type="button"
+                                                class="btn btn-indigo text-center btn-outline-danger dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            Type
+                                        </button>
+                                        <div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">
+                                            <label for="type1" class="form-lable">Partners</label>
+                                            <input class="dropdown-item" type="radio" name="type_name" value="partners"
+                                                   id="type1">
+                                            <label for="type2" class="form-lable">Coaches</label>
+                                            <input class="dropdown-item" type="radio" name="type_name" value="coaches"
+                                                   id="type2">
+                                            <label for="type3" class="form-lable">Clients</label>
+                                            <input class="dropdown-item" type="radio" name="type_name" value="clients"
+                                                   id="type3">
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <input class="btn btn-indigo" type="submit" value="submit">
+                                            <hr class="hr-light mb-3 mt-4">
+                                            <div class="inline-ul text-center d-flex justify-content-center">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+<!--<script src="../../keys.js"></script>-->
 <script>
-	function filterByZip() {
+    function filterByZip() {
 
-		let zipcode = document.forms.zipcode_form.zip.value;
-		let range = document.forms.zipcode_form.range.value;
+        let zipcode = document.forms.zipcode_form.zip.value;
+        let range = document.forms.zipcode_form.range.value;
 
-		function zipcodeFilter(zipcode) {
+        function zipcodeFilter(zipcode) {
 
-			let settings = {
-				"url": "https://www.zipcodeapi.com/rest/" + zipKey + "/radius.csv/" + zipcode + "/" + range + "/miles?minimal",
-				"method": "GET"
-			}
-			$.ajax(settings).done(function (response) {
-				const params = document.getElementById("params");
-				params.value = response;
-			});
-		}
+            let settings = {
+                "url": "https://www.zipcodeapi.com/rest/" + zipKey + "/radius.csv/" + zipcode + "/" + range + "/miles?minimal",
+                "method": "GET"
+            }
+            $.ajax(settings).done(function (response) {
+                const params = document.getElementById("params");
+                params.value = response;
+            });
+        }
 
-		document.getElementById("set_filter").addEventListener("click", function (event) {
-			event.preventDefault();
-			zipcodeFilter(zipcode);
-			alert("Filter set!")
-		});
-	}
+        document.getElementById("set_filter").addEventListener("click", function (event) {
+            event.preventDefault();
+            zipcodeFilter(zipcode);
+            alert("Filter set!")
+        });
+    }
 
 </script>
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
