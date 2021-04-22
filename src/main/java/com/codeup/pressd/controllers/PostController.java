@@ -1,5 +1,6 @@
 package com.codeup.pressd.controllers;
 
+import com.codeup.pressd.models.Filter;
 import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.Type;
 import com.codeup.pressd.models.User;
@@ -63,13 +64,10 @@ public class PostController {
 	}
 
 	@PostMapping("/posts/filter")
-	public String showFilteredPosts(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id, Model viewModel) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Type type = typeDao.getOne(type_id);
-		post.setUser(user);
-		post.setType(type);
-		post.setDatePosted(LocalDateTime.now());
-		List<Post> posts = postDao.getPostsByTypeName(type.getName());
+	public String showFilteredPosts(@ModelAttribute Filter filter, Model viewModel) {
+
+
+		List<Post> posts = postDao.getPostsByTypeName(filter.getType_name());
 		List<Post> filteredPosts = new List<Post>() {
 			@Override
 			public int size() {
@@ -186,9 +184,9 @@ public class PostController {
 				return null;
 			}
 		};
-		for (Post p : posts) {
-			if (post.getBody().contains(String.valueOf(p.getZipcode()))) {
-				filteredPosts.add(p);
+		for (Post post : posts) {
+			if (filter.getParams().contains(String.valueOf(post.getZipcode()))) {
+				filteredPosts.add(post);
 			}
 		}
 		viewModel.addAttribute("posts", filteredPosts);
