@@ -1,11 +1,11 @@
 package com.codeup.pressd.controllers;
 
-import com.codeup.pressd.models.Filter;
-import com.codeup.pressd.models.Post;
-import com.codeup.pressd.models.Type;
-import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.*;
+import com.codeup.pressd.repository.ImageRepository;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.TypeRepository;
+import com.codeup.pressd.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +20,14 @@ public class PostController {
 
 	private final PostRepository postDao;
 	private final TypeRepository typeDao;
+	private final ImageRepository imageDao;
+	private final UserRepository userDao;
 
-	PostController(PostRepository postDao, TypeRepository typeDao){
+	PostController(PostRepository postDao, TypeRepository typeDao, ImageRepository imageDao, UserRepository userDao){
 		this.postDao = postDao;
 		this.typeDao = typeDao;
+		this.imageDao = imageDao;
+		this.userDao = userDao;
 	}
 
 	@GetMapping("/posts")
@@ -108,16 +112,31 @@ public class PostController {
 
 	@GetMapping("/posts/{id}/update")
 	public String viewEditForm(Model vModel, @PathVariable long id){
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userDao.getOne(currentUser.getId());
+		if (postDao.getOne(id).getUser() != user) return "redirect:/posts";
 		vModel.addAttribute("post", postDao.getOne(id));
 		return "posts/update";
 	}
 
-	@PostMapping("/posts/update")
-	public String editPost(@ModelAttribute Post postToUpdate) {
+	@PostMapping("/posts/{id}/update")
+	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body) {
+
+
+
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (currentUser.getId() == postToUpdate.getUser().getId()) {
-			postDao.save(postToUpdate);
-		}
+		User user = userDao.getOne(currentUser.getId());
+
+		Post dbPost = postDao.getOne(id);
+
+
+		dbPost.setTitle(title);
+		dbPost.setBody(body);
+
+		//user validation is no longer necessary here because it's handled in GetMapping
+		postDao.save(dbPost);
+
+
 		return "redirect:/posts";
 	}
 
