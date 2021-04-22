@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 
 @Controller
@@ -51,6 +54,144 @@ public class PostController {
 	public String seeClientPosts(Model viewModel) {
 		List<Post> posts = postDao.getPostsByTypeName("clients");
 		viewModel.addAttribute("posts", posts);
+		return "posts/index";
+	}
+	@GetMapping("/posts/filter")
+	public String filterPosts(Model viewModel){
+		viewModel.addAttribute("post", new Post());
+		return "posts/filter";
+	}
+
+	@PostMapping("/posts/filter")
+	public String showFilteredPosts(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id, Model viewModel) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Type type = typeDao.getOne(type_id);
+		post.setUser(user);
+		post.setType(type);
+		post.setDatePosted(LocalDateTime.now());
+		List<Post> posts = postDao.getPostsByTypeName(type.getName());
+		List<Post> filteredPosts = new List<Post>() {
+			@Override
+			public int size() {
+				return 0;
+			}
+
+			@Override
+			public boolean isEmpty() {
+				return false;
+			}
+
+			@Override
+			public boolean contains(Object o) {
+				return false;
+			}
+
+			@Override
+			public Iterator<Post> iterator() {
+				return null;
+			}
+
+			@Override
+			public Object[] toArray() {
+				return new Object[0];
+			}
+
+			@Override
+			public <T> T[] toArray(T[] a) {
+				return null;
+			}
+
+			@Override
+			public boolean add(Post post) {
+				return false;
+			}
+
+			@Override
+			public boolean remove(Object o) {
+				return false;
+			}
+
+			@Override
+			public boolean containsAll(Collection<?> c) {
+				return false;
+			}
+
+			@Override
+			public boolean addAll(Collection<? extends Post> c) {
+				return false;
+			}
+
+			@Override
+			public boolean addAll(int index, Collection<? extends Post> c) {
+				return false;
+			}
+
+			@Override
+			public boolean removeAll(Collection<?> c) {
+				return false;
+			}
+
+			@Override
+			public boolean retainAll(Collection<?> c) {
+				return false;
+			}
+
+			@Override
+			public void clear() {
+
+			}
+
+			@Override
+			public Post get(int index) {
+				return null;
+			}
+
+			@Override
+			public Post set(int index, Post element) {
+				return null;
+			}
+
+			@Override
+			public void add(int index, Post element) {
+
+			}
+
+			@Override
+			public Post remove(int index) {
+				return null;
+			}
+
+			@Override
+			public int indexOf(Object o) {
+				return 0;
+			}
+
+			@Override
+			public int lastIndexOf(Object o) {
+				return 0;
+			}
+
+			@Override
+			public ListIterator<Post> listIterator() {
+				return null;
+			}
+
+			@Override
+			public ListIterator<Post> listIterator(int index) {
+				return null;
+			}
+
+			@Override
+			public List<Post> subList(int fromIndex, int toIndex) {
+				return null;
+			}
+		};
+		for (Post p : posts) {
+			if (post.getBody().contains(String.valueOf(p.getZipcode()))) {
+				filteredPosts.add(p);
+			}
+		}
+		viewModel.addAttribute("posts", filteredPosts);
 		return "posts/index";
 	}
 
