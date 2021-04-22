@@ -112,7 +112,7 @@ public class PostController {
 		return "posts/update";
 	}
 
-	@PostMapping("/posts/update")
+	@PostMapping("/posts/{id}/update")
 	public String editPost(@ModelAttribute Post postToUpdate) {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (currentUser.getId() == postToUpdate.getUser().getId()) {
@@ -121,13 +121,8 @@ public class PostController {
 		return "redirect:/posts";
 	}
 
-	@GetMapping("/posts/{id}/delete")
-	public String viewDeletePost(Model vModel, @PathVariable long id){
-		vModel.addAttribute("post",postDao.getOne(id));
-		return "posts/delete";
-	}
 
-	@PostMapping("/posts/delete")
+	@PostMapping("/posts/{id}/delete")
 	public String deletePost(@ModelAttribute Post postToDelete){
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (currentUser.getId() == postToDelete.getUser().getId()) {

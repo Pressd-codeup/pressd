@@ -156,13 +156,11 @@ public class WorkoutController {
     @GetMapping("/workouts/{id}/update")
     public String showUpdateWorkout(@PathVariable long id, Model viewModel) {
         Workout workout = workoutDao.getOne(id);
-        Image image = imageDao.getOne(1L);
         viewModel.addAttribute("workout", workout);
-        viewModel.addAttribute("image", image);
         return "/workouts/update";
     }
 
-    @PostMapping("/workouts/update")
+    @PostMapping("/workouts/{id}/update")
     public String updateWorkout(@ModelAttribute Workout workout) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (currentUser.getId() == workout.getUser().getId()) {

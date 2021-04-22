@@ -7,11 +7,13 @@
     <div class="post">
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>
-        <p>Contact me at <span th:text="${post.user.email}"></span></p>
+        <form th:action="${'/users/'+ post.user.id}" method="GET">
+            <input class="btn-card" type="submit" value="View user">
+        </form>
     </div>
-    
+
     <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
-        <input type="submit" value="delete ad">
+        <input type="submit" value="delete post">
     </form>
 
 </main>

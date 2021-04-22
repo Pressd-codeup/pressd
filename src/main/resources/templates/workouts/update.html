@@ -3,18 +3,23 @@
 <head th:replace="fragments/header :: main-head('Update Workout')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+
+<form th:action="${'/workouts/'+workout.id+'/update'}" method="POST" th:object="${workout}">
     <h1>Edit your Workout</h1>
         <div class="mb-3">
             <label for="title" class="form-label">Update workout</label>
-            <input class="form-control" id="title" type="text" th:field="*{workout.title}">
+            <!--/*@thymesVar id="workout" type="com.codeup.pressd.models.Workout"*/-->
+            <input class="form-control" id="title" type="text" th:field="*{title}">
         </div>
         <div class="mb-3">
             <label for="body" class="form-label">Body</label>
             <label>
-                <textarea class="form-control" rows="6" id="body" th:field="*{workout.body}"></textarea>
+                <textarea class="form-control" rows="6" id="body" th:field="*{body}"></textarea>
             </label>
         </div>
-<button type="submit" class="btn btn-dark text-center bg-dark btn-outline-danger">Submit Workout</button>
+
+    <input type="submit" value="update">
+</form>
 
     <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
