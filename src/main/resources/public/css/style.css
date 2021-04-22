@@ -798,6 +798,11 @@ h6.sign {
 .wow {
     color: white;
 }
+
+.login-box {
+    margin-top: 100px;
+    padding-bottom: 200px;
+}
 /*END OF LOGIN PAGE CSS*/
 
 
@@ -949,8 +954,8 @@ a.btn-card {
 
 .search-post {
     margin-top: 100px;
-
     padding-bottom: 200px;
+    margin-right: 90px;
 }
 /*END OF FILTER POST CSS*/
 
