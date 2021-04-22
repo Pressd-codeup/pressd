@@ -1,9 +1,7 @@
 package com.codeup.pressd.controllers;
 
-import com.codeup.pressd.models.Filter;
-import com.codeup.pressd.models.Post;
-import com.codeup.pressd.models.Type;
-import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.*;
+import com.codeup.pressd.repository.ImageRepository;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.TypeRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,10 +18,13 @@ public class PostController {
 
 	private final PostRepository postDao;
 	private final TypeRepository typeDao;
+	private final ImageRepository imageDao;
 
-	PostController(PostRepository postDao, TypeRepository typeDao){
+
+	PostController(PostRepository postDao, TypeRepository typeDao, ImageRepository imageDao){
 		this.postDao = postDao;
 		this.typeDao = typeDao;
+		this.imageDao = imageDao;
 	}
 
 	@GetMapping("/posts")
@@ -99,8 +100,10 @@ public class PostController {
 	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id){
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = typeDao.getOne(type_id);
+		Image image = imageDao.getOne(1L);
 		post.setUser(user);
 		post.setType(type);
+		post.setImage(image);
 		post.setDatePosted(LocalDateTime.now());
 		postDao.save(post);
 		return "redirect:/posts";
@@ -113,9 +116,10 @@ public class PostController {
 	}
 
 	@PostMapping("/posts/{id}/update")
-	public String editPost(@ModelAttribute Post postToUpdate) {
+	public String editPost(@PathVariable Long id, @ModelAttribute Post postToUpdate) {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (currentUser.getId() == postToUpdate.getUser().getId()) {
+			postToUpdate.setId(id);
 			postDao.save(postToUpdate);
 		}
 		return "redirect:/posts";
