@@ -937,3 +937,20 @@ a.btn-card {
 }
 
 /*END OF CREATE POST CSS*/
+
+/*FILTER POST CSS*/
+
+.view-filter {
+    background-image: url('images/class/cycle.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.search-post {
+    margin-top: 100px;
+
+    padding-bottom: 200px;
+}
+/*END OF FILTER POST CSS*/
+
