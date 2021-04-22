@@ -10,9 +10,8 @@
 
 <div id="json"></div>
 
-<form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
+<form id="uploadForm" th:action="@{/images/upload/${directory}}" th:method="post" style="display: none">
     <input type="hidden" name="url" id="url">
-    <input type="hidden" name="deleteUrl" id="deleteUrl">
     <input type="submit" value="Upload your image!">
 </form>
 
@@ -46,9 +45,7 @@
                 div.appendChild(userImg);
                 const imageForm = document.getElementById("uploadForm");
                 const urlInput = document.getElementById("url");
-                const deleteUrlInput = document.getElementById("deleteUrl");
                 urlInput.value = jx.data.url;
-                deleteUrlInput.value = jx.data.delete_url;
                 imageForm.style.display = 'block';
 
 

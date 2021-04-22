@@ -29,9 +29,8 @@ public class CommentController {
     }
 
     @GetMapping("/workouts/{id}/comments")
-    public String allComments(@PathVariable long id, WorkoutRepository workoutDao, Model viewModel) {
+    public String allComments(@PathVariable long id, Model viewModel) {
         List<Comment> comments = commentDao.findAll();
-        List<Workout> workouts = workoutDao.findAllById(id);
         viewModel.addAttribute("comments", comments);
         return "comments/index";
     }

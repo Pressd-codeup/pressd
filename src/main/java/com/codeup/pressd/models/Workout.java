@@ -29,6 +29,10 @@ public class Workout {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workout")
 	private List<Comment> comments;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "image_id", nullable = false)
+	private Image image;
+
 	@ManyToMany
 	@JoinTable(name = "workout_categories", joinColumns = @JoinColumn(name = "workout_id"),
 			inverseJoinColumns = @JoinColumn(name = "category_id"))

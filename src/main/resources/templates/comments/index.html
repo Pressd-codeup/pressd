@@ -4,14 +4,33 @@
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<div class="workout" th:each="workout : ${workouts}">
+<h6>Comments</h6>
 
-    <div class="comment" th:if="">
-        <h1>THIS</h1>
+
+<div class="comment" th:each="comment : ${comments}">
+    <div th:if="${comment.workout.id == id}">
+        <ul>
+            <li th:text="${comment.user.username}"></li>
+            <ul>
+                <li th:text="${comment.body}"></li>
+                <ul>
+                    <li style="margin-left: 30px;"><small
+                        th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small></li>
+                </ul>
+            </ul>
+        </ul>
     </div>
-    <div class="comment" th:if="">
-        <h1>THAT</h1>
-    </div>
+</div>
+<div>
+    <form th:action="${'/comments/'+id+'/update'}" method="GET">
+        <input type="submit" value="edit comments">
+    </form>
+    <form th:action="${'/workouts/'+ id + '/comments/create'}" method="GET">
+        <input type="submit" value="add comment">
+    </form>
+    <form th:action="${'/comments/'+id+'/update'}" method="GET">
+        <input type="submit" value="edit comment">
+    </form>
 </div>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
