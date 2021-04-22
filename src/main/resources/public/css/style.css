@@ -801,7 +801,7 @@ h6.sign {
 /*END OF LOGIN PAGE CSS*/
 
 
-/*START OF POST (INDEX) CSS*/
+/*START OF SHOW POST (INDEX) CSS*/
 
 body.post-body {
     background: #654ea3;
@@ -920,7 +920,10 @@ a.btn-card {
     padding-left: 130px !important;
 }
 
-/*END OF POST CSS*/
+/*END OF SHOW POST CSS*/
+
+
+/*CREATE POST CSS*/
 
 .form-lable-2 {
     color: #fff;
@@ -932,3 +935,5 @@ a.btn-card {
     background-size: cover;
     background-position: center center;
 }
+
+/*END OF CREATE POST CSS*/
