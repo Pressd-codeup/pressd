@@ -1,5 +1,6 @@
 package com.codeup.pressd.controllers;
 
+import com.codeup.pressd.models.Filter;
 import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.Type;
 import com.codeup.pressd.models.User;
@@ -11,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -52,6 +53,31 @@ public class PostController {
 		List<Post> posts = postDao.getPostsByTypeName("clients");
 		viewModel.addAttribute("posts", posts);
 		return "posts/index";
+	}
+	@GetMapping("/posts/filter")
+	public String filterPosts(Model viewModel){
+		viewModel.addAttribute("filter", new Filter());
+		return "posts/filter";
+	}
+
+	@PostMapping("/posts/filter")
+	public String showFilteredPosts(@ModelAttribute Filter filter, Model viewModel) {
+		Post placeHolder = new Post();
+		List<Post> posts = postDao.getPostsByTypeName(filter.getType_name());
+		ArrayList<Post> filteredPosts = new ArrayList<>();
+		filteredPosts.add(0,placeHolder);
+		for (Post post : posts) {
+			if (filter.getParams().contains(String.valueOf(post.getZipcode()))) {
+				filteredPosts.add(post);
+			}
+		}
+		if(filteredPosts.size() == 1){
+			return "redirect:/posts";
+		} else {
+			filteredPosts.remove(0);
+			viewModel.addAttribute("posts", filteredPosts);
+		}
+		return "/posts/index";
 	}
 
 	@GetMapping("/posts/{id}")
