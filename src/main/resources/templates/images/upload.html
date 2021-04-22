@@ -1,67 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<input type="file" id="input_img" onchange="fileChange()" accept="image/*">
+<input type="file" id="input_img" th:onchange="fileChange()" accept="image/*">
 
 <div id="json"></div>
 
-<form id="uploadForm" th:action="@{/images/upload/${directory}}" th:method="post" style="display: none">
+<form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
+    <input type="hidden" name="directory" th:value="${directory}">
     <input type="hidden" name="url" id="url">
     <input type="submit" value="Upload your image!">
 </form>
 
-<script>
-
-    function fileChange() {
-        let file = document.getElementById('input_img');
-        let form = new FormData();
-        form.append("image", file.files[0])
-
-        let settings = {
-            "url": imgKey,
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
-
-
-        $.ajax(settings).done(function (response) {
-                console.log(response);
-                let jx = JSON.parse(response);
-                let div = document.getElementById("json");
-                const userImg = document.createElement("img");
-                userImg.setAttribute("src", jx.data.url);
-                const h2 = document.createElement("h2");
-                h2.innerHTML = "Your image:";
-                div.appendChild(h2);
-                div.appendChild(userImg);
-                const imageForm = document.getElementById("uploadForm");
-                const urlInput = document.getElementById("url");
-                urlInput.value = jx.data.url;
-                imageForm.style.display = 'block';
-
-
-                /*let imageString = jx.data.url + "," + jx.data.delete_url;
-                console.log(imageString);
-
-                div.innerHTML = jx.data.url;
-                let request = new XMLHttpRequest();
-                request.open("POST", "/images/upload", true);
-                request.send(imageString);
-                console.log(jx.data.delete_url);*/
-
-
-            }
-        );
-    }
-</script>
+<script type="text/javascript" th:src="@{/js/cssandjs/keys.js}"></script>
+<script type="text/javascript" th:src="@{/js/cssandjs/upload.js}"></script>
 </body>
 </html>

@@ -13,11 +13,10 @@
             <div class="bg-white shadow rounded overflow-hidden">
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="media align-items-end profile-head">
-                        <div class="profile mr-3"><img
-                                src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-                                alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#"
-                                                                                            class="btn btn-outline-dark btn-sm btn-block">Edit
-                            profile</a></div>
+                        <div class="profile mr-3">
+                            <img th:src="@{${avatar.url}}" alt="..." class="rounded mb-2 img-thumbnail" style="height: 130px; width: 130px">
+                            <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                        </div>
                         <div class="media-body mb-5 text-white">
                             <h4 th:text="${user.username}" class="mt-0 mb-0"></h4>
                             <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i>New York</p>
@@ -53,15 +52,15 @@
                     </div>
                     <div class="row">
 
-<!--                        &lt;!&ndash;POST&ndash;&gt;-->
-<!--                        <div th:each="post : ${posts}" class="container">-->
-<!--                            <h1 th:text="${post.getTitle()}"></h1>-->
-<!--                            <p th:text="${post.getBody()}"></p>-->
-<!--                            <p th:text="${post.getUser().getEmail()}"></p>-->
-<!--                            <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">-->
-<!--                                <input type="submit" value="View Post">-->
-<!--                            </form>-->
-<!--                        </div>-->
+                        <!--                        &lt;!&ndash;POST&ndash;&gt;-->
+                        <!--                        <div th:each="post : ${posts}" class="container">-->
+                        <!--                            <h1 th:text="${post.getTitle()}"></h1>-->
+                        <!--                            <p th:text="${post.getBody()}"></p>-->
+                        <!--                            <p th:text="${post.getUser().getEmail()}"></p>-->
+                        <!--                            <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">-->
+                        <!--                                <input type="submit" value="View Post">-->
+                        <!--                            </form>-->
+                        <!--                        </div>-->
 
                         <form th:action="@{'/messages/send/' +${id}}" method="GET">
                             <input type="submit" value="message user">
