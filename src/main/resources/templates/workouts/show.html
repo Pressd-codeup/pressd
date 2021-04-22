@@ -38,6 +38,15 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <main class="container">
     <div class="workout">
+        <div class="post" th:each="workout : ${workouts}">
+            <h1 th:text="${workout.title}"></h1>
+            <small th:text="${workout.user.username}"></small>
+            <p th:text="${workout.body}"></p>
+            <small th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
+            <form th:action="${'/workouts/'+ workout.id}" method="GET">
+                <input type="submit" value="View Plan">
+            </form>
+        </div>
         <h1 th:text="${workout.title}"></h1>
         <p th:text="${workout.body}"></p>
         <span class="stars" th:text="${rating}"></span>
@@ -98,5 +107,7 @@
     </form>
 
 </main>
+
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
