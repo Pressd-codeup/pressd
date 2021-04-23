@@ -16,6 +16,9 @@
     <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
         <input type="submit" value="delete post">
     </form>
+    <form th:action="${'/posts/'+ id +'/update'}" method="GET">
+        <input type="submit" value="update post">
+    </form>
 
 </main>
 

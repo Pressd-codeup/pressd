@@ -39,9 +39,7 @@ public class ImageController {
 
 		//viewModel.addAttribute("user", currentUser);
 		long currentImageId = currentUser.getAvatarId();
-		System.out.println("IMAGE ID: " + currentImageId);
 		Image currentImage = imageDao.getOne(currentImageId);
-		System.out.println("IMAGE URL: " + currentImage.getUrl());
 		viewModel.addAttribute("currentImage", currentImage);
 
 		//viewModel.addAttribute("directory", "avatarImage");

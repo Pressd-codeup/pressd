@@ -6,18 +6,44 @@
 <form th:action="@{/posts/{id}/update(id=${post.getId()})}" method="post">
 
     <h2>Update Your Post</h2>
+    <!--        imgs-->
+    <p>Want to upload more pictures to use? Do it </p>
+    <form method="get" th:action="@{/images/upload}">
+        <input type="hidden" name="directory" value="avatarImage">
+        <input type="submit" value="here!"/>
+    </form>
+    </div>
+    <br>
+    <form th:action="@{/users/avatar}" method="post">
 
+        <div style="display: flex; width: 33%; flex-wrap: wrap">
+            <label>
+                <input type="radio" name="avatarId" th:value="${post.image.id}" checked>
+                <img th:src="@{${post.image.url}}">
+            </label>
+            <div th:each="image : ${images}">
+                <label>
+                    <input type="radio" name="avatarId" th:value="${post.image.id}">
+                    <img th:src="@{${post.image.url}}">
+                </label>
+            </div>
+        </div>
+        <br>
+        <input type="submit" value="Update!">
+
+    </form>
+    <!--    end imgs -->
     <br>
 
     <label for="title">Title</label>
     <input id="title" name="title">
-    <p>Your previous title: <span th:text="${post.getTitle()}"></span></p>
+    <p>Your previous title: <span th:text="${post.title}"></span></p>
 
     <br>
 
     <label for="body">Body</label>
     <input id="body" name="body">
-    <p>Your previous body: <span th:text="${post.getBody()}"></span></p>
+    <p>Your previous body: <span th:text="${post.body}"></span></p>
     <br>
 
     <input type="submit" value="Update Post!">

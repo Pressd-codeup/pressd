@@ -90,8 +90,18 @@ public class PostController {
 	public String showOnePost(@PathVariable long id, Model viewModel){
 		Post post = postDao.getOne(id);
 		User user = post.getUser();
+		long currentImageId = user.getAvatarId();
+		Image currentImage = imageDao.getOne(currentImageId);
+		User defaultUser = userDao.getOne(1L);
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(currentImage);
+		viewModel.addAttribute("userImages", userImages);
+		viewModel.addAttribute("currentImage", currentImage);
 		viewModel.addAttribute("post", post);
 		viewModel.addAttribute("user", user);
+
 		return "posts/show";
 	}
 
