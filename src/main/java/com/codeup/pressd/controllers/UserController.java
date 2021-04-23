@@ -66,7 +66,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/users/edit")
+    @PostMapping("/users/editProfile")
     public String saveEditProfile(@ModelAttribute User user) {
         userDao.save(user);
 

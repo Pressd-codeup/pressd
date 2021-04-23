@@ -156,34 +156,34 @@ public class WorkoutController {
     }
 
     @GetMapping("/workouts/{id}/update")
-    public String showUpdateWorkout(@PathVariable long id, Model viewModel) {
+    public String viewEditWorkout(Model vModel, @PathVariable long id){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getOne(currentUser.getId());
         if (workoutDao.getOne(id).getUser() != user) return "redirect:/workouts";
-        long currentImageId = user.getAvatarId();
-        Image currentImage = imageDao.getOne(currentImageId);
+        Workout workout = workoutDao.getOne(id);
+        Image currentImage = workout.getImage();
+        vModel.addAttribute("currentImage", currentImage);
         User defaultUser = userDao.getOne(1L);
         List<Image> userImages = imageDao.findImagesByUser(user);
         List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
         userImages.addAll(defaultImages);
         userImages.remove(currentImage);
-        viewModel.addAttribute("userImages", userImages);
-        viewModel.addAttribute("currentImage", currentImage);
-        viewModel.addAttribute("workout", workoutDao.getOne(id));
+        vModel.addAttribute("userImages", userImages);
+        vModel.addAttribute("workout", workout);
         return "workouts/update";
     }
 
     @PostMapping("/workouts/{id}/update")
-    public String updateWorkout(@ModelAttribute Workout workout, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body) {
+
+    public String editWorkout(@ModelAttribute Workout workout, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId) {
+
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getOne(currentUser.getId());
-
         Workout dbWorkout = workoutDao.getOne(id);
-
-
+        Image newImage = imageDao.getOne(imageId);
+        dbWorkout.setImage(newImage);
         dbWorkout.setTitle(title);
         dbWorkout.setBody(body);
-
         //user validation is no longer necessary here because it's handled in GetMapping
         workoutDao.save(dbWorkout);
 
