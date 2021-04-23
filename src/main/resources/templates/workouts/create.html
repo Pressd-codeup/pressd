@@ -5,7 +5,7 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <header class="login">
     <!-- Full Page Intro -->
-    <div class="view-login-2">
+    <div class="view-cat">
         <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <!-- Content -->
@@ -14,7 +14,8 @@
                 <div class="row mt-5">
                     <!--Grid column-->
                     <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
-                        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a Workout!</h1>
+                        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a
+                            Workout!</h1>
                         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                         <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                         <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
@@ -25,7 +26,6 @@
                         <!--Form-->
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
-
                                 <form th:action="@{/workouts/create}" th:method="post" th:object="${workout}">
                                     <!--Header-->
                                     <div class="text-center">
@@ -35,81 +35,88 @@
                                     </div>
                                     <!--Body-->
                                     <div class="md-form">
-
                                         <i class="prefix white-text active"></i>
                                         <!--<input type="text" id="form3" class="white-text form-control">-->
-                                        <form th:action="@{/workouts/create}" th:method="post" th:object="${workout}">
-
-                                            <input type="file" id="input_img" onchange="fileChange()" accept="image/*">
-
+                                        <form class="form-control mb-3" th:action="@{/workouts/create}" th:method="post"
+                                              th:object="${workout}">
+                                            <input class="form-label mt-3" type="file" id="input_img"
+                                                   onchange="fileChange()" accept="image/*">
                                             <div id="json"></div>
-
-                                            <form id="uploadForm" th:action="@{/images/upload/${directory}}" th:method="post" style="display: none">
+                                            <form id="uploadForm" th:action="@{/images/upload/${directory}}"
+                                                  th:method="post" style="display: none">
                                                 <input name="url" id="url">
                                                 <input type="submit" value="Upload your image!">
                                             </form>
-
-                                    <div class="md-form">
-
-                                        <i class="prefix white-text active"></i>
-                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
-
-                                        <div class="form-check" style="color: white; font-weight: bolder" th:field="${workout.categories}">
-                                            <label>Category</label><hr>
-                                            <input class="form-check-input" name="1" type="checkbox" value="1" id="strength">
-                                            <label class="form-check-label" for="strength">
-                                                Strength Training
-                                            </label>
-
-                                    </div>
-                                        <input class="form-check-input" name="2" type="checkbox" value="2" id="bodybuilding">
-                                        <label class="form-check-label" for="bodybuilding">
-                                            BodyBuilding
-                                        </label>
-                                        <br>
-                                        <input class="form-check-input" name="3" type="checkbox" value="3" id="endurance">
-                                        <label class="form-check-label" for="endurance">
-                                            Endurance Training
-                                        </label>
-                                        <br>
-                                        <input class="form-check-input" name="4" type="checkbox" value="4" id="arms">
-                                        <label class="form-check-label" for="arms">
-                                            Arms
-                                        </label>
-                                        <br>
-                                        <input class="form-check-input" name="5" type="checkbox" value="5" id="chest">
-                                        <label class="form-check-label" for="chest">
-                                            Chest
-                                        </label>
-                                        <br>
-                                        <input class="form-check-input" name="6" type="checkbox" value="6" id="back">
-                                        <label class="form-check-label" for="back">
-                                            Back
-                                        </label>
-                                        <br>
-                                        <input class="form-check-input" name="7" type="checkbox" value="7" id="legs">
-                                        <label class="form-check-label" for="legs">
-                                            Legs
-                                        </label>
-                                        <br>
-                                        <input class="form-check-input" name="8" type="checkbox" value="8" id="core">
-                                        <label class="form-check-label" for="core">
-                                            Core
-                                        </label>
-                                        <br>
-                                        <hr>
-                                        <br>
-                                        <label for="title" class="form-label">Title</label>
-                                        <input class="form-control" th:field="*{title}" type="text" id="title">
-                                        <br>
-                                        <label for="body" class="form-label">Body</label>
-                                        <input class="form-control" th:field="*{body}" type="text" id="body">
-
-                                        <button  type="submit" class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Submit Plan
-                                        </button>
-                                    </div>
+                                            <div>
+                                                <i class="prefix white-text active"></i>
+                                                <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+                                                <br>
+                                                <div class="form-check" style="color: white; font-weight: bolder"
+                                                     th:field="${workout.categories}">
+                                                    <label class="cat">Select Category</label>
+                                                    <hr>
+                                                    <input class="form-check-input" name="1" type="checkbox" value="1"
+                                                           id="strength">
+                                                    <label class="form-check-label" for="strength">
+                                                        Strength Training
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="2" type="checkbox" value="2"
+                                                           id="bodybuilding">
+                                                    <label class="form-check-label" for="bodybuilding">
+                                                        BodyBuilding
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="3" type="checkbox" value="3"
+                                                           id="endurance">
+                                                    <label class="form-check-label" for="endurance">
+                                                        Endurance Training
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="4" type="checkbox" value="4"
+                                                           id="arms">
+                                                    <label class="form-check-label" for="arms">
+                                                        Arms
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="5" type="checkbox" value="5"
+                                                           id="chest">
+                                                    <label class="form-check-label" for="chest">
+                                                        Chest
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="6" type="checkbox" value="6"
+                                                           id="back">
+                                                    <label class="form-check-label" for="back">
+                                                        Back
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="7" type="checkbox" value="7"
+                                                           id="legs">
+                                                    <label class="form-check-label" for="legs">
+                                                        Legs
+                                                    </label>
+                                                    <br>
+                                                    <input class="form-check-input" name="8" type="checkbox" value="8"
+                                                           id="core">
+                                                    <label class="form-check-label" for="core">
+                                                        Core
+                                                    </label>
+                                                    <br>
+                                                    <hr>
+                                                    <br>
+                                                    <label for="title" class="form-label">Title</label>
+                                                    <input class="form-control" th:field="*{title}" type="text"
+                                                           id="title">
+                                                    <br>
+                                                    <label for="body" class="form-label">Body</label>
+                                                    <textarea class="form-control" th:field="*{body}" type="text"
+                                                              id="body"></textarea>
+                                                    <button type="submit" class="btn btn-indigo text-center">Submit Plan
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </form>
-
                                     </div>
                                 </form>
                             </div>
@@ -120,21 +127,6 @@
         </div>
     </div>
 </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
