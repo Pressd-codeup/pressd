@@ -119,13 +119,28 @@ public class PostController {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userDao.getOne(currentUser.getId());
 		if (postDao.getOne(id).getUser() != user) return "redirect:/posts";
-		vModel.addAttribute("post", postDao.getOne(id));
+
+		Post post = postDao.getOne(id);
+
+		Image currentImage = post.getImage();
+
+		vModel.addAttribute("currentImage", currentImage);
+
+		User defaultUser = userDao.getOne(1L);
+
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(currentImage);
+		vModel.addAttribute("userImages", userImages);
+
+		vModel.addAttribute("post", post);
 		return "posts/update";
 	}
 
 	@PostMapping("/posts/{id}/update")
 
-	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body) {
+	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId) {
 
 
 
@@ -134,7 +149,9 @@ public class PostController {
 
 		Post dbPost = postDao.getOne(id);
 
+		Image newImage = imageDao.getOne(imageId);
 
+		dbPost.setImage(newImage);
 		dbPost.setTitle(title);
 		dbPost.setBody(body);
 
