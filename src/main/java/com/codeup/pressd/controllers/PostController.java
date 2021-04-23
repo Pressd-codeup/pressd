@@ -21,7 +21,6 @@ public class PostController {
 	private final PostRepository postDao;
 	private final TypeRepository typeDao;
 	private final ImageRepository imageDao;
-
 	private final UserRepository userDao;
 
 	PostController(PostRepository postDao, TypeRepository typeDao, ImageRepository imageDao, UserRepository userDao){
@@ -90,15 +89,6 @@ public class PostController {
 	public String showOnePost(@PathVariable long id, Model viewModel){
 		Post post = postDao.getOne(id);
 		User user = post.getUser();
-		long currentImageId = user.getAvatarId();
-		Image currentImage = imageDao.getOne(currentImageId);
-		User defaultUser = userDao.getOne(1L);
-		List<Image> userImages = imageDao.findImagesByUser(user);
-		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
-		userImages.addAll(defaultImages);
-		userImages.remove(currentImage);
-		viewModel.addAttribute("userImages", userImages);
-		viewModel.addAttribute("currentImage", currentImage);
 		viewModel.addAttribute("post", post);
 		viewModel.addAttribute("user", user);
 
@@ -129,6 +119,15 @@ public class PostController {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userDao.getOne(currentUser.getId());
 		if (postDao.getOne(id).getUser() != user) return "redirect:/posts";
+		long currentImageId = user.getAvatarId();
+		Image currentImage = imageDao.getOne(currentImageId);
+		User defaultUser = userDao.getOne(1L);
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(currentImage);
+		vModel.addAttribute("userImages", userImages);
+		vModel.addAttribute("currentImage", currentImage);
 		vModel.addAttribute("post", postDao.getOne(id));
 		return "posts/update";
 	}

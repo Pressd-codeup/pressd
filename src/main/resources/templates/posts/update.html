@@ -3,18 +3,27 @@
 <head th:replace="fragments/header :: main-head('update post')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+
+<div style="display: flex">
+    <p>Want to upload more pictures to use? Do it </p>
+    <form method="get" th:action="@{/images/upload}">
+        <input type="hidden" name="directory" value="updatePostImage">
+        <input type="submit" value="here!"/>
+    </form>
+</div>
+<br>
 <form th:action="@{/posts/{id}/update(id=${post.getId()})}" method="post">
 
     <h2>Update Your Post</h2>
-    <!--        imgs-->
-    <p>Want to upload more pictures to use? Do it </p>
-    <form method="get" th:action="@{/images/upload}">
-        <input type="hidden" name="directory" value="avatarImage">
-        <input type="submit" value="here!"/>
-    </form>
-    </div>
+    <!--       Profile imgs-->
+    <h2>Change your post image:</h2>
     <br>
-    <form th:action="@{/users/avatar}" method="post">
+    <h3>Your current post image:</h3>
+    <br>
+    <img th:src="@{${post.image.url}}" alt="Your current avatar image" id="currentImage">
+    <br>
+
+    <form th:action="@{/users/posts}" method="post">
 
         <div style="display: flex; width: 33%; flex-wrap: wrap">
             <label>
@@ -24,7 +33,7 @@
             <div th:each="image : ${images}">
                 <label>
                     <input type="radio" name="avatarId" th:value="${post.image.id}">
-                    <img th:src="@{${post.image.url}}">
+                    <img th:src="@{${currentImage.url}}">
                 </label>
             </div>
         </div>
@@ -33,6 +42,7 @@
 
     </form>
     <!--    end imgs -->
+
     <br>
 
     <label for="title">Title</label>

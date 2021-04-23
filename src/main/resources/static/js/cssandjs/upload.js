@@ -2,7 +2,6 @@ function fileChange() {
     let file = document.getElementById('input_img');
     let form = new FormData();
     form.append("image", file.files[0])
-
     let imgUrl = "https://api.imgbb.com/1/upload?key=" + imgKey;
     let settings = {
         "url": imgUrl,
@@ -13,8 +12,6 @@ function fileChange() {
         "contentType": false,
         "data": form
     };
-
-
     $.ajax(settings).done(function (response) {
             console.log(response);
             let jx = JSON.parse(response);
@@ -29,18 +26,13 @@ function fileChange() {
             const urlInput = document.getElementById("url");
             urlInput.value = jx.data.url;
             imageForm.style.display = 'block';
-
-
             /*let imageString = jx.data.url + "," + jx.data.delete_url;
             console.log(imageString);
-
             div.innerHTML = jx.data.url;
             let request = new XMLHttpRequest();
             request.open("POST", "/images/upload", true);
             request.send(imageString);
             console.log(jx.data.delete_url);*/
-
-
         }
     );
 }
