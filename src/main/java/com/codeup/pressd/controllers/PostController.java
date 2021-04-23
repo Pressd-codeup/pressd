@@ -98,14 +98,28 @@ public class PostController {
 	@GetMapping("/posts/create")
 	public String showCreatePost(Model viewModel) {
 		viewModel.addAttribute("post", new Post());
+
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userDao.getOne(currentUser.getId());
+
+		User defaultUser = userDao.getOne(1L);
+
+		Image defaultImage = imageDao.getOne(1L);
+
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(defaultImage);
+		viewModel.addAttribute("defaultImage", defaultImage);
+		viewModel.addAttribute("userImages", userImages);
 		return "posts/create";
 	}
 
 	@PostMapping("/posts/create")
-	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id){
+	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id, @RequestParam(name="imageId") long imageId){
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = typeDao.getOne(type_id);
-		Image image = imageDao.getOne(1L);
+		Image image = imageDao.getOne(imageId);
 		post.setUser(user);
 		post.setType(type);
 		post.setImage(image);
