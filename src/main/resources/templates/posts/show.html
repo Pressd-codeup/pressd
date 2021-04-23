@@ -5,6 +5,7 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <main class="container">
     <div class="post">
+        <img class="img-thumbnail" th:src="@{${post.image.url}}" alt="alt"/>
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>
         <form th:action="${'/users/'+ post.user.id}" method="GET">
