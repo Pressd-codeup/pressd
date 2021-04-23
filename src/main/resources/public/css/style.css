@@ -923,12 +923,16 @@ a.btn-card {
     padding-left: 130px !important;
 }
 
-.recent {
-    margin-right: 80px;
-    margin-left: 70px;
-    text-align: center;
-}
+/*.recent {*/
+/*    margin-right: 80px;*/
+/*    margin-left: 70px;*/
+/*    text-align: center;*/
+/*}*/
 
+/*.boxs {*/
+/*  margin-left: 300px;*/
+
+/*}*/
 /*POST ANIMATION*/
 .photo-frame img {
 }

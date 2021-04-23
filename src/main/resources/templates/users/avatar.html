@@ -36,7 +36,7 @@
 <img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">
 <br>
 <div style="display: flex">
-    <p>Want to upload more pictures to use? Do it </p>
+    <p>Want to upload more pictures to use? Do it   </p>
     <form method="get" th:action="@{/images/upload}">
         <input type="hidden" name="directory" value="avatarImage">
         <input type="submit" value="here!"/>
