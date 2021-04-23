@@ -38,15 +38,6 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <main class="container">
     <div class="workout">
-        <div class="post" th:each="workout : ${workouts}">
-            <h1 th:text="${workout.title}"></h1>
-            <small th:text="${workout.user.username}"></small>
-            <p th:text="${workout.body}"></p>
-            <small th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
-            <form th:action="${'/workouts/'+ workout.id}" method="GET">
-                <input type="submit" value="View Plan">
-            </form>
-        </div>
         <h1 th:text="${workout.title}"></h1>
         <p th:text="${workout.body}"></p>
         <span class="stars" th:text="${rating}"></span>
@@ -91,13 +82,24 @@
         </div>
         <p th:href="@{workout.user}"></p>
     </div>
+    <div class="comment" th:each="comment : ${workout.comments}">
+        <h6>Comments</h6>
+        <ul>
+            <li th:text="${comment.user.username}"></li>
+            <ul>
+                <li th:text="${comment.body}">
 
-    <form th:action="${'/workouts/'+id+'/update'}" method="GET">
+                <li th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year}"></li>
+
+                </li>
+            </ul>
+        </ul>
+    </div>
+    <form th:action="${'comments/'+ workout.id +'/create'}" method="POST">
         <input type="submit" value="edit workout">
     </form>
-
-    <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
-        <input type="submit" value="View Comments">
+    <form th:action="${'comments/'+ workout.id +'/update'}" method="POST">
+        <input type="submit" value="add comment">
     </form>
     <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
         <input type="submit" value="delete workout">
@@ -107,7 +109,5 @@
     </form>
 
 </main>
-
-<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
