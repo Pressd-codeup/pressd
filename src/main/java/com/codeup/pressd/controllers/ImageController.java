@@ -39,9 +39,7 @@ public class ImageController {
 
 		//viewModel.addAttribute("user", currentUser);
 		long currentImageId = currentUser.getAvatarId();
-		System.out.println("IMAGE ID: " + currentImageId);
 		Image currentImage = imageDao.getOne(currentImageId);
-		System.out.println("IMAGE URL: " + currentImage.getUrl());
 		viewModel.addAttribute("currentImage", currentImage);
 
 		//viewModel.addAttribute("directory", "avatarImage");
@@ -133,7 +131,7 @@ public class ImageController {
 				returnVal = "redirect:/posts/create";
 				break;
 			case "updatePostImage":
-				returnVal = "redirect:/users/posts"; //or whatever the mapping for user posts page
+				returnVal = "redirect:/posts/{id}/update"; //or whatever the mapping for user posts page
 				break;
 			case "avatarImage":
 				returnVal = "redirect:/users/avatar";

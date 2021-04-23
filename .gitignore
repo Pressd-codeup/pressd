@@ -29,7 +29,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 src/main/resources/application.properties
-src/main/resources/static/js/cssandjs/keys.js
+src/main/resources/public/static/js/cssandjs/keys.js
 
 ### VS Code ###
 .vscode/

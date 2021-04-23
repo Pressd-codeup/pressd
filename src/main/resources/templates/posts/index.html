@@ -35,7 +35,7 @@
                 <div class="card-content">
                     <div class="card-img">
                         <!--ADD IMAGE-->
-                        <img src="https://placeimg.com/380/230/nature" alt="">
+                        <img th:src="@{${post.image.url}}" alt="">
                         <!--                        <span><h4 th:text="${post.title}"></h4></span>-->
                     </div>
                     <div class="card-desc">
