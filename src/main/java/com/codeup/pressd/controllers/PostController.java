@@ -21,6 +21,7 @@ public class PostController {
 	private final PostRepository postDao;
 	private final TypeRepository typeDao;
 	private final ImageRepository imageDao;
+
 	private final UserRepository userDao;
 
 	PostController(PostRepository postDao, TypeRepository typeDao, ImageRepository imageDao, UserRepository userDao){
@@ -28,6 +29,7 @@ public class PostController {
 		this.typeDao = typeDao;
 		this.imageDao = imageDao;
 		this.userDao = userDao;
+
 	}
 
 	@GetMapping("/posts")
@@ -103,8 +105,10 @@ public class PostController {
 	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id){
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = typeDao.getOne(type_id);
+		Image image = imageDao.getOne(1L);
 		post.setUser(user);
 		post.setType(type);
+		post.setImage(image);
 		post.setDatePosted(LocalDateTime.now());
 		postDao.save(post);
 		return "redirect:/posts";
@@ -120,6 +124,7 @@ public class PostController {
 	}
 
 	@PostMapping("/posts/{id}/update")
+
 	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body) {
 
 
@@ -136,19 +141,14 @@ public class PostController {
 		//user validation is no longer necessary here because it's handled in GetMapping
 		postDao.save(dbPost);
 
-
 		return "redirect:/posts";
 	}
 
-	@GetMapping("/posts/{id}/delete")
-	public String viewDeletePost(Model vModel, @PathVariable long id){
-		vModel.addAttribute("post",postDao.getOne(id));
-		return "posts/delete";
-	}
 
-	@PostMapping("/posts/delete")
-	public String deletePost(@ModelAttribute Post postToDelete){
+	@PostMapping("/posts/{id}/delete")
+	public String deletePost(@PathVariable long id){
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Post postToDelete = postDao.getOne(id);
 		if (currentUser.getId() == postToDelete.getUser().getId()) {
 			postDao.delete(postToDelete);
 		}

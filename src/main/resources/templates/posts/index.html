@@ -37,7 +37,9 @@
                     <div class="card-desc">
                         <h3 th:text="${post.title}"></h3>
                         <p th:text="${post.body}"></p>
-
+                        <form th:action="${'/posts/'+ post.id}" method="GET">
+                            <input type="submit" value="view posts">
+                        </form>
                         <form th:action="${'/users/'+ post.user.id}" method="GET">
                             <input class="btn-card" type="submit" value="View user">
                         </form>

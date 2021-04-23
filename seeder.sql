@@ -1,5 +1,5 @@
-use pressd_db;
 
+use pressd_db;
 INSERT INTO types (id, name)
 VALUES (1, 'partners'),
        (2, 'coaches'),

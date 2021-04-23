@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('delete post')"></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
 <body>
-<nav th:replace="fragments/navbar :: mainNav"></nav>
-<div class="container">
-    <h1 th:text="${posts.getTitle()}"></h1>
-    <p th:text="${posts.getBody()}"></p>
-    <h2>Are you sure you wish to delete this post? Once you do this, it cannot be undone.</h2>
-    <form th:action="@{/posts/{id}/delete(id=${posts.getId()})}" method="POST">
-        <input type="submit" value="Delete Post">
-    </form>
-</div>
 
-<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
