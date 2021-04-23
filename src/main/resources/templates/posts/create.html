@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Create Posts')"></head>
+<style>
+    /* HIDE RADIO
+    [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    */
+
+    /* IMAGE STYLES */
+    [type=radio] + img {
+        cursor: pointer;
+        height: 75px;
+        width: 75px;
+        margin: 5px;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked + img {
+        outline: 5px solid #f00;
+    }
+
+    #currentImage {
+        height: 100px;
+        width: 100px;
+    }
+</style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
@@ -79,14 +107,21 @@
                 <div class="row mt-5">
                     <!--Grid column-->
                     <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
-                        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a Post!</h1>
+                        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a
+                            Post!</h1>
                         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                         <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                         <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        <p>Want to upload more pictures to use? Do it </p>
+                        <form method="get" th:action="@{/images/upload}">
+                            <input type="hidden" name="directory" value="createPostImage">
+                            <input class="btn" style="color: white; background: indigo" type="submit" value="here!"/>
+                        </form>
                     </div>
                     <!--Grid column-->
                     <!--Grid column-->
-                    <div class="col-md-6 col-xl-5 mb-4" th:if="${post.id == 0}">
+                    <br>
+                    <div class="col-md-6 col-xl-5 mb-4"><!--th:if="${post.id == 0}"-->
                         <!--Form-->
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
@@ -100,11 +135,27 @@
                                     </div>
                                     <!--Body-->
                                     <div class="md-form">
+                                        <div>Select an image for your post:</div>
+                                        <div style="display: flex; flex-wrap: wrap">
+                                            <label>
+                                                <input style="position: absolute; opacity: 0; width: 0; height: 0" type="radio" name="imageId" th:value="${defaultImage.id}" checked>
+                                                <img th:src="@{${defaultImage.url}}">
+                                            </label>
+                                            <div th:each="image : ${userImages}">
+                                                <label>
+                                                    <input style="position: absolute; opacity: 0; width: 0; height: 0" type="radio" name="imageId" th:value="${image.id}">
+                                                    <img th:src="@{${image.url}}">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <br>
 
                                         <i class="prefix white-text active"></i>
                                         <!--<input type="text" id="form3" class="white-text form-control">-->
-                                        <input class="form-control mb-3" id="zipcode" type="text" th:field="*{zipcode}"/>
                                         <label class="form-label mt-3" for="zipcode">Zip Code</label>
+                                        <input class="form-control mb-3" id="zipcode" type="text"
+                                               th:field="*{zipcode}" required/>
+
 
                                     </div>
 
@@ -112,39 +163,38 @@
 
                                         <i class="prefix white-text active"></i>
                                         <!--                                    <input type="text" id="form3" class="white-text form-control">-->
-                                        <input class="form-control mb-3" id="title" type="text" th:field="*{title}"/>
-                                        <label class="form-label mt-3" for="title">Title of the post</label>
+                                        <label class="form-label mt-3" for="title">Title your post:</label>
+                                        <input class="form-control mb-3" id="title" type="text" th:field="*{title}" required/>
+
 
                                     </div>
                                     <div class="md-form">
                                         <i class="prefix white-text active"></i>
-<!--                                        <input class="form-control" id="password" name="password"-->
-<!--                                               type="password"/>-->
-                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>
-                                        <label class="form-label mt-3" for="body">Enter post information</label>
+                                        <!--                                        <input class="form-control" id="password" name="password"-->
+                                        <!--                                               type="password"/>-->
+                                        <label class="form-label mt-3" for="body">Give your post a body:</label>
+                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body" required></textarea>
+
                                     </div>
 
-                                    <div class="dropdown" style="margin: 20px" th:field="${type}">
-                                        <button type="button"
-                                                class="btn btn-indigo text-center dropdown-toggle"
-                                                data-toggle="dropdown">
-                                            Type
-                                        </button>
-                                        <div class="dropdown-menu bg-dark">
-                                            <label for="type1" class="form-lable-2">Partners</label>
-                                            <input class="dropdown-item" type="radio" name="type_id" value="1"
-                                                   id="type1">
-                                            <label for="type2" class="form-lable-2">Coaches</label>
-                                            <input class="dropdown-item" type="radio" name="type_id" value="2"
+
+                                            <div>What type of post is this?</div>
+                                            <br>
+                                            <label for="type1" class="form-label-2">Looking for Partners</label>
+                                            <input type="radio" name="type_id" value="1"
+                                                   id="type1" checked>
+                                    <br>
+                                            <label for="type2" class="form-label-2">Looking for Coaches</label>
+                                            <input type="radio" name="type_id" value="2"
                                                    id="type2">
-                                            <label for="type3" class="form-lable-2">Clients</label>
-                                            <input class="dropdown-item" type="radio" name="type_id" value="3"
+                                    <br>
+                                            <label for="type3" class="form-label-2">Looking for Clients</label>
+                                            <input type="radio" name="type_id" value="3"
                                                    id="type3">
-                                        </div>
-                                    </div>
+
 
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn btn-indigo">Submit Post</button>
+                                        <button type="submit" class="btn btn-indigo" style="color: white; background: indigo">Submit Post</button>
                                         <hr class="hr-light mb-3 mt-4">
                                         <div class="inline-ul text-center d-flex justify-content-center">
                                             <a class="p-2 m-2 tw-ic">
