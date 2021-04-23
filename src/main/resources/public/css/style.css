@@ -1016,3 +1016,12 @@ a.btn-card {
 }
 /*END OF FILTER POST CSS*/
 
+/*CREATE WORKOUT CSS*/
+.view-cat {
+    background-image: url('images/class/adventure.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+/*END OF CREATE WORKOUT CSS*/
