@@ -31,7 +31,7 @@
                 <div class="card-content">
                     <div class="card-img">
                         <!--ADD IMAGE-->
-                        <img src="https://placeimg.com/380/230/nature" alt="">
+                        <img th:src="@{${workout.image.url}}" alt="">
                     </div>
                     <div class="card-desc">
                         <h3 th:text="${workout.title}"></h3>

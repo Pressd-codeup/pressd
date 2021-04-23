@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Update Workout')"></head>
+<head th:replace="fragments/header :: main-head('update workout')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+<form th:action="@{/workouts/{id}/update(id=${workout.getId()})}" method="post">
 
-<form th:action="${'/workouts/'+workout.id+'/update'}" method="POST" th:object="${workout}">
-    <h1>Edit your Workout</h1>
-        <div class="mb-3">
-            <label for="title" class="form-label">Update workout</label>
-            <!--/*@thymesVar id="workout" type="com.codeup.pressd.models.Workout"*/-->
-            <input class="form-control" id="title" type="text" th:field="*{title}">
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label">Body</label>
-            <label>
-                <textarea class="form-control" rows="6" id="body" th:field="*{body}"></textarea>
-            </label>
-        </div>
+    <h2>Update Your workout</h2>
 
-    <input type="submit" value="update">
+    <br>
+
+    <label for="title">Title</label>
+    <input id="title" name="title">
+    <p>Your previous title: <span th:text="${workout.getTitle()}"></span></p>
+
+    <br>
+
+    <label for="body">Body</label>
+    <input id="body" name="body">
+    <p>Your previous body: <span th:text="${workout.getBody()}"></span></p>
+    <br>
+
+    <input type="submit" value="Update workout!">
+
 </form>
 
-    <footer th:replace="fragments/footer :: main-footer"></footer>
+
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

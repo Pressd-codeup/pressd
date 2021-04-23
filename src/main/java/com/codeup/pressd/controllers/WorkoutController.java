@@ -130,9 +130,11 @@ public class WorkoutController {
     @PostMapping("/workouts/create")
     public String createWorkout(@ModelAttribute Workout workout) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Image image = imageDao.getOne(1L);
         workout.setUser(user);
         workout.setComments(new ArrayList<>());
         workout.setDatePosted(LocalDateTime.now());
+        workout.setImage(image);
         workoutDao.save(workout);
         return "redirect:/workouts";
     }
@@ -156,7 +158,9 @@ public class WorkoutController {
     @GetMapping("/workouts/{id}/update")
     public String showUpdateWorkout(@PathVariable long id, Model viewModel) {
         Workout workout = workoutDao.getOne(id);
+        Image image = imageDao.getOne(1L);
         viewModel.addAttribute("workout", workout);
+        viewModel.addAttribute("image", image);
         return "/workouts/update";
     }
 
