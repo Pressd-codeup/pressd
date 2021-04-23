@@ -13,20 +13,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
     private final ImageRepository imageDao;
-
 
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao) {
@@ -58,23 +55,39 @@ public class UserController {
         return "redirect:login";
     }
 
-    @GetMapping("/users/editProfile")
-    public String profileEditor(Model viewModel) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        viewModel.addAttribute("user", loggedIn);
+    @GetMapping("/users/{id}/editProfile")
+    public String profileEditor(@PathVariable long id, Model viewModel) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getOne(currentUser.getId());
+        if (!userDao.getOne(id).getUsername().equals(user.getUsername())) return"redirect:/home";
+
+
+        Image currentImage = (Image) user.getImages();
+
+        User defaultUser = userDao.getOne(1L);
+
+
+        List<Image> userImages = imageDao.findImagesByUser(user);
+        List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+        userImages.addAll(defaultImages);
+        userImages.remove(currentImage);
+        viewModel.addAttribute("userImages", userImages);
+        viewModel.addAttribute("user", user);
         return "users/editProfile";
 
     }
 
-    @PostMapping("/users/editProfile")
-    public String saveEditProfile(@ModelAttribute User user) {
+    @PostMapping("/users/{id}/editProfile")
+    public String saveEditProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam("username") String username, @RequestParam("about") String about, @RequestParam("imageId") long imageId, @RequestParam("email") String email) {
+
+
         userDao.save(user);
 
         return "users/show";
     }
 
     @GetMapping("/users/{id}")
-    public String showProfile(@PathVariable long id, Model viewModel){
+    public String showProfile(@PathVariable long id, Model viewModel) {
         User user = userDao.getOne(id);
         long avatarId = user.getAvatarId();
         Image avatar = imageDao.getOne(avatarId);

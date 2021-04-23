@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Dashboard')"></head>
+<!--<head th:replace="fragments/header :: profile-head('Profile Page')"></head>-->
+<body class="profile-page">
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<form th:action="@{/users/{id}/editProfile(id=${user.getId()})}">
 
+    <div style="display: flex; width: 33%; flex-wrap: wrap">
+        <label>
+            <input type="radio" name="imageId" th:value="${currentImage.id}" checked>
+            <img th:src="@{${currentImage.url}}">
+        </label>
+        <div th:each="image : ${userImages}">
+            <label>
+                <input type="radio" name="imageId" th:value="${image.id}">
+                <img th:src="@{${image.url}}">
+            </label>
+        </div>
+    </div>
+    <br>
+
+    <label for="username">Username</label>
+    <input id="username" name="username" required>
+    <p>Your previous username: <span th:text="${user.getUsername()}"></span></p>
+
+    <br>
+
+    <label for="about">Bio</label>
+    <input id="about" name="about" required>
+    <p>Your previous bio: <span th:text="${user.getAbout()}"></span></p>
+    <br>
+
+    <input type="submit" value="Update Profile!">
+</form>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>

@@ -133,11 +133,6 @@ public class PostController {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userDao.getOne(currentUser.getId());
 		if (postDao.getOne(id).getUser() != user) return "redirect:/posts";
-// <<<<<<< jeremiah
-// 		long currentImageId = user.getAvatarId();
-// 		Image currentImage = imageDao.getOne(currentImageId);
-// 		User defaultUser = userDao.getOne(1L);
-// =======
 
 		Post post = postDao.getOne(id);
 
@@ -153,11 +148,6 @@ public class PostController {
 		userImages.addAll(defaultImages);
 		userImages.remove(currentImage);
 		vModel.addAttribute("userImages", userImages);
-// <<<<<<< jeremiah
-// 		vModel.addAttribute("currentImage", currentImage);
-// 		vModel.addAttribute("post", postDao.getOne(id));
-// =======
-
 		vModel.addAttribute("post", post);
 
 		return "posts/update";
