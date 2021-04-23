@@ -798,15 +798,18 @@ h6.sign {
 .wow {
     color: white;
 }
+
+.login-box {
+    margin-top: 100px;
+    padding-bottom: 200px;
+}
 /*END OF LOGIN PAGE CSS*/
 
 
 /*START OF SHOW POST (INDEX) CSS*/
 
 body.post-body {
-    background: #654ea3;
-    background: linear-gradient(to right, #3d3d3d, #904e95);
-    min-height: 100vh
+    background: linear-gradient(#e66465, #9198e5);
 }
 
 /* card details start  */
@@ -920,6 +923,65 @@ a.btn-card {
     padding-left: 130px !important;
 }
 
+.recent {
+    margin-right: 80px;
+    margin-left: 70px;
+    text-align: center;
+}
+
+/*POST ANIMATION*/
+.photo-frame img {
+}
+
+.photo-frame {
+    background-color: #FEFEFE;
+
+    box-shadow: 0px 0px 5px 0px #AAA;
+    -moz-box-shadow: 0px 0px 5px 0px #AAA;
+    -webkit-box-shadow: 0px 0px 5px 0px #AAA;
+    transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.photo-frame:hover {
+    box-shadow: 1px 1px 1px 0px #999,
+    2px 2px 1px 0px #888,
+    3px 3px 1px 0px #777,
+    4px 4px 1px 0px #666,
+    5px 5px 1px 0px #555,
+    6px 6px 1px 0px #444,
+    7px 7px 1px 0px #333,
+    8px 8px 3px 0px #303030;
+    -moz-box-shadow: 1px 1px 1px 0px #999,
+    2px 2px 1px 0px #888,
+    3px 3px 1px 0px #777,
+    4px 4px 1px 0px #666,
+    5px 5px 1px 0px #555,
+    6px 6px 1px 0px #444,
+    7px 7px 1px 0px #333,
+    8px 8px 3px 0px #303030;
+    -webkit-box-shadow: 1px 1px 1px 0px #999,
+    2px 2px 1px 0px #888,
+    3px 3px 1px 0px #777,
+    4px 4px 1px 0px #666,
+    5px 5px 1px 0px #555,
+    6px 6px 1px 0px #444,
+    7px 7px 1px 0px #333,
+    8px 8px 3px 0px #303030;
+    transform: translate(-8px,-8px);
+    -ms-transform: translate(-8px,-8px);
+    -moz-transform: translate(-8px,-8px);
+    -webkit-transform: translate(-8px,-8px);
+    -o-transform: translate(-8px,-8px);
+    transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
 /*END OF SHOW POST CSS*/
 
 
@@ -949,8 +1011,8 @@ a.btn-card {
 
 .search-post {
     margin-top: 100px;
-
     padding-bottom: 200px;
+    margin-right: 90px;
 }
 /*END OF FILTER POST CSS*/
 

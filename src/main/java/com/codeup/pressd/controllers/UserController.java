@@ -1,9 +1,11 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.SecurityConfiguration;
+import com.codeup.pressd.models.Image;
 import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.models.Workout;
+import com.codeup.pressd.repository.ImageRepository;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.WorkoutRepository;
@@ -23,13 +25,14 @@ import java.util.ArrayList;
 public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
+    private final ImageRepository imageDao;
 
 
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-
+        this.imageDao = imageDao;
 
     }
 
@@ -73,9 +76,11 @@ public class UserController {
     @GetMapping("/users/{id}")
     public String showProfile(@PathVariable long id, Model viewModel){
         User user = userDao.getOne(id);
-
+        long avatarId = user.getAvatarId();
+        Image avatar = imageDao.getOne(avatarId);
 
         viewModel.addAttribute("user", user);
+        viewModel.addAttribute("avatar", avatar);
         return "users/show";
     }
 
