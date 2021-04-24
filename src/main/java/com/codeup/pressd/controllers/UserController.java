@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 public class UserController {
     private UserRepository userDao;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final ImageRepository imageDao;
 
 
@@ -55,35 +55,26 @@ public class UserController {
         return "redirect:login";
     }
 
-    @GetMapping("/users/{id}/editProfile")
+    @GetMapping("/users/{id}/edit")
     public String profileEditor(@PathVariable long id, Model viewModel) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.getOne(currentUser.getId());
-        if (!userDao.getOne(id).getUsername().equals(user.getUsername())) return"redirect:/home";
 
-
-        Image currentImage = (Image) user.getImages();
-
-        User defaultUser = userDao.getOne(1L);
-
-
-        List<Image> userImages = imageDao.findImagesByUser(user);
-        List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
-        userImages.addAll(defaultImages);
-        userImages.remove(currentImage);
-        viewModel.addAttribute("userImages", userImages);
-        viewModel.addAttribute("user", user);
+        viewModel.addAttribute("user", currentUser);
         return "users/editProfile";
 
     }
 
-    @PostMapping("/users/{id}/editProfile")
-    public String saveEditProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam("username") String username, @RequestParam("about") String about, @RequestParam("imageId") long imageId, @RequestParam("email") String email) {
-
-
-        userDao.save(user);
-
-        return "users/show";
+    @PostMapping("/users/{id}/edit")
+    public String saveEditProfile(@ModelAttribute User user, @PathVariable long id) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        user.setAbout("Tell people about you!");
+        user.setPosts(new ArrayList<>());
+        user.setDateJoined(LocalDateTime.now());
+        user.setAvatarId(1L);
+        userDao.save(currentUser);
+        return "redirect:/users/show";
     }
 
     @GetMapping("/users/{id}")
