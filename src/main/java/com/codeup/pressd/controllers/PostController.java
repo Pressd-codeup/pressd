@@ -148,6 +148,7 @@ public class PostController {
 		userImages.addAll(defaultImages);
 		userImages.remove(currentImage);
 		vModel.addAttribute("userImages", userImages);
+
 		vModel.addAttribute("post", post);
 
 		return "posts/update";
