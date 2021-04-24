@@ -14,7 +14,7 @@
                     <div class="media align-items-end profile-head">
                         <div class="profile mr-3">
                             <img th:src="@{${avatar.url}}" alt="..." class="rounded mb-2 img-thumbnail" style="height: 130px; width: 130px">
-                            <a th:href="@{'/users/'+id+'/editProfile'}" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                            <a th:href="@{/users/edit}" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
                         </div>
                         <div class="media-body mb-5 text-white">
                             <h4 th:text="${user.username}" class="mt-0 mb-0"></h4>

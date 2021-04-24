@@ -55,8 +55,8 @@ public class UserController {
         return "redirect:login";
     }
 
-    @GetMapping("/users/{id}/edit")
-    public String profileEditor(@PathVariable long id, Model viewModel) {
+    @GetMapping("/users/edit")
+    public String profileEditor(Model viewModel) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         viewModel.addAttribute("user", currentUser);
@@ -64,11 +64,9 @@ public class UserController {
 
     }
 
-    @PostMapping("/users/{id}/edit")
-    public String saveEditProfile(@ModelAttribute User user, @PathVariable long id) {
+    @PostMapping("/users/edit")
+    public String saveEditProfile(@ModelAttribute User user) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
         user.setAbout("Tell people about you!");
         user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
