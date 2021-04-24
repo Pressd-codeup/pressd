@@ -19,7 +19,7 @@
 <!--</main>-->
 
 <!-- Jumbotron Header -->
-<div class="jumbotron">
+<div class="jumbotron bg-dark text-white">
     <h1 class="display-4">Workout Plans</h1>
 </div>
 <!-- details card section starts from here -->
@@ -27,19 +27,19 @@
     <div class="container post col-lg-6 col-12 m-0 float-left" th:each="workout : ${workouts}">
         <div class="row-12 m-0">
 
-            <div class="col-12 m-0 photo-frame">
-                <div class="card-content">
+            <div class="col-12 m-0 photo-frame bg-dark">
+                <div class="card-content bg-dark">
                     <div class="card-img">
                         <!--ADD IMAGE-->
                         <img src="https://placeimg.com/380/230/nature" alt="">
                     </div>
                     <div class="card-desc">
-                        <h3 th:text="${workout.title}"></h3>
-                        <small th:text="${workout.user.username}"></small>
-                        <p th:text="${workout.body}"></p>
-                        <small th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
+                        <h3 class="text-white" th:text="${workout.title}"></h3>
+                        <small class="text-white" th:text="${workout.user.username}"></small>
+                        <p class="text-white" th:text="${workout.body}"></p>
+                        <small class="text-white" th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
                         <form th:action="${'/workouts/'+ workout.id}" method="GET">
-                            <input type="submit" value="View Plan">
+                            <input class="btn-card" type="submit" value="View Plan">
                         </form>
                     </div>
                 </div>

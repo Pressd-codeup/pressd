@@ -16,8 +16,8 @@
 <!--</div>-->
 
 <!-- Jumbotron Header -->
-<div class="jumbotron">
-    <h1 class="display-4">Recent Post</h1>
+<div class="jumbotron bg-dark text-white view-login">
+    <h1 class="display-4 recent-post">Recent Post</h1>
     <!--    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>-->
     <!--    <hr class="my-4">-->
     <!--    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
@@ -31,18 +31,18 @@
         <div class="row-12 m-0 ">
 
 
-            <div class="col-12 m-0 photo-frame">
-                <div class="card-content">
+            <div class="col-12 m-0 photo-frame bg-dark">
+                <div class="card-content bg-dark">
                     <div class="card-img">
                         <!--ADD IMAGE-->
                         <img src="https://placeimg.com/380/230/nature" alt="">
                         <!--                        <span><h4 th:text="${post.title}"></h4></span>-->
                     </div>
                     <div class="card-desc">
-                        <h3 th:text="${post.title}"></h3>
-                        <p th:text="${post.body}"></p>
+                        <h3 class="text-white" th:text="${post.title}"></h3>
+                        <p class="text-white" th:text="${post.body}"></p>
                         <form th:action="${'/posts/'+ post.id}" method="GET">
-                            <input type="submit" value="view posts">
+                            <input class="btn-card" type="submit" value="view posts">
                         </form>
                         <form th:action="${'/users/'+ post.user.id}" method="GET">
                             <input class="btn-card" type="submit" value="View user">
