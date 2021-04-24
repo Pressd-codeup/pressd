@@ -60,8 +60,14 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long currentImageId = currentUser.getAvatarId();
         Image currentImage = imageDao.getOne(currentImageId);
+        User defaultUser = userDao.getOne(1L);
+        List<Image> userImages = imageDao.findImagesByUser(currentUser);
+        List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+        userImages.addAll(defaultImages);
+        userImages.remove(currentImage);
         viewModel.addAttribute("currentImage", currentImage);
         viewModel.addAttribute("user", currentUser);
+
         return "users/editProfile";
 
     }
@@ -69,7 +75,7 @@ public class UserController {
     @PostMapping("/users/edit")
     public String saveEditProfile(@ModelAttribute User user) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user.setAbout("Tell people about you!");
+//        user.setAbout("Tell people about you!");
         user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
         user.setAvatarId(1L);
