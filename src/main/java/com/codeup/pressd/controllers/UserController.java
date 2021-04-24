@@ -58,7 +58,9 @@ public class UserController {
     @GetMapping("/users/edit")
     public String profileEditor(Model viewModel) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        long currentImageId = currentUser.getAvatarId();
+        Image currentImage = imageDao.getOne(currentImageId);
+        viewModel.addAttribute("currentImage", currentImage);
         viewModel.addAttribute("user", currentUser);
         return "users/editProfile";
 

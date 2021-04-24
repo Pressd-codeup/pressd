@@ -5,13 +5,21 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <h2>Update Your Profile</h2>
-
+<br>
+<h3>Your Profile's current Avatar:</h3>
+<br>
+<img th:src="@{${currentImage.url}}" alt="Your current profile image" id="currentImage">
+<br>
+<div style="display: flex; max-width: 250px; max-height: 250px" >
+    <p>Want to upload more pictures to use? Do it   </p>
+    <form method="get" th:action="@{/images/upload}">
+        <input type="hidden" name="directory" value="avatarImage">
+        <input type="submit" value="here!"/>
+    </form>
+</div>
+<br>
 
 <form th:action="@{'/users/'+ ${user.id} +'/edit'}" method="post" th:object="${user}">
-
-    <h2>Edit Profile</h2>
-
-    <br>
 
     <label for="username">Username</label>
     <input th:field="*{username}" id="username" type="text">
