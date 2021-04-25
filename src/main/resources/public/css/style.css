@@ -809,7 +809,8 @@ h6.sign {
 /*START OF SHOW POST (INDEX) CSS*/
 
 body.post-body {
-    background: linear-gradient(#e66465, #9198e5);
+    /*background: linear-gradient(#e66465, #9198e5);*/
+    background: -webkit-linear-gradient(45deg, rgb(0, 0, 0), rgba(72, 15, 144, 0.4) 100%);
 }
 
 /* card details start  */
@@ -837,8 +838,8 @@ section{
 }
 
 .card-img img {
-    width: 100%;
-    height: auto;
+    width: 500px;
+    height: 350px;
     display: block;
 }
 
