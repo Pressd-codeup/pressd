@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Dashboard')"></head>
+<body class="profile-page">
+<nav th:replace="fragments/navbar :: mainNav"></nav>
 
+<h2>Update Your Profile</h2>
+<br>
+<h3>Your Profile's current Avatar:</h3>
+<br>
+<img style="display: flex; max-width: 250px; max-height: 250px" th:src="@{${currentImage.url}}" alt="Your current profile image" id="currentImage">
+<br>
+<div style="display: flex; max-width: 250px; max-height: 250px" >
+    <p>Want to upload more pictures to use? Do it   </p>
+    <form method="get" th:action="@{/images/upload}">
+        <input type="hidden" name="directory" value="avatarImage">
+        <input type="submit" value="here!"/>
+    </form>
+</div>
+<br>
+
+<form th:action="@{'/users/'+ ${user.id} +'/edit'}" method="post" th:object="${user}">
+    <div style="display: flex; width: 33%; flex-wrap: wrap">
+        <label>
+            <input type="radio" name="imageId" th:value="${user.avatarId}" checked>
+            <img style="display: flex; width: 33%; flex-wrap: wrap" th:src="@{${user.avatarId}}">
+        </label>
+        <div th:each="image : ${images}">
+            <label>
+                <input type="radio" name="imageId" th:value="${user.images}">
+                <img th:src="@{${user.getImages()}}">
+            </label>
+        </div>
+    </div>
+    <br>
+    <label for="username">Username</label>
+    <input th:field="*{username}" id="username" type="text">
+
+    <br>
+
+    <label for="password">Password</label>
+    <input th:field="*{password}" id="password" type="password">
+
+    <br>
+
+    <label for="email">Email</label>
+    <input th:field="*{email}" id="email" type="text">
+
+    <br>
+
+    <label for="about">About</label>
+    <textarea class="form-control" th:field="*{about}" id="about" type="text"></textarea>
+
+    <br>
+    <input type="submit" value="Update Profile!">
+
+</form>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>

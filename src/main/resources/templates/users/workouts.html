@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('all uploads')"></head>
+<head th:replace="fragments/header :: main-head('Workouts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <main class="container">
-  <h2>Your uploaded images: </h2>
-  <div class="post" th:each="userImage : ${userImages}">
-    <img th:src="@{${userImage.url}}"/>
-  </div>
-  <br>
-  <h2>Default images: </h2>
-  <div class="post" th:each="defaultImage : ${defaultImages}">
-    <img th:src="@{${defaultImage.url}}"/>
-  </div>
+    <div class="post" th:each="workout : ${workouts}">
+        <h1 th:text="${workout.title}"></h1>
+        <p th:text="${workout.body}"></p>
+        <small th:text="${shortF.format(workout.datePosted)}"></small>
+        <form th:action="${'/workouts/'+ workout.id}" method="GET">
+            <input type="submit" value="View Plan">
+        </form>
+    </div>
 </main>
-
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 <script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>

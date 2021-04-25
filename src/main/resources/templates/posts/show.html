@@ -5,13 +5,19 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <main class="container">
     <div class="post">
+        <img class="img-thumbnail" th:src="@{${post.image.url}}" alt="alt"/>
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>
-        <p>Contact me at <span th:text="${post.user.email}"></span></p>
+        <form th:action="${'/users/'+ post.user.id}" method="GET">
+            <input class="btn-card" type="submit" value="View user">
+        </form>
     </div>
 
-    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
-        <input type="submit" value="delete ad">
+    <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
+        <input type="submit" value="delete post">
+    </form>
+    <form th:action="${'/posts/'+ id +'/update'}" method="GET">
+        <input type="submit" value="update post">
     </form>
 
 </main>

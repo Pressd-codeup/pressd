@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('update workout')"></head>
+<head th:replace="fragments/header :: main-head('update post')"></head>
 <style>
     /* HIDE RADIO */
     [type=radio] {
@@ -30,53 +30,40 @@
 </style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<h2>Update Your workout</h2>
-
+<h2>Change your avatar image:</h2>
 <br>
-
-<h3>Your workout's current image:</h3>
+<h3>Your current avatar:</h3>
 <br>
-<img th:src="@{${currentImage.url}}" alt="Your current workout image" id="currentImage">
+<img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">
 <br>
 <div style="display: flex">
     <p>Want to upload more pictures to use? Do it   </p>
     <form method="get" th:action="@{/images/upload}">
-        <input type="hidden" name="directory" value="updateworkoutImage">
+        <input type="hidden" name="directory" value="avatarImage">
         <input type="submit" value="here!"/>
     </form>
 </div>
 <br>
-
-<form th:action="@{/workouts/{id}/update(id=${workout.getId()})}" method="post">
+<form th:action="@{/users/avatar}" method="post">
 
     <div style="display: flex; width: 33%; flex-wrap: wrap">
         <label>
-            <input type="radio" name="imageId" th:value="${currentImage.id}" checked>
+            <input type="radio" name="avatarId" th:value="${currentImage.id}" checked>
             <img th:src="@{${currentImage.url}}">
         </label>
         <div th:each="image : ${userImages}">
             <label>
-                <input type="radio" name="imageId" th:value="${image.id}">
+                <input type="radio" name="avatarId" th:value="${image.id}">
                 <img th:src="@{${image.url}}">
             </label>
         </div>
     </div>
     <br>
+    <input type="submit" value="Update!">
 
-    <label for="title">Title</label>
-    <input id="title" name="title" required>
-    <p>Your previous title: <span th:text="${workout.getTitle()}"></span></p>
-
-    <br>
-
-    <label for="body">Body</label>
-    <input id="body" name="body" required>
-    <p>Your previous body: <span th:text="${workout.getBody()}"></span></p>
-    <br>
-
-    <input type="submit" value="Update workout!">
 </form>
+
+
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

@@ -1,11 +1,11 @@
 package com.codeup.pressd.controllers;
 
-import com.codeup.pressd.models.Filter;
-import com.codeup.pressd.models.Post;
-import com.codeup.pressd.models.Type;
-import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.*;
+import com.codeup.pressd.repository.ImageRepository;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.TypeRepository;
+import com.codeup.pressd.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +20,15 @@ public class PostController {
 
 	private final PostRepository postDao;
 	private final TypeRepository typeDao;
+	private final ImageRepository imageDao;
+	private final UserRepository userDao;
 
-	PostController(PostRepository postDao, TypeRepository typeDao){
+	PostController(PostRepository postDao, TypeRepository typeDao, ImageRepository imageDao, UserRepository userDao){
 		this.postDao = postDao;
 		this.typeDao = typeDao;
+		this.imageDao = imageDao;
+		this.userDao = userDao;
+
 	}
 
 	@GetMapping("/posts")
@@ -86,21 +91,33 @@ public class PostController {
 		User user = post.getUser();
 		viewModel.addAttribute("post", post);
 		viewModel.addAttribute("user", user);
+
 		return "posts/show";
 	}
 
 	@GetMapping("/posts/create")
 	public String showCreatePost(Model viewModel) {
 		viewModel.addAttribute("post", new Post());
+
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userDao.getOne(currentUser.getId());
+
+
+		Image currentImage = imageDao.getOne(1L);
+
+		addImages(viewModel, user, currentImage, userDao, imageDao);
+
 		return "posts/create";
 	}
 
 	@PostMapping("/posts/create")
-	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id){
+	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id, @RequestParam(name="imageId") long imageId){
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = typeDao.getOne(type_id);
+		Image image = imageDao.getOne(imageId);
 		post.setUser(user);
 		post.setType(type);
+		post.setImage(image);
 		post.setDatePosted(LocalDateTime.now());
 		postDao.save(post);
 		return "redirect:/posts";
@@ -108,28 +125,70 @@ public class PostController {
 
 	@GetMapping("/posts/{id}/update")
 	public String viewEditForm(Model vModel, @PathVariable long id){
-		vModel.addAttribute("post", postDao.getOne(id));
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userDao.getOne(currentUser.getId());
+		if (postDao.getOne(id).getUser() != user) return "redirect:/posts";
+
+		Post post = postDao.getOne(id);
+
+		addImages(vModel, user, post.getImage(), userDao, imageDao);
+
+		vModel.addAttribute("post", post);
+
 		return "posts/update";
 	}
 
-	@PostMapping("/posts/update")
-	public String editPost(@ModelAttribute Post postToUpdate) {
-		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (currentUser.getId() == postToUpdate.getUser().getId()) {
-			postDao.save(postToUpdate);
+
+	static void addImages(Model vModel, User user, Image image, UserRepository userDao, ImageRepository imageDao) {
+		Image currentImage = image;
+
+		vModel.addAttribute("currentImage", currentImage);
+
+		User defaultUser = userDao.getOne(1L);
+
+
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(currentImage);
+		for (Image i : userImages) {
+			System.out.println(i.getId());
 		}
+		vModel.addAttribute("userImages", userImages);
+	}
+
+
+
+
+
+	@PostMapping("/posts/{id}/update")
+
+	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId) {
+
+
+
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userDao.getOne(currentUser.getId());
+
+		Post dbPost = postDao.getOne(id);
+
+		Image newImage = imageDao.getOne(imageId);
+
+		dbPost.setImage(newImage);
+		dbPost.setTitle(title);
+		dbPost.setBody(body);
+
+		//user validation is no longer necessary here because it's handled in GetMapping
+		postDao.save(dbPost);
+
 		return "redirect:/posts";
 	}
 
-	@GetMapping("/posts/{id}/delete")
-	public String viewDeletePost(Model vModel, @PathVariable long id){
-		vModel.addAttribute("post",postDao.getOne(id));
-		return "posts/delete";
-	}
 
-	@PostMapping("/posts/delete")
-	public String deletePost(@ModelAttribute Post postToDelete){
+	@PostMapping("/posts/{id}/delete")
+	public String deletePost(@PathVariable long id){
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Post postToDelete = postDao.getOne(id);
 		if (currentUser.getId() == postToDelete.getUser().getId()) {
 			postDao.delete(postToDelete);
 		}

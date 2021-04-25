@@ -41,7 +41,15 @@ public class Workout {
 
 	public Workout() {
 	}
-	
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
 	public Workout(String title, String body, List<Category> categories) {
 		this.title = title;
 		this.body = body;

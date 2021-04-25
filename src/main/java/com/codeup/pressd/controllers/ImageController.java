@@ -1,14 +1,20 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.models.Image;
+import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.Workout;
 import com.codeup.pressd.repository.ImageRepository;
+import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
+import com.codeup.pressd.repository.WorkoutRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 @Controller
@@ -16,14 +22,71 @@ public class ImageController {
 
 	private final ImageRepository imageDao;
 	private final UserRepository userDao;
+	private final WorkoutRepository workoutDao;
+	private final PostRepository postDao;
 
-	ImageController(ImageRepository imageDao, UserRepository userDao) {
+	ImageController(ImageRepository imageDao, UserRepository userDao, WorkoutRepository workoutDao, PostRepository postDao) {
 		this.imageDao = imageDao;
 		this.userDao = userDao;
+		this.workoutDao = workoutDao;
+		this.postDao = postDao;
 	}
 
-	@GetMapping("/images/upload/{directory}")
-	public String viewUploadImageForm(@PathVariable String directory, Model viewModel) {
+	@GetMapping("/users/avatar")
+	public String viewAvatarForm(Model viewModel) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User currentUser = userDao.getOne(user.getId());
+
+		//viewModel.addAttribute("user", currentUser);
+		long currentImageId = currentUser.getAvatarId();
+		Image currentImage = imageDao.getOne(currentImageId);
+		viewModel.addAttribute("currentImage", currentImage);
+
+		//viewModel.addAttribute("directory", "avatarImage");
+
+		User defaultUser = userDao.getOne(1L);
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(currentImage);
+		viewModel.addAttribute("userImages", userImages);
+
+		return "users/avatar";
+	}
+
+	@PostMapping("/users/avatar")
+	public String changeUserAvatar(@RequestParam("avatarId") long avatarId) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		long id = user.getId();
+		User saveUser = userDao.getOne(id);
+		saveUser.setAvatarId(avatarId);
+		userDao.save(saveUser);
+		return "redirect:/users/" + id;
+	}
+
+	@GetMapping("/users/workouts")
+	public String viewUserWorkouts(Model viewModel) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Workout> workouts = workoutDao.getWorkoutsByUser(user);
+		viewModel.addAttribute("workouts", workouts);
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
+		return "users/workouts";
+	}
+
+	@GetMapping("/users/posts")
+	public String viewUserPosts(Model viewModel) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Post> posts = postDao.getPostsByUser(user);
+		viewModel.addAttribute("posts", posts);
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
+		return "users/posts";
+	}
+
+	@GetMapping("/images/upload")
+	public String viewUploadImageForm(@RequestParam("directory") String directory, Model viewModel) {
+		System.out.println("UPLOAD FORM GET DIRECTORY: " + directory);
 		viewModel.addAttribute("directory", directory);
 		return "images/upload";
 	}
@@ -45,8 +108,8 @@ public class ImageController {
 
 
 
-	@PostMapping("/images/upload/{directory}")
-	public String uploadImage(@RequestParam String url, @PathVariable String directory) {
+	@PostMapping("/images/upload")
+	public String uploadImage(@RequestParam String url, @RequestParam("directory") String directory) {
 	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	Image image = new Image();
 		image.setUser(user);
@@ -55,21 +118,23 @@ public class ImageController {
 
 		String returnVal;
 
+		System.out.println("UPLOAD FORM POST DIRECTORY: " + directory);
+
 		switch(directory) {
 			case "createWorkoutImage":
 				returnVal = "redirect:/workouts/create";
 				break;
 			case "updateWorkoutImage":
-				returnVal = "redirect:/user/workouts"; //or whatever the mapping for user workouts page
+				returnVal = "redirect:/users/workouts"; //or whatever the mapping for user workouts page
 				break;
 			case "createPostImage":
 				returnVal = "redirect:/posts/create";
 				break;
 			case "updatePostImage":
-				returnVal = "redirect:/user/posts"; //or whatever the mapping for user posts page
+				returnVal = "redirect:/posts/{id}/update"; //or whatever the mapping for user posts page
 				break;
 			case "avatarImage":
-				returnVal = "redirect:/user/avatar";
+				returnVal = "redirect:/users/avatar";
 				break;
 			default:
 				returnVal = "redirect:/images"; //this is if they access the upload form directly from the Image Center
