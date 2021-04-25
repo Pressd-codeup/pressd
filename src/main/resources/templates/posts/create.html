@@ -106,55 +106,67 @@
                 <!--Grid row-->
                 <div class="row mt-5">
                     <!--Grid column-->
-                    <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
-                        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a
-                            Post!</h1>
-                        <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                        <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                        <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
-                        <p>Want to upload more pictures to use? Do it </p>
-                        <form method="get" th:action="@{/images/upload}">
-                            <input type="hidden" name="directory" value="createPostImage">
-                            <input class="btn" style="color: white; background: indigo" type="submit" value="here!"/>
-                        </form>
-                    </div>
+
                     <!--Grid column-->
                     <!--Grid column-->
-                    <br>
                     <div class="col-md-6 col-xl-5 mb-4"><!--th:if="${post.id == 0}"-->
                         <!--Form-->
+
+                        <div class="white-text text-center">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a
+                                Post!</h1>
+
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        </div>
+
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
 
+                                <div class="text-center">
+                                    <h3 class="white-text">
+                                        <i class="white-text"></i> New Post:</h3>
+                                    <p class="text-white">Want to upload more pictures to use? Do it </p>
+                                    <form method="get" th:action="@{/images/upload}">
+                                        <input type="hidden" name="directory" value="createWorkoutImage">
+                                        <input class="btn" style="color: white; background: indigo" type="submit"
+                                               value="here!"/>
+                                    </form>
+                                    <hr class="hr-light">
+                                </div>
+
                                 <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
                                     <!--Header-->
-                                    <div class="text-center">
-                                        <h3 class="white-text">
-                                            <i class="white-text"></i> New Post:</h3>
-                                        <hr class="hr-light">
-                                    </div>
+
                                     <!--Body-->
                                     <div class="md-form">
-                                        <div>Select an image for your post:</div>
-                                        <div style="display: flex; flex-wrap: wrap">
+                                        <div style="display: flex; justify-content: center">
+                                            <div>Select an image for your workout plan:</div>
+                                        </div>
+                                        <div style="display: flex; justify-content: center; flex-wrap: wrap">
+
                                             <label>
-                                                <input style="position: absolute; opacity: 0; width: 0; height: 0" type="radio" name="imageId" th:value="${defaultImage.id}" checked>
-                                                <img th:src="@{${defaultImage.url}}">
+                                                <input style="position: absolute; opacity: 0; width: 0; height: 0"
+                                                       type="radio" name="imageId" th:value="${currentImage.id}"
+                                                       checked>
+                                                <img th:src="@{${currentImage.url}}">
                                             </label>
                                             <div th:each="image : ${userImages}">
                                                 <label>
-                                                    <input style="position: absolute; opacity: 0; width: 0; height: 0" type="radio" name="imageId" th:value="${image.id}">
+                                                    <input style="position: absolute; opacity: 0; width: 0; height: 0"
+                                                           type="radio" name="imageId" th:value="${image.id}">
                                                     <img th:src="@{${image.url}}">
                                                 </label>
+
                                             </div>
                                         </div>
-                                        <br>
 
                                         <i class="prefix white-text active"></i>
                                         <!--<input type="text" id="form3" class="white-text form-control">-->
                                         <label class="form-label mt-3" for="zipcode">Zip Code</label>
-                                        <input class="form-control mb-3" id="zipcode" type="text"
-                                               th:field="*{zipcode}" required/>
+                                        <input class="form-control mb-3" id="zipcode" type="number"
+                                               min="00501" max="99950" th:field="*{zipcode}" required/>
 
 
                                     </div>
@@ -164,7 +176,8 @@
                                         <i class="prefix white-text active"></i>
                                         <!--                                    <input type="text" id="form3" class="white-text form-control">-->
                                         <label class="form-label mt-3" for="title">Title your post:</label>
-                                        <input class="form-control mb-3" id="title" type="text" th:field="*{title}" required/>
+                                        <input class="form-control mb-3" id="title" type="text" th:field="*{title}"
+                                               required/>
 
 
                                     </div>
@@ -173,28 +186,31 @@
                                         <!--                                        <input class="form-control" id="password" name="password"-->
                                         <!--                                               type="password"/>-->
                                         <label class="form-label mt-3" for="body">Give your post a body:</label>
-                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body" required></textarea>
+                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body"
+                                                  required></textarea>
 
                                     </div>
 
 
-                                            <div>What type of post is this?</div>
-                                            <br>
-                                            <label for="type1" class="form-label-2">Looking for Partners</label>
-                                            <input type="radio" name="type_id" value="1"
-                                                   id="type1" checked>
+                                    <div>What type of post is this?</div>
                                     <br>
-                                            <label for="type2" class="form-label-2">Looking for Coaches</label>
-                                            <input type="radio" name="type_id" value="2"
-                                                   id="type2">
+                                    <label for="type1" class="form-label-2">Looking for Partners</label>
+                                    <input type="radio" name="type_id" value="1"
+                                           id="type1" checked>
                                     <br>
-                                            <label for="type3" class="form-label-2">Looking for Clients</label>
-                                            <input type="radio" name="type_id" value="3"
-                                                   id="type3">
+                                    <label for="type2" class="form-label-2">Looking for Coaches</label>
+                                    <input type="radio" name="type_id" value="2"
+                                           id="type2">
+                                    <br>
+                                    <label for="type3" class="form-label-2">Looking for Clients</label>
+                                    <input type="radio" name="type_id" value="3"
+                                           id="type3">
 
 
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn btn-indigo" style="color: white; background: indigo">Submit Post</button>
+                                        <button type="submit" class="btn btn-indigo"
+                                                style="color: white; background: indigo">Submit Post
+                                        </button>
                                         <hr class="hr-light mb-3 mt-4">
                                         <div class="inline-ul text-center d-flex justify-content-center">
                                             <a class="p-2 m-2 tw-ic">
