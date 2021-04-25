@@ -102,16 +102,11 @@ public class PostController {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userDao.getOne(currentUser.getId());
 
-		User defaultUser = userDao.getOne(1L);
 
-		Image defaultImage = imageDao.getOne(1L);
+		Image currentImage = imageDao.getOne(1L);
 
-		List<Image> userImages = imageDao.findImagesByUser(user);
-		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
-		userImages.addAll(defaultImages);
-		userImages.remove(defaultImage);
-		viewModel.addAttribute("defaultImage", defaultImage);
-		viewModel.addAttribute("userImages", userImages);
+		addImages(viewModel, user, currentImage, userDao, imageDao);
+
 		return "posts/create";
 	}
 
@@ -136,7 +131,16 @@ public class PostController {
 
 		Post post = postDao.getOne(id);
 
-		Image currentImage = post.getImage();
+		addImages(vModel, user, post.getImage(), userDao, imageDao);
+
+		vModel.addAttribute("post", post);
+
+		return "posts/update";
+	}
+
+
+	static void addImages(Model vModel, User user, Image image, UserRepository userDao, ImageRepository imageDao) {
+		Image currentImage = image;
 
 		vModel.addAttribute("currentImage", currentImage);
 
@@ -147,12 +151,15 @@ public class PostController {
 		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
 		userImages.addAll(defaultImages);
 		userImages.remove(currentImage);
+		for (Image i : userImages) {
+			System.out.println(i.getId());
+		}
 		vModel.addAttribute("userImages", userImages);
-
-		vModel.addAttribute("post", post);
-
-		return "posts/update";
 	}
+
+
+
+
 
 	@PostMapping("/posts/{id}/update")
 

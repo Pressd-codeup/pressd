@@ -124,13 +124,17 @@ public class WorkoutController {
     @GetMapping("/workouts/create")
     public String showCreateWorkout(Model viewModel) {
         viewModel.addAttribute("workout", new Workout());
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getOne(currentUser.getId());
+        Image currentImage = imageDao.getOne(1L);
+        PostController.addImages(viewModel, user, currentImage, userDao, imageDao);
         return "workouts/create";
     }
 
     @PostMapping("/workouts/create")
-    public String createWorkout(@ModelAttribute Workout workout) {
+    public String createWorkout(@ModelAttribute Workout workout, @RequestParam(name="imageId") long imageId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Image image = imageDao.getOne(1L);
+        Image image = imageDao.getOne(imageId);
         workout.setUser(user);
         workout.setComments(new ArrayList<>());
         workout.setDatePosted(LocalDateTime.now());
@@ -161,15 +165,8 @@ public class WorkoutController {
         User user = userDao.getOne(currentUser.getId());
         if (workoutDao.getOne(id).getUser() != user) return "redirect:/workouts";
         Workout workout = workoutDao.getOne(id);
-        Image currentImage = workout.getImage();
-        vModel.addAttribute("currentImage", currentImage);
-        User defaultUser = userDao.getOne(1L);
-        List<Image> userImages = imageDao.findImagesByUser(user);
-        List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
-        userImages.addAll(defaultImages);
-        userImages.remove(currentImage);
-        vModel.addAttribute("userImages", userImages);
-        vModel.addAttribute("workout", workout);
+		PostController.addImages(vModel, user, workout.getImage(), userDao, imageDao);
+		vModel.addAttribute("workout", workout);
         return "workouts/update";
     }
 
