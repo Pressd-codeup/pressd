@@ -10,6 +10,7 @@ menu.addEventListener('click', () => {
 //End of Navbar
 
 // Section 2 Video
+/*
 const video = document.querySelector('.video');
 const btn = document.querySelector('.buttons i');
 const bar = document.querySelector('.video-bar');
@@ -37,4 +38,4 @@ video.addEventListener('timeupdate', () => {
         btn.className = 'far fa-play-circle'
         video.style.opacity = '.3'
     }
-});
+});*/
