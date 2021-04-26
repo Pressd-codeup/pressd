@@ -43,7 +43,7 @@ public class CommentController {
     }
 
     @PostMapping("/workouts/{id}/comments/create")
-    public String createComment(@PathVariable long id, @ModelAttribute Comment comment) {
+    public String createComment(@PathVariable long id, @ModelAttribute Comment comment, @RequestParam(name = "body") String body) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Workout workout = workoutDao.getOne(id);
         comment.setUser(user);
@@ -61,13 +61,15 @@ public class CommentController {
     }
 
     @PostMapping("/comments/{id}/update")
-    public String editComment(@ModelAttribute Comment comment, @PathVariable long id) {
+    public String editComment(@ModelAttribute Comment comment, @PathVariable long id, @RequestParam("body") String body) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (user.getId() == comment.getUser().getId()) {
-            commentDao.save(comment);
-        } else if (user.getId() != comment.getUser().getId()) {
-            return "redirect:/login";
-        }
+        User currentUser = userDao.getOne(user.getId());
+        Comment dbComment = commentDao.getOne(id);
+
+        dbComment.setBody(body);
+        dbComment.setDatePosted(LocalDateTime.now());
+        dbComment.setUser(currentUser);
+        commentDao.save(dbComment);
         return "redirect:/workouts";
     }
 

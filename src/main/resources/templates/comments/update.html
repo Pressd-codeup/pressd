@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('update post')"></head>
 <body>
-<h1>UPDATE HERE</h1>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<div>
+    <form th:action="@{/comments/{id}/update(id=${comment.id})}" method="post">
+
+        <label for="body">Body</label>
+        <input id="body" name="body" required>
+        <p>Your previous body: <span th:text="${comment.getBody()}"></span></p>
+        <br>
+
+        <input class="m-2" type="submit" value="Update workout!">
+    </form>
+</div>
 </body>
 </html>

@@ -84,7 +84,6 @@ public class UserController {
         currentUser.setUsername(username);
         currentUser.setAbout(about);
         currentUser.setEmail(email);
-
         LocalDateTime dateJoined = currentUser.getDateJoined();
         currentUser.setAvatarId(avatarId);
         currentUser.setDateJoined(dateJoined);
