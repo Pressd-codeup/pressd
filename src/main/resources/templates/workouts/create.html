@@ -21,7 +21,7 @@
 
     /* CHECKED STYLES */
     [type=radio]:checked + img {
-        outline: 5px solid #f00;
+        outline: 5px solid #5b21a9;
     }
 
     #currentImage {
@@ -61,12 +61,15 @@
                                 <div class="text-center">
                                     <h3 class="white-text">
                                         <i class="white-text"></i> New Plan:</h3>
-                                    <p class="text-white">Want to upload more pictures to use? Do it </p>
+                                    <p class="text-white">Want to upload more pictures to use? </p>
+
+                                    <div class="text-white">Do it
                                     <form method="get" th:action="@{/images/upload}">
                                         <input type="hidden" name="directory" value="createWorkoutImage">
-                                        <input class="btn" style="color: white; background: indigo" type="submit"
+                                        <input class="btn submit-button" type="submit"
                                                value="here!"/>
                                     </form>
+                                        </div>
                                     <hr class="hr-light">
                                 </div>
                                 <!--Body-->
@@ -166,7 +169,7 @@
                                                         <textarea class="form-control" th:field="*{body}" type="text"
                                                                   id="body"></textarea>
                                                     </div>
-                                                    <button type="submit" class="btn btn-indigo text-center" style="color: white; background: indigo">Submit Workout
+                                                    <button type="submit" class="submit-button">Submit Workout
                                                     </button>
                                                 </div>
                                             </div>
