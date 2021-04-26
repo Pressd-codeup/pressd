@@ -59,7 +59,7 @@
 
 <header class="login">
     <!-- Full Page Intro -->
-    <div class="view-login-2">
+    <div class="view-user-post">
         <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <!-- Content -->
@@ -74,83 +74,49 @@
                         <!--Form-->
 
                         <div class="white-text text-center">
-                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">View Post</h1>
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">View
+                                Post</h1>
 
                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                             <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                         </div>
-
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
-
-                                <div class="text-center">
-                                    <h1 th:text="${post.title}"></h1>
-<!--                                    <p class="text-white">Want to upload more pictures to use? Do it </p>-->
-<!--                                    IMAGES-->
-                                    <div class="post">
-                                        <img class="img-thumbnail" th:src="@{${post.image.url}}" alt="alt"/>
-<!--                                        <h1 th:text="${post.title}"></h1>-->
-<!--                                        <p th:text="${post.body}"></p>-->
-<!--                                        <form th:action="${'/users/'+ post.user.id}" method="GET">-->
-<!--                                            <input class="btn-card" type="submit" value="View user">-->
-<!--                                        </form>-->
-                                    </div>
-                                    <hr class="hr-light">
+                                <div class="card">
+                                    <!--IMAGE-->
+                                    <img class="img-thumbnail img-fluid" th:src="@{${post.image.url}}" alt="alt"/>
                                 </div>
-
-
-                                    <!--Header-->
-
-                                    <!--Body-->
-                                    <div class="md-form">
-                                        <div style="display: flex; justify-content: center">
-                                        <div class="post">
-                                            <p th:text="${post.body}"></p>
-                                            <form th:action="${'/users/'+ post.user.id}" method="GET">
-                                                <input class="btn-card" type="submit" value="View user">
-                                            </form></div>
-
-                                        </div>
-                                        <div style="display: flex; justify-content: center">
-                                            <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
-                                                <input type="submit" value="delete post">
-                                            </form>
-                                        </div>
-                                        <div style="display: flex; justify-content: center; flex-wrap: wrap">
-
-                                            <form th:action="${'/posts/'+ id +'/update'}" method="GET">
-                                                <input type="submit" value="update post">
-                                            </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                <hr class="hr-light">
                             </div>
+                            <!--Header-->
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${post.title}"></h5>
+                                <p class="card-text text-white" th:text="${post.body}">
+                                </p>
+                                <!--BUTTONS-->
+                                <div class="btn-group btn-group-lg" role="group">
+                                    <form th:action="${'/users/'+ post.user.id}" method="GET">
+                                        <input class="btn-card" type="submit" value="View user">
+                                    </form>
+                                    <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
+                                        <input class="btn-card" type="submit" value="delete post">
+                                    </form>
+                                    <form th:action="${'/posts/'+ id +'/update'}" method="GET">
+                                        <input class="btn-card" type="submit" value="update post">
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
-                        <!--/.Form-->
                     </div>
-                    <!--Grid column-->
                 </div>
-                <!--Grid row-->
             </div>
-            <!-- Content -->
         </div>
-        <!-- Mask & flexbox options-->
     </div>
-    <!-- Full Page Intro -->
-
 </header>
-
-
-
-
-
-
-
-
-
-<footer th:replace="fragments/footer :: main-footer"></footer>
-</body>
+<div>
+    <footer th:replace="fragments/footer :: main-footer"></footer>
+</div>
 </body>
 </html>
