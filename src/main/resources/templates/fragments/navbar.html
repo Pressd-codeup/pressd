@@ -29,7 +29,7 @@
                     <a class="dropdown-item" href="/partners">Buddies</a>
                     <a class="dropdown-item" href="/clients">Clients</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/posts/create">Create</a>
+                    <a class="dropdown-item" href="/posts/create">Create a Post</a>
                 </div>
             </li>
 
@@ -55,7 +55,7 @@
             <th:block sec:authorize="isAuthenticated()">
                 <li>
                     <form th:action="@{/logout}" th:method="POST">
-                        <button id="logout" class="nav-link">Logout</button>
+                        <button id="logout">Logout</button>
                     </form>
                 </li>
             </th:block>
