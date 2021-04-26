@@ -279,6 +279,21 @@ a:focus {
     padding: 2px 6px;
 }
 
+#logout {
+    display: block;
+    color: var(--white-color);
+    font-size: var(--menu-font-size);
+    font-weight: var(--font-weight-normal);
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border: none;
+    background: var(--dark-color);
+}
+
+#logout:hover {
+    color: var(--primary-color);
+}
+
 .nav-item .nav-link.active,
 .nav-item .nav-link:hover {
     color: var(--primary-color);
