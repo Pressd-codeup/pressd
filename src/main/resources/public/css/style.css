@@ -106,13 +106,6 @@ h5 {
     font-size: var(--h5-font-size);
 }
 
-/*h6 {*/
-/*    color: var(--gray-color);*/
-/*    font-size: var(--h6-font-size);*/
-/*    line-height: inherit;*/
-/*    margin: 0;*/
-/*}*/
-
 p {
     color: var(--p-color);
     font-size: var(--p-font-size);
@@ -271,6 +264,10 @@ a:focus {
     font-weight: var(--font-weight-bold);
     line-height: normal;
     padding-top: 0;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-color);
 }
 
 .nav-item .nav-link {
