@@ -13,7 +13,6 @@
         background-position: 0 0;
     }
 
-
 </style>
 <script>
 
@@ -34,66 +33,153 @@
         $('span.stars').stars();
     });
 </script>
+<!--<body>-->
+<!--<nav th:replace="fragments/navbar :: mainNav"></nav>-->
+<!--<main class="container">-->
+<!--    <div class="workout">-->
+<!--        <h1 th:text="${workout.title}"></h1>-->
+<!--        <p th:text="${workout.body}"></p>-->
+<!--        <span class="stars" th:text="${rating}"></span>-->
+<!--        <p><span th:text="${df.format(rating)}"></span>/5</p>-->
+<!--        <p>Total ratings: <span th:text="${totalRatings}"></span></p>-->
+<!--        <div th:if="${isLoggedIn}">-->
+<!--            <div th:if="${userRating} == 0">-->
+<!--                <p>You haven't rated this workout yet!</p>-->
+
+
+<!--                <form th:action="@{/ratings/{id}/create(id=${workout.getId()})}" method="post">-->
+<!--                    <label for="newRating">Add your rating: </label>-->
+<!--                    <select name="newRating" id="newRating">-->
+<!--                        <option value="1">1</option>-->
+<!--                        <option value="2">2</option>-->
+<!--                        <option value="3">3</option>-->
+<!--                        <option value="4">4</option>-->
+<!--                        <option value="5">5</option>-->
+<!--                    </select>-->
+<!--                    <input type="submit" value="Submit your rating!">-->
+<!--                </form>-->
+
+<!--            </div>-->
+<!--            <div th:unless="${userRating} == 0">-->
+<!--                <p>Your current rating:</p>-->
+<!--                <span class="stars" th:text="${userRating}"></span>-->
+<!--                <p><span th:text="${userRating}"></span>/5</p>-->
+
+<!--                <form th:action="@{/ratings/{id}/update(id=${workout.getId()})}" method="post">-->
+<!--                    <label for="newRating">Change your rating? </label>-->
+<!--                    <select name="newRating" id="newRating">-->
+<!--                        <option value="1">1</option>-->
+<!--                        <option value="2">2</option>-->
+<!--                        <option value="3">3</option>-->
+<!--                        <option value="4">4</option>-->
+<!--                        <option value="5">5</option>-->
+<!--                    </select>-->
+
+<!--                    <input type="submit" value="Update your rating!">-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <form th:action="${'/workouts/'+id+'/update'}" method="GET">-->
+<!--        <input type="submit" value="edit workout">-->
+<!--    </form>-->
+
+<!--    <form th:action="${'/workouts/'+id+'/comments'}" method="GET">-->
+<!--        <input type="submit" value="View Comments">-->
+<!--    </form>-->
+<!--    <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">-->
+<!--        <input type="submit" value="delete workout">-->
+<!--    </form>-->
+<!--    <form th:action="${'/users/'+ workout.user.id}" method="GET">-->
+<!--        <input type="submit" value="View User">-->
+<!--    </form>-->
+
+
+<!--START-->
+<style>
+    /* IMAGE STYLES */
+    [type=radio] + img {
+        cursor: pointer;
+        height: 75px;
+        width: 75px;
+        margin: 5px;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked + img {
+        outline: 5px solid #f00;
+    }
+
+    #currentImage {
+        height: 100px;
+        width: 100px;
+    }
+</style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<main class="container">
-    <div class="workout">
-        <h1 th:text="${workout.title}"></h1>
-        <p th:text="${workout.body}"></p>
-        <span class="stars" th:text="${rating}"></span>
-        <p><span th:text="${df.format(rating)}"></span>/5</p>
-        <p>Total ratings: <span th:text="${totalRatings}"></span></p>
-        <div th:if="${isLoggedIn}">
-            <div th:if="${userRating} == 0">
-                <p>You haven't rated this workout yet!</p>
+
+<header class="login">
+    <!-- Full Page Intro -->
+    <div class="view-user-post">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row mt-5">
+                    <!--Grid column-->
+                    <div class="col-md-6 col-xl-5 mb-4 login-box">
+                        <div class="white-text text-center">
 
 
-                <form th:action="@{/ratings/{id}/create(id=${workout.getId()})}" method="post">
-                    <label for="newRating">Add your rating: </label>
-                    <select name="newRating" id="newRating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <input type="submit" value="Submit your rating!">
-                </form>
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        </div>
+                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                            <div class="card-body">
+                                <div class="">
+                                    <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
+                                        th:text="${workout.title}"></h1>
+                                    <!--IMAGE-->
+                                    <!--                                        <img class="img-thumbnail img-fluid" th:src="@{${post.image.url}}" alt="alt"/>-->
+                                </div>
+                                <hr class="hr-light">
+                            </div>
+                            <!--Header-->
+                            <div class="card-body">
+                                <p th:text="${workout.body}"></p>
+                                <span class="stars" th:text="${rating}"></span>
+                                <p><span th:text="${df.format(rating)}"></span>/5</p>
+                                <p>Total ratings: <span     th:text="${totalRatings}"></span></p>
+                                <div th:if="${isLoggedIn}">
+                                    <div th:if="${userRating} == 0">
+                                        <p>You haven't rated this workout yet!</p>
 
-            </div>
-            <div th:unless="${userRating} == 0">
-                <p>Your current rating:</p>
-                <span class="stars" th:text="${userRating}"></span>
-                <p><span th:text="${userRating}"></span>/5</p>
+                                        <form th:action="@{/ratings/{id}/create(id=${workout.getId()})}" method="post">
+                                            <label for="newRating">Add your rating: </label>
+                                            <select name="newRating" id="newRating">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                            <input type="submit" value="Submit your rating!">
+                                        </form>
 
-                <form th:action="@{/ratings/{id}/update(id=${workout.getId()})}" method="post">
-                    <label for="newRating">Change your rating? </label>
-                    <select name="newRating" id="newRating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <input type="submit" value="Update your rating!">
-                </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <form th:action="${'/workouts/'+id+'/update'}" method="GET">
-        <input type="submit" value="edit workout">
-    </form>
+</header>
 
-    <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
-        <input type="submit" value="View Comments">
-    </form>
-    <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
-        <input type="submit" value="delete workout">
-    </form>
-    <form th:action="${'/users/'+ workout.user.id}" method="GET">
-        <input type="submit" value="View User">
-    </form>
 
 </main>
 </body>
