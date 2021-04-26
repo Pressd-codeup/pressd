@@ -1,27 +1,156 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Show a post')"></head>
+
+<!--ORIGINAL CODE-->
+
+<!--<body class="body-show">-->
+<!--<nav th:replace="fragments/navbar :: mainNav"></nav>-->
+<!--<main class="container">-->
+<!--    <div class="post">-->
+<!--        <img class="img-thumbnail" th:src="@{${post.image.url}}" alt="alt"/>-->
+<!--        <h1 th:text="${post.title}"></h1>-->
+<!--        <p th:text="${post.body}"></p>-->
+<!--        <form th:action="${'/users/'+ post.user.id}" method="GET">-->
+<!--            <input class="btn-card" type="submit" value="View user">-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    <form th:action="${'/posts/'+ id +'/delete'}" method="POST">-->
+<!--        <input type="submit" value="delete post">-->
+<!--    </form>-->
+<!--    <form th:action="${'/posts/'+ id +'/update'}" method="GET">-->
+<!--        <input type="submit" value="update post">-->
+<!--    </form>-->
+
+<!--</main>-->
+
+<!--START-->
+<style>
+    /* HIDE RADIO
+    [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    */
+
+    /* IMAGE STYLES */
+    [type=radio] + img {
+        cursor: pointer;
+        height: 75px;
+        width: 75px;
+        margin: 5px;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked + img {
+        outline: 5px solid #f00;
+    }
+
+    #currentImage {
+        height: 100px;
+        width: 100px;
+    }
+</style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<main class="container">
-    <div class="post">
-        <img class="img-thumbnail" th:src="@{${post.image.url}}" alt="alt"/>
-        <h1 th:text="${post.title}"></h1>
-        <p th:text="${post.body}"></p>
-        <form th:action="${'/users/'+ post.user.id}" method="GET">
-            <input class="btn-card" type="submit" value="View user">
-        </form>
+
+<header class="login">
+    <!-- Full Page Intro -->
+    <div class="view-login-2">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row mt-5">
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-6 col-xl-5 mb-4"><!--th:if="${post.id == 0}"-->
+                        <!--Form-->
+
+                        <div class="white-text text-center">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">View Post</h1>
+
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        </div>
+
+                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                            <div class="card-body">
+
+                                <div class="text-center">
+                                    <h1 th:text="${post.title}"></h1>
+<!--                                    <p class="text-white">Want to upload more pictures to use? Do it </p>-->
+<!--                                    IMAGES-->
+                                    <div class="post">
+                                        <img class="img-thumbnail" th:src="@{${post.image.url}}" alt="alt"/>
+<!--                                        <h1 th:text="${post.title}"></h1>-->
+<!--                                        <p th:text="${post.body}"></p>-->
+<!--                                        <form th:action="${'/users/'+ post.user.id}" method="GET">-->
+<!--                                            <input class="btn-card" type="submit" value="View user">-->
+<!--                                        </form>-->
+                                    </div>
+                                    <hr class="hr-light">
+                                </div>
+
+
+                                    <!--Header-->
+
+                                    <!--Body-->
+                                    <div class="md-form">
+                                        <div style="display: flex; justify-content: center">
+                                        <div class="post">
+                                            <p th:text="${post.body}"></p>
+                                            <form th:action="${'/users/'+ post.user.id}" method="GET">
+                                                <input class="btn-card" type="submit" value="View user">
+                                            </form></div>
+
+                                        </div>
+                                        <div style="display: flex; justify-content: center">
+                                            <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
+                                                <input type="submit" value="delete post">
+                                            </form>
+                                        </div>
+                                        <div style="display: flex; justify-content: center; flex-wrap: wrap">
+
+                                            <form th:action="${'/posts/'+ id +'/update'}" method="GET">
+                                                <input type="submit" value="update post">
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--/.Form-->
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Content -->
+        </div>
+        <!-- Mask & flexbox options-->
     </div>
+    <!-- Full Page Intro -->
 
-    <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
-        <input type="submit" value="delete post">
-    </form>
-    <form th:action="${'/posts/'+ id +'/update'}" method="GET">
-        <input type="submit" value="update post">
-    </form>
+</header>
 
-</main>
+
+
+
+
+
+
+
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
+</body>
 </body>
 </html>
