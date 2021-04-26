@@ -4,14 +4,17 @@
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <div>
-    <form th:action="@{/comments/{id}/update(id=${comment.id})}" method="post">
+    <form th:action="${'/comments/'+ oldComment.id +'/update'}" method="post">
 
-        <label for="body">Body</label>
-        <input id="body" name="body" required>
-        <p>Your previous body: <span th:text="${comment.getBody()}"></span></p>
+        <h2>Update your Comment</h2>
+
+        <label for="body">Description</label>
+        <input name="body" id="body" type="text" th:value="${oldComment.body}">
+
         <br>
 
-        <input class="m-2" type="submit" value="Update workout!">
+        <input type="submit" value="update comment">
+
     </form>
 </div>
 </body>
