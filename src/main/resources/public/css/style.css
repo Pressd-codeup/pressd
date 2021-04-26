@@ -1025,10 +1025,16 @@ a.btn-card {
 /*END OF CREATE WORKOUT CSS*/
 
 /*VIEW POST CSS (show.html) */
-.body-show {
-
+.post-viewing {
+    color: #fff;
 }
 
+.view-user-post {
+    background-image: url('images/class/swim.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
 
 
