@@ -75,7 +75,7 @@ public class UserController {
     @PostMapping("/users/edit")
     public String saveEditProfile(@ModelAttribute User user) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user.setAbout("Tell people about you!");
+        user.setAbout("Tell people about you!");
         user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
         user.setAvatarId(1L);
