@@ -32,7 +32,7 @@
 }
 
 :root {
-    --primary-color: #f13a11;
+    --primary-color: #5b21a9;
     --white-color: #ffffff;
     --dark-color: #171819;
     --about-bg-color: #f9f9f9;
@@ -245,7 +245,7 @@ a:focus {
 
 
 /*---------------------------------------
-   MENU
+   MENU & NAVBAR CSS
 -----------------------------------------*/
 
 .navbar {
@@ -844,7 +844,7 @@ section{
     position: absolute;
     top: 15%;
     left: 12%;
-    background: #1ABC9C;
+    background: #480f90;
     padding: 6px;
     color: #fff;
     font-size: 12px;
@@ -887,7 +887,7 @@ section{
     font-family: 'Raleway', sans-serif;
 }
 .btn-card{
-    background-color: #1ABC9C;
+    background-color: #480f90;
     color: #fff;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     padding: .84rem 2.14rem;
