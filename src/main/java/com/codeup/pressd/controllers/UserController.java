@@ -21,16 +21,17 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    private UserRepository userDao;
+    private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
     private final ImageRepository imageDao;
+    private final PostRepository postDao;
 
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao, PostRepository postDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.imageDao = imageDao;
-
+        this.postDao = postDao;
     }
 
     @GetMapping("/sign-up")
@@ -97,7 +98,9 @@ public class UserController {
         User user = userDao.getOne(id);
         long avatarId = user.getAvatarId();
         Image avatar = imageDao.getOne(avatarId);
+        List post = postDao.getPostsByUser(user);
 
+        viewModel.addAttribute("post", post);
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("avatar", avatar);
         return "users/show";

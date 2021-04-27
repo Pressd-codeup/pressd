@@ -84,7 +84,14 @@
                                 <hr class="hr-light">
                             </div>
                             <!--Header-->
-                            <div class="card-body">
+                            <div class="card-body">    <div class="post" th:each="post : ${posts}">
+                                <h1 th:text="${post.title}"></h1>
+                                <p th:text="${post.body}"></p>
+                                <small th:text="${shortF.format(post.datePosted)}"></small>
+                                <form th:action="${'/posts/'+ post.id}" method="GET">
+                                    <input type="submit" value="View Post">
+                                </form>
+                            </div>
                                 <h5 class="card-title" th:text="${post.title}"></h5>
                                 <p class="card-text text-white" th:text="${post.body}">
                                 </p>
