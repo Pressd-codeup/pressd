@@ -64,6 +64,7 @@
                         <form th:action="@{/{id}/comments(id=${user.getId()})}" method="get">
                             <input type="submit" value="view user's comments">
                         </form>
+
                         <form th:action="@{'/messages/send/' +${id}}" method="GET">
                             <input type="submit" value="message user">
                         </form>
