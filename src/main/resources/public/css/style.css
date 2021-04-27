@@ -566,16 +566,17 @@ button#submit-button {
     border-color: var(--dark-color);
 }
 
-button#submit-button {
-    background: var(--dark-color);
+.submit-button {
+    background: rgba(39, 46, 79,0.9);
     border-color: transparent;
     color: var(--white-color);
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: .25rem;
 }
 
-button#submit-button:hover {
-    background: var(--primary-color);
+.submit-button:hover {
+    background: rgba(91,33,169,0.9);
 }
 
 .contact h2 + p {
@@ -1040,11 +1041,18 @@ a.btn-card {
 /*END OF CREATE WORKOUT CSS*/
 
 /*VIEW POST CSS (show.html) */
-.body-show {
-
+.post-viewing {
+    color: #fff;
 }
 
+.view-user-post {
+    background-image: url('images/class/crossfit.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
-
-
+.workout-text {
+    color: #fff;
+}
 /*END OF VIEW POST CSS (show.html) */
