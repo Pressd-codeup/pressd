@@ -76,17 +76,17 @@ VALUES (1, 1, 4, 2),
        (15, 2, 4, 4),
        (16, 1, 5, 4);
 
-INSERT INTO messages (id, body, date_posted, from_id, to_id)
-VALUES (1, 'Hey there just testing', '2020-02-02 01:00:00', 2, 3),
-       (2, 'Testing ya right back!', '2020-02-02 02:00:00', 3, 2),
-       (3, 'This is yet another test', '2020-02-02 01:01:00', 2, 4),
-       (4, 'Roger good buddy', '2020-02-02 02:01:00', 4, 2),
-       (5, 'Still out here testing messages', '2020-02-02 01:02:00', 2, 5),
-       (6, '10-4, dinosaur', '2020-02-02 02:02:00', 5, 2),
-       (7, 'Pretty nice to see that messaging logic works', '2020-02-02 02:03:00', 2, 3),
-       (8, 'Let''s test the date logic', '2020-02-02 02:04:00', 2, 3),
-       (9, 'Date logic works', '2020-02-02 02:06:00', 3, 2),
-       (10, 'Testing date logic', '2020-02-02 02:05:00', 2, 3);
+INSERT INTO messages (id, body, date_posted, from_id, to_id, is_read)
+VALUES (1, 'Hey there just testing', '2020-02-02 01:00:00', 2, 3, 0),
+       (2, 'Testing ya right back!', '2020-02-02 02:00:00', 3, 2, 0),
+       (3, 'This is yet another test', '2020-02-02 01:01:00', 2, 4, 0),
+       (4, 'Roger good buddy', '2020-02-02 02:01:00', 4, 2, 0),
+       (5, 'Still out here testing messages', '2020-02-02 01:02:00', 2, 5, 0),
+       (6, '10-4, dinosaur', '2020-02-02 02:02:00', 5, 2, 0),
+       (7, 'Pretty nice to see that messaging logic works', '2020-02-02 02:03:00', 2, 3, 0),
+       (8, 'Let''s test the date logic', '2020-02-02 02:04:00', 2, 3, 0),
+       (9, 'Date logic works', '2020-02-02 02:06:00', 3, 2, 0),
+       (10, 'Testing date logic', '2020-02-02 02:05:00', 2, 3, 0);
 
 
 INSERT INTO images (id, url, user_id)

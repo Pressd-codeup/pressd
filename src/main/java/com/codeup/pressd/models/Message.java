@@ -28,6 +28,9 @@ public class Message {
 	@JoinColumn(name = "from_id", nullable = false)
 	private User sentFrom;
 
+	@Column(name = "is_read", nullable = false, columnDefinition = "TINYINT(1)")
+	private int isRead;
+
 	public Message() {
 	}
 
@@ -84,5 +87,13 @@ public class Message {
 
 	public void setDatePosted(LocalDateTime datePosted) {
 		this.datePosted = datePosted;
+	}
+
+	public int isRead() {
+		return isRead;
+	}
+
+	public void setRead(int read) {
+		isRead = read;
 	}
 }
