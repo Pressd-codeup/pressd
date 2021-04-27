@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('uploads')"></head>
+<head th:replace="fragments/header :: main-head('Upload')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<input type="file" id="input_img" th:onchange="fileChange()" accept="image/*">
+<input class="submit-button" type="file" id="input_img" th:onchange="fileChange()" accept="image/*">
 
 <div id="json"></div>
 
 <form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
     <input type="hidden" name="directory" th:value="${directory}">
     <input type="hidden" name="url" id="url">
-    <input type="submit" value="Upload your image!">
+    <input class="submit-button" type="submit" value="Upload your image!">
 </form>
 
 <script type="text/javascript" src="/keys.js"></script>

@@ -46,15 +46,46 @@ public class MessageController {
         return "messages/index";
     }
 
+    /*
+    @GetMapping("/fragments/navbar")
+    public String showMessageAlert(Model viewModel) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getOne(currentUser.getId());
+        List<Message> messages = messageDao.findAllBySentTo(user);
+        boolean unreadMessages = false;
+        for (Message message : messages) {
+            if (message.isRead() == 0) {
+                unreadMessages = true;
+                break;
+            }
+        }
+        viewModel.addAttribute("unreadMessages", unreadMessages);
+        System.out.println("UNREAD = " + unreadMessages);
+        return "fragments/navbar";
+    }
+
+     */
+
     @GetMapping("/messages/{id}")
     public String showMessageThread(Model viewModel, @PathVariable long id) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        User dbUser = userDao.getOne(currentUser.getId());
+
         User otherUser = userDao.getOne(id);
+        List<Message> readMessages = messageDao.findAllBySentTo(dbUser);
+
+        for (Message message : readMessages) {
+            if (message.isRead() == 0) {
+                message.setRead(1);
+                messageDao.save(message);
+            }
+        }
 
         List<Message> m1 = messageDao.findAllBySentFromIsAndSentToIs(currentUser, otherUser);
         List<Message> m2 = messageDao.findAllBySentFromIsAndSentToIs(otherUser, currentUser);
+
         List<Message> messages = messageDao.makeThread(m1, m2);
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
         viewModel.addAttribute("messages", messages);

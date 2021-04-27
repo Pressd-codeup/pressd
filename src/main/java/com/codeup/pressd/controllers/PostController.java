@@ -166,7 +166,6 @@ public class PostController {
 	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId) {
 
 
-
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userDao.getOne(currentUser.getId());
 

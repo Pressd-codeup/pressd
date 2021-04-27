@@ -1,14 +1,8 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.SecurityConfiguration;
-import com.codeup.pressd.models.Image;
-import com.codeup.pressd.models.Post;
-import com.codeup.pressd.models.User;
-import com.codeup.pressd.models.Workout;
-import com.codeup.pressd.repository.ImageRepository;
-import com.codeup.pressd.repository.PostRepository;
-import com.codeup.pressd.repository.UserRepository;
-import com.codeup.pressd.repository.WorkoutRepository;
+import com.codeup.pressd.models.*;
+import com.codeup.pressd.repository.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,16 +15,21 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    private UserRepository userDao;
+    private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
     private final ImageRepository imageDao;
+    private final PostRepository postDao;
+    private final WorkoutRepository workoutDao;
+    private final CommentRepository commentDao;
 
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao, PostRepository postDao, WorkoutRepository workoutDao, CommentRepository commentDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.imageDao = imageDao;
-
+        this.postDao = postDao;
+        this.workoutDao = workoutDao;
+        this.commentDao = commentDao;
     }
 
     @GetMapping("/sign-up")
@@ -58,41 +57,80 @@ public class UserController {
     @GetMapping("/users/edit")
     public String profileEditor(Model viewModel) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long currentImageId = currentUser.getAvatarId();
-        Image currentImage = imageDao.getOne(currentImageId);
+        User user = userDao.getOne(currentUser.getId());
+        long userId = currentUser.getId();
+        long currentUserAvatarId = user.getAvatarId();
+        Image currentImage = imageDao.getOne(currentUserAvatarId);
         User defaultUser = userDao.getOne(1L);
-        List<Image> userImages = imageDao.findImagesByUser(currentUser);
+        List<Image> userImages = imageDao.findImagesByUser(user);
         List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
         userImages.addAll(defaultImages);
         userImages.remove(currentImage);
-        viewModel.addAttribute("currentImage", currentImage);
-        viewModel.addAttribute("user", currentUser);
 
+        viewModel.addAttribute("userId", userId);
+        viewModel.addAttribute("currentImage", currentImage);
+        viewModel.addAttribute("userImages", userImages);
+        viewModel.addAttribute("user", user);
         return "users/editProfile";
 
     }
 
     @PostMapping("/users/edit")
-    public String saveEditProfile(@ModelAttribute User user) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user.setAbout("Tell people about you!");
-        user.setPosts(new ArrayList<>());
-        user.setDateJoined(LocalDateTime.now());
-        user.setAvatarId(1L);
+    public String saveEditProfile(@RequestParam(name = "userId") long userId, @RequestParam(name = "about") String about, @RequestParam(name = "password") String password, @RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "avatarId") long avatarId) {
+        User currentUser = userDao.getOne(userId);
+        String hash = passwordEncoder.encode(password);
+        currentUser.setPassword(hash);
+        currentUser.setUsername(username);
+        currentUser.setAbout(about);
+        currentUser.setEmail(email);
+        LocalDateTime dateJoined = currentUser.getDateJoined();
+        currentUser.setAvatarId(avatarId);
+        currentUser.setDateJoined(dateJoined);
         userDao.save(currentUser);
-        return "redirect:/users/show";
+
+        return "redirect:/users/" + userId;
     }
 
     @GetMapping("/users/{id}")
     public String showProfile(@PathVariable long id, Model viewModel) {
+
         User user = userDao.getOne(id);
         long avatarId = user.getAvatarId();
         Image avatar = imageDao.getOne(avatarId);
+        List post = postDao.getPostsByUser(user);
 
+        viewModel.addAttribute("post", post);
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("avatar", avatar);
         return "users/show";
     }
 
+    @GetMapping("/{id}/posts")
+    public String showUsersPosts(@PathVariable long id, Model viewModel) {
+        User user = userDao.getOne(id);
+        List<Post> post = postDao.getPostsByUser(user);
+        viewModel.addAttribute("user", user);
+        viewModel.addAttribute("posts", post);
+        return "users/posts";
+    }
 
+    @GetMapping("/{id}/workouts")
+    public String showUsersWorkouts(@PathVariable long id, Model viewModel) {
+        User user = userDao.getOne(id);
+        List<Workout> workout = workoutDao.getWorkoutsByUser(user);
+        viewModel.addAttribute("user", user);
+        viewModel.addAttribute("workouts", workout);
+        return "users/workouts";
+    }
+
+    @GetMapping("/{id}/comments")
+    public String showUsersComments(@PathVariable long id, Model viewModel) {
+        User user = userDao.getOne(id);
+        List<Workout> workout = workoutDao.getWorkoutsByUser(user);
+       List<Comment> comment = commentDao.getCommentsByUser(user);
+        viewModel.addAttribute("user", user);
+        viewModel.addAttribute("comments", comment);
+        viewModel.addAttribute("workouts", workout);
+        return "users/comments";
+    }
 }

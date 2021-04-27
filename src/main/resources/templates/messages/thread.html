@@ -1,36 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="thread" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Workouts')"></head>
-<body>
+<body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<main class="container">
-    <div class="post" th:each="message : ${messages}">
-      <div th:switch="${message.sentFrom.id}">
-        <div th:case="${currentUser.id}">
-          <div style="background: #007bff; color: white">
-            <small>You</small>
-            <br>
-            <small th:text="${shortF.format(message.datePosted)}"></small>
-            <p th:text="${message.body}" style="color: white"></p>
-          </div>
+<main class="container mesgs">
+        <!--YOUR MESSAGES-->
+        <div class="incoming_msg" th:each="message : ${messages}">
+            <!--USER IMAGE-->
+<!--            <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>-->
+            <div class="received_msg" th:switch="${message.sentFrom.id}">
+                <div class="received_withd_msg" th:case="${currentUser.id}">
+                    <div>
+                    <p th:text="${message.body}"></p>
+                    <small>You</small>
+                    <span class="time_date"> <small th:text="${shortF.format(message.datePosted)}"></small></span>
+                </div>
+                <!--                <div th:case="${currentUser.id}">-->
+            </div>
+
+            <!--OTHER USER'S MESSAGES-->
+            <div class="outgoing_msg" th:case="*">
+                <div class="sent_msg">
+                    <p th:text="${message.body}"></p>
+                    <small th:text="${message.sentFrom.username}"></small>
+                    <br>
+                    <span class="time_date"><small th:text="${shortF.format(message.datePosted)}"></small></span>
+                </div>
+            </div>
         </div>
-        <div th:case="*">
-          <div style="background: #28a745; color: white">
-            <small th:text="${message.sentFrom.username}"></small>
-            <br>
-            <small th:text="${shortF.format(message.datePosted)}"></small>
-            <p th:text="${message.body}" style="color: white"></p>
-          </div>
-        </div>
-      </div>
     </div>
 </main>
 
+
+
+
 <footer th:replace="fragments/footer :: main-footer"></footer>
-<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossOrigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossOrigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossOrigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
 </html>

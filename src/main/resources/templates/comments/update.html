@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('update post')"></head>
 <body>
-<h1>UPDATE HERE</h1>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<div>
+    <form th:action="${'/comments/'+ oldComment.id +'/update'}" method="post">
+
+        <h2>Update your Comment</h2>
+
+        <label for="body">Description</label>
+        <input name="body" id="body" type="text" th:value="${oldComment.body}">
+
+        <br>
+
+        <input class="submit-button" type="submit" value="update comment">
+
+    </form>
+</div>
 </body>
 </html>

@@ -109,6 +109,7 @@
 
                     <!--Grid column-->
                     <!--Grid column-->
+
                     <div class="col-md-6 col-xl-5 mb-4"><!--th:if="${post.id == 0}"-->
                         <!--Form-->
 
@@ -130,7 +131,7 @@
                                     <p class="text-white">Want to upload more pictures to use? Do it </p>
                                     <form method="get" th:action="@{/images/upload}">
                                         <input type="hidden" name="directory" value="createWorkoutImage">
-                                        <input class="btn" style="color: white; background: indigo" type="submit"
+                                        <input class="submit-button" type="submit"
                                                value="here!"/>
                                     </form>
                                     <hr class="hr-light">
@@ -208,7 +209,7 @@
 
 
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn btn-indigo"
+                                        <button type="submit" class="submit-button"
                                                 style="color: white; background: indigo">Submit Post
                                         </button>
                                         <hr class="hr-light mb-3 mt-4">

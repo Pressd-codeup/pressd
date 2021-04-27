@@ -40,45 +40,45 @@
 <img th:src="@{${currentImage.url}}" alt="Your current post image" id="currentImage">
 <br>
 <div style="display: flex">
-    <p>Want to upload more pictures to use? Do it   </p>
+    <p>Want to upload more pictures to use? Do it </p>
     <form method="get" th:action="@{/images/upload}">
         <input type="hidden" name="directory" value="updatePostImage">
         <input type="submit" value="here!"/>
     </form>
 </div>
 <br>
+<div>
+    <form th:action="@{/posts/{id}/update(id=${post.getId()})}" method="post">
 
-<form th:action="@{/posts/{id}/update(id=${post.getId()})}" method="post">
-
-    <div style="display: flex; width: 33%; flex-wrap: wrap">
-        <label>
-            <input type="radio" name="imageId" th:value="${currentImage.id}" checked>
-            <img th:src="@{${currentImage.url}}">
-        </label>
-        <div th:each="image : ${userImages}">
+        <div style="display: flex; width: 33%; flex-wrap: wrap">
             <label>
-                <input type="radio" name="imageId" th:value="${image.id}">
-                <img th:src="@{${image.url}}">
+                <input type="radio" name="imageId" th:value="${currentImage.id}" checked>
+                <img th:src="@{${currentImage.url}}">
             </label>
+            <div th:each="image : ${userImages}">
+                <label>
+                    <input type="radio" name="imageId" th:value="${image.id}">
+                    <img th:src="@{${image.url}}">
+                </label>
+            </div>
         </div>
-    </div>
-    <br>
+        <br>
 
-    <label for="title">Title</label>
-    <input id="title" name="title" required>
-    <p>Your previous title: <span th:text="${post.getTitle()}"></span></p>
+        <label for="title">Title</label>
+        <input id="title" name="title" required>
+        <p>Your previous title: <span th:text="${post.getTitle()}"></span></p>
 
-    <br>
+        <br>
 
-    <label for="body">Body</label>
-    <input id="body" name="body" required>
-    <p>Your previous body: <span th:text="${post.getBody()}"></span></p>
-    <br>
+        <label for="body">Body</label>
+        <input id="body" name="body" required>
+        <p>Your previous body: <span th:text="${post.getBody()}"></span></p>
+        <br>
 
-    <input type="submit" value="Update Post!">
+        <input type="submit" class="submit-button" value="Update Post!">
 
-</form>
-
+    </form>
+</div>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>

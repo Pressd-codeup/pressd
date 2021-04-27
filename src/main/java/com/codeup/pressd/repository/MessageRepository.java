@@ -22,6 +22,8 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 		return result;
 	}
 
+	List<Message> findAllBySentTo(User user);
+
 	/*
 	static void quickSort(List<Message> messages, int low, int high) {
 		if (low < high) {

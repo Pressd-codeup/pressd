@@ -4,55 +4,72 @@
 </head>
 <body>
 <nav th:fragment="mainNav" class="navbar navbar-expand-lg" style="color: red">
-    <a class="navbar-brand" href="/home">Pressd</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" th:href="@{~/home}">Pressd</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/posts">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="planDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="planDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Plans
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/workouts">View Workout Plans</a>
-                    <a class="dropdown-item" href="/workouts/create">Create a Plan</a>
+                    <a class="dropdown-item" th:href="@{~/workouts}">View Workout Plans</a>
+                    <a class="dropdown-item" th:href="@{~/workouts/create}">Create a Plan</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/posts/create">Create</a>
-            </li>
+
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="findDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="findDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Find
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/coaches">Trainers</a>
-                    <a class="dropdown-item" href="/partners">Buddies</a>
+                    <a class="dropdown-item" th:href="@{~/coaches}">Trainers</a>
+                    <a class="dropdown-item" th:href="@{~/partners}">Buddies</a>
+                    <a class="dropdown-item" th:href="@{~/clients}">Clients</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/clients">Clients</a>
+                    <a class="dropdown-item" th:href="@{~/posts/create}">Create a Post</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{users/edit/}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/messages">Inbox</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/sign-up">Sign-up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/users/edit/}">Dashboard</a>
+                </li>
+                <li class="nav-item" th:if="${unreadMessages}">
+                    <a class="nav-link" th:href="@{~/messages}">Inbox<span><i class="fas fa-envelope" style="color: #5b21a9"></i></span></a>
+                </li>
+                <li class="nav-item" th:unless="${unreadMessages}">
+                    <a class="nav-link" th:href="@{~/messages}">Inbox</a>
+                </li>
+            </th:block>
+
+
+            <th:block sec:authorize="!isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/sign-up}">Sign-up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/login}">Login</a>
+                </li>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <li>
+                    <form th:action="@{/logout}" th:method="POST">
+                        <button id="logout">Logout</button>
+                    </form>
+                </li>
+            </th:block>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+        <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="term" aria-label="Search">
+            <button class="submit-button" type="submit">Search</button>
         </form>
     </div>
 </nav>
