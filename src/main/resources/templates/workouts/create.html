@@ -64,12 +64,12 @@
                                     <p class="text-white">Want to upload more pictures to use? </p>
 
                                     <div class="text-white">Do it
-                                    <form method="get" th:action="@{/images/upload}">
-                                        <input type="hidden" name="directory" value="createWorkoutImage">
-                                        <input class="btn submit-button" type="submit"
-                                               value="here!"/>
-                                    </form>
-                                        </div>
+                                        <form method="get" th:action="@{/images/upload}">
+                                            <input type="hidden" name="directory" value="createWorkoutImage">
+                                            <input class="btn submit-button" type="submit"
+                                                   value="here!"/>
+                                        </form>
+                                    </div>
                                     <hr class="hr-light">
                                 </div>
                                 <!--Body-->
@@ -174,15 +174,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </form>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </header>
 <footer th:replace="fragments/footer :: main-footer"></footer>
