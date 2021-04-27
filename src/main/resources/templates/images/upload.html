@@ -3,7 +3,10 @@
 <head th:replace="fragments/header :: main-head('Upload')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<input class="submit-button" type="file" id="input_img" th:onchange="fileChange()" accept="image/*">
+<label class="submit-button">
+    <input type="file" id="input_img" th:onchange="fileChange()" accept="image/*" style="display: none">
+    Select image to upload
+</label>
 
 <div id="json"></div>
 
@@ -15,5 +18,6 @@
 
 <script type="text/javascript" src="/keys.js"></script>
 <script type="text/javascript" th:src="@{/js/cssandjs/upload.js}"></script>
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
