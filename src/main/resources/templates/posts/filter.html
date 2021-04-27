@@ -103,25 +103,21 @@
 								<form name="filter_form" th:action="@{/posts/filter}" th:method="post"
 									  th:object="${filter}">
 									<input th:field="*{params}" type="hidden" id="params">
-									<div class="dropdown" style="margin: 20px" th:field="${type_name}">
-										<button type="button"
-												class="btn btn-indigo text-center btn-outline-danger dropdown-toggle"
-												data-toggle="dropdown">
-											Type
-										</button>
-										<div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">
-											<label for="type1" class="form-lable">Partners</label>
-											<input class="dropdown-item" type="radio" name="type_name" value="partners"
-												   id="type1">
-											<label for="type2" class="form-lable">Coaches</label>
-											<input class="dropdown-item" type="radio" name="type_name" value="coaches"
-												   id="type2">
-											<label for="type3" class="form-lable">Clients</label>
-											<input class="dropdown-item" type="radio" name="type_name" value="clients"
-												   id="type3">
-										</div>
+									<div style="margin: 20px" th:field="${type_name}">
+										<div>What type of post is this?</div>
+										<br>
+										<label for="type1" class="form-label-2">Looking for Partners</label>
+										<input type="radio" name="type_name" value="Partners"
+											   id="type1" checked>
+										<br>
+										<label for="type2" class="form-label-2">Looking for Coaches</label>
+										<input type="radio" name="type_name" value="Coaches"
+											   id="type2">
+										<br>
+										<label for="type3" class="form-label-2">Looking for Clients</label>
+										<input type="radio" name="type_name" value="Clients"
+											   id="type3">
 										<div class="text-center mt-4">
-											<button class="btn btn-indigo" type="button" value="Set Filter" id="set_filter">Confirm</button>
 											<input class="btn btn-indigo" type="submit" value="submit" id="submit">
 											<hr class="hr-light mb-3 mt-4">
 											<div class="inline-ul text-center d-flex justify-content-center">
@@ -130,6 +126,12 @@
 									</div>
 
 								</form>
+								<div class="text-center mt-4">
+									<button class="btn btn-indigo" type="button" value="Set Filter" id="set_filter">Confirm</button>
+									<hr class="hr-light mb-3 mt-4">
+									<div class="inline-ul text-center d-flex justify-content-center">
+									</div>
+								</div>
 							</div>
 
 						</div>
