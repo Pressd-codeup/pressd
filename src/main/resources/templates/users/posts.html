@@ -5,7 +5,7 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <main class="container">
-    <h1>user's posts</h1>
+    <h1 th:text="${user.username +' Posts'}"></h1>
     <div class="post" th:each="post : ${posts}">
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>

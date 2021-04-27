@@ -5,15 +5,16 @@
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
 <main class="container">
-<!--    <div class="post" th:each="workout : ${workouts}">-->
-<!--        <h1 th:text="${workout.title}"></h1>-->
-<!--        <p th:text="${workout.body}"></p>-->
-<!--        <small th:text="${shortF.format(workout.datePosted)}"></small>-->
-<!--        <form th:action="${'/workouts/'+ workout.id}" method="GET">-->
-<!--            <input type="submit" value="View Plan">-->
-<!--        </form>-->
-<!--    </div>-->
-    <h1>user's workouts</h1>
+    <h1 th:text="${user.username +' Workouts'}"></h1>
+    <div class="post" th:each="workout : ${workouts}">
+        <h1 th:text="${workout.title}"></h1>
+        <p th:text="${workout.body}"></p>
+        <small th:text="${workout.datePosted}"></small>
+        <form th:action="${'/workouts/'+ workout.id}" method="GET">
+            <input type="submit" value="View Plan">
+        </form>
+    </div>
+
 </main>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
