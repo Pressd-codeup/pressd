@@ -52,16 +52,15 @@
                     </div>
                     <div class="row">
 
-                        <!--POST-->
-                        <div class="post" th:each="post : ${posts.users}">
-                            <h1 th:text="${post.title}"></h1>
-                            <p th:text="${post.body}"></p>
-                            <small th:text="${shortF.format(post.datePosted)}"></small>
-                            <form th:action="${'/posts/'+ post.id}" method="GET">
-                                <input type="submit" value="View Post">
-                            </form>
-                        </div>
-
+                        <form th:action="@{'/posts'}">
+                            <input type="submit" value="view user's posts">
+                        </form>
+                        <form th:action="@{'/workouts'}">
+                            <input type="submit" value="view user's posts">
+                        </form>
+                        <form th:action="@{'/comments/index'}">
+                            <input type="submit" value="view user's posts">
+                        </form>
                         <form th:action="@{'/messages/send/' +${id}}" method="GET">
                             <input type="submit" value="message user">
                         </form>

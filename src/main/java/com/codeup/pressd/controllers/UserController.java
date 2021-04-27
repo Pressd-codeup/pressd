@@ -95,6 +95,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public String showProfile(@PathVariable long id, Model viewModel) {
+
         User user = userDao.getOne(id);
         long avatarId = user.getAvatarId();
         Image avatar = imageDao.getOne(avatarId);
