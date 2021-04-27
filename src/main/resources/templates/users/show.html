@@ -13,7 +13,8 @@
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="media align-items-end profile-head">
                         <div class="profile mr-3">
-                            <img th:src="@{${avatar.url}}" alt="..." class="rounded mb-2 img-thumbnail" style="height: 130px; width: 130px">
+                            <img th:src="@{${avatar.url}}" alt="..." class="rounded mb-2 img-thumbnail"
+                                 style="height: 130px; width: 130px">
                             <a th:href="@{/users/edit}" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
                         </div>
                         <div class="media-body mb-5 text-white">
@@ -51,16 +52,18 @@
                     </div>
                     <div class="row">
 
-                        <!--                        &lt;!&ndash;POST&ndash;&gt;-->
-                        <!--                        <div th:each="post : ${posts}" class="container">-->
-                        <!--                            <h1 th:text="${post.getTitle()}"></h1>-->
-                        <!--                            <p th:text="${post.getBody()}"></p>-->
-                        <!--                            <p th:text="${post.getUser().getEmail()}"></p>-->
-                        <!--                            <form th:action="@{/posts/{id}(id=${post.getId()})}" method="GET">-->
-                        <!--                                <input type="submit" value="View Post">-->
-                        <!--                            </form>-->
-                        <!--                        </div>-->
-
+                        <form th:action="@{/{id}/posts(id=${user.getId()})}" method="get">
+                            <input type="submit" value="view user's posts">
+                        </form>
+                        <form th:action="@{/{id}/workouts(id=${user.getId()})}" method="get">
+                            <input type="submit" value="view user's workouts">
+                        </form>
+<!--                        <form th:action="@{'/users/'+user.id+'/images'}">-->
+<!--                            <input type="submit" value="view user's posts">-->
+<!--                        </form>-->
+                        <form th:action="@{/{id}/comments(id=${user.getId()})}" method="get">
+                            <input type="submit" value="view user's comments">
+                        </form>
                         <form th:action="@{'/messages/send/' +${id}}" method="GET">
                             <input type="submit" class="submit-button" value="message user">
                         </form>
