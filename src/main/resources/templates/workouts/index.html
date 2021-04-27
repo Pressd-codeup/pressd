@@ -39,7 +39,7 @@
                         <p class="text-white" th:text="${workout.body}"></p>
                         <small class="text-white" th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
                         <form th:action="${'/workouts/'+ workout.id}" method="GET">
-                            <input class="btn-card" type="submit" value="View Plan">
+                            <input class="submit-button" type="submit" value="View Plan">
                         </form>
                     </div>
                 </div>

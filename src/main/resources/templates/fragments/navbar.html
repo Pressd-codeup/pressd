@@ -61,9 +61,9 @@
             </th:block>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0" style="background-color: #480f90; color: white" type="submit">Search</button>
+        <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="term" aria-label="Search">
+            <button class="submit-button" type="submit">Search</button>
         </form>
     </div>
 </nav>

@@ -18,7 +18,7 @@
 <!-- Jumbotron Header -->
 
 <div class="jumbotron bg-dark text-white view-login">
-    <h1 class="display-4 recent-post">Recent Post</h1>
+    <h1 class="display-4 recent-post">Recent Posts</h1>
     <!--    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>-->
     <!--    <hr class="my-4">-->
     <!--    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
@@ -42,11 +42,11 @@
                         <h3 class="text-white" th:text="${post.title}"></h3>
                         <p class="text-white" th:text="${post.body}"></p>
                         <form th:action="${'/posts/'+ post.id}" method="GET">
-                            <input class="btn-card" type="submit" value="view posts">
+                            <input class="submit-button" type="submit" value="View Post">
                         </form>
                         <br>
                         <form th:action="${'/users/'+ post.user.id}" method="GET">
-                            <input class="btn-card" type="submit" value="View user">
+                            <input class="submit-button" type="submit" value="View User">
                         </form>
                         <!--                        <a href="#" class="btn-card">Read</a>-->
                     </div>

@@ -168,7 +168,7 @@
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
                                             </select>
-                                            <input type="submit" value="Submit your rating!">
+                                            <input class="submit-button" type="submit" value="Submit your rating!">
                                         </form>
                                         <div th:unless="${userRating} == 0">
                                             <p>Your current rating:</p>
@@ -186,25 +186,25 @@
                                                     <option value="5">5</option>
                                                 </select>
 
-                                                <input type="submit" value="Update your rating!">
+                                                <input class="submit-button" type="submit" value="Update your rating!">
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="btn-group mr-2" role="group" aria-label="Second group">
                                     <form th:action="${'/workouts/'+id+'/update'}" method="GET">
-                                        <input class="btn-card" type="submit" value="edit workout">
+                                        <input class="submit-button" type="submit" value="edit workout">
                                     </form>
                                     <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
-                                        <input class="btn-card" type="submit" value="View Comments">
+                                        <input class="submit-button" type="submit" value="View Comments">
                                     </form>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Third group">
                                     <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
-                                        <input class="btn-card" type="submit" value="delete workout">
+                                        <input class="submit-button" type="submit" value="delete workout">
                                     </form>
                                     <form th:action="${'/users/'+ workout.user.id}" method="GET">
-                                        <input class="btn-card" type="submit" value="View User">
+                                        <input class="submit-button" type="submit" value="View User">
                                     </form>
                                 </div>
                             </div>
