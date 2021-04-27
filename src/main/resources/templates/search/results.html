@@ -57,7 +57,7 @@
                             <small class="text-white"
                                    th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
                             <form th:action="${'/workouts/'+ workout.id}" method="GET">
-                                <input class="btn-card" type="submit" value="View Plan">
+                                <input class="submit-button" type="submit" value="View Plan">
                             </form>
                             <br>
                             <form th:action="${'/users/'+ workout.user.id}" method="GET">
@@ -74,8 +74,8 @@
     <h4 class="text-white">No workouts found matching your search.</h4>
 </div>
 <br>
+<h2 class="text-white">Users:</h2>
 <div th:if="${usersFound}">
-    <h2 class="text-white">Users:</h2>
     <section class="details-card">
         <div class="container post col-lg-6 col-12 m-0 float-left" th:each="user : ${users}">
             <div class="row-12 m-0 ">

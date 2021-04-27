@@ -10,7 +10,7 @@
         <p th:text="${workout.body}"></p>
         <small th:text="${shortF.format(workout.datePosted)}"></small>
         <form th:action="${'/workouts/'+ workout.id}" method="GET">
-            <input type="submit" value="View Plan">
+            <input type="submit" class="submit-button" value="View Plan">
         </form>
     </div>
 </main>
