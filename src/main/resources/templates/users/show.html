@@ -52,14 +52,17 @@
                     </div>
                     <div class="row">
 
-                        <form th:action="@{'/posts'}">
+                        <form th:action="@{/{id}/posts(id=${user.getId()})}" method="get">
                             <input type="submit" value="view user's posts">
                         </form>
-                        <form th:action="@{'/workouts'}">
-                            <input type="submit" value="view user's posts">
+                        <form th:action="@{/{id}/workouts(id=${user.getId()})}" method="get">
+                            <input type="submit" value="view user's workouts">
                         </form>
-                        <form th:action="@{'/comments/index'}">
-                            <input type="submit" value="view user's posts">
+<!--                        <form th:action="@{'/users/'+user.id+'/images'}">-->
+<!--                            <input type="submit" value="view user's posts">-->
+<!--                        </form>-->
+                        <form th:action="@{/{id}/comments(id=${user.getId()})}" method="get">
+                            <input type="submit" value="view user's comments">
                         </form>
                         <form th:action="@{'/messages/send/' +${id}}" method="GET">
                             <input type="submit" value="message user">

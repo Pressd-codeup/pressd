@@ -1,14 +1,8 @@
 package com.codeup.pressd.controllers;
 
 import com.codeup.pressd.SecurityConfiguration;
-import com.codeup.pressd.models.Image;
-import com.codeup.pressd.models.Post;
-import com.codeup.pressd.models.User;
-import com.codeup.pressd.models.Workout;
-import com.codeup.pressd.repository.ImageRepository;
-import com.codeup.pressd.repository.PostRepository;
-import com.codeup.pressd.repository.UserRepository;
-import com.codeup.pressd.repository.WorkoutRepository;
+import com.codeup.pressd.models.*;
+import com.codeup.pressd.repository.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,13 +19,17 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final ImageRepository imageDao;
     private final PostRepository postDao;
+    private final WorkoutRepository workoutDao;
+    private final CommentRepository commentDao;
 
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao, PostRepository postDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao, PostRepository postDao, WorkoutRepository workoutDao, CommentRepository commentDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.imageDao = imageDao;
         this.postDao = postDao;
+        this.workoutDao = workoutDao;
+        this.commentDao = commentDao;
     }
 
     @GetMapping("/sign-up")
@@ -107,5 +105,27 @@ public class UserController {
         return "users/show";
     }
 
+    @GetMapping("/{id}/posts")
+    public String showUsersPosts(@PathVariable long id, Model viewModel) {
+        User user = userDao.getOne(id);
+        List<Post> post = postDao.getPostsByUser(user);
+        viewModel.addAttribute("posts", post);
+        return "users/posts";
+    }
 
+    @GetMapping("/{id}/workouts")
+    public String showUsersWorkouts(@PathVariable long id, Model viewModel) {
+        User user = userDao.getOne(id);
+        List<Workout> workout = workoutDao.getWorkoutsByUser(user);
+        viewModel.addAttribute("workouts", workout);
+        return "users/workouts";
+    }
+
+    @GetMapping("/{id}/comments")
+    public String showUsersComments(@PathVariable long id, Model viewModel) {
+        User user = userDao.getOne(id);
+       List<Comment> comment = commentDao.getCommentsByUser(user);
+        viewModel.addAttribute("comments", comment);
+        return "users/comments";
+    }
 }
