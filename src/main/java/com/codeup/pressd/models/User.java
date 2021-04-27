@@ -43,7 +43,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Workout> workouts;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "user")
 	private List<Comment> comments;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sentTo")

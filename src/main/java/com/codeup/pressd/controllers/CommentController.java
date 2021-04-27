@@ -4,6 +4,7 @@ package com.codeup.pressd.controllers;
 import com.codeup.pressd.models.*;
 import com.codeup.pressd.repository.*;
 import org.dom4j.rule.Mode;
+import org.hibernate.Hibernate;
 import org.hibernate.jdbc.Work;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -45,12 +46,27 @@ public class CommentController {
     @PostMapping("/workouts/{id}/comments/create")
     public String createComment(@PathVariable long id, @ModelAttribute Comment comment, @RequestParam(name = "body") String body) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User dbUser = userDao.getOne(user.getId());
         Workout workout = workoutDao.getOne(id);
-        comment.setUser(user);
+        comment.setUser(dbUser);
         comment.setWorkout(workout);
         comment.setDatePosted(LocalDateTime.now());
+        List<Comment> allComments = commentDao.findAll();
+        comment.setId(allComments.size() + 1);
+        Hibernate.initialize(workout.getComments());
+        Hibernate.initialize(dbUser.getComments());
+        List<Comment> workoutComments = workout.getComments();
+        List<Comment> userComments = dbUser.getComments();
+//        Hibernate.initialize(workoutComments);
+//        Hibernate.initialize(userComments);
+        workoutComments.add(comment);
+        userComments.add(comment);
+        workout.setComments(workoutComments);
+        dbUser.setComments(userComments);
+        userDao.save(dbUser);
+        workoutDao.save(workout);
         commentDao.save(comment);
-        return "redirect:/workouts";
+        return "redirect:/workouts/"+id+"/comments";
     }
 
     @GetMapping("/comments/{id}/update")
