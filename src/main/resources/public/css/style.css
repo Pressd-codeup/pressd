@@ -1036,6 +1036,9 @@ a.btn-card {
     background-position: center center;
 }
 
+.workout-text {
+    color: #fff;
+}
 
 
 /*END OF VIEW POST CSS (show.html) */

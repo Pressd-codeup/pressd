@@ -33,6 +33,9 @@
         $('span.stars').stars();
     });
 </script>
+
+<!--ORIGINAL CODE-->
+
 <!--<body>-->
 <!--<nav th:replace="fragments/navbar :: mainNav"></nav>-->
 <!--<main class="container">-->
@@ -147,11 +150,11 @@
                                 <hr class="hr-light">
                             </div>
                             <!--Header-->
-                            <div class="card-body">
-                                <p th:text="${workout.body}"></p>
+                            <div class="card-body workout">
+                                <p class="workout-text" th:text="${workout.body}"></p>
                                 <span class="stars" th:text="${rating}"></span>
-                                <p><span th:text="${df.format(rating)}"></span>/5</p>
-                                <p>Total ratings: <span     th:text="${totalRatings}"></span></p>
+                                <p class="workout-text"><span th:text="${df.format(rating)}"></span>/5</p>
+                                <p class="workout-text">Total ratings: <span th:text="${totalRatings}"></span></p>
                                 <div th:if="${isLoggedIn}">
                                     <div th:if="${userRating} == 0">
                                         <p>You haven't rated this workout yet!</p>
@@ -167,20 +170,52 @@
                                             </select>
                                             <input type="submit" value="Submit your rating!">
                                         </form>
+                                        <div th:unless="${userRating} == 0">
+                                            <p>Your current rating:</p>
+                                            <span class="stars" th:text="${userRating}"></span>
+                                            <p><span th:text="${userRating}"></span>/5</p>
 
+                                            <form th:action="@{/ratings/{id}/update(id=${workout.getId()})}"
+                                                  method="post">
+                                                <label for="newRating">Change your rating? </label>
+                                                <select name="newRating" id="newRating">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+
+                                                <input type="submit" value="Update your rating!">
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <form th:action="${'/workouts/'+id+'/update'}" method="GET">
+                                        <input class="btn-card" type="submit" value="edit workout">
+                                    </form>
+                                    <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
+                                        <input class="btn-card" type="submit" value="View Comments">
+                                    </form>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Third group">
+                                    <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
+                                        <input class="btn-card" type="submit" value="delete workout">
+                                    </form>
+                                    <form th:action="${'/users/'+ workout.user.id}" method="GET">
+                                        <input class="btn-card" type="submit" value="View User">
+                                    </form>
+                                </div>
                             </div>
-
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-
-</main>
 </body>
 </html>
