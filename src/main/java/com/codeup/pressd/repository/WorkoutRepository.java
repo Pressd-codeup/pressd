@@ -14,4 +14,6 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
 	List<Workout> getWorkoutsByCategoriesContaining(Category category);
 	List<Workout> findAllById(long id);
 	List<Workout> getWorkoutsByUser(User user);
+
+	List<Workout> findAllByTitleIsLikeOrBodyIsLike(String term, String term2);
 }

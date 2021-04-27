@@ -23,13 +23,13 @@
 </div>
 <div>
     <form th:action="${'/comments/'+id+'/update'}" method="GET">
-        <input type="submit" value="edit comments">
+        <input class="submit-button" type="submit" value="edit comments">
     </form>
     <form th:action="${'/workouts/'+ id + '/comments/create'}" method="GET">
-        <input type="submit" value="add comment">
+        <input class="submit-button" type="submit" value="add comment">
     </form>
     <form th:action="${'/comments/'+id+'/delete'}" method="GET">
-        <input type="submit" value="delete comment">
+        <input class="submit-button" type="submit" value="delete comment">
     </form>
 </div>
 

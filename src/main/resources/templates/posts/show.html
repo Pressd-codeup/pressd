@@ -98,13 +98,13 @@
                                 <!--BUTTONS-->
                                 <div class="btn-group btn-group-lg" role="group">
                                     <form th:action="${'/users/'+ post.user.id}" method="GET">
-                                        <input class="btn-card" type="submit" value="View user">
+                                        <input class="submit-button" type="submit" value="View user">
                                     </form>
                                     <form th:action="${'/posts/'+ id +'/delete'}" method="POST">
-                                        <input class="btn-card" type="submit" value="delete post">
+                                        <input class="submit-button" type="submit" value="delete post">
                                     </form>
                                     <form th:action="${'/posts/'+ id +'/update'}" method="GET">
-                                        <input class="btn-card" type="submit" value="update post">
+                                        <input class="submit-button" type="submit" value="update post">
                                     </form>
                                 </div>
                             </div>

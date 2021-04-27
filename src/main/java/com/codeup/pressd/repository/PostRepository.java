@@ -12,4 +12,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 	List<Post> getPostsByTypeName(String type_name);
 	List<Post> getPostsByUser(User user);
+	List<Post> findAllByTitleIsLikeOrBodyIsLike(String term, String term2);
 }

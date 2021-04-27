@@ -26,7 +26,7 @@ public class Workout {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "workout")
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "workout")
 	private List<Comment> comments;
 
 	@ManyToOne(fetch = FetchType.LAZY)

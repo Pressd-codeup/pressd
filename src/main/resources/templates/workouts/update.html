@@ -45,7 +45,7 @@
     <p>Want to upload more pictures to use? Do it </p>
     <form method="get" th:action="@{/images/upload}">
         <input type="hidden" name="directory" value="updateworkoutImage">
-        <input type="submit" value="here!"/>
+        <input class="submit-button" type="submit" value="here!"/>
     </form>
 </div>
 <br>
@@ -77,9 +77,13 @@
         <p>Your previous body: <span th:text="${workout.getBody()}"></span></p>
         <br>
 
+<<<<<<< HEAD
         <div>
             <input type="submit" value="Update workout!">
         </div>
+=======
+        <input class="submit-button" type="submit" value="Update workout!">
+>>>>>>> a225b51deadc85143a8d7dd249c01c39217dcf27
     </form>
 </div>
 <footer th:replace="fragments/footer :: main-footer"></footer>
