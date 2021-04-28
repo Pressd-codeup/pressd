@@ -1,29 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Workouts')"></head>
-<body>
+<body class="">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<main class="container">
-    <div class="post" th:each="thread : ${threads}">
-        <a th:href="@{/messages/{id}(id=${thread.getId()})}">
-            <h5> Your messages with: <span th:text="${thread.getUsername()}"></span></h5>
-        </a>
-        <hr>
-    </div>
+<!--ORIGINAL CODE-->
 
-</main>
+<!--<main class="container">-->
+<!--    <div class="post" th:each="thread : ${threads}">-->
+<!--        <a th:href="@{/messages/{id}(id=${thread.getId()})}">-->
+<!--            <h5> Your messages with: <span th:text="${thread.getUsername()}"></span></h5>-->
+<!--        </a>-->
+<!--        <hr>-->
+<!--    </div>-->
 
-<footer th:replace="fragments/footer :: main-footer"></footer>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossOrigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossOrigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossOrigin="anonymous"></script>
-<script src="script.js"></script>
+<!--</main>-->
+
+<div class="messaging">
+    <div class="inbox_msg">
+        <div class="inbox_people">
+            <div class="headind_srch">
+                <div class="recent_heading">
+                    <h4>Recent</h4>
+                </div>
+<!--                <div class="srch_bar">-->
+<!--                    <div class="stylish-input-group">-->
+<!--                        <input type="text" class="search-bar" placeholder="Search">-->
+<!--                        <span class="input-group-addon">-->
+<!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
+<!--                </span></div>-->
+<!--                </div>-->
+            </div>
+            <div class="inbox_chat">
+                <div class="chat_list active_chat" th:each="thread : ${threads}">
+                    <div class="chat_people">
+                        <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                        </div>
+                        <div class="chat_ib posts">
+                            <a th:href="@{/messages/{id}(id=${thread.getId()})}">
+                                <h5> Your messages with:</h5>
+                                <span th:text="${thread.getUsername()}"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer th:replace="fragments/footer :: main-footer"></footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossOrigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossOrigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossOrigin="anonymous"></script>
+        <script src="script.js"></script>
 </body>
 </html>
