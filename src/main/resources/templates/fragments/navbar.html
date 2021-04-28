@@ -40,10 +40,7 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{~/users/edit/}">Dashboard</a>
                 </li>
-                <li class="nav-item" th:if="${unreadMessages}">
-                    <a class="nav-link" th:href="@{~/messages}">Inbox<span><i class="fas fa-envelope" style="color: #5b21a9"></i></span></a>
-                </li>
-                <li class="nav-item" th:unless="${unreadMessages}">
+                <li class="nav-item">
                     <a class="nav-link" th:href="@{~/messages}">Inbox</a>
                 </li>
             </th:block>

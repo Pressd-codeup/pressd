@@ -21,15 +21,17 @@ public class UserController {
     private final PostRepository postDao;
     private final WorkoutRepository workoutDao;
     private final CommentRepository commentDao;
+    private final MessageRepository messageDao;
 
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao, PostRepository postDao, WorkoutRepository workoutDao, CommentRepository commentDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ImageRepository imageDao, PostRepository postDao, WorkoutRepository workoutDao, CommentRepository commentDao, MessageRepository messageDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.imageDao = imageDao;
         this.postDao = postDao;
         this.workoutDao = workoutDao;
         this.commentDao = commentDao;
+        this.messageDao = messageDao;
     }
 
     @GetMapping("/sign-up")
@@ -93,13 +95,41 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public String showProfile(@PathVariable long id, Model viewModel) {
-
+        boolean isLoggedIn = false;
+        User currentUser = new User();
+        currentUser.setId(999999999);
+        try {
+            currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            isLoggedIn = true;
+        } catch (RuntimeException ignored) {
+        }
+        viewModel.addAttribute("isLoggedIn", isLoggedIn);
         User user = userDao.getOne(id);
+        List<Workout> userWorkouts = workoutDao.getWorkoutsByUser(user);
+        List<Post> userPosts = postDao.getPostsByUser(user);
+        List<Comment> userComments = commentDao.getCommentsByUser(user);
+        boolean noWorkouts = userWorkouts.isEmpty();
+        boolean noPosts = userPosts.isEmpty();
+        boolean noComments = userComments.isEmpty();
+        boolean isUser = (currentUser.getId() == id);
         long avatarId = user.getAvatarId();
         Image avatar = imageDao.getOne(avatarId);
-        List post = postDao.getPostsByUser(user);
 
-        viewModel.addAttribute("post", post);
+        List<Message> messages = messageDao.findAllBySentTo(user);
+        boolean unreadMessages = false;
+        for (Message message : messages) {
+            if (message.isRead() == 0) {
+                unreadMessages = true;
+                break;
+            }
+        }
+        viewModel.addAttribute("unreadMessages", unreadMessages);
+        viewModel.addAttribute("noWorkouts", noWorkouts);
+        viewModel.addAttribute("noPosts", noPosts);
+        viewModel.addAttribute("noComments", noComments);
+
+        viewModel.addAttribute("isUser", isUser);
+
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("avatar", avatar);
         return "users/show";
