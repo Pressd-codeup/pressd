@@ -63,8 +63,7 @@ public class CommentController {
         userComments.add(comment);
         workout.setComments(workoutComments);
         dbUser.setComments(userComments);
-        userDao.save(dbUser);
-        workoutDao.save(workout);
+//        workoutDao.save(workout);
         commentDao.save(comment);
         return "redirect:/workouts/"+id+"/comments";
     }

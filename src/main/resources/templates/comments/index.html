@@ -22,7 +22,6 @@
                         <form th:action="${'/comments/'+comment.id+'/update'}" method="GET">
                             <input class="submit-button" type="submit" value="edit">
                         </form></li>
-
                 </ul>
             </ul>
         </ul>
@@ -30,7 +29,7 @@
 </div>
 <div>
 
-    <form th:action="${'/workouts/'+ id + '/comments/create'}" method="GET">
+    <form th:action="@{'/workouts/'+ ${id}+ '/comments/create'}" method="GET">
         <input class="submit-button" type="submit" value="add comment">
     </form>
 
