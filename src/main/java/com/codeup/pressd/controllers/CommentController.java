@@ -92,11 +92,15 @@ public class CommentController {
         return "redirect:/workouts";
     }
 
+
     @PostMapping("/comments/{id}/delete")
     public String deleteComment(@PathVariable Long id) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userDao.getOne(user.getId());
-        commentDao.deleteById(id);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Comment comment = commentDao.getOne(id);
+        if (currentUser.getId() == comment.getUser().getId()) {
+            commentDao.deleteById(id);
+        }
         return "redirect:/workouts";
+
     }
 }
