@@ -117,12 +117,14 @@ public class UserController {
 
         List<Message> messages = messageDao.findAllBySentTo(user);
         boolean unreadMessages = false;
+        long messageCount = 0;
         for (Message message : messages) {
             if (message.isRead() == 0) {
-                unreadMessages = true;
-                break;
+                messageCount++;
             }
         }
+        if (messageCount > 0) unreadMessages = true;
+        viewModel.addAttribute("messageCount", messageCount);
         viewModel.addAttribute("unreadMessages", unreadMessages);
         viewModel.addAttribute("noWorkouts", noWorkouts);
         viewModel.addAttribute("noPosts", noPosts);
