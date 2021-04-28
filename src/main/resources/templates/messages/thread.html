@@ -4,35 +4,44 @@
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<main class="container mesgs">
-        <!--YOUR MESSAGES-->
-        <div class="incoming_msg" th:each="message : ${messages}">
-            <!--USER IMAGE-->
-<!--            <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>-->
-            <div class="received_msg" th:switch="${message.sentFrom.id}">
-                <div class="received_withd_msg" th:case="${currentUser.id}">
-                    <div>
-                    <p th:text="${message.body}"></p>
-                    <small>You</small>
-                    <span class="time_date"> <small th:text="${shortF.format(message.datePosted)}"></small></span>
-                </div>
-                <!--                <div th:case="${currentUser.id}">-->
-            </div>
 
-            <!--OTHER USER'S MESSAGES-->
-            <div class="outgoing_msg" th:case="*">
-                <div class="sent_msg">
-                    <p th:text="${message.body}"></p>
-                    <small th:text="${message.sentFrom.username}"></small>
-                    <br>
-                    <span class="time_date"><small th:text="${shortF.format(message.datePosted)}"></small></span>
-                </div>
+<div class="col-md-8 col-xl-6 chat">
+    <div class="card-messages">
+        <div class="card-header-messages msg_head">
+            <div class="d-flex bd-highlight">
+                <main class="container mesgs">
+                    <!--YOUR MESSAGES-->
+                    <div class="incoming_msg" th:each="message : ${messages}">
+                        <!--USER IMAGE-->
+                        <!--            <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>-->
+                        <div class="received_msg" th:switch="${message.sentFrom.id}">
+                            <div class="received_withd_msg" th:case="${currentUser.id}">
+                                <div>
+                                    <p class="" th:text="${message.body}"></p>
+                                    <small>You</small>
+                                    <span class="time_date"> <small
+                                            th:text="${shortF.format(message.datePosted)}"></small></span>
+                                </div>
+                                <!--                <div th:case="${currentUser.id}">-->
+                            </div>
+
+                            <!--OTHER USER'S MESSAGES-->
+                            <div class="outgoing_msg" th:case="*">
+                                <div class="sent_msg">
+                                    <p th:text="${message.body}"></p>
+                                    <small th:text="${message.sentFrom.username}"></small>
+                                    <br>
+                                    <span class="time_date"><small
+                                            th:text="${shortF.format(message.datePosted)}"></small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
         </div>
     </div>
-</main>
-
-
+</div>
 
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
