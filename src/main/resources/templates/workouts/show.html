@@ -171,6 +171,7 @@
                                             <input class="submit-button" type="submit" value="Submit your rating!">
                                         </form>
                                     </div>
+
                                     <div th:unless="${userRating} == 0">
                                         <p class="text-white">Your current rating:</p>
                                         <span class="stars" th:text="${userRating}"></span>
@@ -206,14 +207,33 @@
                                     <form th:action="${'/users/'+ workout.user.id}" method="GET">
                                         <input class="submit-button" type="submit" value="View User">
                                     </form>
+
                                 </div>
+                                <!--                                    <iframe width="560" height="315" th:src="@{https://www.youtube.com/embed/RjexvOAsVtI}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                <form th:action="${'/workouts/'+id+'/update'}" method="GET">
+                                    <input class="submit-button" type="submit" value="edit workout">
+                                </form>
+                                <form th:action="${'/workouts/'+id+'/comments'}" method="GET">
+                                    <input class="submit-button" type="submit" value="View Comments">
+                                </form>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <form th:action="${'/workouts/'+ workout.id +'/delete'}" method="POST">
+                                    <input class="submit-button" type="submit" value="delete workout">
+                                </form>
+                                <form th:action="${'/users/'+ workout.user.id}" method="GET">
+                                    <input class="submit-button" type="submit" value="View User">
+                                </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 </header>
 
