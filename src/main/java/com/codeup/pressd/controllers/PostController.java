@@ -69,6 +69,9 @@ public class PostController {
 	public String showFilteredPosts(@ModelAttribute Filter filter, Model viewModel) {
 		Post placeHolder = new Post();
 		List<Post> posts = postDao.getPostsByTypeName(filter.getType_name());
+		System.out.println("filter.getType_name() = " + filter.getType_name());
+		System.out.println();
+		System.out.println("filter.getParams() = " + filter.getParams());
 		ArrayList<Post> filteredPosts = new ArrayList<>();
 		filteredPosts.add(0,placeHolder);
 		for (Post post : posts) {
@@ -77,7 +80,7 @@ public class PostController {
 			}
 		}
 		if(filteredPosts.size() == 1){
-			return "redirect:/posts";
+			return "/posts/no_results";
 		} else {
 			filteredPosts.remove(0);
 			viewModel.addAttribute("posts", filteredPosts);
