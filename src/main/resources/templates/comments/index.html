@@ -15,22 +15,24 @@
                 <li th:text="${comment.body}"></li>
                 <ul>
                     <li style="margin-left: 30px;"><small
-                        th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small></li>
+                        th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
+                        <form th:action="${'/comments/'+ comment.id +'/delete'}" method="POST">
+                            <input class="submit-button" type="submit" value="delete">
+                        </form>
+                        <form th:action="${'/comments/'+comment.id+'/update'}" method="GET">
+                            <input class="submit-button" type="submit" value="edit">
+                        </form></li>
                 </ul>
             </ul>
         </ul>
     </div>
 </div>
 <div>
-    <form th:action="${'/comments/'+id+'/update'}" method="GET">
-        <input class="submit-button" type="submit" value="edit comments">
-    </form>
-    <form th:action="${'/workouts/'+ id + '/comments/create'}" method="GET">
+
+    <form th:action="@{'/workouts/'+ ${id}+ '/comments/create'}" method="GET">
         <input class="submit-button" type="submit" value="add comment">
     </form>
-    <form th:action="${'/comments/'+id+'/delete'}" method="GET">
-        <input class="submit-button" type="submit" value="delete comment">
-    </form>
+
 </div>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
