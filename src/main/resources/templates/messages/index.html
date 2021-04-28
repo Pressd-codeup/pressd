@@ -34,7 +34,7 @@
             <div class="inbox_chat">
                 <div class="chat_list active_chat" th:each="thread : ${threads}">
                     <div class="chat_people">
-                        <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                        <div class="chat_img"><img class="img-inbox" src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib posts">
                             <a th:href="@{/messages/{id}(id=${thread.getId()})}">
