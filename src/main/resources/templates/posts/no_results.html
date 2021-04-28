@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('no_results')"></head>
+<body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+
+
+<main class="container">
+	<div>
+		<h2>Unfortunately, we could not find any posts matching your search.</h2>
+	</div>
+</main>
+<footer th:replace="fragments/footer :: main-footer"></footer>
+</body>
+</html>
