@@ -1171,6 +1171,13 @@ body.thread, html.thread {
     background: -webkit-linear-gradient(to right, #8b71de, #86A8E7, #7F7FD5);
     background: linear-gradient(to right, #8b71de, #86A8E7, #7F7FD5);
 }
+body.comment {
+    height: 100%;
+    margin: 0;
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to right, black, #8b71de, white);
+    background: linear-gradient(190deg,white, #8b71de, black );
+}
 
 .card-bordered {
     border: 1px solid #ebebeb
