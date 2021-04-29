@@ -18,10 +18,10 @@
 
 <div class="messaging">
     <div class="inbox_msg">
-        <div class="inbox_people col-10">
-            <div class="headind_srch">
-                <div class="recent_heading">
-                    <h4>Recent</h4>
+        <div class="inbox_people col-10" style="background: inherit;">
+            <div class="headind_srch" style="background: inherit;">
+                <div class="recent_heading" style="background: inherit;">
+                    <h4 class="text-white">Recent</h4>
                 </div>
                 <!--                <div class="srch_bar">-->
                 <!--                    <div class="stylish-input-group">-->
@@ -31,15 +31,15 @@
                 <!--                </span></div>-->
                 <!--                </div>-->
             </div>
-            <div class="inbox_chat">
-                <div class="chat_list active_chat" th:each="thread : ${threads}">
-                    <div class="chat_people d-flex align-content-center">
-                        <div class="chat_img"><img class="img-inbox"
+            <div class="inbox_chat" style="background: inherit;">
+                <div class="chat_list active_chat" style="background: inherit;" th:each="thread : ${threads}">
+                    <div class="chat_people d-flex align-content-center" style="background: inherit;">
+                        <img class="avatar avatar-md"
                                                    th:src="@{${imageDao.getOne(thread.getAvatarId()).url}}" alt="sunil">
-                        </div>
-                        <div class="chat_ib posts d-flex align-items-center">
 
-                            <a th:href="@{/messages/{id}(id=${thread.getId()})}">
+                        <div class="chat_ib posts d-flex align-items-center" style="background: inherit;">
+
+                            <a th:href="@{/messages/{id}(id=${thread.getId()})}" class="text-white">
                                 <h5> Your messages with:</h5>
                                 <span th:text="${thread.getUsername()}"></span>
                             </a>

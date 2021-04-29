@@ -92,6 +92,7 @@ public class MessageController {
 
         List<Message> messages = messageDao.makeThread(m1, m2);
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+        viewModel.addAttribute("imageDao", imageDao);
         viewModel.addAttribute("messages", messages);
         viewModel.addAttribute("shortF", shortF);
         viewModel.addAttribute("id", id);
