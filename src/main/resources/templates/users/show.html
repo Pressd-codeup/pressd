@@ -81,7 +81,7 @@
 <!--                        <form th:action="@{'/users/'+user.id+'/images'}">-->
 <!--                            <input type="submit" value="view user's posts">-->
 <!--                        </form>-->
-                        <form th:unless="${noComments}" th:action="@{/{id}/comments(id=${user.getId()})}" method="get">
+                        <form th:unless="${noComments}" th:action="@{/{id}/comments(id=${user.id})}" method="get">
                             <input type="submit" class="submit-button" value="View comments">
                         </form>
 
