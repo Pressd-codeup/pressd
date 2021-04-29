@@ -7,13 +7,13 @@
     <h1 class="display-4">Workout Comments</h1>
 </div>
 <section class="details-card">
-    <div class="container post col-lg-6 col-12 m-0 float-left" th:each="comment : ${comments}">
+    <div class="container post col-lg-6 col-12 m-0 justify-content-center" th:each="comment : ${comments}">
         <div th:if="${comment.workout.id == id}">
             <div class="row-12 m-0">
                 <div class="col-12 m-0 photo-frame bg-dark">
                     <div class="card-content bg-dark">
-                        <div class="card-img">
-                            <img class="img-inbox"
+                        <div>
+                            <img class="avatar"
                                  th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap">
                         </div>
                         <div class="card-desc">
@@ -37,16 +37,12 @@
             </div>
         </div>
     </div>
-</section>
-<br>
-<div class="col-lg-6 col-12 m-5">
 
     <form th:action="@{'/workouts/'+ ${id}+ '/comments/create'}" method="GET">
         <input class="submit-button" type="submit" value="add comment">
     </form>
-</div>
-<div>
+</section>
+
     <footer th:replace="fragments/footer :: main-footer"></footer>
-</div>
 </body>
 </html>
