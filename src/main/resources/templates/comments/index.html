@@ -3,54 +3,50 @@
 <head th:replace="fragments/header :: main-head('Posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<h6>Comments</h6>
-
-
-<div class="comment" th:each="comment : ${comments}">
-    <div th:if="${comment.workout.id == id}">
-        <!--        <ul>-->
-        <!--            <li th:text="${comment.user.username}"></li>-->
-        <!--            <ul>-->
-        <!--                <li th:text="${comment.body}"></li>-->
-        <!--                <ul>-->
-        <!--                    <li style="margin-left: 30px;"><small-->
-        <!--                            th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>-->
-        <!--                        <div class="btn-group mr-2" role="group" aria-label="Second group">-->
-        <!--                            <form th:action="${'/comments/'+ comment.id +'/delete'}" method="POST">-->
-        <!--                                <input class="submit-button" type="submit" value="delete">-->
-        <!--                            </form>-->
-        <!--                            <form class="col col-6" th:action="${'/comments/'+comment.id+'/update'}" method="GET">-->
-        <!--                                <input class="submit-button" type="submit" value="edit">-->
-        <!--                            </form>-->
-        <!--                        </div>-->
-        <!--                    </li>-->
-        <!--                    <hr>-->
-        <!--                </ul>-->
-        <!--            </ul>-->
-        <!--        </ul>-->
-        <!--    </div>-->
-        <div class="card" style="width: 18rem;">
-            <img class="img-inbox"
-                 th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${comment.user.username}">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="jumbotron bg-dark text-white view-login">
+    <h1 class="display-4">Workout Comments</h1>
+</div>
+<section class="details-card">
+    <div class="container post col-lg-6 col-12 m-0 float-left" th:each="comment : ${comments}">
+        <div th:if="${comment.workout.id == id}">
+            <div class="row-12 m-0">
+                <div class="col-12 m-0 photo-frame bg-dark">
+                    <div class="card-content bg-dark">
+                        <div class="card-img">
+                            <img class="img-inbox"
+                                 th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap">
+                        </div>
+                        <div class="card-desc">
+                            <h5 class="text-white" th:text="${comment.user.username}"></h5>
+                            <p class="text-white" th:text="${comment.body}"></p>
+                            <p class="text-white"><small
+                                    th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
+                            </p>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                <form th:action="${'/comments/'+ comment.id +'/delete'}" method="POST">
+                                    <input class="submit-button" type="submit" value="delete">
+                                </form>
+                                <form class="col col-6" th:action="${'/comments/'+comment.id+'/update'}"
+                                      method="GET">
+                                    <input class="submit-button" type="submit" value="edit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div>
+</section>
+<br>
+<div class="col-lg-6 col-12 m-5">
 
     <form th:action="@{'/workouts/'+ ${id}+ '/comments/create'}" method="GET">
         <input class="submit-button" type="submit" value="add comment">
     </form>
-
 </div>
-
-<footer th:replace="fragments/footer :: main-footer"></footer>
+<div>
+    <footer th:replace="fragments/footer :: main-footer"></footer>
+</div>
 </body>
 </html>
