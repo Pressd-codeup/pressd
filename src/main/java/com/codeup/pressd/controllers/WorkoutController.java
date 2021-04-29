@@ -53,10 +53,12 @@ public class WorkoutController {
         DecimalFormat df = new DecimalFormat("0.00");
         viewModel.addAttribute("df", df);
         Workout workout = workoutDao.getOne(id);
+        User user = new User();
+        user.setId(999999999);
         boolean isLoggedIn = false;
 
         try {
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             isLoggedIn = true;
             UserWorkoutRating tester = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
             long userRating;
@@ -72,6 +74,11 @@ public class WorkoutController {
         }
         viewModel.addAttribute("isLoggedIn", isLoggedIn);
 
+        long currentUserId = workout.getUser().getId();
+
+        boolean isUser = (user.getId() == currentUserId);
+
+        viewModel.addAttribute("isUser", isUser);
 
         List<UserWorkoutRating> uwr = userWorkoutRatingDao.getUserWorkoutRatingsByWorkout(workout);
         long totalRatings = uwr.size();
