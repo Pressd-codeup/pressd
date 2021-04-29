@@ -40,8 +40,17 @@
                     </div>
                     <div class="card-desc">
                         <h3 class="text-white" th:text="${post.title}"></h3>
-                        <p class="text-white" th:text="${post.body}"></p>
-                        <form th:action="${'/posts/'+ post.id}" method="GET">
+                        <div>
+                            <small class="text-white" th:text="${post.getUser().getUsername()}"></small>
+                        </div>
+                        <div>
+                            <small class="text-white"
+                                   th:text="${shortF.format(post.getDatePosted())}"></small>
+                        </div>
+
+
+
+                        <form th:action="${'/posts/'+ post.id}" method="GET" class="mt-2">
                             <input class="submit-button" type="submit" value="View Post">
                         </form>
                         <!--                        <a href="#" class="btn-card">Read</a>-->
