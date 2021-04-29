@@ -137,6 +137,13 @@ public class UserController {
         return "users/show";
     }
 
+    @GetMapping("/users/profile")
+    public String profileFromNav() {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = currentUser.getId();
+        return "redirect:/users/" + id;
+    }
+
     @GetMapping("/{id}/posts")
     public String showUsersPosts(@PathVariable long id, Model viewModel) {
         User user = userDao.getOne(id);
