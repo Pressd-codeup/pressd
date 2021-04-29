@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Posts')"></head>
+<head th:replace="fragments/header :: main-head('Workout')"></head>
 <body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
@@ -31,8 +31,8 @@
     <div class="container post col-lg-6 col-12 m-0 float-left" th:each="post : ${posts}">
         <div class="row-12 m-0 ">
 
-            <div class="col-12 m-0 photo-frame bg-dark">
-                <div class="card-content bg-dark">
+            <div class="col-12 m-0 photo-frame" style="background: inherit">
+                <div class="card-content" style="background: inherit">
                     <div class="card-img">
                         <!--ADD IMAGE-->
                         <img th:src="@{${post.image.url}}" alt="">
@@ -43,10 +43,6 @@
                         <p class="text-white" th:text="${post.body}"></p>
                         <form th:action="${'/posts/'+ post.id}" method="GET">
                             <input class="submit-button" type="submit" value="View Post">
-                        </form>
-                        <br>
-                        <form th:action="${'/users/'+ post.user.id}" method="GET">
-                            <input class="submit-button" type="submit" value="View User">
                         </form>
                         <!--                        <a href="#" class="btn-card">Read</a>-->
                     </div>
@@ -86,7 +82,6 @@
     </div>
 </section>
 <!-- details card section starts from here -->
-
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
