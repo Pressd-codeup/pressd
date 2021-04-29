@@ -22,17 +22,20 @@ public class CommentController {
     private final CommentRepository commentDao;
     private final UserRepository userDao;
     private final WorkoutRepository workoutDao;
+    private final ImageRepository imageDao;
 
-    CommentController(CommentRepository commentDao, UserRepository userDao, WorkoutRepository workoutDao) {
+    CommentController(CommentRepository commentDao, UserRepository userDao, WorkoutRepository workoutDao, ImageRepository imageDao) {
         this.commentDao = commentDao;
         this.userDao = userDao;
         this.workoutDao = workoutDao;
+        this.imageDao = imageDao;
     }
 
     @GetMapping("/workouts/{id}/comments")
     public String allComments(@PathVariable long id, Model viewModel) {
         List<Comment> comments = commentDao.findAll();
         viewModel.addAttribute("comments", comments);
+        viewModel.addAttribute("imageDao", imageDao);
         return "comments/index";
     }
 
@@ -40,7 +43,6 @@ public class CommentController {
     @GetMapping("/workouts/{id}/comments/create")
     public String showCreateComment(@PathVariable long id, Model viewModel) {
         Workout workout = workoutDao.getOne(id);
-
         viewModel.addAttribute("comment", new Comment());
         return "comments/create";
     }

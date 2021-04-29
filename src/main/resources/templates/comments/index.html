@@ -31,7 +31,8 @@
         <!--        </ul>-->
         <!--    </div>-->
         <div class="card" style="width: 18rem;">
-            <img class="img-inbox" src="https://ptetutorials.com/images/user-profile.png" alt="image Cap">
+            <img class="img-inbox"
+                 th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap">
             <div class="card-body">
                 <h5 class="card-title" th:text="${comment.user.username}">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
