@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Error')"></head>
+<head th:replace="fragments/header :: main-head('About Us')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+<div>
+    <h1>We are Pressd</h1>
+    <h2>Creators: </h2> <h4><a href="https://www.linkedin.com/in/chrisagold/">Christopher Agold</a>, <a
+        href="https://www.linkedin.com/in/jeremiahbaham/">Jeremiah Baham</a>, <a
+        href="https://www.linkedin.com/in/danbenzion/">Daniel Benzion</a> , and <a
+        href="https://www.linkedin.com/in/johnny-fisher/"> Johnny Fisher</a></h4>
+    <hr>
+    <div>
+        <div>
+            <p class="m-5 ">
+                    During the Covid 19 pandemic, gyms closed and people were confined to their homes contributing to the
+                decrease in sense of community and reduction in physical activity. As states and gyms open back up,
+                people are finding the need to be more social and active to improve their mental and physical health.
+                Local fitness centers were also greatly impacted financially by the coronavirus. Pressd seeks to be a
+                user-driven platform to connect to other individuals who are passionate about their physical fitness
+                while improving each other’s social life. This platform is meant to bring the community together in a
+                fitness center by helping individuals build partnerships through working out.
 
-<h1>This is the about page</h1>
 
+            </p>
+        </div>
+        <h3>Christopher:</h3>
+        <img th:src="@{../public/css/images/team/pexels-mentatdgt-937481.jpg}"/>
+        <hr>
+        <h3>Jeremiah:</h3>
+        <img>
+        <hr>
+        <h3>Daniel:</h3>
+        <img>
+        <hr>
+        <h3>Johnny:</h3>
+        <img>
+        <hr>
+    </div>
+</div>
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

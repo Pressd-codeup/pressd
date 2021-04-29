@@ -4,40 +4,64 @@
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-
-<div class="col-md-8 col-xl-6 chat">
-    <div class="card-messages">
-        <div class="card-header-messages msg_head">
-            <div class="d-flex bd-highlight">
-                <main class="container mesgs">
-                    <!--YOUR MESSAGES-->
-                    <div class="incoming_msg" th:each="message : ${messages}">
-                        <!--USER IMAGE-->
-                        <!--            <div class="incoming_msg_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>-->
-                        <div class="received_msg" th:switch="${message.sentFrom.id}">
-                            <div class="received_withd_msg" th:case="${currentUser.id}">
-                                <div>
-                                    <p class="" th:text="${message.body}"></p>
-                                    <small>You</small>
-                                    <span class="time_date"> <small
-                                            th:text="${shortF.format(message.datePosted)}"></small></span>
+<div class="page-content page-container" id="page-content">
+    <div class="padding d-flex justify-content-center mt-5">
+        <div class="row container">
+            <div class="col-md-12">
+                <div class="card card-bordered">
+                    <div class="card-header">
+                        <h4 class="card-title"><strong>Messages</strong></h4>
+                        <!--                        <a class="btn btn-xs btn-secondary" href="#"-->
+                        <!--                           data-abc="true"></a>-->
+                    </div>
+                    <div class="ps-containeravatar ps-theme-default ps-active-y" id="chat-content"
+                         style="overflow-y: scroll !important; height:400px !important;">
+                        <!--YOUR MESSAGES-->
+                        <div class="incoming_msg" th:each="message : ${messages}">
+                            <div class="received_msg" th:switch="${message.sentFrom.id}">
+                                <div class="received_withd_msg" th:case="${currentUser.id}">
+                                    <div>
+                                        <small>You</small>
+                                        <div class="time_date">
+                                            <div
+                                                    th:text="${shortF.format(message.datePosted)}"></div>
+                                        </div>
+                                        <p class="" th:text="${message.body}"></p>
+                                    </div>
+                                    <!--                <div th:case="${currentUser.id}">-->
                                 </div>
-                                <!--                <div th:case="${currentUser.id}">-->
-                            </div>
+                                <!--OTHER USER'S MESSAGES-->
+                                <div class="outgoing_msg" th:case="*">
+                                    <div class="sent_msg">
+                                        <small th:text="${message.sentFrom.username}"></small>
+                                        <span class="time_date"><small
+                                                th:text="${shortF.format(message.datePosted)}"></small></span>
+                                        <p th:text="${message.body}"></p>
 
-                            <!--OTHER USER'S MESSAGES-->
-                            <div class="outgoing_msg" th:case="*">
-                                <div class="sent_msg">
-                                    <p th:text="${message.body}"></p>
-                                    <small th:text="${message.sentFrom.username}"></small>
-                                    <br>
-                                    <span class="time_date"><small
-                                            th:text="${shortF.format(message.datePosted)}"></small></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;">
+                            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
+                        </div>
                     </div>
-                </main>
+                    <div class="publisher bt-1 border-light"><img class="avatar avatar-xs"
+                                                                  src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                                                  alt="..."> <input class="publisher-input"
+                                                                                    type="text"
+                                                                                    placeholder="Write something">
+                        <span
+                                class="publisher-btn file-group"> <i
+                                class="fa fa-paperclip file-browser"></i> <input
+                                type="file"> </span> <a class="publisher-btn" href="#" data-abc="true"><i
+                                class="fa fa-smile"></i></a> <a class="publisher-btn text-info" href="#"
+                                                                data-abc="true"><i
+                                class="fa fa-paper-plane"></i></a></div>
+                </div>
             </div>
         </div>
     </div>
