@@ -9,24 +9,39 @@
 
 <div class="comment" th:each="comment : ${comments}">
     <div th:if="${comment.workout.id == id}">
-        <ul>
-            <li th:text="${comment.user.username}"></li>
-            <ul>
-                <li th:text="${comment.body}"></li>
-                <ul>
-                    <li style="margin-left: 30px;"><small
-                        th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
-                        <form th:action="${'/comments/'+ comment.id +'/delete'}" method="POST">
-                            <input class="submit-button" type="submit" value="delete">
-                        </form>
-                        <form th:action="${'/comments/'+comment.id+'/update'}" method="GET">
-                            <input class="submit-button" type="submit" value="edit">
-                        </form></li>
-                </ul>
-            </ul>
-        </ul>
+        <!--        <ul>-->
+        <!--            <li th:text="${comment.user.username}"></li>-->
+        <!--            <ul>-->
+        <!--                <li th:text="${comment.body}"></li>-->
+        <!--                <ul>-->
+        <!--                    <li style="margin-left: 30px;"><small-->
+        <!--                            th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>-->
+        <!--                        <div class="btn-group mr-2" role="group" aria-label="Second group">-->
+        <!--                            <form th:action="${'/comments/'+ comment.id +'/delete'}" method="POST">-->
+        <!--                                <input class="submit-button" type="submit" value="delete">-->
+        <!--                            </form>-->
+        <!--                            <form class="col col-6" th:action="${'/comments/'+comment.id+'/update'}" method="GET">-->
+        <!--                                <input class="submit-button" type="submit" value="edit">-->
+        <!--                            </form>-->
+        <!--                        </div>-->
+        <!--                    </li>-->
+        <!--                    <hr>-->
+        <!--                </ul>-->
+        <!--            </ul>-->
+        <!--        </ul>-->
+        <!--    </div>-->
+        <div class="card" style="width: 18rem;">
+            <img class="img-inbox" src="https://ptetutorials.com/images/user-profile.png" alt="image Cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${comment.user.username}">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
     </div>
 </div>
+
 <div>
 
     <form th:action="@{'/workouts/'+ ${id}+ '/comments/create'}" method="GET">
