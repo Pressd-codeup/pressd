@@ -114,7 +114,13 @@ public class MessageController {
     public String createMessage(@ModelAttribute Message message, @PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userTo = userDao.getOne(id);
-        long newId = messageDao.findAll().size() + 1;
+        List<Message> allMessages = messageDao.findAll();
+        long newId = 0;
+        for (Message message1 : allMessages) {
+            if (message1.getId() > newId) newId = message1.getId();
+        }
+        ++newId;
+        message.setId(newId);
         message.setSentTo(userTo);
         message.setSentFrom(user);
         message.setDatePosted(LocalDateTime.now());

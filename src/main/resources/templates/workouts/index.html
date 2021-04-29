@@ -22,9 +22,12 @@
                     </div>
                     <div class="card-desc">
                         <h3 class="text-white" th:text="${workout.title}"></h3>
-                        <small class="text-white" th:text="${workout.user.username}"></small>
-
-                        <small class="text-white" th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
+                        <div>
+                            <small class="text-white" th:text="${workout.user.username}"></small>
+                        </div>
+                        <div>
+                            <small class="text-white" th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
+                        </div>
                         <form th:action="${'/workouts/'+ workout.id}" method="GET">
                             <input class="submit-button" type="submit" value="View Plan">
                         </form>

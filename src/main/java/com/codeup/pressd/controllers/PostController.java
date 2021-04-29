@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.*;
 
 
@@ -34,6 +36,8 @@ public class PostController {
 	@GetMapping("/posts")
 	public String allPosts(Model viewModel){
 		List<Post> posts = postDao.findAll();
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
 		return "posts/index";
 	}
@@ -42,6 +46,8 @@ public class PostController {
 	public String seeBuddyPosts(Model viewModel){
 
 		List<Post> posts = postDao.getPostsByTypeName("partners");
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
 		return "posts/index";
 	}
@@ -49,6 +55,8 @@ public class PostController {
 	@GetMapping("/coaches")
 	public String seeCoachPosts(Model viewModel) {
 		List<Post> posts = postDao.getPostsByTypeName("coaches");
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
 		return "posts/index";
 	}
@@ -56,6 +64,8 @@ public class PostController {
 	@GetMapping("/clients")
 	public String seeClientPosts(Model viewModel) {
 		List<Post> posts = postDao.getPostsByTypeName("clients");
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
 		return "posts/index";
 	}
