@@ -3,6 +3,7 @@ package com.codeup.pressd.controllers;
 import com.codeup.pressd.models.Comment;
 import com.codeup.pressd.models.Message;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.repository.ImageRepository;
 import com.codeup.pressd.repository.MessageRepository;
 import com.codeup.pressd.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,10 +23,12 @@ public class MessageController {
 
     private final MessageRepository messageDao;
     private final UserRepository userDao;
+    private final ImageRepository imageDao;
 
-    MessageController(MessageRepository messageDao, UserRepository userDao) {
+    MessageController(MessageRepository messageDao, UserRepository userDao, ImageRepository imageDao) {
         this.messageDao = messageDao;
         this.userDao = userDao;
+        this.imageDao = imageDao;
     }
 
     @GetMapping("/messages")
@@ -41,6 +44,7 @@ public class MessageController {
                 if (!threads.contains(message.getSentFrom())) threads.add(message.getSentFrom());
             }
         }
+        viewModel.addAttribute("imageDao", imageDao);
         viewModel.addAttribute("threads", threads);
 
         return "messages/index";
