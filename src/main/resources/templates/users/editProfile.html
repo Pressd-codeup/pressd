@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Dashboard')"></head>
+
 <style>
     /* HIDE RADIO */
     [type=radio] {
@@ -28,69 +29,212 @@
         width: 100px;
     }
 </style>
+
+<!--ORIGINAL CODE-->
 <body class="profile-page">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <h2>Update Your Profile</h2>
 
-<h2>Update Your Profile</h2>
+            <div class="d-flex flex-column align-items-center text-center p-3
+     py-5">
+                <p>Want to upload more pictures to use? Do it </p>
+                <form method="get" th:action="@{/images/upload}">
+                    <input type="hidden" name="directory" value="updateProfileImage">
+                    <input type="submit" value="here!"/>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
 
-<div style="display: flex">
-    <p>Want to upload more pictures to use? Do it </p>
-    <form method="get" th:action="@{/images/upload}">
-        <input type="hidden" name="directory" value="updateProfileImage">
-        <input type="submit" value="here!"/>
-    </form>
-</div>
-<br>
+                <form class="" th:action="@{/users/edit}" method="post" th:object="${user}">
+                    <h2>Edit Profile</h2>
+                    <h3>Your current avatar:</h3>
+                    <br>
+                    <img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">
+                    <br>
 
-<form th:action="@{/users/edit}" method="post" th:object="${user}">
-    <h2>Edit Profile</h2>
-    <h3>Your current avatar:</h3>
-    <br>
-    <img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">
-    <br>
+                    <div class="row">
+                        <label>
+                            <input type="radio" name="avatarId" th:value="${currentImage.id}" checked>
+                            <img th:src="@{${currentImage.url}}">
+                        </label>
+                        <div th:each="image : ${userImages}">
+                            <label>
+                                <input type="radio" name="avatarId" th:value="${image.id}">
+                                <img th:src="@{${image.url}}">
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
 
-    <div style="display: flex; width: 33%; flex-wrap: wrap">
-        <label>
-            <input type="radio" name="avatarId" th:value="${currentImage.id}" checked>
-            <img th:src="@{${currentImage.url}}">
-        </label>
-        <div th:each="image : ${userImages}">
-            <label>
-                <input type="radio" name="avatarId" th:value="${image.id}">
-                <img th:src="@{${image.url}}">
-            </label>
+            </div>
+            </div>
+        <div class="col-md-2">
+            <div class="p-3 py-5">
+                <label for="username">Username</label>
+                <input name="username" id="username" type="text">
+
+                <br>
+                <input name="userId" type="hidden" th:value="${userId}">
+                <br>
+
+                <label for="password">Password</label>
+                <input name="password" id="password" type="password">
+
+                <br>
+
+                <label for="email">Email</label>
+                <input name="email" id="email" type="text">
+
+                <br>
+
+                <label for="about">About</label>
+                <textarea name="about" id="about" class="form-control" type="text"></textarea>
+
+                <br>
+                <input class="submit-button" type="submit" value="Update Profile!">
+            </div>
+        </div>
+        </div>
+
+            </form>
         </div>
     </div>
-    <br>
+</div>
+</div>
 
 
-    <br>
+<!--START-->
+<!--<form th:action="@{/users/edit}" method="post" th:object="${user}">-->
+<!--    <div class="container rounded bg-white mt-5 mb-5">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-3 border-right">-->
+<!--                &lt;!&ndash;IMAGE PROFILE&ndash;&gt;-->
+<!--                <div class="d-flex flex-column align-items-center text-center p-3-->
+<!--            py-5"><img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">-->
 
-    <label for="username">Username</label>
-    <input name="username" id="username" type="text">
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-5 border-right">-->
+<!--                <div class="p-3 py-5">-->
+<!--                    <div class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                        <h4 class="text-right">Profile Settings</h4>-->
+<!--                    </div>-->
+<!--                    <div class="row mt-2">-->
 
-    <br>
-    <input name="userId" type="hidden" th:value="${userId}">
-    <br>
+<!--                        &lt;!&ndash;USERNAME&ndash;&gt;-->
+<!--                        <div class="col-md-6"><label for="username" class="labels">Name</label><input-->
+<!--                                class="form-control"-->
+<!--                                placeholder="username"-->
+<!--                                name="username"-->
+<!--                                id="username"-->
+<!--                                type="text"-->
+<!--                                th:value="${userId}">-->
+<!--                        </div>-->
 
-    <label for="password">Password</label>
-    <input name="password" id="password" type="password">
+<!--                        <br>-->
+<!--                        <input name="userId" type="hidden" th:value="${userId}">-->
+<!--                        <br>-->
 
-    <br>
+<!--                        &lt;!&ndash;PASSWORD&ndash;&gt;-->
+<!--                        <div class="col-md-6"><label class="labels" for="password">Password</label><input-->
+<!--                                type="password"-->
+<!--                                class="form-control"-->
+<!--                                name="password"-->
+<!--                                id="password"-->
+<!--                                value=""-->
+<!--                                placeholder="password">-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-    <label for="email">Email</label>
-    <input name="email" id="email" type="text">
+<!--                    &lt;!&ndash;EMAIL&ndash;&gt;-->
+<!--                    <div class="row mt-3">-->
+<!--                        <div class="col-md-12"><label for="email" class="labels">Email</label><input type="text"-->
+<!--                                                                                                     class="form-control"-->
+<!--                                                                                                     placeholder="enter email"-->
+<!--                                                                                                     value=""-->
+<!--                                                                                                     name="email"-->
+<!--                                                                                                     id="email">-->
+<!--                        </div>-->
 
-    <br>
+<!--                        &lt;!&ndash;ABOUT&ndash;&gt;-->
+<!--                        <div class="col-md-12"><label for="about" class="labels">About</label><textarea name="about"-->
+<!--                                                                                                        id="about"-->
+<!--                                                                                                        class="form-control"-->
+<!--                                                                                                        type="text"></textarea>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12"><label class="labels"></label><input type="hidden" class="form-control"-->
+<!--                                                                                    placeholder="enter email id"-->
+<!--                                                                                    value=""></div>-->
+<!--                        <div class="col-md-12"><label class="labels"></label><input type="hidden" class="form-control"-->
+<!--                                                                                    placeholder="education" value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row mt-3">-->
+<!--                        <div class="col-md-6"><label class="labels"></label><input type="hidden" class="form-control"-->
+<!--                                                                                   placeholder="country" value=""></div>-->
+<!--                        <div class="col-md-6"><label class="labels"></label><input type="hidden" class="form-control"-->
+<!--                                                                                   value="" placeholder="state"></div>-->
+<!--                    </div>-->
 
-    <label for="about">About</label>
-    <textarea name="about" id="about" class="form-control" type="text"></textarea>
+<!--                    <div class="mt-5 text-center">-->
+<!--                        &lt;!&ndash;                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>&ndash;&gt;-->
 
-    <br>
-    <input class="submit-button" type="submit" value="Update Profile!">
+<!--                        <input class="btn btn-primary profile-button" type="submit" value="Update Profile!">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-</form>
 
+<!--            <div class="col-md-4">-->
+<!--                <div class="p-3 py-5">-->
+<!--                    &lt;!&ndash;                            <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>&ndash;&gt;-->
+
+
+<!--                    <h2>Edit Profile</h2>-->
+<!--                    <h3>Your current avatar:</h3>-->
+<!--                    <br>-->
+<!--                    <img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">-->
+<!--                    <br>-->
+
+<!--                    <div>-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="avatarId" th:value="${currentImage.id}" checked>-->
+<!--                            <img th:src="@{${currentImage.url}}">-->
+<!--                        </label>-->
+<!--                        <div class="row">-->
+<!--                            <div th:each="image : ${userImages}">-->
+<!--                                <label>-->
+<!--                                    <input type="radio" name="avatarId" th:value="${image.id}">-->
+<!--                                    <img th:src="@{${image.url}}">-->
+<!--                                </label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                    <div>-->
+<!--                        <p>Want to upload more pictures to use? Do it </p>-->
+<!--                        <form method="get" th:action="@{/images/upload}">-->
+<!--                            <input type="hidden" name="directory" value="updateProfileImage">-->
+<!--                            <input type="submit" value="here!"/>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

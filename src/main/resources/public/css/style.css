@@ -381,6 +381,7 @@ a:focus {
     min-height: 100vh;
     position: relative;
 }
+
 .leg {
     background-image: url('images/legPress.jpg');
     background-size: cover;
@@ -390,6 +391,7 @@ a:focus {
     min-height: 100vh;
     position: relative;
 }
+
 .create {
     background-image: url('images/hero-bg.jpg');
     background-size: cover;
@@ -576,7 +578,7 @@ button#submit-button {
 }
 
 .submit-button:hover {
-    background: rgba(91,33,169,0.9);
+    background: rgba(91, 33, 169, 0.9);
 }
 
 .contact h2 + p {
@@ -695,6 +697,7 @@ button#submit-button {
         display: block;
     }
 }
+
 /*END HOME PAGE CSS*/
 
 /*******************************************************************/
@@ -724,6 +727,7 @@ header.sign_up,
         height: 1000px;
     }
 }
+
 @media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
@@ -754,6 +758,7 @@ h6.sign {
 .wow {
     color: white;
 }
+
 /*END OF SIGN-UP PAGE CSS*/
 
 /*******************************************************************/
@@ -783,6 +788,7 @@ header.login,
         height: 1000px;
     }
 }
+
 @media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
@@ -818,6 +824,7 @@ h6.sign {
     margin-top: 100px;
     padding-bottom: 200px;
 }
+
 /*END OF LOGIN PAGE CSS*/
 
 /*******************************************************************/
@@ -831,7 +838,7 @@ body.post-body {
 
 /* card details start  */
 /*@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');*/
-section{
+section {
     padding: 100px 0;
 }
 
@@ -843,7 +850,7 @@ section{
 .card-content {
     background: #ffffff;
     border: 4px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
 }
 
 .card-img {
@@ -872,14 +879,16 @@ section{
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
-.card-img span h4{
+
+.card-img span h4 {
     font-size: 12px;
-    margin:0;
-    padding:10px 5px;
+    margin: 0;
+    padding: 10px 5px;
     line-height: 0;
 }
+
 .card-desc {
     padding: 1.25rem;
 }
@@ -905,17 +914,18 @@ section{
     padding: 0;
     font-family: 'Raleway', sans-serif;
 }
-.btn-card{
+
+.btn-card {
     background-color: #480f90;
     color: #fff;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
     padding: .84rem 2.14rem;
     font-size: .81rem;
-    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    -o-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
     margin: 0;
     border: 0;
     -webkit-border-radius: .125rem;
@@ -926,9 +936,11 @@ section{
     word-wrap: break-word;
     color: #fff;
 }
+
 .btn-card:hover {
     background: orange;
 }
+
 a.btn-card {
     text-decoration: none;
     color: #fff;
@@ -988,17 +1000,18 @@ a.btn-card {
     6px 6px 1px 0px #444,
     7px 7px 1px 0px #333,
     8px 8px 3px 0px #303030;
-    transform: translate(-8px,-8px);
-    -ms-transform: translate(-8px,-8px);
-    -moz-transform: translate(-8px,-8px);
-    -webkit-transform: translate(-8px,-8px);
-    -o-transform: translate(-8px,-8px);
+    transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -webkit-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
     transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -webkit-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
 }
+
 /*END OF SHOW POST CSS*/
 
 /*******************************************************************/
@@ -1034,6 +1047,7 @@ a.btn-card {
     padding-bottom: 200px;
     margin-right: 90px;
 }
+
 /*END OF FILTER POST CSS*/
 
 /*******************************************************************/
@@ -1065,6 +1079,7 @@ a.btn-card {
 .workout-text {
     color: #fff;
 }
+
 /*END OF VIEW POST CSS (show.html) */
 
 /*******************************************************************/
@@ -1076,6 +1091,7 @@ a.btn-card {
     vertical-align: top;
     width: 92%;
 }
+
 .received_withd_msg p {
     background: #ebebeb none repeat scroll 0 0;
     border-radius: 25px;
@@ -1085,13 +1101,18 @@ a.btn-card {
     padding: 5px 10px 5px 12px;
     width: 100%;
 }
+
 .time_date {
     color: black;
     display: block;
     font-size: 12px;
     margin: 8px 0 0;
 }
-.received_withd_msg { width: 57%;}
+
+.received_withd_msg {
+    width: 57%;
+}
+
 .mesgs {
     float: left;
     padding: 30px 15px 0 25px;
@@ -1102,18 +1123,24 @@ a.btn-card {
     background: #05728f none repeat scroll 0 0;
     border-radius: 25px;
     font-size: 14px;
-    margin: 0; color:#fff;
+    margin: 0;
+    color: #fff;
     padding: 5px 10px 5px 12px;
-    width:100%;
+    width: 100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+
+.outgoing_msg {
+    overflow: hidden;
+    margin: 26px 0 26px;
+}
+
 .sent_msg {
     float: right;
     width: 46%;
 }
 
 /************************************************************************/
-body.thread,html.thread{
+body.thread, html.thread {
     height: 100%;
     margin: 0;
     background: #7F7FD5;
@@ -1164,11 +1191,11 @@ h4.card-title {
     font-size: 17px
 }
 
-.card-header>*:last-child {
+.card-header > *:last-child {
     margin-right: 0
 }
 
-.card-header>* {
+.card-header > * {
     margin-left: 8px;
     margin-right: 8px
 }
@@ -1241,11 +1268,11 @@ h4.card-title {
     background-color: #f9fafb
 }
 
-.publisher>*:first-child {
+.publisher > *:first-child {
     margin-left: 0
 }
 
-.publisher>* {
+.publisher > * {
     margin: 0 8px
 }
 
@@ -1308,12 +1335,13 @@ h4.card-title {
 
 /*INBOX PAGE CSS*/
 
-.container{
-    max-width:1170px; margin:auto;
+.container {
+    max-width: 1170px;
+    margin: auto;
 }
 
-img.img-inbox{
-    max-width:100%;
+img.img-inbox {
+    max-width: 100%;
 }
 
 .inbox_people {
@@ -1321,32 +1349,51 @@ img.img-inbox{
     overflow: hidden;
     width: 90%;
     /*border-right:1px solid #c4c4c4;*/
-margin-left: 100px;
+    margin-left: 100px;
     margin-top: 30px;
 }
+
 .inbox_msg {
     /*border: 1px solid #c4c4c4;*/
     clear: both;
     overflow: hidden;
 }
-.top_spac{
+
+.top_spac {
     margin: 20px 0 0;
 }
 
-.recent_heading {float: left; width:40%;}
+.recent_heading {
+    float: left;
+    width: 40%;
+}
+
 .srch_bar {
     display: inline-block;
     text-align: right;
     width: 60%;
 }
-.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
+.headind_srch {
+    padding: 10px 29px 10px 20px;
+    overflow: hidden;
+    border-bottom: 1px solid #c4c4c4;
+}
 
 .recent_heading h4 {
     color: #05728f;
     font-size: 21px;
     margin: auto;
 }
-.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+
+.srch_bar input {
+    border: 1px solid #cdcdcd;
+    border-width: 0 0 1px 0;
+    width: 80%;
+    padding: 2px 0 4px 6px;
+    background: none;
+}
+
 .srch_bar .input-group-addon button {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -1354,23 +1401,42 @@ margin-left: 100px;
     color: #707070;
     font-size: 18px;
 }
-.srch_bar .input-group-addon { margin: 0 0 0 -27px;}
 
-.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
-.chat_ib h5 span{ font-size:13px; float:right;}
-.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.srch_bar .input-group-addon {
+    margin: 0 0 0 -27px;
+}
+
+.chat_ib h5 {
+    font-size: 15px;
+    color: #464646;
+    margin: 0 0 8px 0;
+}
+
+.chat_ib h5 span {
+    font-size: 13px;
+    float: right;
+}
+
+.chat_ib p {
+    font-size: 14px;
+    color: #989898;
+    margin: auto
+}
+
 .chat_img {
     float: left;
     width: 11%;
 }
+
 .chat_ib {
     float: left;
     padding: 0 0 0 15px;
     width: 88%;
 }
 
-.chat_people{
-    overflow:hidden; clear:both;
+.chat_people {
+    overflow: hidden;
+    clear: both;
 }
 
 .chat_list {
@@ -1378,16 +1444,68 @@ margin-left: 100px;
     margin: 0;
     padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
 
-.active_chat{ background:#ebebeb;}
+.inbox_chat {
+    height: 550px;
+    overflow-y: scroll;
+}
+
+.active_chat {
+    background: #ebebeb;
+}
 
 /*END OF INBOX PAGE CSS*/
 
 /*******************************************************************/
+/*EDIT PROFILE PAGE*/
 
+body.profile-page {
+    background: rgb(99, 39, 120)
+}
 
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
 
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+/*END OF EDIT PROFILE PAGE*/
+/*******************************************************************/
 
 
 
