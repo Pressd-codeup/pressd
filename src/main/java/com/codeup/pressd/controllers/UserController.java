@@ -117,12 +117,14 @@ public class UserController {
 
         List<Message> messages = messageDao.findAllBySentTo(user);
         boolean unreadMessages = false;
+        long messageCount = 0;
         for (Message message : messages) {
             if (message.isRead() == 0) {
-                unreadMessages = true;
-                break;
+                messageCount++;
             }
         }
+        if (messageCount > 0) unreadMessages = true;
+        viewModel.addAttribute("messageCount", messageCount);
         viewModel.addAttribute("unreadMessages", unreadMessages);
         viewModel.addAttribute("noWorkouts", noWorkouts);
         viewModel.addAttribute("noPosts", noPosts);
@@ -133,6 +135,13 @@ public class UserController {
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("avatar", avatar);
         return "users/show";
+    }
+
+    @GetMapping("/users/profile")
+    public String profileFromNav() {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = currentUser.getId();
+        return "redirect:/users/" + id;
     }
 
     @GetMapping("/{id}/posts")

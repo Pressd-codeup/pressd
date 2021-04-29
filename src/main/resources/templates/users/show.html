@@ -9,13 +9,13 @@
     <div class="row py-5 px-4">
         <div class="col-md-10 mx-auto">
             <!-- Profile widget -->
-            <div class="bg-white shadow rounded overflow-hidden">
+            <div class="shadow rounded overflow-hidden" style="background: rgba(126, 123, 215, 0.2);">
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="align-items-end profile-head" style="width: 33%">
                         <div class="profile mr-3 pr-3 pt-3 pb-3 pl-0">
                             <img th:src="@{${avatar.url}}" alt="..." class="rounded mb-2 img-thumbnail"
                                  style="height: 130px; width: 130px">
-                            <div class="media-body mb-5 text-white">
+                            <div class="media-body mb-5 text-white pl-3">
                                 <h4 th:text="${user.username}"></h4>
                             </div>
                         </div>
@@ -27,16 +27,19 @@
                                 class="fas fa-image mr-1"></i></small>
                         </li>-->
                     <th:block th:if="${isLoggedIn && isUser}">
-                        <form class="m-2" th:action="@{/users/edit}" method="GET">
+                        <form class="mr-2 mt-2 mb-2 ml-4" th:action="@{/users/edit}" method="GET">
                             <button class="submit-button ml-3" type="submit">Edit profile</button>
                         </form>
                         <form class="m-2" th:action="@{/messages}" method="GET">
                             <th:block th:if="${unreadMessages}">
-                                <button class="submit-button" type="submit"><i class="fas fa-envelope text-white"></i> Inbox</button>
-                                <p>You have unread messages!</p>
+
+                                <span th:if="${messageCount == 1}">You have 1 unread message! <button class="submit-button" type="submit"><i class="fas fa-envelope text-white"></i> Inbox</button></span>
+
+                                <span th:unless="${messageCount == 1}">You have <span th:text="${messageCount}"></span> unread messages! <button class="submit-button" type="submit"><i class="fas fa-envelope text-white"></i> Inbox</button></span>
+
                             </th:block>
 
-                            <button class="submit-button" type="submit" th:unless="${unreadMessages}" th:href="@{~/messages}"><i class="fas fa-envelope-open text-white"></i> Inbox</button>
+                            <span th:unless="${unreadMessages}">You have no unread messages. <button class="submit-button" type="submit" th:href="@{~/messages}"><i class="fas fa-envelope-open text-white"></i> Inbox</button></span>
                         </form>
                     </th:block>
 
@@ -57,9 +60,9 @@
                     </ul>-->
                 </div>
                 <div class="px-4 py-3 mt-4">
-                    <h5 class="mb-0">About</h5>
-                    <div class="p-4 rounded shadow-sm bg-light">
-                        <p th:text="${user.about}" class="font-italic mb-0">User</p>
+                    <h5 class="mb-0" style="color: rgb(91,33,169);">About</h5>
+                    <div class="p-4 rounded">
+                        <p th:text="${user.about}" class="font-italic mb-0" style= "color: rgb(39, 46, 79)">User</p>
                     </div>
                 </div>
                 <div class="py-4 px-4">
@@ -67,7 +70,7 @@
                         <!--RECENT POST/SHOW ALL-->
                         <h5 class="mb-0"></h5><a href="#" class="btn btn-link text-muted"></a>
                     </div>
-                    <div class="row">
+                    <div class="d-flex justify-content-around">
 
                         <form th:unless="${noPosts}" th:action="@{/{id}/posts(id=${user.getId()})}" method="get">
                             <input type="submit" class="submit-button" value="View posts">
@@ -78,7 +81,7 @@
 <!--                        <form th:action="@{'/users/'+user.id+'/images'}">-->
 <!--                            <input type="submit" value="view user's posts">-->
 <!--                        </form>-->
-                        <form th:unless="${noComments}" th:action="@{/{id}/comments(id=${user.getId()})}" method="get">
+                        <form th:unless="${noComments}" th:action="@{/{id}/comments(id=${user.id})}" method="get">
                             <input type="submit" class="submit-button" value="View comments">
                         </form>
 

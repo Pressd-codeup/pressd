@@ -3,6 +3,7 @@ package com.codeup.pressd.controllers;
 import com.codeup.pressd.models.Comment;
 import com.codeup.pressd.models.Message;
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.repository.ImageRepository;
 import com.codeup.pressd.repository.MessageRepository;
 import com.codeup.pressd.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,10 +23,12 @@ public class MessageController {
 
     private final MessageRepository messageDao;
     private final UserRepository userDao;
+    private final ImageRepository imageDao;
 
-    MessageController(MessageRepository messageDao, UserRepository userDao) {
+    MessageController(MessageRepository messageDao, UserRepository userDao, ImageRepository imageDao) {
         this.messageDao = messageDao;
         this.userDao = userDao;
+        this.imageDao = imageDao;
     }
 
     @GetMapping("/messages")
@@ -41,6 +44,7 @@ public class MessageController {
                 if (!threads.contains(message.getSentFrom())) threads.add(message.getSentFrom());
             }
         }
+        viewModel.addAttribute("imageDao", imageDao);
         viewModel.addAttribute("threads", threads);
 
         return "messages/index";
@@ -88,9 +92,12 @@ public class MessageController {
 
         List<Message> messages = messageDao.makeThread(m1, m2);
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+        viewModel.addAttribute("imageDao", imageDao);
         viewModel.addAttribute("messages", messages);
         viewModel.addAttribute("shortF", shortF);
+        viewModel.addAttribute("id", id);
         viewModel.addAttribute("currentUser", currentUser);
+        viewModel.addAttribute("newMessage", new Message());
         return "messages/thread";
     }
 
@@ -107,10 +114,18 @@ public class MessageController {
     public String createMessage(@ModelAttribute Message message, @PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userTo = userDao.getOne(id);
+        List<Message> allMessages = messageDao.findAll();
+        long newId = 0;
+        for (Message message1 : allMessages) {
+            if (message1.getId() > newId) newId = message1.getId();
+        }
+        ++newId;
+        message.setId(newId);
         message.setSentTo(userTo);
         message.setSentFrom(user);
         message.setDatePosted(LocalDateTime.now());
+        message.setId(newId);
         messageDao.save(message);
-        return "redirect:/messages";
+        return "redirect:/messages/" + id;
     }
 }
