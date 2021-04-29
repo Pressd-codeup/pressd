@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Workouts')"></head>
+<head th:replace="fragments/header :: main-head('Inbox')"></head>
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
@@ -23,24 +23,27 @@
                 <div class="recent_heading">
                     <h4>Recent</h4>
                 </div>
-<!--                <div class="srch_bar">-->
-<!--                    <div class="stylish-input-group">-->
-<!--                        <input type="text" class="search-bar" placeholder="Search">-->
-<!--                        <span class="input-group-addon">-->
-<!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
-<!--                </span></div>-->
-<!--                </div>-->
+                <!--                <div class="srch_bar">-->
+                <!--                    <div class="stylish-input-group">-->
+                <!--                        <input type="text" class="search-bar" placeholder="Search">-->
+                <!--                        <span class="input-group-addon">-->
+                <!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
+                <!--                </span></div>-->
+                <!--                </div>-->
             </div>
             <div class="inbox_chat">
                 <div class="chat_list active_chat" th:each="thread : ${threads}">
-                    <div class="chat_people">
-                        <div class="chat_img"><img class="img-inbox" src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                    <div class="chat_people d-flex align-content-center">
+                        <div class="chat_img"><img class="img-inbox"
+                                                   th:src="@{${imageDao.getOne(thread.getAvatarId()).url}}" alt="sunil">
                         </div>
-                        <div class="chat_ib posts">
+                        <div class="chat_ib posts d-flex align-items-center">
+
                             <a th:href="@{/messages/{id}(id=${thread.getId()})}">
                                 <h5> Your messages with:</h5>
                                 <span th:text="${thread.getUsername()}"></span>
                             </a>
+
                         </div>
                     </div>
                 </div>
