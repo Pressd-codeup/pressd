@@ -39,6 +39,8 @@ public class CommentController {
 
     @GetMapping("/workouts/{id}/comments/create")
     public String showCreateComment(@PathVariable long id, Model viewModel) {
+        Workout workout = workoutDao.getOne(id);
+
         viewModel.addAttribute("comment", new Comment());
         return "comments/create";
     }
@@ -51,19 +53,8 @@ public class CommentController {
         comment.setUser(dbUser);
         comment.setWorkout(workout);
         comment.setDatePosted(LocalDateTime.now());
-        List<Comment> allComments = commentDao.findAll();
-        comment.setId(allComments.size() + 1);
-        Hibernate.initialize(workout.getComments());
-        Hibernate.initialize(dbUser.getComments());
-        List<Comment> workoutComments = workout.getComments();
-        List<Comment> userComments = dbUser.getComments();
-//        Hibernate.initialize(workoutComments);
-//        Hibernate.initialize(userComments);
-        workoutComments.add(comment);
-        userComments.add(comment);
-        workout.setComments(workoutComments);
-        dbUser.setComments(userComments);
-//        workoutDao.save(workout);
+        long newId = commentDao.findAll().size() + 1;
+        comment.setId(newId);
         commentDao.save(comment);
         return "redirect:/workouts/"+id+"/comments";
     }
@@ -102,4 +93,10 @@ public class CommentController {
         return "redirect:/workouts";
 
     }
+
+//    GetMapping("/{id}/comments")
+//        public String viewUserComments(@PathVariable long id){
+//
+//        return ""
+//        }
 }
