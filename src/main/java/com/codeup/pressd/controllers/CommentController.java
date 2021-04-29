@@ -55,7 +55,13 @@ public class CommentController {
         comment.setUser(dbUser);
         comment.setWorkout(workout);
         comment.setDatePosted(LocalDateTime.now());
-        long newId = commentDao.findAll().size() + 1;
+        List<Comment> allComments = commentDao.findAll();
+        long newId = 0;
+        for (Comment comment1 : allComments) {
+            if (comment1.getId() > newId) newId = comment1.getId();
+        }
+        ++newId;
+        comment.setId(newId);
         comment.setId(newId);
         commentDao.save(comment);
         return "redirect:/workouts/"+id+"/comments";
