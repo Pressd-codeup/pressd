@@ -94,7 +94,9 @@ public class MessageController {
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
         viewModel.addAttribute("messages", messages);
         viewModel.addAttribute("shortF", shortF);
+        viewModel.addAttribute("id", id);
         viewModel.addAttribute("currentUser", currentUser);
+        viewModel.addAttribute("newMessage", new Message());
         return "messages/thread";
     }
 
@@ -111,10 +113,12 @@ public class MessageController {
     public String createMessage(@ModelAttribute Message message, @PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userTo = userDao.getOne(id);
+        long newId = messageDao.findAll().size() + 1;
         message.setSentTo(userTo);
         message.setSentFrom(user);
         message.setDatePosted(LocalDateTime.now());
+        message.setId(newId);
         messageDao.save(message);
-        return "redirect:/messages";
+        return "redirect:/messages/" + id;
     }
 }
