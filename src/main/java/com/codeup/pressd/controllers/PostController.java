@@ -39,6 +39,7 @@ public class PostController {
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "index");
 		return "posts/index";
 	}
 
@@ -49,6 +50,7 @@ public class PostController {
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "partners");
 		return "posts/index";
 	}
 
@@ -58,6 +60,7 @@ public class PostController {
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "coaches");
 		return "posts/index";
 	}
 
@@ -67,6 +70,7 @@ public class PostController {
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "clients");
 		return "posts/index";
 	}
 	@GetMapping("/posts/filter")

@@ -250,10 +250,9 @@ a:focus {
 .dropdown-menu {
     padding: 0 !important;
     background-image: none;
-    background-color: var(--dark-color);
-    border: var(--primary-color) !important;
-    border-style: dashed !important;
-    border-width: thin !important;
+    background-color: var(--dark-color);;
+    border-style: solid !important;
+    border-radius: 10px;
 }
 
 .dropdown-divider {
@@ -262,13 +261,13 @@ a:focus {
 
 .dropdown-menu > a {
     background-image: none;
-    background-color: var(--dark-color);
+    background-color: var(--dark-color);;
     color: var(--white-color);
 }
 
 .dropdown-menu > a:hover {
     background-image: none;
-    background-color: var(--dark-color);
+    background-color: var(--dark-color);;
     color: var(--primary-color);
 }
 
