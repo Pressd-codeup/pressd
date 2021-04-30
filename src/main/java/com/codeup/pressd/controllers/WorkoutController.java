@@ -67,7 +67,6 @@ public class WorkoutController {
             } else {
                 userRating = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user).getRating().getStars();
                 viewModel.addAttribute("uwr", tester);
-                System.out.println("UWR: " + tester);
             }
             viewModel.addAttribute("userRating", userRating);
         } catch (RuntimeException ignored) {
@@ -97,7 +96,6 @@ public class WorkoutController {
     @PostMapping("/ratings/{id}/create")
     public String createRating(@RequestParam String newRating, @PathVariable long id) {
         long ratingLong = Long.parseLong(newRating);
-        System.out.println("RATINGLONG: " + ratingLong);
         UserWorkoutRating uwr = new UserWorkoutRating();
         Workout workout = workoutDao.getOne(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -115,7 +113,6 @@ public class WorkoutController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserWorkoutRating uwr = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
-        System.out.println("ID: " + uwr.getId());
         //userWorkoutRatingDao.deleteById(uwr.getId());
         long ratingLong = Long.parseLong(newRating);
         //UserWorkoutRating newUwr = new UserWorkoutRating();
