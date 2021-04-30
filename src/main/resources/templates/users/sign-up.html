@@ -27,45 +27,58 @@
                         <!--Form-->
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
-                                <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+
                                     <!--Header-->
                                     <div class="text-center">
                                         <h3 class="white-text">
                                             <i class="fa fa-user white-text"></i> Register:</h3>
-                                        <hr class="hr-light">
+
                                     </div>
+
+                                <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+                                    <hr class="hr-light">
+
                                     <!--Body-->
                                     <div class="md-form">
+                                        <span>
+                                            <i class="fa fa-user prefix white-text active"></i>
+                                            <label for="username" class="active">Username</label>
+                                        </span>
 
-                                        <i class="fa fa-user prefix white-text active"></i>
-                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+
                                         <input class="form-control mb-3" id="username" th:field="*{username}"/>
-                                        <label for="username" class="active">Your name</label>
-
                                     </div>
+
                                     <div class="md-form">
-                                        <i class="fa fa-envelope prefix white-text active"></i>
+                                        <span>
+                                            <i class="fa fa-envelope prefix white-text active"></i>
+                                            <label class="active" for="email">Your email</label>
+                                        </span>
+
                                         <input type="email" class="white-text form-control" id="email"
                                                th:field="*{email}">
-                                        <label class="active" for="email">Your email</label>
                                     </div>
+
                                     <div class="md-form">
-                                        <i class="fa fa-lock prefix white-text active"></i>
+                                        <span>
+                                            <i class="fa fa-lock prefix white-text active"></i>
+                                            <label for="password">Your password</label>
+                                        </span>
+
                                         <input type="password" id="password" class="white-text form-control"
                                                th:field="*{password}">
-                                        <label for="password">Your password</label>
                                     </div>
-                                    <div class="text-center mt-4">
-                                        <button class="submit-button">Sign up</button>
+                                    <div class="justify-content-between mt-4">
+                                        <input type="submit" class="login-button" value="Sign Up">
                                         <hr class="hr-light mb-3 mt-4">
                                         <div class="inline-ul text-center d-flex justify-content-center">
-                                            <a class="p-2 m-2 tw-ic">
+                                            <a class="p-4 m-4 tw-ic">
                                                 <i class="fa fa-twitter white-text"></i>
                                             </a>
-                                            <a class="p-2 m-2 li-ic">
+                                            <a class="p-4 m-4 li-ic">
                                                 <i class="fa fa-linkedin white-text"> </i>
                                             </a>
-                                            <a class="p-2 m-2 ins-ic">
+                                            <a class="p-4 m-4 ins-ic">
                                                 <i class="fa fa-instagram white-text"> </i>
                                             </a>
                                         </div>

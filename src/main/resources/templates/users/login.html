@@ -43,40 +43,51 @@
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
 
-                                <form th:action="@{/login}" method="post">
+
                                     <!--Header-->
-                                    <div class="text-center">
+                                    <div class="d-flex justify-content-between">
                                         <h3 class="white-text">
                                             <i class="fa fa-user white-text"></i> Login:</h3>
-                                        <hr class="hr-light">
+                                        <form th:action="@{/sign-up}" method="GET">
+                                            <input class="login-button" type="submit" value="Sign Up">
+                                        </form>
+
                                     </div>
+                                <form th:action="@{/login}" method="post">
+                                        <hr class="hr-light">
+
                                     <!--Body-->
                                     <div class="md-form">
 
-                                        <i class="fa fa-user prefix white-text active"></i>
+                                        <span>
+                                            <i class="fa fa-user prefix white-text active"></i>
+                                            <label class="form-label mt-3" for="username">Username</label>
+                                        </span>
                                         <!--                                    <input type="text" id="form3" class="white-text form-control">-->
                                         <input class="form-control mb-3" id="username" name="username"
                                                type="text"/>
-                                        <label class="form-label mt-3" for="username">Username</label>
+
 
                                     </div>
                                     <div class="md-form">
-                                        <i class="fa fa-lock prefix white-text active"></i>
+                                        <span>
+                                            <i class="fa fa-lock prefix white-text active"></i>
+                                            <label class="form-label mt-3" for="password">Password</label>
+                                        </span>
                                         <input class="form-control" id="password" name="password"
                                                type="password"/>
-                                        <label class="form-label mt-3" for="password">Password</label>
+
                                     </div>
-                                    <div class="text-center mt-4">
-                                        <button type="submit" class="submit-button">Login</button>
-                                        <hr class="hr-light mb-3 mt-4">
+                                    <div class="d-flex justify-content-between mt-4 ">
+                                        <input type="submit" class="login-button" value="Login">
                                         <div class="inline-ul text-center d-flex justify-content-center">
-                                            <a class="p-2 m-2 tw-ic">
+                                            <a class="p-0 m-0 tw-ic">
                                                 <i class="fa fa-twitter white-text"></i>
                                             </a>
-                                            <a class="p-2 m-2 li-ic">
+                                            <a class="p-0 m-0 li-ic">
                                                 <i class="fa fa-linkedin white-text"> </i>
                                             </a>
-                                            <a class="p-2 m-2 ins-ic">
+                                            <a class="p-0 m-0 ins-ic">
                                                 <i class="fa fa-instagram white-text"> </i>
                                             </a>
                                         </div>
