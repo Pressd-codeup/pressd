@@ -605,6 +605,33 @@ button#submit-button {
     background: rgba(91, 33, 169, 0.9);
 }
 
+.signup-button {
+    background: rgba(91, 33, 169, 0.9);
+    border-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .25rem;
+}
+
+.signup-button:hover {
+    background: rgba(39, 46, 79, 0.9);
+}
+
+.login-button {
+    background: rgba(54, 6, 114, 0.9);
+    border-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .25rem;
+}
+
+.login-button:hover {
+    background: rgba(91, 33, 169, 0.9);
+}
+
+
 .contact h2 + p {
     max-width: 90%;
 }
