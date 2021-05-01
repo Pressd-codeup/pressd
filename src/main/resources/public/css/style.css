@@ -1531,7 +1531,6 @@ img.img-inbox {
 
 body.edit_profile {
     margin: 0;
-    padding-top: 40px;
     color: #2e323c;
     background: #f5f6fa;
     position: relative;
@@ -1551,6 +1550,10 @@ body.edit_profile {
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
+}
+
+.user-avatar {
+    padding-top: 20px;
 }
 .account-settings .user-profile h5.user-name {
     margin: 0 0 0.5rem 0;
@@ -1591,6 +1594,41 @@ body.edit_profile {
     margin-bottom: 1rem;
 }
 
+.container-edit {
+    margin: 40px 40px 90px;
+}
+
+.edit-back {
+    background-color: rgba(126, 123, 215, 0.2);
+}
+
+.upload-btn {
+    background: rgba(54, 6, 114, 0.9);
+    border-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .25rem;
+}
+
+.upload-btn:hover {
+    background: rgba(91, 33, 169, 0.9);
+}
+
+.view-edit {
+    background-image: url('images/class/mountains.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.current-img {
+    padding-top: 20px;
+}
+
+.edit-profile-title {
+    padding-top: 70px;
+}
 /*END OF EDIT PROFILE PAGE*/
 /*******************************************************************/
 
