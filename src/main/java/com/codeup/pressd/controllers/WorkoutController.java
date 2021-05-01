@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -35,17 +36,68 @@ public class WorkoutController {
     @GetMapping("/workouts")
     public String seeAllWorkouts(Model viewModel) {
         List<Workout> workouts = workoutDao.findAll();
+        Collections.reverse(workouts);
+        List<Category> allCategories = categoryDao.findAll();
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        viewModel.addAttribute("first", first);
+        viewModel.addAttribute("allCategories", allCategories);
+        viewModel.addAttribute("category", 1);
         viewModel.addAttribute("workouts", workouts);
+
         return "workouts/index";
     }
 
-    @GetMapping("/workouts/category/{id}")
-    public String showWorkoutsByCategory(@PathVariable long id, Model viewModel) {
-
-        Category category = categoryDao.getOne(id);
-        List<Workout> workouts = workoutDao.getWorkoutsByCategoriesContaining(category);
+    /*@GetMapping("/workouts/categories")
+    public String viewWorkoutsByCategory(@ModelAttribute List<Workout> workouts, @ModelAttribute long category, Model viewModel) {
+        List<Category> allCategories = categoryDao.findAll();
+        viewModel.addAttribute("allCategories", allCategories);
         viewModel.addAttribute("workouts", workouts);
-        return "workouts/categories";
+        viewModel.addAttribute("category", category);
+
+        return "workouts/index";
+    }*/
+
+
+    @PostMapping("/workouts")
+    public String selectWorkoutsByCategory(@RequestParam String[] categoryNames, Model viewModel) {
+
+        long category = 0;
+        List<Workout> allWorkouts = workoutDao.findAll();
+        List<Workout> workouts = new ArrayList<>();
+
+        List<Category> categories = new ArrayList<>();
+        List<Category> allCategories = categoryDao.findAll();
+
+        for (String catName : categoryNames) {
+            for (Category tempCat : allCategories) {
+                if (catName.equals(tempCat.getName())) {
+                    categories.add(tempCat);
+                    break;
+                }
+            }
+        }
+
+        for (Workout tempWork : allWorkouts) {
+            for (Category allCatTemp : categories) {
+                if (tempWork.getCategories().contains(allCatTemp)) {
+                    workouts.add(tempWork);
+                    break;
+                }
+            }
+        }
+
+
+        if (!workouts.isEmpty()) category = 2;
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        viewModel.addAttribute("first", first);
+        viewModel.addAttribute("allCategories", allCategories);
+        viewModel.addAttribute("category", category);
+        Collections.reverse(workouts);
+        viewModel.addAttribute("workouts", workouts);
+
+        return "workouts/index";
     }
 
     @GetMapping("/workouts/{id}")
@@ -128,6 +180,11 @@ public class WorkoutController {
     @GetMapping("/workouts/create")
     public String showCreateWorkout(Model viewModel) {
         viewModel.addAttribute("workout", new Workout());
+        List<Category> allCategories = categoryDao.findAll();
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        viewModel.addAttribute("first", first);
+        viewModel.addAttribute("allCategories", allCategories);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getOne(currentUser.getId());
         Image currentImage = imageDao.getOne(1L);
@@ -136,9 +193,25 @@ public class WorkoutController {
     }
 
     @PostMapping("/workouts/create")
-    public String createWorkout(@ModelAttribute Workout workout, @RequestParam(name="imageId") long imageId) {
+    public String createWorkout(@ModelAttribute Workout workout, @RequestParam(name="imageId") long imageId, @RequestParam String[] categoryNames) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Image image = imageDao.getOne(imageId);
+
+        List<Category> allCategories = categoryDao.findAll();
+
+        List<Category> categories = new ArrayList<>();
+
+        for (String catName : categoryNames) {
+            for (Category tempCat : allCategories) {
+                if (catName.equals(tempCat.getName())) {
+                    categories.add(tempCat);
+                    break;
+                }
+            }
+        }
+
+
+        workout.setCategories(categories);
         workout.setUser(user);
         workout.setComments(new ArrayList<>());
         workout.setDatePosted(LocalDateTime.now());
