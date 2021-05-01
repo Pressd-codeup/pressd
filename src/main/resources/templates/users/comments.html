@@ -3,22 +3,22 @@
 <head th:replace="fragments/header :: main-head('comments')"></head>
 <body class="comment">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<main class="container">
-    <h1 th:text="${user.username +' Comments'}"></h1>
-    <div class="comment" th:each="comment : ${comments}">
-        <h1 th:text="${comment.workout.title}"></h1>
-        <p th:text="${comment.body}"></p>
-        <small th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
-        <div class="btn-group mr-2" role="group" aria-label="Second group">
-            <form th:action="@{'/workouts/'+${comment.user.id}+'/comments'}" method="GET">
-                <input class="submit-button" type="submit" value="View Comment">
-            </form>
+<section class="details-card">
+    <main class="container">
+        <h1 th:text="${user.username +' Comments'}"></h1>
+        <div class="comment" th:each="comment : ${comments}">
+            <h1 th:text="${comment.workout.title}"></h1>
+            <p th:text="${comment.body}"></p>
+            <small th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <form th:action="@{'/workouts/'+${comment.user.id}+'/comments'}" method="GET">
+                    <input class="submit-button" type="submit" value="View Comment">
+                </form>
+            </div>
         </div>
-    </div>
 
-</main>
-
+    </main>
+</section>
 <footer th:replace="fragments/footer :: main-footer"></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
