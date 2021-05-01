@@ -38,6 +38,7 @@ public class PostController {
 		List<Post> posts = postDao.findAll();
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
 		viewModel.addAttribute("type", "index");
 		return "posts/index";
@@ -67,6 +68,7 @@ public class PostController {
 		List<Post> posts = postDao.getPostsByTypeName("partners");
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
 		viewModel.addAttribute("type", "partners");
 		return "posts/index";
@@ -77,6 +79,7 @@ public class PostController {
 		List<Post> posts = postDao.getPostsByTypeName("coaches");
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
 		viewModel.addAttribute("type", "coaches");
 		return "posts/index";
@@ -87,6 +90,7 @@ public class PostController {
 		List<Post> posts = postDao.getPostsByTypeName("clients");
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
 		viewModel.addAttribute("type", "clients");
 		return "posts/index";
