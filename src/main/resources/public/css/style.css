@@ -1283,9 +1283,6 @@ h4.card-title {
     font-family: Roboto, sans-serif;
     font-weight: 300;
     line-height: 1.5;
-    margin-bottom: 0;
-    padding: 15px 20px;
-    border-bottom: 1px solid rgba(77, 82, 89, 0.07)
 }
 
 .ps-container {
