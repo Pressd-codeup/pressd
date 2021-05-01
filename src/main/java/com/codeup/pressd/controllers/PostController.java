@@ -43,6 +43,24 @@ public class PostController {
 		return "posts/index";
 	}
 
+	@GetMapping("/posts/{id}")
+	public String showOnePost(@PathVariable long id, Model viewModel){
+		Post post = postDao.getOne(id);
+		User user = post.getUser();
+		User currentUser = new User();
+		currentUser.setId(999999999);
+		try {
+			currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (RuntimeException ignored) {
+		}
+		boolean isUser = currentUser.getId() == user.getId();
+		viewModel.addAttribute("isUser", isUser);
+		viewModel.addAttribute("post", post);
+		viewModel.addAttribute("user", user);
+
+		return "posts/show";
+	}
+
 	@GetMapping("/partners")
 	public String seeBuddyPosts(Model viewModel){
 
@@ -100,16 +118,6 @@ public class PostController {
 			viewModel.addAttribute("posts", filteredPosts);
 		}
 		return "/posts/index";
-	}
-
-	@GetMapping("/posts/{id}")
-	public String showOnePost(@PathVariable long id, Model viewModel){
-		Post post = postDao.getOne(id);
-		User user = post.getUser();
-		viewModel.addAttribute("post", post);
-		viewModel.addAttribute("user", user);
-
-		return "posts/show";
 	}
 
 	@GetMapping("/posts/create")
