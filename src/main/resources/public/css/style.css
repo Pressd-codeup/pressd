@@ -1204,6 +1204,10 @@ a.btn-card {
     margin: 26px 0 26px;
 }
 
+.incoming_msg {
+    overflow: hidden;
+    margin: 26px 0 26px;
+}
 .sent_msg {
     float: right;
     width: 46%;
@@ -1599,7 +1603,7 @@ body.edit_profile {
 }
 
 .container-edit {
-    margin: 40px 40px 90px;
+    margin: 60px 60px 100px;
 }
 
 .edit-back {
