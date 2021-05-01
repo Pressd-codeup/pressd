@@ -19,21 +19,22 @@
                         <!--YOUR MESSAGES-->
                         <div class="incoming_msg" th:each="message : ${messages}">
                             <div class="received_msg" th:switch="${message.sentFrom.id}">
-                                <div class="received_withd_msg" th:case="${currentUser.id}">
-                                    <div>
+                                <div class="outgoing_msg" th:case="${currentUser.id}">
+                                    <div class="sent_msg">
                                         <small style="color: white">You</small>
                                         <span class="time_date"><small
-                                                th:text="${shortF.format(message.datePosted)}" style="color: white" ></small></span>
+                                                th:text="${shortF.format(message.datePosted)}"
+                                                style="color: white"></small></span>
                                         <p th:text="${message.body}"></p>
                                     </div>
                                     <!--                <div th:case="${currentUser.id}">-->
                                 </div>
                                 <!--OTHER USER'S MESSAGES-->
-                                <div class="outgoing_msg" th:case="*">
-                                    <div class="sent_msg">
+                                <div class="received_withd_msg" th:case="*">
+                                    <div class="">
                                         <small style="color: white" th:text="${message.sentFrom.username}"></small>
                                         <span class="time_date"><small style="color: white"
-                                                th:text="${shortF.format(message.datePosted)}"></small></span>
+                                                                       th:text="${shortF.format(message.datePosted)}"></small></span>
                                         <p th:text="${message.body}"></p>
 
                                     </div>
@@ -47,12 +48,17 @@
                             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                         </div>
                     </div>
-                    <div class="publisher" style="background: rgba(126, 123, 215, 0.2); border-top: 1px solid; border-color: inherit"><img class="avatar avatar-xs"
-                                                                  th:src="${imageDao.getOne(currentUser.getAvatarId()).url}"
-                                                                  alt="...">
-                        <form th:action="@{'/messages/send/' + ${id}}" th:method="POST" th:object="${newMessage}"><input style="background: white; border-radius: .25rem" class="publisher-input" th:field="*{body}" type="text" placeholder="Write something" required>
+
+                    <div class="publisher"
+                         style="background: rgba(126, 123, 215, 0.2); border-top: 1px solid; border-color: inherit">
+                        <img class="float-right avatar avatar-xs"
+                             th:src="${imageDao.getOne(currentUser.getAvatarId()).url}"
+                             alt="...">
+                        <form th:action="@{'/messages/send/' + ${id}}" th:method="POST" th:object="${newMessage}">
+                            <input style="background: white; border-radius: .25rem" class="publisher-input"
+                                   th:field="*{body}" type="text" placeholder="Write something" required>
                             <button type="submit" class="submit-button"><i class="fa fa-paper-plane"></i></button>
-                            </form>
+                        </form>
                     </div>
                 </div>
             </div>
