@@ -103,60 +103,23 @@
                                             <!--                                    <input type="text" id="form3" class="white-text form-control">-->
                                             <br>
                                             <div class="form-check"
-                                                 style="color: white; font-weight: bolder;"
-                                                 th:field="${workout.categories}">
+                                                 style="color: white; font-weight: bolder;">
                                                 <div>
 
-
-                                                    <label class="cat">Select Category</label>
                                                     <hr>
-                                                    <input class="form-check-input" name="1" type="checkbox" value="1"
-                                                           id="strength">
-                                                    <label class="form-check-label" for="strength">
-                                                        Strength Training
-                                                    </label>
+                                                    <label class="cat">Select Category</label>
                                                     <br>
-                                                    <input class="form-check-input" name="2" type="checkbox" value="2"
-                                                           id="bodybuilding">
-                                                    <label class="form-check-label" for="bodybuilding">
-                                                        BodyBuilding
-                                                    </label>
+
+                                                    <input class="form-check-input" type="checkbox" name="categoryNames" th:value="${first.getName()}" checked>
+                                                    <label th:text="${first.getName()}"></label>
                                                     <br>
-                                                    <input class="form-check-input" name="3" type="checkbox" value="3"
-                                                           id="endurance">
-                                                    <label class="form-check-label" for="endurance">
-                                                        Endurance Training
-                                                    </label>
-                                                    <br>
-                                                    <input class="form-check-input" name="4" type="checkbox" value="4"
-                                                           id="arms">
-                                                    <label class="form-check-label" for="arms">
-                                                        Arms
-                                                    </label>
-                                                    <br>
-                                                    <input class="form-check-input" name="5" type="checkbox" value="5"
-                                                           id="chest">
-                                                    <label class="form-check-label" for="chest">
-                                                        Chest
-                                                    </label>
-                                                    <br>
-                                                    <input class="form-check-input" name="6" type="checkbox" value="6"
-                                                           id="back">
-                                                    <label class="form-check-label" for="back">
-                                                        Back
-                                                    </label>
-                                                    <br>
-                                                    <input class="form-check-input" name="7" type="checkbox" value="7"
-                                                           id="legs">
-                                                    <label class="form-check-label" for="legs">
-                                                        Legs
-                                                    </label>
-                                                    <br>
-                                                    <input class="form-check-input" name="8" type="checkbox" value="8"
-                                                           id="core">
-                                                    <label class="form-check-label" for="core">
-                                                        Core
-                                                    </label>
+
+                                                        <th:block th:each="category : ${allCategories}">
+                                                            <input class="form-check-input" type="checkbox" name="categoryNames" th:value="${category.name}">
+                                                            <label th:text="${category.name}"></label>
+                                                            <br>
+                                                        </th:block>
+
                                                     <br>
                                                     <hr>
                                                     <br>
