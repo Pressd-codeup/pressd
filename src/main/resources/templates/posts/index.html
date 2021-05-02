@@ -50,6 +50,9 @@
                             <small class="text-white" th:text="${post.getUser().getUsername()}"></small>
                         </div>
                         <div>
+                            <small class="text-white" th:text="${post.city}"></small>
+                        </div>
+                        <div>
                             <small class="text-white"
                                    th:text="${shortF.format(post.getDatePosted())}"></small>
                         </div>
