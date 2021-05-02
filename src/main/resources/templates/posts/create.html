@@ -32,9 +32,235 @@
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
+<!--ORIGINAL CODE-->
+
+<!--<section class="leg d-flex flex-column justify-content-center align-items-center" id="home">-->
+
+<!--    <div class="container">-->
+<!--        <div th:if="${post.id == 0}">-->
 
 
+<!--            <div class="bg-overlay1"></div>-->
+<!--            <div class="container">-->
+<!--                <div th:if="${post.id == 0}">-->
 
+<!--                    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">-->
+
+
+<!--                        <div id="login-row" class="row justify-content-center align-items-center">-->
+
+<!--                            <div id="login-column" class="col-md-6">-->
+<!--                                <div id="login-box" class="col-md-12">-->
+<!--                                    <h1 style="color: white">Create a New Post!</h1>-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="zipcode" class="form-label">Zip Code</label>-->
+<!--                                        <input class="form-control" th:field="*{zipcode}" type="text" id="zipcode">-->
+<!--                                    </div>-->
+
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="title" class="form-label">Title of the post</label>-->
+<!--                                        <input class="form-control" th:field="*{title}" type="text" id="title">-->
+<!--                                    </div>-->
+
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="body" class="form-label">Body of the blog post</label>-->
+<!--                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body">All text goes here. At this time no formatting is allowed besides line breaks.</textarea>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;/*@thymesVar id="type" type="com.codeup.pressd.models.Type"*/&ndash;&gt;-->
+<!--                                    <div class="dropdown" style="margin: 20px" th:field="${type}">-->
+<!--                                        <button type="button"-->
+<!--                                                class="btn bg-dark text-center btn-outline-danger dropdown-toggle"-->
+<!--                                                data-toggle="dropdown">-->
+<!--                                            Type-->
+<!--                                        </button>-->
+<!--                                        <div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">-->
+<!--                                            <label for="type1" class="form-lable">Partners</label>-->
+<!--                                            <input class="dropdown-item" type="radio" name="type_id" value="1"-->
+<!--                                                   id="type1">-->
+<!--                                            <label for="type2" class="form-lable">Coaches</label>-->
+<!--                                            <input class="dropdown-item" type="radio" name="type_id" value="2"-->
+<!--                                                   id="type2">-->
+<!--                                            <label for="type3" class="form-lable">Clients</label>-->
+<!--                                            <input class="dropdown-item" type="radio" name="type_id" value="3"-->
+<!--                                                   id="type3">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+
+<!--<header class="login">-->
+<!--    &lt;!&ndash; Full Page Intro &ndash;&gt;-->
+<!--    <div class="view-login-2">-->
+<!--        &lt;!&ndash; Mask & flexbox options&ndash;&gt;-->
+<!--        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">-->
+<!--            &lt;!&ndash; Content &ndash;&gt;-->
+<!--            <div class="container-create-post">-->
+<!--                &lt;!&ndash;Grid row&ndash;&gt;-->
+<!--                <div class="row mt-5">-->
+<!--                    &lt;!&ndash;Grid column&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                    &lt;!&ndash;Grid column&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;                    <div class="col-md-6 col-xl-5 mb-4">&lt;!&ndash;th:if="${post.id == 0}"&ndash;&gt;&ndash;&gt;-->
+<!--                    &lt;!&ndash;Form&ndash;&gt;-->
+<!--                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 display-content">-->
+<!--                        <div class="card-edit h-100 edit-back">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row gutters">-->
+<!--                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
+
+
+<!--                                        <div class="white-text text-center">-->
+<!--                                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft"-->
+<!--                                                data-wow-delay="0.3s">Create a-->
+<!--                                                Post!</h1>-->
+
+<!--                                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">-->
+<!--                                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>-->
+<!--                                            &lt;!&ndash;                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>&ndash;&gt;-->
+<!--                                        </div>-->
+
+<!--                                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">-->
+<!--                                            <div class="card-body">-->
+
+<!--                                                <div class="text-center">-->
+<!--                                                    <h3 class="white-text">-->
+<!--                                                        <i class="white-text"></i> New Post:</h3>-->
+<!--                                                    <p class="text-white">Want to upload more pictures to use? Do-->
+<!--                                                        it </p>-->
+<!--                                                    <form method="get" th:action="@{/images/upload}">-->
+<!--                                                        <input type="hidden" name="directory" value="createPostImage">-->
+<!--                                                        <input class="submit-button" type="submit"-->
+<!--                                                               value="here!"/>-->
+<!--                                                    </form>-->
+<!--                                                    <hr class="hr-light">-->
+<!--                                                </div>-->
+
+<!--                                                <form th:action="@{/posts/create}" th:method="post" th:object="${post}">-->
+<!--                                                    &lt;!&ndash;Header&ndash;&gt;-->
+
+<!--                                                    &lt;!&ndash;Body&ndash;&gt;-->
+<!--                                                    <div class="md-form">-->
+<!--                                                        <div style="display: flex; justify-content: center">-->
+<!--                                                            <div>Select an image for your workout plan:</div>-->
+<!--                                                        </div>-->
+<!--                                                        <div style="display: flex; justify-content: center; flex-wrap: wrap">-->
+
+<!--                                                            <label>-->
+<!--                                                                <input style="position: absolute; opacity: 0; width: 0; height: 0"-->
+<!--                                                                       type="radio" name="imageId"-->
+<!--                                                                       th:value="${currentImage.id}"-->
+<!--                                                                       checked>-->
+<!--                                                                <img th:src="@{${currentImage.url}}">-->
+<!--                                                            </label>-->
+<!--                                                            <div th:each="image : ${userImages}">-->
+<!--                                                                <label>-->
+<!--                                                                    <input style="position: absolute; opacity: 0; width: 0; height: 0"-->
+<!--                                                                           type="radio" name="imageId"-->
+<!--                                                                           th:value="${image.id}">-->
+<!--                                                                    <img th:src="@{${image.url}}">-->
+<!--                                                                </label>-->
+
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+
+<!--                                                        <i class="prefix white-text active"></i>-->
+<!--                                                        &lt;!&ndash;<input type="text" id="form3" class="white-text form-control">&ndash;&gt;-->
+<!--                                                        <label class="form-label mt-3" for="zipcode">Zip Code</label>-->
+<!--                                                        <input class="form-control mb-3" id="zipcode" type="number"-->
+<!--                                                               min="00501" max="99950" th:field="*{zipcode}" required/>-->
+
+
+<!--                                                    </div>-->
+
+<!--                                                    <div class="md-form">-->
+
+<!--                                                        <i class="prefix white-text active"></i>-->
+<!--                                                        &lt;!&ndash;                                    <input type="text" id="form3" class="white-text form-control">&ndash;&gt;-->
+<!--                                                        <label class="form-label mt-3" for="title">Title your-->
+<!--                                                            post:</label>-->
+<!--                                                        <input class="form-control mb-3" id="title" type="text"-->
+<!--                                                               th:field="*{title}"-->
+<!--                                                               required/>-->
+
+
+<!--                                                    </div>-->
+<!--                                                    <div class="md-form">-->
+<!--                                                        <i class="prefix white-text active"></i>-->
+<!--                                                        &lt;!&ndash;                                        <input class="form-control" id="password" name="password"&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                               type="password"/>&ndash;&gt;-->
+<!--                                                        <label class="form-label mt-3" for="body">Give your post a-->
+<!--                                                            body:</label>-->
+<!--                                                        <textarea class="form-control" rows="6" th:field="*{body}"-->
+<!--                                                                  id="body"-->
+<!--                                                                  required></textarea>-->
+
+<!--                                                    </div>-->
+
+
+<!--                                                    <div>What type of post is this?</div>-->
+<!--                                                    <br>-->
+<!--                                                    <label for="type1" class="form-label-2">Looking for Partners</label>-->
+<!--                                                    <input type="radio" name="type_id" value="1"-->
+<!--                                                           id="type1" checked>-->
+<!--                                                    <br>-->
+<!--                                                    <label for="type2" class="form-label-2">Looking for Coaches</label>-->
+<!--                                                    <input type="radio" name="type_id" value="2"-->
+<!--                                                           id="type2">-->
+<!--                                                    <br>-->
+<!--                                                    <label for="type3" class="form-label-2">Looking for Clients</label>-->
+<!--                                                    <input type="radio" name="type_id" value="3"-->
+<!--                                                           id="type3">-->
+
+
+<!--                                                    <div class="text-left mt-4">-->
+<!--                                                        <button type="submit" class="submit-button">Submit Post-->
+<!--                                                        </button>-->
+<!--                                                        <hr class="hr-light mb-3 mt-4">-->
+<!--                                                        <div class="inline-ul text-center d-flex justify-content-center">-->
+<!--                                                            <a class="p-2 m-2 tw-ic">-->
+<!--                                                                <i class="fa fa-twitter white-text"></i>-->
+<!--                                                            </a>-->
+<!--                                                            <a class="p-2 m-2 li-ic">-->
+<!--                                                                <i class="fa fa-linkedin white-text"> </i>-->
+<!--                                                            </a>-->
+<!--                                                            <a class="p-2 m-2 ins-ic">-->
+<!--                                                                <i class="fa fa-instagram white-text"> </i>-->
+<!--                                                            </a>-->
+<!--                                                        </div>-->
+
+<!--                                                    </div>-->
+<!--                                                </form>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash;/.Form&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;Grid row&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Content &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Mask & flexbox options&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Full Page Intro &ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--</header>-->
 <header class="login">
     <!-- Full Page Intro -->
     <div class="view-login-2">
@@ -45,55 +271,47 @@
                 <!--Grid row-->
                 <div class="row mt-5">
                     <!--Grid column-->
-
                     <!--Grid column-->
                     <!--Grid column-->
-
-                    <!--                    <div class="col-md-6 col-xl-5 mb-4">&lt;!&ndash;th:if="${post.id == 0}"&ndash;&gt;-->
-                    <!--Form-->
+                    <!--                        <div class="col-md-6 col-xl-5 mb-4">&lt;!&ndash;th:if="${post.id == 0}"&ndash;&gt;-->
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 display-content">
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-
+                                        <!--Form-->
                                         <div class="white-text text-center">
                                             <h1 class="h1-responsive font-weight-bold wow fadeInLeft"
                                                 data-wow-delay="0.3s">Create a
                                                 Post!</h1>
-
                                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                                             <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                                         </div>
-
                                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                                             <div class="card-body">
-
                                                 <div class="text-center">
                                                     <h3 class="white-text">
                                                         <i class="white-text"></i> New Post:</h3>
                                                     <p class="text-white">Want to upload more pictures to use? Do
                                                         it </p>
                                                     <form method="get" th:action="@{/images/upload}">
-                                                        <input type="hidden" name="directory" value="createPostImage">
+                                                        <input type="hidden" name="directory"
+                                                               value="createPostImage">
                                                         <input class="submit-button" type="submit"
                                                                value="here!"/>
                                                     </form>
                                                     <hr class="hr-light">
                                                 </div>
-
-                                                <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+                                                <form th:action="@{/posts/create}" th:method="post"
+                                                      th:object="${post}">
                                                     <!--Header-->
-
                                                     <!--Body-->
                                                     <div class="md-form">
                                                         <div style="display: flex; justify-content: center">
                                                             <div>Select an image for your workout plan:</div>
                                                         </div>
                                                         <div style="display: flex; justify-content: center; flex-wrap: wrap">
-
                                                             <label>
                                                                 <input style="position: absolute; opacity: 0; width: 0; height: 0"
                                                                        type="radio" name="imageId"
@@ -108,22 +326,19 @@
                                                                            th:value="${image.id}">
                                                                     <img th:src="@{${image.url}}">
                                                                 </label>
-
                                                             </div>
                                                         </div>
-
-
                                                         <i class="prefix white-text active"></i>
                                                         <!--<input type="text" id="form3" class="white-text form-control">-->
-                                                        <label class="form-label mt-3" for="zipcode">Zip Code</label>
+                                                        <!--ZIP CODE-->
+                                                        <!--<label class="form-label mt-3" for="zipcode">Zip Code</label>
                                                         <input class="form-control mb-3" id="zipcode" type="number"
-                                                               min="00501" max="99950" th:field="*{zipcode}" required/>
-
-
+                                                               min="00501" max="99950" th:field="*{zipcode}" required/>-->
+                                                        <label class="form-label mt-3" for="city">City</label>
+                                                        <input class="form-control mb-3" id="city" type="text"
+                                                               th:field="*{city}" required/>
                                                     </div>
-
                                                     <div class="md-form">
-
                                                         <i class="prefix white-text active"></i>
                                                         <!--                                    <input type="text" id="form3" class="white-text form-control">-->
                                                         <label class="form-label mt-3" for="title">Title your
@@ -131,8 +346,6 @@
                                                         <input class="form-control mb-3" id="title" type="text"
                                                                th:field="*{title}"
                                                                required/>
-
-
                                                     </div>
                                                     <div class="md-form">
                                                         <i class="prefix white-text active"></i>
@@ -143,25 +356,23 @@
                                                         <textarea class="form-control" rows="6" th:field="*{body}"
                                                                   id="body"
                                                                   required></textarea>
-
                                                     </div>
-
-
                                                     <div>What type of post is this?</div>
                                                     <br>
-                                                    <label for="type1" class="form-label-2">Looking for Partners</label>
+                                                    <label for="type1" class="form-label-2">Looking for
+                                                        Partners</label>
                                                     <input type="radio" name="type_id" value="1"
                                                            id="type1" checked>
                                                     <br>
-                                                    <label for="type2" class="form-label-2">Looking for Coaches</label>
+                                                    <label for="type2" class="form-label-2">Looking for
+                                                        Coaches</label>
                                                     <input type="radio" name="type_id" value="2"
                                                            id="type2">
                                                     <br>
-                                                    <label for="type3" class="form-label-2">Looking for Clients</label>
+                                                    <label for="type3" class="form-label-2">Looking for
+                                                        Clients</label>
                                                     <input type="radio" name="type_id" value="3"
                                                            id="type3">
-
-
                                                     <div class="text-left mt-4">
                                                         <button type="submit" class="submit-button">Submit Post
                                                         </button>
@@ -177,95 +388,11 @@
                                                                 <i class="fa fa-instagram white-text"> </i>
                                                             </a>
                                                         </div>
-
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-
                                         <!--/.Form-->
-
-
-                                        <i class="prefix white-text active"></i>
-                                        <!--<input type="text" id="form3" class="white-text form-control">-->
-
-
-
-
-
-
-                                        <!--ZIP CODE-->
-
-                                        <!--<label class="form-label mt-3" for="zipcode">Zip Code</label>
-                                        <input class="form-control mb-3" id="zipcode" type="number"
-                                               min="00501" max="99950" th:field="*{zipcode}" required/>-->
-
-
-
-
-
-
-
-                                        <label class="form-label mt-3" for="city">City</label>
-                                        <input class="form-control mb-3" id="city" type="text"
-                                               th:field="*{city}" required/>
-
-
-                                    </div>
-
-                                    <div class="md-form">
-
-                                        <i class="prefix white-text active"></i>
-                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
-                                        <label class="form-label mt-3" for="title">Title your post:</label>
-                                        <input class="form-control mb-3" id="title" type="text" th:field="*{title}"
-                                               required/>
-
-
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="prefix white-text active"></i>
-                                        <!--                                        <input class="form-control" id="password" name="password"-->
-                                        <!--                                               type="password"/>-->
-                                        <label class="form-label mt-3" for="body">Give your post a body:</label>
-                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body"
-                                                  required></textarea>
-
-                                    </div>
-
-
-                                    <div>What type of post is this?</div>
-                                    <br>
-                                    <label for="type1" class="form-label-2">Looking for Partners</label>
-                                    <input type="radio" name="type_id" value="1"
-                                           id="type1" checked>
-                                    <br>
-                                    <label for="type2" class="form-label-2">Looking for Coaches</label>
-                                    <input type="radio" name="type_id" value="2"
-                                           id="type2">
-                                    <br>
-                                    <label for="type3" class="form-label-2">Looking for Clients</label>
-                                    <input type="radio" name="type_id" value="3"
-                                           id="type3">
-
-
-                                    <div class="text-left mt-4">
-                                        <button type="submit" class="submit-button">Submit Post
-                                        </button>
-                                        <hr class="hr-light mb-3 mt-4">
-                                        <div class="inline-ul text-center d-flex justify-content-center">
-                                            <a class="p-2 m-2 tw-ic">
-                                                <i class="fa fa-twitter white-text"></i>
-                                            </a>
-                                            <a class="p-2 m-2 li-ic">
-                                                <i class="fa fa-linkedin white-text"> </i>
-                                            </a>
-                                            <a class="p-2 m-2 ins-ic">
-                                                <i class="fa fa-instagram white-text"> </i>
-                                            </a>
-                                        </div>
-
-
                                     </div>
                                     <!--Grid column-->
                                 </div>
@@ -275,12 +402,12 @@
                         </div>
                         <!-- Mask & flexbox options-->
                     </div>
-                    <!-- Full Page Intro -->
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Full Page Intro -->
 </header>
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
