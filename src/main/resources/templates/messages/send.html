@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Send')"></head>
-<body>
+<body  class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <section class="send d-flex flex-column justify-items-center align-content-center" id="send">
     <div class="bg-overlay1"></div>
@@ -15,7 +15,7 @@
                             <textarea class="form-control" th:field="*{body}" type="textarea" id="body"
                                       placeholder="Body:"></textarea></label>
                     </div>
-                    <button class="btn btn-dark bg-dark text-center btn-outline-danger btn-outline-danger">Send
+                    <button  class="submit-button" type="submit">Send
                     </button>
                 </div>
             </div>

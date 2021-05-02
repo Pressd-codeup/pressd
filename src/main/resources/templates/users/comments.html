@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('comments')"></head>
-<body class="comment">
+<body  class="profile-page">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<section class="details-card">
+<section>
     <main class="container">
         <h1 th:text="${user.username +' Comments'}"></h1>
         <div class="comment" th:each="comment : ${comments}">
