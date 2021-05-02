@@ -78,17 +78,19 @@ public class MessageController {
         User dbUser = userDao.getOne(currentUser.getId());
 
         User otherUser = userDao.getOne(id);
-        List<Message> readMessages = messageDao.findAllBySentTo(dbUser);
 
-        for (Message message : readMessages) {
+
+
+
+        List<Message> m1 = messageDao.findAllBySentFromIsAndSentToIs(currentUser, otherUser);
+        List<Message> m2 = messageDao.findAllBySentFromIsAndSentToIs(otherUser, currentUser);
+
+        for (Message message : m2) {
             if (message.isRead() == 0) {
                 message.setRead(1);
                 messageDao.save(message);
             }
         }
-
-        List<Message> m1 = messageDao.findAllBySentFromIsAndSentToIs(currentUser, otherUser);
-        List<Message> m2 = messageDao.findAllBySentFromIsAndSentToIs(otherUser, currentUser);
 
         List<Message> messages = messageDao.makeThread(m1, m2);
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
