@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Dashboard')"></head>
+<head th:replace="fragments/header :: main-head('Edit Profile')"></head>
 <style>
     /* HIDE RADIO */
     [type=radio] {
@@ -20,7 +20,7 @@
 
     /* CHECKED STYLES */
     [type=radio]:checked + img {
-        outline: 5px solid #f00;
+        outline: 5px solid #5b21a9;
     }
 
     #currentImage {
@@ -101,11 +101,18 @@
                                             </div>
                                             <hr>
                                             <div class="row gutters">
+                                                <div class="ml-4">
+                                                    <h4 class="text-white">Only fields you fill out will be updated.</h4>
+                                                    <hr>
+                                                </div>
+
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="row gutters">
                                                         <!--                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
                                                         <!--                                                            <h6 class="mb-2 text-primary">Personal Details</h6>-->
-                                                        <!--                                                        </div>-->
+                                                        <!--
+                                                                                                            </div>-->
+
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                             <div class="form-group">
                                                                 <label class="text-white"
@@ -138,13 +145,13 @@
                                                                 <label class="text-white" for="about">About</label>
                                                                 <textarea name="about" id="about" class="form-control"
                                                                           type="text"
-                                                                          th:value="${user.about}"></textarea>
+                                                                          th:text="${user.about}"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <hr>
                                                     <div class="text-center">
-                                                        <input class="upload-btn " type="submit"
+                                                        <input class="submit-button" type="submit"
                                                                value="Update Profile!">
                                                         <!--                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>-->
                                                     </div>
