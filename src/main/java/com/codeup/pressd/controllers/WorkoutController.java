@@ -256,8 +256,8 @@ public class WorkoutController {
         Workout dbWorkout = workoutDao.getOne(id);
         Image newImage = imageDao.getOne(imageId);
         dbWorkout.setImage(newImage);
-        dbWorkout.setTitle(title);
-        dbWorkout.setBody(body);
+        if (title.length() != 0) dbWorkout.setTitle(title);
+        if (body.length() != 0) dbWorkout.setBody(body);
         //user validation is no longer necessary here because it's handled in GetMapping
         workoutDao.save(dbWorkout);
 

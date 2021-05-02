@@ -67,13 +67,13 @@
         <br>
 
         <label for="title">Title</label>
-        <input id="title" name="title" required>
+        <input id="title" name="title" th:value="${workout.getTitle()}">
         <p>Your previous title: <span th:text="${workout.getTitle()}"></span></p>
 
         <br>
 
         <label for="body">Body</label>
-        <input id="body" name="body" required>
+        <input id="body" name="body" th:value="${workout.getBody()}">
         <p>Your previous body: <span th:text="${workout.getBody()}"></span></p>
         <br>
         <div class="m-5 mb-5">
