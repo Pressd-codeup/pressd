@@ -3,21 +3,23 @@
 <head th:replace="fragments/header :: main-head('Upload')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<label class="submit-button">
-    <input type="file" id="input_img" th:onchange="fileChange()" accept="image/*" style="display: none">
-    Select image to upload
-</label>
+
+<input type="button" class="submit-button" id="loadFileXml" value="Upload" onclick="document.getElementById('input_img').click();" />
+<input class="submit-button" type="file" id="input_img" th:onchange="fileChange()" accept="image/*" style="display: none">
+
 
 <div id="json"></div>
 
 <form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
     <input type="hidden" name="directory" th:value="${directory}">
     <input type="hidden" name="url" id="url">
-    <input class="submit-button" type="submit" value="Upload your image!">
+    <input class="submit-button" type="submit" value="Save your image!">
 </form>
 
 <script type="text/javascript" src="/keys.js"></script>
 <script type="text/javascript" th:src="@{/js/cssandjs/upload.js}"></script>
-<footer th:replace="fragments/footer :: main-footer"></footer>
+<footer>
+    <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
+</footer>
 </body>
 </html>

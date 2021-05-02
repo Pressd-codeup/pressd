@@ -1146,6 +1146,13 @@ a.btn-card {
     background-position: center center;
 }
 
+.view-user-avatar {
+    background-image: url('images/class/yoga-class.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .workout-text {
     color: #fff;
 }
