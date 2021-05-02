@@ -80,11 +80,24 @@ public class UserController {
     @PostMapping("/users/edit")
     public String saveEditProfile(@RequestParam(name = "userId") long userId, @RequestParam(name = "about") String about, @RequestParam(name = "password") String password, @RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "avatarId") long avatarId) {
         User currentUser = userDao.getOne(userId);
-        String hash = passwordEncoder.encode(password);
-        currentUser.setPassword(hash);
-        currentUser.setUsername(username);
-        currentUser.setAbout(about);
-        currentUser.setEmail(email);
+
+        if (password.length() != 0) {
+            String hash = passwordEncoder.encode(password);
+            currentUser.setPassword(hash);
+        }
+        if (username.length() != 0) {
+            currentUser.setUsername(username);
+        }
+
+        if (about.length() != 0) {
+            currentUser.setAbout(about);
+        }
+
+        if (email.length() != 0) {
+            currentUser.setEmail(email);
+        }
+
+
         LocalDateTime dateJoined = currentUser.getDateJoined();
         currentUser.setAvatarId(avatarId);
         currentUser.setDateJoined(dateJoined);
