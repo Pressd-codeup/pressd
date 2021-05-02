@@ -1088,6 +1088,18 @@ a.btn-card {
 
 /*CREATE POST CSS*/
 
+.container-create-post {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.display-content {
+    display: block;
+    margin-left: 355px;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
 .form-lable-2 {
     color: #fff;
 }
