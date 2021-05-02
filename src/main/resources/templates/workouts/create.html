@@ -37,108 +37,129 @@
         <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <!-- Content -->
-            <div class="container">
+            <div class="container-create-post">
                 <!--Grid row-->
                 <div class="row mt-5">
                     <!--Grid column-->
-
                     <!--Grid column-->
                     <!--Grid column-->
-                    <div class="col-md-6 col-xl-5 mb-4">
-
-                        <div class="white-text text-center">
-                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Create a
-                                Workout!</h1>
-                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
-                        </div>
-                        <!--Form-->
-                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 display-content">
+                        <div class="card-edit h-100 edit-back">
                             <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                <!--Header-->
-                                <div class="text-center">
-                                    <h3 class="white-text">
-                                        <i class="white-text"></i> New Plan:</h3>
-                                    <p class="text-white">Want to upload more pictures to use? </p>
-
-                                    <div class="text-white">Do it
-                                        <form method="get" th:action="@{/images/upload}">
-                                            <input type="hidden" name="directory" value="createWorkoutImage">
-                                            <input class="btn submit-button" type="submit"
-                                                   value="here!"/>
-                                        </form>
-                                    </div>
-                                    <hr class="hr-light">
-                                </div>
-                                <!--Body-->
-                                <form th:action="@{/workouts/create}" th:method="post" th:object="${workout}">
-                                    <div class="md-form">
-                                        <i class="prefix white-text active"></i>
-                                        <!--<input type="text" id="form3" class="white-text form-control">-->
-                                        <div style="display: flex; justify-content: center">
-                                            <div>Select an image for your workout plan:</div>
+                                        <div class="white-text text-center">
+                                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft"
+                                                data-wow-delay="0.3s">Create a
+                                                Workout!</h1>
+                                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                                         </div>
-                                        <div style="display: flex; justify-content: center; flex-wrap: wrap">
+                                        <!--Form-->
+                                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                                            <div class="card-body">
 
-                                            <label>
-                                                <input style="position: absolute; opacity: 0; width: 0; height: 0"
-                                                       type="radio" name="imageId" th:value="${currentImage.id}"
-                                                       checked>
-                                                <img th:src="@{${currentImage.url}}">
-                                            </label>
-                                            <div th:each="image : ${userImages}">
-                                                <label>
-                                                    <input style="position: absolute; opacity: 0; width: 0; height: 0"
-                                                           type="radio" name="imageId" th:value="${image.id}">
-                                                    <img th:src="@{${image.url}}">
-                                                </label>
+                                                <!--Header-->
+                                                <div class="text-center">
+                                                    <h3 class="white-text">
+                                                        <i class="white-text"></i> New Plan:</h3>
+                                                    <p class="text-white">Want to upload more pictures to use? </p>
 
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <i class="prefix white-text active"></i>
-                                            <!--                                    <input type="text" id="form3" class="white-text form-control">-->
-                                            <br>
-                                            <div class="form-check"
-                                                 style="color: white; font-weight: bolder;">
-                                                <div>
-
-                                                    <hr>
-                                                    <label class="cat">Select Category</label>
-                                                    <br>
-
-                                                    <input class="form-check-input" type="checkbox" name="categoryNames" th:value="${first.getName()}" checked>
-                                                    <label th:text="${first.getName()}"></label>
-                                                    <br>
-
-                                                        <th:block th:each="category : ${allCategories}">
-                                                            <input class="form-check-input" type="checkbox" name="categoryNames" th:value="${category.name}">
-                                                            <label th:text="${category.name}"></label>
-                                                            <br>
-                                                        </th:block>
-
-                                                    <br>
-                                                    <hr>
-                                                    <br>
-                                                    <div>
-                                                        <label for="title" class="form-label">Title</label>
-                                                        <input class="form-control" th:field="*{title}" type="text"
-                                                               id="title" required>
-                                                        <br>
-                                                        <label for="body" class="form-label">Body</label>
-                                                        <textarea class="form-control" th:field="*{body}" type="text"
-                                                                  id="body" required></textarea>
+                                                    <div class="text-white">Do it
+                                                        <form method="get" th:action="@{/images/upload}">
+                                                            <input type="hidden" name="directory"
+                                                                   value="createWorkoutImage">
+                                                            <input class="btn submit-button" type="submit"
+                                                                   value="here!"/>
+                                                        </form>
                                                     </div>
-                                                    <button type="submit" class="submit-button">Submit Workout
-                                                    </button>
+                                                    <hr class="hr-light">
                                                 </div>
+                                                <!--Body-->
+                                                <form th:action="@{/workouts/create}" th:method="post"
+                                                      th:object="${workout}">
+                                                    <div class="md-form">
+                                                        <i class="prefix white-text active"></i>
+                                                        <!--<input type="text" id="form3" class="white-text form-control">-->
+                                                        <div style="display: flex; justify-content: center">
+                                                            <div>Select an image for your workout plan:</div>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: center; flex-wrap: wrap">
+
+                                                            <label>
+                                                                <input style="position: absolute; opacity: 0; width: 0; height: 0"
+                                                                       type="radio" name="imageId"
+                                                                       th:value="${currentImage.id}"
+                                                                       checked>
+                                                                <img th:src="@{${currentImage.url}}">
+                                                            </label>
+                                                            <div th:each="image : ${userImages}">
+                                                                <label>
+                                                                    <input style="position: absolute; opacity: 0; width: 0; height: 0"
+                                                                           type="radio" name="imageId"
+                                                                           th:value="${image.id}">
+                                                                    <img th:src="@{${image.url}}">
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <i class="prefix white-text active"></i>
+                                                            <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+                                                            <br>
+                                                            <div class="form-check"
+                                                                 style="color: white; font-weight: bolder;">
+                                                                <div>
+
+                                                                    <hr>
+                                                                    <label class="cat">Select Category</label>
+                                                                    <br>
+
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                           name="categoryNames"
+                                                                           th:value="${first.getName()}" checked>
+                                                                    <label th:text="${first.getName()}"></label>
+                                                                    <br>
+
+                                                                    <th:block th:each="category : ${allCategories}">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               name="categoryNames"
+                                                                               th:value="${category.name}">
+                                                                        <label th:text="${category.name}"></label>
+                                                                        <br>
+                                                                    </th:block>
+
+                                                                    <br>
+                                                                    <hr>
+                                                                    <br>
+                                                                    <div>
+                                                                        <label for="title"
+                                                                               class="form-label">Title</label>
+                                                                        <input class="form-control" th:field="*{title}"
+                                                                               type="text"
+                                                                               id="title" required>
+                                                                        <br>
+                                                                        <label for="body"
+                                                                               class="form-label">Body</label>
+                                                                        <textarea class="form-control"
+                                                                                  th:field="*{body}" type="text"
+                                                                                  id="body" required></textarea>
+                                                                    </div>
+                                                                    <button type="submit" class="submit-button">Submit
+                                                                        Workout
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
