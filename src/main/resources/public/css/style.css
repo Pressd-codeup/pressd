@@ -1165,6 +1165,13 @@ a.btn-card {
     background-position: center center;
 }
 
+.view-image-upload {
+    background-image: url('images/class/arch.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .workout-text {
     color: #fff;
 }
