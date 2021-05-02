@@ -19,7 +19,10 @@ public class Post {
 	private String body;
 
 	@Column(nullable = false)
-	private long zipcode;
+	private String city;
+
+	/*@Column(nullable = false)
+	private long zipcode;*/
 
 	@Column(name = "date_posted", nullable = false)
 	private LocalDateTime datePosted;
@@ -39,34 +42,43 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(String title, String body, long zipcode, Type type, Image image) {
+	public Post(String title, String body,
+				//long zipcode,
+				Type type, Image image, String city) {
 		this.title = title;
 		this.body = body;
-		this.zipcode = zipcode;
+		//this.zipcode = zipcode;
 		this.type = type;
 		this.datePosted = LocalDateTime.now();
 		this.image = image;
+		this.city = city;
 	}
 
-	public Post(long id, String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user, Image image) {
+	public Post(long id, String title, String body,
+				//long zipcode,
+				LocalDateTime datePosted, Type type, User user, Image image, String city) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
-		this.zipcode = zipcode;
+		//this.zipcode = zipcode;
 		this.datePosted = datePosted;
 		this.type = type;
 		this.user = user;
 		this.image = image;
+		this.city = city;
 	}
 
-	public Post(String title, String body, long zipcode, LocalDateTime datePosted, Type type, User user, Image image) {
+	public Post(String title, String body,
+				//long zipcode,
+				LocalDateTime datePosted, Type type, User user, Image image, String city) {
 		this.title = title;
 		this.body = body;
-		this.zipcode = zipcode;
+		//this.zipcode = zipcode;
 		this.datePosted = datePosted;
 		this.type = type;
 		this.user = user;
 		this.image = image;
+		this.city = city;
 	}
 
 	public long getId() {
@@ -93,13 +105,13 @@ public class Post {
 		this.body = body;
 	}
 
-	public long getZipcode() {
+	/*public long getZipcode() {
 		return zipcode;
 	}
 
 	public void setZipcode(long zipcode) {
 		this.zipcode = zipcode;
-	}
+	}*/
 
 	public LocalDateTime getDatePosted() {
 		return datePosted;
@@ -131,5 +143,13 @@ public class Post {
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

@@ -243,7 +243,90 @@
                                                 </form>
                                             </div>
                                         </div>
+
                                         <!--/.Form-->
+
+
+                                        <i class="prefix white-text active"></i>
+                                        <!--<input type="text" id="form3" class="white-text form-control">-->
+
+
+
+
+
+
+                                        <!--ZIP CODE-->
+
+                                        <!--<label class="form-label mt-3" for="zipcode">Zip Code</label>
+                                        <input class="form-control mb-3" id="zipcode" type="number"
+                                               min="00501" max="99950" th:field="*{zipcode}" required/>-->
+
+
+
+
+
+
+
+                                        <label class="form-label mt-3" for="city">City</label>
+                                        <input class="form-control mb-3" id="city" type="text"
+                                               th:field="*{city}" required/>
+
+
+                                    </div>
+
+                                    <div class="md-form">
+
+                                        <i class="prefix white-text active"></i>
+                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+                                        <label class="form-label mt-3" for="title">Title your post:</label>
+                                        <input class="form-control mb-3" id="title" type="text" th:field="*{title}"
+                                               required/>
+
+
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="prefix white-text active"></i>
+                                        <!--                                        <input class="form-control" id="password" name="password"-->
+                                        <!--                                               type="password"/>-->
+                                        <label class="form-label mt-3" for="body">Give your post a body:</label>
+                                        <textarea class="form-control" rows="6" th:field="*{body}" id="body"
+                                                  required></textarea>
+
+                                    </div>
+
+
+                                    <div>What type of post is this?</div>
+                                    <br>
+                                    <label for="type1" class="form-label-2">Looking for Partners</label>
+                                    <input type="radio" name="type_id" value="1"
+                                           id="type1" checked>
+                                    <br>
+                                    <label for="type2" class="form-label-2">Looking for Coaches</label>
+                                    <input type="radio" name="type_id" value="2"
+                                           id="type2">
+                                    <br>
+                                    <label for="type3" class="form-label-2">Looking for Clients</label>
+                                    <input type="radio" name="type_id" value="3"
+                                           id="type3">
+
+
+                                    <div class="text-left mt-4">
+                                        <button type="submit" class="submit-button">Submit Post
+                                        </button>
+                                        <hr class="hr-light mb-3 mt-4">
+                                        <div class="inline-ul text-center d-flex justify-content-center">
+                                            <a class="p-2 m-2 tw-ic">
+                                                <i class="fa fa-twitter white-text"></i>
+                                            </a>
+                                            <a class="p-2 m-2 li-ic">
+                                                <i class="fa fa-linkedin white-text"> </i>
+                                            </a>
+                                            <a class="p-2 m-2 ins-ic">
+                                                <i class="fa fa-instagram white-text"> </i>
+                                            </a>
+                                        </div>
+
+
                                     </div>
                                     <!--Grid column-->
                                 </div>

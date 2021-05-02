@@ -55,17 +55,11 @@
                                     <img class="img-thumbnail img-fluid text-center" th:src="@{${post.image.url}}"
                                          alt="alt"/>
                                 </div>
-
-
-
-
                                 <hr class="hr-light">
-
-
-
                                 <div>
                                     <div class="d-flex justify-content-between p-2">
                                         <small class="text-white" th:text="${post.getUser().username}"></small>
+                                        <small class="text-white" th:text="${post.city}"></small>
                                         <small class="text-white"
                                                th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></small>
                                     </div>

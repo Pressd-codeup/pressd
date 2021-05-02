@@ -64,14 +64,17 @@
         </div>
         <br>
 
+        <label for="city">City</label>
+        <input id="city" name="city" th:placeholder="${post.getCity()}">
+
         <label for="title">Title</label>
-        <input id="title" name="title" required>
+        <input id="title" name="title">
         <p>Your previous title: <span th:text="${post.getTitle()}"></span></p>
 
         <br>
 
         <label for="body">Body</label>
-        <input id="body" name="body" required>
+        <input id="body" name="body">
         <p>Your previous body: <span th:text="${post.getBody()}"></span></p>
         <br>
 

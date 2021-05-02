@@ -25,11 +25,11 @@ VALUES (1, 'default', '2021-01-01 00:00:00', 'default', 0, 0, 'default', 'defaul
        (3, 'Hi my name is testuser2 and I like bodybuilding.', '2021-02-02 02:00:00', 'testuser2@gmail.com', 0, 0, '$2a$10$wRLxNNcMOOVsYhjDoYbHPe5mcRhMNmQjRzqJy3hucryaaRF7qCCd6', 'testuser2', 1),
        (4, 'Hi my name is testuser3 and I like leg day.', '2021-03-03 03:00:00', 'testuser3@gmail.com', 0, 0, '$2a$10$Yemu5GMAMpXulRjo1cpD7eFgYSU6IsFtsaA.B6z3UUt2gcBTIhPsC', 'testuser3', 1),
        (5, 'Hi my name is testuser4 and I am a coach.', '2021-04-04 04:00:00', 'testuser4@gmail.com', 0, 1, '$2a$10$yyXptLKNnz86PQkYukgiLeq4qrW.qAn/QwIn1ftkNw0Lo/8xUYpgy', 'testuser4', 1);
-INSERT INTO posts (id, body, date_posted, title, zipcode, type_id, user_id, image_id)
-VALUES (1, 'Hi I''m looking for a running partner!', '2021-01-01 01:00:00', 'Come run with me!', 78201, 1, 2, 1),
-       (2, 'Hi I''m looking for a coach!', '2021-02-02 02:00:00', 'Teach me how to lift!', 78204, 3, 3, 2),
-       (3, 'Hi I''m looking for a lifting bro!', '2021-03-03 03:00:00', 'Come lift with me bro!', 78203, 1, 4, 3),
-       (4, 'Hi I''m a coach looking for a client!', '2021-04-04 04:00:00', 'Let me train you.', 78202, 2, 5, 4);
+INSERT INTO posts (id, body, date_posted, title, type_id, user_id, image_id, city)
+VALUES (1, 'Hi I''m looking for a running partner!', '2021-01-01 01:00:00', 'Come run with me!', 1, 2, 1, 'San Antonio'),
+       (2, 'Hi I''m looking for a coach!', '2021-02-02 02:00:00', 'Teach me how to lift!', 3, 3, 2, 'Dallas'),
+       (3, 'Hi I''m looking for a lifting bro!', '2021-03-03 03:00:00', 'Come lift with me bro!', 1, 4, 3, 'Austin'),
+       (4, 'Hi I''m a coach looking for a client!', '2021-04-04 04:00:00', 'Let me train you.', 2, 5, 4, 'Houston');
 INSERT INTO workouts (id, body, date_posted, title, user_id, image_id)
 VALUES (1, 'Steps to getting big legs: etc. etc.', '2021-02-02 02:00:00', 'Big Legs Guide', 4, 5),
        (2, 'Running is fun. Back when I was a boy...', '2021-01-02 01:00:00', 'Take Your Run Game to the Next Level', 2, 6),

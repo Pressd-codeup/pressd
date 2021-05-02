@@ -126,11 +126,11 @@
                                                     <div>
                                                         <label for="title" class="form-label">Title</label>
                                                         <input class="form-control" th:field="*{title}" type="text"
-                                                               id="title">
+                                                               id="title" required>
                                                         <br>
                                                         <label for="body" class="form-label">Body</label>
                                                         <textarea class="form-control" th:field="*{body}" type="text"
-                                                                  id="body"></textarea>
+                                                                  id="body" required></textarea>
                                                     </div>
                                                     <button type="submit" class="submit-button">Submit Workout
                                                     </button>

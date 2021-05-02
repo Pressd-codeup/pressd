@@ -111,7 +111,7 @@
                                                                 <label class="text-white"
                                                                        for="username">Username</label>
                                                                 <input class="form-control" name="username"
-                                                                       id="username" placeholder="Enter username"
+                                                                       id="username" th:placeholder="${user.username}"
                                                                        type="text">
                                                                 <input name="userId" type="hidden" th:value="${userId}">
                                                             </div>
@@ -121,7 +121,7 @@
                                                                 <label class="text-white" for="email">Email</label>
                                                                 <input class="form-control" name="email" id="email"
                                                                        type="text"
-                                                                       placeholder="Enter email">
+                                                                       th:placeholder="${user.email}">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -130,7 +130,7 @@
                                                                        for="password">Password</label>
                                                                 <input class="form-control" name="password"
                                                                        id="password"
-                                                                       type="password" placeholder="Enter password">
+                                                                       type="password" placeholder="Enter new password">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -138,7 +138,7 @@
                                                                 <label class="text-white" for="about">About</label>
                                                                 <textarea name="about" id="about" class="form-control"
                                                                           type="text"
-                                                                          placeholder="About"></textarea>
+                                                                          th:value="${user.about}"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Workout')"></head>
+<head th:replace="fragments/header :: main-head('Posts')"></head>
 <body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
@@ -48,6 +48,9 @@
                         <h3 class="text-white" th:text="${post.title}"></h3>
                         <div>
                             <small class="text-white" th:text="${post.getUser().getUsername()}"></small>
+                        </div>
+                        <div>
+                            <small class="text-white" th:text="${post.city}"></small>
                         </div>
                         <div>
                             <small class="text-white"

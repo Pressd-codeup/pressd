@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Workouts')"></head>
-<body>
+<head th:replace="fragments/header :: main-head('workouts')"></head>
+<body class="workout">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<main class="container">
-    <h1 th:text="${user.username +' Workouts'}"></h1>
-    <div class="post" th:each="workout : ${workouts}">
-        <h1 th:text="${workout.title}"></h1>
-        <p th:text="${workout.body}"></p>
-        <small th:text="${workout.datePosted}"></small>
-        <form th:action="${'/workouts/'+ workout.id}" method="GET">
-            <input type="submit" class="submit-button" value="View Plan">
-        </form>
-    </div>
-
-</main>
-
+<section class="details-card">
+    <main class="container">
+        <h1 th:text="${user.username +' Workouts'}"></h1>
+        <div class="workouts" th:each="workout : ${workouts}">
+            <div class="row-12 m-0">
+                <div class="col-12 m-0 photo-frame" style="background: inherit">
+                    <div class="card-content " style="background: inherit">
+                        <div class="card-desc">
+                            <div class="d-flex">
+                                    <span><img class="img-thumbnail mr-2" th:src="@{${workout.image.url}}"
+                                               alt="alt"/></span>
+                                <h5 class="text-white" th:text="${workout.user.username}"></h5>
+                            </div>
+                            <h1 th:text="${workout.title}"></h1>
+                            <p th:text="${workout.body}"></p>
+                            <small th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month+' '+ workout.datePosted.year+' '+workout.datePosted.toLocalTime()}"></small>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                <form th:action="@{${'/workouts/'+workout.id}}" method="GET">
+                                    <input class="submit-button" type="submit" value="View Workout">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
 <footer th:replace="fragments/footer :: main-footer"></footer>
-<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossOrigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossOrigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossOrigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
 </html>

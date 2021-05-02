@@ -62,7 +62,6 @@ public class CommentController {
         }
         ++newId;
         comment.setId(newId);
-        comment.setId(newId);
         commentDao.save(comment);
         return "redirect:/workouts/"+id+"/comments";
     }
@@ -85,7 +84,9 @@ public class CommentController {
         commentToUpdate.setWorkout(workout);
         commentToUpdate.setId(id);
         commentToUpdate.setUser(currentUser);
-        commentToUpdate.setBody(body);
+        if(body.length() != 0) {
+            commentToUpdate.setBody(body);
+        }
         commentDao.save(commentToUpdate);
         return "redirect:/workouts";
     }
