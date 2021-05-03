@@ -825,6 +825,12 @@ h6.sign {
    margin-top: 50px;
 
 }
+
+.sign-up-box {
+    margin-top: 200px;
+    padding-bottom: 200px;
+}
+
 /*END OF SIGN-UP PAGE CSS*/
 
 /*******************************************************************/
@@ -891,8 +897,8 @@ h6.sign {
 }
 
 .login-box {
-    margin-top: 100px;
-    padding-bottom: 200px;
+    margin-top: 200px;
+    padding-bottom: 300px;
 }
 
 /*END OF LOGIN PAGE CSS*/
