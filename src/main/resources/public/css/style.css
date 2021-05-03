@@ -800,9 +800,10 @@ header.sign_up,
 
 .rgba-gradient {
     background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
-    /*padding-bottom: 30px;*/
-    /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
-    background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
+    height: 100%;
+    width: 100%;
+    /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));*/
+    /*background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
 
 .card-sign {
@@ -823,12 +824,11 @@ h6.sign {
 
 .bottom-fix {
    margin-top: 50px;
-
 }
 
 .sign-up-box {
-    margin-top: 200px;
-    padding-bottom: 200px;
+    /*margin-top: 200px;*/
+    /*padding-bottom: 200px;*/
 }
 
 /*END OF SIGN-UP PAGE CSS*/
@@ -838,11 +838,11 @@ h6.sign {
 /*LOGIN PAGE CSS*/
 
 /* Required for full background image */
-html.login,
-body.login,
+html.login_page,
+body.login_page,
 header.login,
 .view-login {
-    height: auto;
+    height: 100%;
 }
 
 .view-login {
@@ -853,9 +853,9 @@ header.login,
 }
 
 @media (max-width: 740px) {
-    html,
-    body,
-    header,
+    html.login_page,
+    body.login_page,
+    header.login,
     .view-login {
         height: 1000px;
     }
@@ -871,7 +871,8 @@ header.login,
 }
 
 .rgba-gradient {
-    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    /*background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
+    /*padding: 30px*/
     /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
     background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
@@ -897,8 +898,8 @@ h6.sign {
 }
 
 .login-box {
-    margin-top: 200px;
-    padding-bottom: 300px;
+    /*margin-top: 200px;*/
+    /*padding-bottom: 700px;*/
 }
 
 /*END OF LOGIN PAGE CSS*/
