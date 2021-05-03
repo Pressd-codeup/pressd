@@ -1161,6 +1161,13 @@ a.btn-card {
     background-size: cover;
     background-position: center center;
 }
+
+.workout-update {
+    background-image: url('images/class/horse-field.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 /*END OF CREATE WORKOUT CSS*/
 
 /*******************************************************************/
