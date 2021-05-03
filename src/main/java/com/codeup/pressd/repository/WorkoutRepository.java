@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface WorkoutRepository extends JpaRepository<Workout, Long> {
-	List<Workout> getWorkoutsByCategoriesContaining(Category category);
+	List<Workout> getWorkoutsByCategoriesContaining(List<Category> categories);
 	List<Workout> findAllById(long id);
 	List<Workout> getWorkoutsByUser(User user);
 

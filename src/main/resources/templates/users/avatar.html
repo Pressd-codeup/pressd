@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('update post')"></head>
+<head th:replace="fragments/header :: main-head('Change Avatar')"></head>
 <style>
     /* HIDE RADIO */
     [type=radio] {
@@ -20,7 +20,7 @@
 
     /* CHECKED STYLES */
     [type=radio]:checked + img {
-        outline: 5px solid #f00;
+        outline: 5px solid #5b21a9;
     }
 
     #currentImage {
@@ -30,38 +30,82 @@
 </style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<h2>Change your avatar image:</h2>
-<br>
-<h3>Your current avatar:</h3>
-<br>
-<img th:src="@{${currentImage.url}}" alt="Your current avatar image" id="currentImage">
-<br>
-<div style="display: flex">
-    <p>Want to upload more pictures to use? Do it   </p>
-    <form method="get" th:action="@{/images/upload}">
-        <input type="hidden" name="directory" value="avatarImage">
-        <input type="submit" value="here!"/>
-    </form>
-</div>
-<br>
-<form th:action="@{/users/avatar}" method="post">
+<header class="login">
+    <!-- Full Page Intro -->
+    <div class="view-user-avatar">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row mt-5">
+                    <!--Grid column-->
+                    <div class="col-lg-12 mb-4 login-box">
+                        <div class="white-text text-center">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">
+                                Change your avatar image:</h1>
 
-    <div style="display: flex; width: 33%; flex-wrap: wrap">
-        <label>
-            <input type="radio" name="avatarId" th:value="${currentImage.id}" checked>
-            <img th:src="@{${currentImage.url}}">
-        </label>
-        <div th:each="image : ${userImages}">
-            <label>
-                <input type="radio" name="avatarId" th:value="${image.id}">
-                <img th:src="@{${image.url}}">
-            </label>
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <!--<h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>-->
+                            <div style="display: flex">
+                                <p class="text-white">Want to upload more pictures to use? Do it</p>
+                                <form method="get" th:action="@{/images/upload}" class="ml-1">
+                                    <input type="hidden" name="directory" value="avatarImage">
+                                    <input type="submit" class="submit-button" value="here!"/>
+                                </form>
+                            </div>
+
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        </div>
+                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                            <!--Header-->
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <h3 class="text-white">Your current avatar:</h3>
+                                        <img th:src="@{${currentImage.url}}" class="ml-1 img-thumbnail img-fluid text-center " alt="Your current avatar image" id="currentImage">
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <hr class="hr-light">
+
+
+                                <div>
+
+                                        <form th:action="@{/users/avatar}" method="post" style="width: 75%">
+
+                                            <div class="d-flex flex-wrap">
+                                                <label>
+                                                    <input type="radio" name="avatarId" th:value="${currentImage.id}" checked>
+                                                    <img th:src="@{${currentImage.url}}">
+                                                </label>
+                                                <th:block th:each="image : ${userImages}">
+                                                    <label>
+                                                        <input type="radio" name="avatarId" th:value="${image.id}">
+                                                        <img th:src="@{${image.url}}">
+                                                    </label>
+                                                </th:block>
+                                            </div>
+                                            <br>
+                                            <input type="submit" class="submit-button" value="Update!">
+
+                                        </form>
+                                    <hr class="hr-light">
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <input type="submit" class="submit-button" value="Update!">
-
-</form>
+</header>
 
 
 <footer th:replace="fragments/footer :: main-footer"></footer>

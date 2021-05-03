@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.*;
 
 
@@ -31,35 +33,89 @@ public class PostController {
 
 	}
 
+	static void addImages(Model vModel, User user, Image image, UserRepository userDao, ImageRepository imageDao) {
+		Image currentImage = image;
+
+		vModel.addAttribute("currentImage", currentImage);
+
+		User defaultUser = userDao.getOne(1L);
+
+
+		List<Image> userImages = imageDao.findImagesByUser(user);
+		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
+		userImages.addAll(defaultImages);
+		userImages.remove(currentImage);
+		for (Image i : userImages) {
+			System.out.println(i.getId());
+		}
+		vModel.addAttribute("userImages", userImages);
+	}
+
 	@GetMapping("/posts")
 	public String allPosts(Model viewModel){
 		List<Post> posts = postDao.findAll();
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "index");
 		return "posts/index";
+	}
+
+	@GetMapping("/posts/{id}")
+	public String showOnePost(@PathVariable long id, Model viewModel){
+		Post post = postDao.getOne(id);
+		User user = post.getUser();
+		User currentUser = new User();
+		currentUser.setId(999999999);
+		try {
+			currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (RuntimeException ignored) {
+		}
+		boolean isUser = currentUser.getId() == user.getId();
+		viewModel.addAttribute("isUser", isUser);
+		viewModel.addAttribute("post", post);
+		viewModel.addAttribute("user", user);
+
+		return "posts/show";
 	}
 
 	@GetMapping("/partners")
 	public String seeBuddyPosts(Model viewModel){
 
 		List<Post> posts = postDao.getPostsByTypeName("partners");
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "partners");
 		return "posts/index";
 	}
 
 	@GetMapping("/coaches")
 	public String seeCoachPosts(Model viewModel) {
 		List<Post> posts = postDao.getPostsByTypeName("coaches");
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "coaches");
 		return "posts/index";
 	}
 
 	@GetMapping("/clients")
 	public String seeClientPosts(Model viewModel) {
 		List<Post> posts = postDao.getPostsByTypeName("clients");
+		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+		viewModel.addAttribute("shortF", shortF);
+		Collections.reverse(posts);
 		viewModel.addAttribute("posts", posts);
+		viewModel.addAttribute("type", "clients");
 		return "posts/index";
 	}
-	@GetMapping("/posts/filter")
+
+
+	/*@GetMapping("/posts/filter")
 	public String filterPosts(Model viewModel){
 		viewModel.addAttribute("filter", new Filter());
 		return "posts/filter";
@@ -86,17 +142,7 @@ public class PostController {
 			viewModel.addAttribute("posts", filteredPosts);
 		}
 		return "/posts/index";
-	}
-
-	@GetMapping("/posts/{id}")
-	public String showOnePost(@PathVariable long id, Model viewModel){
-		Post post = postDao.getOne(id);
-		User user = post.getUser();
-		viewModel.addAttribute("post", post);
-		viewModel.addAttribute("user", user);
-
-		return "posts/show";
-	}
+	}*/
 
 	@GetMapping("/posts/create")
 	public String showCreatePost(Model viewModel) {
@@ -114,10 +160,11 @@ public class PostController {
 	}
 
 	@PostMapping("/posts/create")
-	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id, @RequestParam(name="imageId") long imageId){
+	public String createPost(@ModelAttribute Post post, @RequestParam(name = "type_id") long type_id, @RequestParam(name="imageId") long imageId, @RequestParam String city){
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Type type = typeDao.getOne(type_id);
 		Image image = imageDao.getOne(imageId);
+		post.setCity(city);
 		post.setUser(user);
 		post.setType(type);
 		post.setImage(image);
@@ -142,43 +189,27 @@ public class PostController {
 	}
 
 
-	static void addImages(Model vModel, User user, Image image, UserRepository userDao, ImageRepository imageDao) {
-		Image currentImage = image;
-
-		vModel.addAttribute("currentImage", currentImage);
-
-		User defaultUser = userDao.getOne(1L);
-
-
-		List<Image> userImages = imageDao.findImagesByUser(user);
-		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
-		userImages.addAll(defaultImages);
-		userImages.remove(currentImage);
-		for (Image i : userImages) {
-			System.out.println(i.getId());
-		}
-		vModel.addAttribute("userImages", userImages);
-	}
-
-
-
-
-
 	@PostMapping("/posts/{id}/update")
-
-	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId) {
-
-
-		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDao.getOne(currentUser.getId());
+	public String editPost(@ModelAttribute Post post, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId, @RequestParam String city) {
 
 		Post dbPost = postDao.getOne(id);
-
 		Image newImage = imageDao.getOne(imageId);
 
+		if (title.length() != 0) {
+			dbPost.setTitle(title);
+		}
+
+		if (body.length() != 0) {
+			dbPost.setBody(body);
+		}
+
+		if (city.length() != 0) {
+			dbPost.setCity(city);
+		}
+
 		dbPost.setImage(newImage);
-		dbPost.setTitle(title);
-		dbPost.setBody(body);
+
+
 
 		//user validation is no longer necessary here because it's handled in GetMapping
 		postDao.save(dbPost);

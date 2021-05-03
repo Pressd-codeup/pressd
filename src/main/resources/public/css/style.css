@@ -1,5 +1,16 @@
 /*HOME PAGE CSS*/
 
+span.stars, span.stars span {
+    display: block;
+    background: url('images/stars/stars_rating.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
 .slogan {
     color: var(--white-color);
     font-size: var(--h6-font-size);
@@ -247,6 +258,29 @@ a:focus {
 /*---------------------------------------
    MENU & NAVBAR CSS
 -----------------------------------------*/
+.dropdown-menu {
+    padding: 0 !important;
+    background-image: none;
+    background-color: var(--dark-color);;
+    border-style: solid !important;
+    border-radius: 10px;
+}
+
+.dropdown-divider {
+    background-color: var(--primary-color) !important;
+}
+
+.dropdown-menu > a {
+    background-image: none;
+    background-color: var(--dark-color);;
+    color: var(--white-color);
+}
+
+.dropdown-menu > a:hover {
+    background-image: none;
+    background-color: var(--dark-color);;
+    color: var(--primary-color);
+}
 
 .navbar {
     background: var(--dark-color);
@@ -381,6 +415,7 @@ a:focus {
     min-height: 100vh;
     position: relative;
 }
+
 .leg {
     background-image: url('images/legPress.jpg');
     background-size: cover;
@@ -390,6 +425,7 @@ a:focus {
     min-height: 100vh;
     position: relative;
 }
+
 .create {
     background-image: url('images/hero-bg.jpg');
     background-size: cover;
@@ -576,8 +612,35 @@ button#submit-button {
 }
 
 .submit-button:hover {
-    background: rgba(91,33,169,0.9);
+    background: rgba(91, 33, 169, 0.9);
 }
+
+.signup-button {
+    background: rgba(91, 33, 169, 0.9);
+    border-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .25rem;
+}
+
+.signup-button:hover {
+    background: rgba(39, 46, 79, 0.9);
+}
+
+.login-button {
+    background: rgba(54, 6, 114, 0.9);
+    border-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .25rem;
+}
+
+.login-button:hover {
+    background: rgba(91, 33, 169, 0.9);
+}
+
 
 .contact h2 + p {
     max-width: 90%;
@@ -695,6 +758,7 @@ button#submit-button {
         display: block;
     }
 }
+
 /*END HOME PAGE CSS*/
 
 /*******************************************************************/
@@ -724,6 +788,7 @@ header.sign_up,
         height: 1000px;
     }
 }
+
 @media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
@@ -735,6 +800,7 @@ header.sign_up,
 
 .rgba-gradient {
     background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    /*padding-bottom: 30px;*/
     /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
     background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
@@ -754,6 +820,17 @@ h6.sign {
 .wow {
     color: white;
 }
+
+.bottom-fix {
+   margin-top: 50px;
+
+}
+
+.sign-up-box {
+    margin-top: 200px;
+    padding-bottom: 200px;
+}
+
 /*END OF SIGN-UP PAGE CSS*/
 
 /*******************************************************************/
@@ -783,6 +860,7 @@ header.login,
         height: 1000px;
     }
 }
+
 @media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
@@ -796,6 +874,10 @@ header.login,
     background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
     /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
     background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
+}
+
+label {
+    display: contents !important;
 }
 
 .card-sign {
@@ -815,9 +897,10 @@ h6.sign {
 }
 
 .login-box {
-    margin-top: 100px;
-    padding-bottom: 200px;
+    margin-top: 200px;
+    padding-bottom: 300px;
 }
+
 /*END OF LOGIN PAGE CSS*/
 
 /*******************************************************************/
@@ -831,7 +914,7 @@ body.post-body {
 
 /* card details start  */
 /*@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');*/
-section{
+section {
     padding: 100px 0;
 }
 
@@ -843,7 +926,7 @@ section{
 .card-content {
     background: #ffffff;
     border: 4px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
 }
 
 .card-img {
@@ -872,14 +955,16 @@ section{
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
-.card-img span h4{
+
+.card-img span h4 {
     font-size: 12px;
-    margin:0;
-    padding:10px 5px;
+    margin: 0;
+    padding: 10px 5px;
     line-height: 0;
 }
+
 .card-desc {
     padding: 1.25rem;
 }
@@ -905,17 +990,18 @@ section{
     padding: 0;
     font-family: 'Raleway', sans-serif;
 }
-.btn-card{
+
+.btn-card {
     background-color: #480f90;
     color: #fff;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
     padding: .84rem 2.14rem;
     font-size: .81rem;
-    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    -o-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
     margin: 0;
     border: 0;
     -webkit-border-radius: .125rem;
@@ -926,9 +1012,11 @@ section{
     word-wrap: break-word;
     color: #fff;
 }
+
 .btn-card:hover {
     background: orange;
 }
+
 a.btn-card {
     text-decoration: none;
     color: #fff;
@@ -988,29 +1076,42 @@ a.btn-card {
     6px 6px 1px 0px #444,
     7px 7px 1px 0px #333,
     8px 8px 3px 0px #303030;
-    transform: translate(-8px,-8px);
-    -ms-transform: translate(-8px,-8px);
-    -moz-transform: translate(-8px,-8px);
-    -webkit-transform: translate(-8px,-8px);
-    -o-transform: translate(-8px,-8px);
+    transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -webkit-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
     transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -webkit-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
 }
+
 /*END OF SHOW POST CSS*/
 
 /*******************************************************************/
 
 /*CREATE POST CSS*/
 
+.container-create-post {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.display-content {
+    /*display: block;*/
+    /*margin-left: 100px;*/
+    /*margin-right: auto;*/
+    /*margin-bottom: 30px;*/
+}
+
 .form-lable-2 {
     color: #fff;
 }
 
 .view-login-2 {
-    background-image: url('images/class/hill.jpg');
+    background-image: url('images/class/mount.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1029,23 +1130,37 @@ a.btn-card {
     background-position: center center;
 }
 
-.search-post {
-    margin-top: 100px;
-    padding-bottom: 200px;
-    margin-right: 90px;
-}
-/*END OF FILTER POST CSS*/
-
-/*******************************************************************/
-/*CREATE WORKOUT CSS*/
-
-.view-cat {
+.view-results {
     background-image: url('images/class/adventure.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
+.search-post {
+    margin-top: 100px;
+    padding-bottom: 200px;
+    margin-right: 90px;
+}
+
+/*END OF FILTER POST CSS*/
+
+/*******************************************************************/
+/*CREATE WORKOUT CSS*/
+
+.view-cat {
+    background-image: url('images/class/trek.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.view-posts {
+    background-image: url('images/cover.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 /*END OF CREATE WORKOUT CSS*/
 
 /*******************************************************************/
@@ -1062,9 +1177,24 @@ a.btn-card {
     background-position: center center;
 }
 
+.view-user-avatar {
+    background-image: url('images/class/yoga-class.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.view-image-upload {
+    background-image: url('images/class/arch.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .workout-text {
     color: #fff;
 }
+
 /*END OF VIEW POST CSS (show.html) */
 
 /*******************************************************************/
@@ -1076,6 +1206,7 @@ a.btn-card {
     vertical-align: top;
     width: 92%;
 }
+
 .received_withd_msg p {
     background: #ebebeb none repeat scroll 0 0;
     border-radius: 25px;
@@ -1085,13 +1216,18 @@ a.btn-card {
     padding: 5px 10px 5px 12px;
     width: 100%;
 }
+
 .time_date {
     color: black;
     display: block;
     font-size: 12px;
     margin: 8px 0 0;
 }
-.received_withd_msg { width: 57%;}
+
+.received_withd_msg {
+    width: 57%;
+}
+
 .mesgs {
     float: left;
     padding: 30px 15px 0 25px;
@@ -1102,18 +1238,28 @@ a.btn-card {
     background: #05728f none repeat scroll 0 0;
     border-radius: 25px;
     font-size: 14px;
-    margin: 0; color:#fff;
+    margin: 0;
+    color: #fff;
     padding: 5px 10px 5px 12px;
-    width:100%;
+    width: 100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+
+.outgoing_msg {
+    overflow: hidden;
+    margin: 26px 0 26px;
+}
+
+.incoming_msg {
+    overflow: hidden;
+    margin: 26px 0 26px;
+}
 .sent_msg {
     float: right;
     width: 46%;
 }
 
 /************************************************************************/
-body.thread,html.thread{
+body.thread, html.thread {
     height: 100%;
     margin: 0;
     background: #7F7FD5;
@@ -1164,11 +1310,11 @@ h4.card-title {
     font-size: 17px
 }
 
-.card-header>*:last-child {
+.card-header > *:last-child {
     margin-right: 0
 }
 
-.card-header>* {
+.card-header > * {
     margin-left: 8px;
     margin-right: 8px
 }
@@ -1194,9 +1340,6 @@ h4.card-title {
     font-family: Roboto, sans-serif;
     font-weight: 300;
     line-height: 1.5;
-    margin-bottom: 0;
-    padding: 15px 20px;
-    border-bottom: 1px solid rgba(77, 82, 89, 0.07)
 }
 
 .ps-container {
@@ -1238,14 +1381,13 @@ h4.card-title {
     -webkit-box-align: center;
     align-items: center;
     padding: 12px 20px;
-    background-color: #f9fafb
 }
 
-.publisher>*:first-child {
+.publisher > *:first-child {
     margin-left: 0
 }
 
-.publisher>* {
+.publisher > * {
     margin: 0 8px
 }
 
@@ -1308,12 +1450,14 @@ h4.card-title {
 
 /*INBOX PAGE CSS*/
 
-.container{
-    max-width:1170px; margin:auto;
+.container {
+    max-width: 1170px;
+    margin: auto;
 }
 
-img.img-inbox{
-    max-width:100%;
+img.img-inbox {
+    max-width: 100%;
+    border-radius: 10%;
 }
 
 .inbox_people {
@@ -1321,32 +1465,51 @@ img.img-inbox{
     overflow: hidden;
     width: 90%;
     /*border-right:1px solid #c4c4c4;*/
-margin-left: 100px;
+    margin-left: 100px;
     margin-top: 30px;
 }
+
 .inbox_msg {
     /*border: 1px solid #c4c4c4;*/
     clear: both;
     overflow: hidden;
 }
-.top_spac{
+
+.top_spac {
     margin: 20px 0 0;
 }
 
-.recent_heading {float: left; width:40%;}
+.recent_heading {
+    float: left;
+    width: 40%;
+}
+
 .srch_bar {
     display: inline-block;
     text-align: right;
     width: 60%;
 }
-.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
+.headind_srch {
+    padding: 10px 29px 10px 20px;
+    overflow: hidden;
+    border-bottom: 1px solid #c4c4c4;
+}
 
 .recent_heading h4 {
     color: #05728f;
     font-size: 21px;
     margin: auto;
 }
-.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+
+.srch_bar input {
+    border: 1px solid #cdcdcd;
+    border-width: 0 0 1px 0;
+    width: 80%;
+    padding: 2px 0 4px 6px;
+    background: none;
+}
+
 .srch_bar .input-group-addon button {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -1354,23 +1517,42 @@ margin-left: 100px;
     color: #707070;
     font-size: 18px;
 }
-.srch_bar .input-group-addon { margin: 0 0 0 -27px;}
 
-.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
-.chat_ib h5 span{ font-size:13px; float:right;}
-.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.srch_bar .input-group-addon {
+    margin: 0 0 0 -27px;
+}
+
+.chat_ib h5 {
+    font-size: 15px;
+    color: #464646;
+    margin: 0 0 8px 0;
+}
+
+.chat_ib h5 span {
+    font-size: 13px;
+    float: right;
+}
+
+.chat_ib p {
+    font-size: 14px;
+    color: #989898;
+    margin: auto
+}
+
 .chat_img {
     float: left;
     width: 11%;
 }
+
 .chat_ib {
     float: left;
     padding: 0 0 0 15px;
     width: 88%;
 }
 
-.chat_people{
-    overflow:hidden; clear:both;
+.chat_people {
+    overflow: hidden;
+    clear: both;
 }
 
 .chat_list {
@@ -1378,16 +1560,130 @@ margin-left: 100px;
     margin: 0;
     padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
 
-.active_chat{ background:#ebebeb;}
+.inbox_chat {
+    height: 550px;
+    overflow-y: scroll;
+}
+
+.active_chat {
+    background: #ebebeb;
+}
 
 /*END OF INBOX PAGE CSS*/
 
 /*******************************************************************/
+/*EDIT PROFILE PAGE*/
 
+body.edit_profile {
+    margin: 0;
+    color: #2e323c;
+    background: #f5f6fa;
+    position: relative;
+    height: 100%;
+}
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
 
+.user-avatar {
+    padding-top: 20px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9fa8b9;
+}
+.account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+.account-settings .about h5 {
+    margin: 0 0 15px 0;
+    color: #007ae1;
+}
+.account-settings .about p {
+    font-size: 0.825rem;
+}
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
 
+.card-edit {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
 
+.container-edit {
+    margin: 60px 60px 100px;
+}
 
+.edit-back {
+    background-color: rgba(126, 123, 215, 0.2);
+}
 
+.upload-btn {
+    background: rgba(54, 6, 114, 0.9);
+    border-color: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .25rem;
+}
+
+.upload-btn:hover {
+    background: rgba(91, 33, 169, 0.9);
+}
+
+.view-edit {
+    background-image: url('images/class/mountains.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.current-img {
+    padding-top: 20px;
+}
+
+.edit-profile-title {
+    padding-top: 70px;
+}
+/*END OF EDIT PROFILE PAGE*/
+/*******************************************************************/
+
+/*UPLOAD IMAGES PAGE*/
+
+.upload-box {
+    margin-top: 200px;
+    padding-bottom: 300px;
+}
+
+/*END OF UPLOAD IMAGES PAGE*/
+/*******************************************************************/

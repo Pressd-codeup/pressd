@@ -3,21 +3,76 @@
 <head th:replace="fragments/header :: main-head('Upload')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<label class="submit-button">
-    <input type="file" id="input_img" th:onchange="fileChange()" accept="image/*" style="display: none">
-    Select image to upload
-</label>
+<style>
+    #json img {
+        max-width: 33%;
+        max-height: 33%;
+    }
+</style>
 
-<div id="json"></div>
+<header class="login">
+    <!-- Full Page Intro -->
+    <div class="view-image-upload">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <!--Grid row-->
+                <div class="row mt-5">
+                    <!--Grid column-->
+                    <div class="col-lg-12 mb-4 login-box">
+                        <div class="white-text text-center">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">
+                                Upload Image</h1>
 
-<form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
-    <input type="hidden" name="directory" th:value="${directory}">
-    <input type="hidden" name="url" id="url">
-    <input class="submit-button" type="submit" value="Upload your image!">
-</form>
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <!--<h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>-->
+
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        </div>
+                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                            <!--Header-->
+                            <div class="card-body upload-box">
+
+
+
+                                <div class="d-flex flex-column align-items-center">
+
+                                    <input type="button" class="submit-button" id="loadFileXml" value="Upload" onclick="document.getElementById('input_img').click();" />
+                                    <input class="submit-button" type="file" id="input_img" th:onchange="fileChange()" accept="image/*" style="display: none">
+
+                                    <hr class="hr-light">
+
+                                    <div id="json" class="d-flex flex-column align-items-center"></div>
+
+                                    <hr class="hr-light">
+
+                                    <form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
+                                        <input type="hidden" name="directory" th:value="${directory}">
+                                        <input type="hidden" name="url" id="url">
+                                        <input class="submit-button" type="submit" value="Save your image!">
+                                    </form>
+
+                                    <hr class="hr-light">
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <script type="text/javascript" src="/keys.js"></script>
 <script type="text/javascript" th:src="@{/js/cssandjs/upload.js}"></script>
-<footer th:replace="fragments/footer :: main-footer"></footer>
+<footer>
+    <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
+</footer>
 </body>
 </html>

@@ -7,65 +7,79 @@
 <header class="sign_up">
     <!-- Full Page Intro -->
     <div class="view">
-<!--         style="background-image: url('/public/css/images/group.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">-->
+        <!--         style="background-image: url('/public/css/images/group.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">-->
         <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <!-- Content -->
             <div class="container">
                 <!--Grid row-->
-                <div class="row mt-5">
+                <div class="row col-12 dong mt-5">
                     <!--Grid column-->
                     <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
                         <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up! </h1>
                         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                        <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s">Join the growing community of like-minded individuals reaching their fitness goals!</h6>
-<!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s">Join the growing community of
+                            like-minded individuals reaching their fitness goals!</h6>
+                        <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                     </div>
                     <!--Grid column-->
                     <!--Grid column-->
-                    <div class="col-md-6 col-xl-5 mb-4">
+                    <div class="bottom-fix col-md-6 col-xl-5 mb-4 sign-up-box">
                         <!--Form-->
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
+
+                                <!--Header-->
+                                <div class="text-center">
+                                    <h3 class="white-text">
+                                        <i class="fa fa-user white-text"></i> Register:</h3>
+
+                                </div>
+
                                 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-                                    <!--Header-->
-                                    <div class="text-center">
-                                        <h3 class="white-text">
-                                            <i class="fa fa-user white-text"></i> Register:</h3>
-                                        <hr class="hr-light">
-                                    </div>
+                                    <hr class="hr-light">
+
                                     <!--Body-->
                                     <div class="md-form">
+                                        <span>
+                                            <i class="fa fa-user prefix white-text active"></i>
+                                            <label for="username" class="active">Username</label>
+                                        </span>
 
-                                        <i class="fa fa-user prefix white-text active"></i>
-                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+
                                         <input class="form-control mb-3" id="username" th:field="*{username}"/>
-                                        <label for="username" class="active">Your name</label>
-
                                     </div>
+
                                     <div class="md-form">
-                                        <i class="fa fa-envelope prefix white-text active"></i>
+                                        <span>
+                                            <i class="fa fa-envelope prefix white-text active"></i>
+                                            <label class="active" for="email">Your email</label>
+                                        </span>
+
                                         <input type="email" class="white-text form-control" id="email"
                                                th:field="*{email}">
-                                        <label class="active" for="email">Your email</label>
                                     </div>
+
                                     <div class="md-form">
-                                        <i class="fa fa-lock prefix white-text active"></i>
+                                        <span>
+                                            <i class="fa fa-lock prefix white-text active"></i>
+                                            <label for="password">Your password</label>
+                                        </span>
+
                                         <input type="password" id="password" class="white-text form-control"
                                                th:field="*{password}">
-                                        <label for="password">Your password</label>
                                     </div>
-                                    <div class="text-center mt-4">
-                                        <button class="submit-button">Sign up</button>
+                                    <div class="justify-content-between mt-4">
+                                        <input type="submit" class="login-button" value="Sign Up">
                                         <hr class="hr-light mb-3 mt-4">
                                         <div class="inline-ul text-center d-flex justify-content-center">
-                                            <a class="p-2 m-2 tw-ic">
+                                            <a class="p-4 m-4 tw-ic">
                                                 <i class="fa fa-twitter white-text"></i>
                                             </a>
-                                            <a class="p-2 m-2 li-ic">
+                                            <a class="p-4 m-4 li-ic">
                                                 <i class="fa fa-linkedin white-text"> </i>
                                             </a>
-                                            <a class="p-2 m-2 ins-ic">
+                                            <a class="p-4 m-4 ins-ic">
                                                 <i class="fa fa-instagram white-text"> </i>
                                             </a>
                                         </div>
@@ -84,6 +98,7 @@
         </div>
         <!-- Mask & flexbox options-->
     </div>
+    <!--    <footer th:replace="fragments/footer :: main-footer"></footer>-->
     <!-- Full Page Intro -->
 </header>
 

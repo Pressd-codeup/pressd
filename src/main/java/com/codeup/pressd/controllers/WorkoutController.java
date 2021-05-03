@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -35,17 +36,68 @@ public class WorkoutController {
     @GetMapping("/workouts")
     public String seeAllWorkouts(Model viewModel) {
         List<Workout> workouts = workoutDao.findAll();
+        Collections.reverse(workouts);
+        List<Category> allCategories = categoryDao.findAll();
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        viewModel.addAttribute("first", first);
+        viewModel.addAttribute("allCategories", allCategories);
+        viewModel.addAttribute("category", 1);
         viewModel.addAttribute("workouts", workouts);
+
         return "workouts/index";
     }
 
-    @GetMapping("/workouts/category/{id}")
-    public String showWorkoutsByCategory(@PathVariable long id, Model viewModel) {
-
-        Category category = categoryDao.getOne(id);
-        List<Workout> workouts = workoutDao.getWorkoutsByCategoriesContaining(category);
+    /*@GetMapping("/workouts/categories")
+    public String viewWorkoutsByCategory(@ModelAttribute List<Workout> workouts, @ModelAttribute long category, Model viewModel) {
+        List<Category> allCategories = categoryDao.findAll();
+        viewModel.addAttribute("allCategories", allCategories);
         viewModel.addAttribute("workouts", workouts);
-        return "workouts/categories";
+        viewModel.addAttribute("category", category);
+
+        return "workouts/index";
+    }*/
+
+
+    @PostMapping("/workouts")
+    public String selectWorkoutsByCategory(@RequestParam String[] categoryNames, Model viewModel) {
+
+        long category = 0;
+        List<Workout> allWorkouts = workoutDao.findAll();
+        List<Workout> workouts = new ArrayList<>();
+
+        List<Category> categories = new ArrayList<>();
+        List<Category> allCategories = categoryDao.findAll();
+
+        for (String catName : categoryNames) {
+            for (Category tempCat : allCategories) {
+                if (catName.equals(tempCat.getName())) {
+                    categories.add(tempCat);
+                    break;
+                }
+            }
+        }
+
+        for (Workout tempWork : allWorkouts) {
+            for (Category allCatTemp : categories) {
+                if (tempWork.getCategories().contains(allCatTemp)) {
+                    workouts.add(tempWork);
+                    break;
+                }
+            }
+        }
+
+
+        if (!workouts.isEmpty()) category = 2;
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        viewModel.addAttribute("first", first);
+        viewModel.addAttribute("allCategories", allCategories);
+        viewModel.addAttribute("category", category);
+        Collections.reverse(workouts);
+        viewModel.addAttribute("workouts", workouts);
+
+        return "workouts/index";
     }
 
     @GetMapping("/workouts/{id}")
@@ -53,10 +105,12 @@ public class WorkoutController {
         DecimalFormat df = new DecimalFormat("0.00");
         viewModel.addAttribute("df", df);
         Workout workout = workoutDao.getOne(id);
+        User user = new User();
+        user.setId(999999999);
         boolean isLoggedIn = false;
 
         try {
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             isLoggedIn = true;
             UserWorkoutRating tester = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
             long userRating;
@@ -65,13 +119,17 @@ public class WorkoutController {
             } else {
                 userRating = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user).getRating().getStars();
                 viewModel.addAttribute("uwr", tester);
-                System.out.println("UWR: " + tester);
             }
             viewModel.addAttribute("userRating", userRating);
         } catch (RuntimeException ignored) {
         }
         viewModel.addAttribute("isLoggedIn", isLoggedIn);
 
+        long currentUserId = workout.getUser().getId();
+
+        boolean isUser = (user.getId() == currentUserId);
+
+        viewModel.addAttribute("isUser", isUser);
 
         List<UserWorkoutRating> uwr = userWorkoutRatingDao.getUserWorkoutRatingsByWorkout(workout);
         long totalRatings = uwr.size();
@@ -90,7 +148,6 @@ public class WorkoutController {
     @PostMapping("/ratings/{id}/create")
     public String createRating(@RequestParam String newRating, @PathVariable long id) {
         long ratingLong = Long.parseLong(newRating);
-        System.out.println("RATINGLONG: " + ratingLong);
         UserWorkoutRating uwr = new UserWorkoutRating();
         Workout workout = workoutDao.getOne(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -108,7 +165,6 @@ public class WorkoutController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserWorkoutRating uwr = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
-        System.out.println("ID: " + uwr.getId());
         //userWorkoutRatingDao.deleteById(uwr.getId());
         long ratingLong = Long.parseLong(newRating);
         //UserWorkoutRating newUwr = new UserWorkoutRating();
@@ -124,6 +180,11 @@ public class WorkoutController {
     @GetMapping("/workouts/create")
     public String showCreateWorkout(Model viewModel) {
         viewModel.addAttribute("workout", new Workout());
+        List<Category> allCategories = categoryDao.findAll();
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        viewModel.addAttribute("first", first);
+        viewModel.addAttribute("allCategories", allCategories);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getOne(currentUser.getId());
         Image currentImage = imageDao.getOne(1L);
@@ -132,9 +193,25 @@ public class WorkoutController {
     }
 
     @PostMapping("/workouts/create")
-    public String createWorkout(@ModelAttribute Workout workout, @RequestParam(name="imageId") long imageId) {
+    public String createWorkout(@ModelAttribute Workout workout, @RequestParam(name="imageId") long imageId, @RequestParam String[] categoryNames) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Image image = imageDao.getOne(imageId);
+
+        List<Category> allCategories = categoryDao.findAll();
+
+        List<Category> categories = new ArrayList<>();
+
+        for (String catName : categoryNames) {
+            for (Category tempCat : allCategories) {
+                if (catName.equals(tempCat.getName())) {
+                    categories.add(tempCat);
+                    break;
+                }
+            }
+        }
+
+
+        workout.setCategories(categories);
         workout.setUser(user);
         workout.setComments(new ArrayList<>());
         workout.setDatePosted(LocalDateTime.now());
@@ -179,8 +256,8 @@ public class WorkoutController {
         Workout dbWorkout = workoutDao.getOne(id);
         Image newImage = imageDao.getOne(imageId);
         dbWorkout.setImage(newImage);
-        dbWorkout.setTitle(title);
-        dbWorkout.setBody(body);
+        if (title.length() != 0) dbWorkout.setTitle(title);
+        if (body.length() != 0) dbWorkout.setBody(body);
         //user validation is no longer necessary here because it's handled in GetMapping
         workoutDao.save(dbWorkout);
 

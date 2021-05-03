@@ -22,23 +22,27 @@ public class CommentController {
     private final CommentRepository commentDao;
     private final UserRepository userDao;
     private final WorkoutRepository workoutDao;
+    private final ImageRepository imageDao;
 
-    CommentController(CommentRepository commentDao, UserRepository userDao, WorkoutRepository workoutDao) {
+    CommentController(CommentRepository commentDao, UserRepository userDao, WorkoutRepository workoutDao, ImageRepository imageDao) {
         this.commentDao = commentDao;
         this.userDao = userDao;
         this.workoutDao = workoutDao;
+        this.imageDao = imageDao;
     }
 
     @GetMapping("/workouts/{id}/comments")
     public String allComments(@PathVariable long id, Model viewModel) {
         List<Comment> comments = commentDao.findAll();
         viewModel.addAttribute("comments", comments);
+        viewModel.addAttribute("imageDao", imageDao);
         return "comments/index";
     }
 
 
     @GetMapping("/workouts/{id}/comments/create")
     public String showCreateComment(@PathVariable long id, Model viewModel) {
+        Workout workout = workoutDao.getOne(id);
         viewModel.addAttribute("comment", new Comment());
         return "comments/create";
     }
@@ -52,18 +56,12 @@ public class CommentController {
         comment.setWorkout(workout);
         comment.setDatePosted(LocalDateTime.now());
         List<Comment> allComments = commentDao.findAll();
-        comment.setId(allComments.size() + 1);
-        Hibernate.initialize(workout.getComments());
-        Hibernate.initialize(dbUser.getComments());
-        List<Comment> workoutComments = workout.getComments();
-        List<Comment> userComments = dbUser.getComments();
-//        Hibernate.initialize(workoutComments);
-//        Hibernate.initialize(userComments);
-        workoutComments.add(comment);
-        userComments.add(comment);
-        workout.setComments(workoutComments);
-        dbUser.setComments(userComments);
-//        workoutDao.save(workout);
+        long newId = 0;
+        for (Comment comment1 : allComments) {
+            if (comment1.getId() > newId) newId = comment1.getId();
+        }
+        ++newId;
+        comment.setId(newId);
         commentDao.save(comment);
         return "redirect:/workouts/"+id+"/comments";
     }
@@ -86,7 +84,9 @@ public class CommentController {
         commentToUpdate.setWorkout(workout);
         commentToUpdate.setId(id);
         commentToUpdate.setUser(currentUser);
-        commentToUpdate.setBody(body);
+        if(body.length() != 0) {
+            commentToUpdate.setBody(body);
+        }
         commentDao.save(commentToUpdate);
         return "redirect:/workouts";
     }
@@ -102,4 +102,10 @@ public class CommentController {
         return "redirect:/workouts";
 
     }
+
+//    GetMapping("/{id}/comments")
+//        public String viewUserComments(@PathVariable long id){
+//
+//        return ""
+//        }
 }

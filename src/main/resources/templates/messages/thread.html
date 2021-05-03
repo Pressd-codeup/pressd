@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="thread" lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('Workouts')"></head>
+<head th:replace="fragments/header :: main-head('Messages')"></head>
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
@@ -8,34 +8,33 @@
     <div class="padding d-flex justify-content-center mt-5">
         <div class="row container">
             <div class="col-md-12">
-                <div class="card card-bordered">
+                <div class="card card-bordered bg-transparent">
                     <div class="card-header">
-                        <h4 class="card-title"><strong>Messages</strong></h4>
+                        <h4 class="card-title text-white"><strong>Messages</strong></h4>
                         <!--                        <a class="btn btn-xs btn-secondary" href="#"-->
                         <!--                           data-abc="true"></a>-->
                     </div>
-                    <div class="ps-containeravatar ps-theme-default ps-active-y" id="chat-content"
+                    <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
                          style="overflow-y: scroll !important; height:400px !important;">
                         <!--YOUR MESSAGES-->
                         <div class="incoming_msg" th:each="message : ${messages}">
                             <div class="received_msg" th:switch="${message.sentFrom.id}">
-                                <div class="received_withd_msg" th:case="${currentUser.id}">
-                                    <div>
-                                        <small>You</small>
-                                        <div class="time_date">
-                                            <div
-                                                    th:text="${shortF.format(message.datePosted)}"></div>
-                                        </div>
-                                        <p class="" th:text="${message.body}"></p>
+                                <div class="outgoing_msg" th:case="${currentUser.id}">
+                                    <div class="sent_msg">
+                                        <small style="color: white">You</small>
+                                        <span class="time_date"><small
+                                                th:text="${shortF.format(message.datePosted)}"
+                                                style="color: white"></small></span>
+                                        <p th:text="${message.body}"></p>
                                     </div>
                                     <!--                <div th:case="${currentUser.id}">-->
                                 </div>
                                 <!--OTHER USER'S MESSAGES-->
-                                <div class="outgoing_msg" th:case="*">
-                                    <div class="sent_msg">
-                                        <small th:text="${message.sentFrom.username}"></small>
-                                        <span class="time_date"><small
-                                                th:text="${shortF.format(message.datePosted)}"></small></span>
+                                <div class="received_withd_msg" th:case="*">
+                                    <div class="">
+                                        <small style="color: white" th:text="${message.sentFrom.username}"></small>
+                                        <span class="time_date"><small style="color: white"
+                                                                       th:text="${shortF.format(message.datePosted)}"></small></span>
                                         <p th:text="${message.body}"></p>
 
                                     </div>
@@ -49,18 +48,18 @@
                             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                         </div>
                     </div>
-                    <div class="publisher bt-1 border-light"><img class="avatar avatar-xs"
-                                                                  src="https://img.icons8.com/color/36/000000/administrator-male.png"
-                                                                  alt="..."> <input class="publisher-input"
-                                                                                    type="text"
-                                                                                    placeholder="Write something">
-                        <span
-                                class="publisher-btn file-group"> <i
-                                class="fa fa-paperclip file-browser"></i> <input
-                                type="file"> </span> <a class="publisher-btn" href="#" data-abc="true"><i
-                                class="fa fa-smile"></i></a> <a class="publisher-btn text-info" href="#"
-                                                                data-abc="true"><i
-                                class="fa fa-paper-plane"></i></a></div>
+
+                    <div class="publisher"
+                         style="background: rgba(126, 123, 215, 0.2); border-top: 1px solid; border-color: inherit">
+                        <img class="float-right avatar avatar-xs"
+                             th:src="${imageDao.getOne(currentUser.getAvatarId()).url}"
+                             alt="...">
+                        <form th:action="@{'/messages/send/' + ${id}}" th:method="POST" th:object="${newMessage}">
+                            <input style="background: white; border-radius: .25rem" class="publisher-input"
+                                   th:field="*{body}" type="text" placeholder="Write something" required>
+                            <button type="submit" class="submit-button"><i class="fa fa-paper-plane"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
