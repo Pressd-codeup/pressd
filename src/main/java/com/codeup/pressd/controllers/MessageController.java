@@ -107,8 +107,10 @@ public class MessageController {
     public String showSend(@PathVariable long id, Model viewModel) {
         User from = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("message", new Message());
+        User to = userDao.getOne(id);
         viewModel.addAttribute("to_id", id);
         viewModel.addAttribute("from", from);
+        viewModel.addAttribute("to", to);
         return "messages/send";
     }
 

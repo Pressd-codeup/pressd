@@ -144,6 +144,13 @@ public class WorkoutController {
         viewModel.addAttribute("totalRatings", totalRatings);
         viewModel.addAttribute("rating", rating);
         viewModel.addAttribute("workout", workout);
+        viewModel.addAttribute("comment", new Comment());
+        viewModel.addAttribute("user", user);
+        List<Comment> comments = workout.getComments();
+        viewModel.addAttribute("comments", comments);
+        viewModel.addAttribute("imageDao", imageDao);
+
+
         return "workouts/show";
     }
 
