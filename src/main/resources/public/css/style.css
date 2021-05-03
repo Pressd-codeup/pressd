@@ -1149,6 +1149,12 @@ a.btn-card {
     background-position: center center;
 }
 
+.view-posts {
+    background-image: url('images/cover.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 /*END OF CREATE WORKOUT CSS*/
 
 /*******************************************************************/
