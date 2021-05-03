@@ -67,14 +67,16 @@
                                                         <i class="white-text"></i> New Plan:</h3>
                                                     <p class="text-white">Want to upload more pictures to use? </p>
 
-                                                    <div class="text-white">Do it
-                                                        <form method="get" th:action="@{/images/upload}">
-                                                            <input type="hidden" name="directory"
-                                                                   value="createWorkoutImage">
-                                                            <input class="btn submit-button login-button" type="submit"
-                                                                   value="Here!"/>
-                                                        </form>
-                                                    </div>
+                                                        <div>
+                                                            <p class="text-white mb-1">Do it</p>
+                                                        </div>
+
+                                                            <form method="get" th:action="@{/images/upload}">
+                                                                <input type="hidden" name="directory"
+                                                                       value="createWorkoutImage">
+                                                                <button class="login-button" type="submit">here!</button>
+                                                            </form>
+
                                                     <hr class="hr-light">
                                                 </div>
                                                 <!--Body-->
@@ -144,7 +146,7 @@
                                                                         <br>
                                                                         <label for="body"
                                                                                class="form-label">Body</label>
-                                                                        <textarea class="form-control"
+                                                                        <textarea rows="10" class="form-control"
                                                                                   th:field="*{body}" type="text"
                                                                                   id="body" required></textarea>
                                                                     </div>

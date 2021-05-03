@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('update post')"></head>
+<head th:replace="fragments/header :: main-head('Update Post')"></head>
 <style>
     /* HIDE RADIO */
     [type=radio] {
@@ -43,8 +43,8 @@
                                         <h2 class="edit-profile-title text-white">Edit Your Post</h2>
                                         <hr>
 
-    <img th:src="@{${currentImage.url}}" alt="Your current post image"
-         style="max-width: 50%; max-height: 50%">
+                                        <img th:src="@{${currentImage.url}}" alt="Your current post image"
+                                             style="max-width: 50%; max-height: 50%">
 
                                     </div>
                                     <!--                        <div class="about">-->
@@ -72,10 +72,11 @@
                             <div class="card-body">
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <form class="" th:action="@{/posts/{id}/update(id=${post.getId()})}" method="post">
+                                        <form class="" th:action="@{/posts/{id}/update(id=${post.getId()})}"
+                                              method="post">
                                             <h3 class="text-white">Your post's current image:</h3>
                                             <div class="current-img">
-                                                <img th:src="@{${currentImage.url}}" alt="Your current avatar image"
+                                                <img th:src="@{${currentImage.url}}" alt="Your current post image"
                                                      id="currentImage">
                                             </div>
                                             <hr>
@@ -153,7 +154,6 @@
                                                     <div class="text-center">
                                                         <input class="submit-button" type="submit"
                                                                value="Update Post!">
-                                                        <!--                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>-->
                                                     </div>
                                                 </div>
                                             </div>
