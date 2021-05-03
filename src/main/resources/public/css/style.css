@@ -1694,3 +1694,21 @@ body.edit_profile {
 
 /*END OF UPLOAD IMAGES PAGE*/
 /*******************************************************************/
+
+/*COMMENTS PAGE CSS*/
+
+.view-results {
+    background-image: url('images/class/adventure.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.comments-box {
+    margin-top: 80px;
+    padding-bottom: 300px;
+}
+
+/*END OF COMMENTS PAGE CSS*/
+/*******************************************************************/
+
