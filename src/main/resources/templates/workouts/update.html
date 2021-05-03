@@ -1,86 +1,187 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('update workout')">
-    <style>
-        /* HIDE RADIO */
-        [type=radio] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+<head th:replace="fragments/header :: main-head('Update Workout')"></head>
+<style>
+    /* HIDE RADIO */
+    [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
-        /* IMAGE STYLES */
-        [type=radio] + img {
-            cursor: pointer;
-            height: 75px;
-            width: 75px;
-            margin: 5px;
-        }
+    /* IMAGE STYLES */
+    [type=radio] + img {
+        cursor: pointer;
+        height: 75px;
+        width: 75px;
+        margin: 5px;
+    }
 
-        /* CHECKED STYLES */
-        [type=radio]:checked + img {
-            outline: 5px solid #f00;
-        }
+    /* CHECKED STYLES */
+    [type=radio]:checked + img {
+        outline: 5px solid #5b21a9;
+    }
 
-        #currentImage {
-            height: 100px;
-            width: 100px;
-        }
-    </style>
-</head>
-<body>
+    #currentImage {
+        height: 100px;
+        width: 100px;
+    }
+</style>
+<body class="edit_profile view-login">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+<header class="login">
+    <div class="post-update">
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <div class="container-edit">
+                <div class="row gutters">
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="card-edit h-100 card-sign edit-back">
+                            <div class="card-body">
+                                <div class="account-settings">
+                                    <div class="user-profile mb-0 pb-0">
+                                        <h2 class="edit-profile-title text-white">Edit Your Workout</h2>
+                                        <hr>
 
-<h2>Update Your workout</h2>
+                                        <img th:src="@{${currentImage.url}}" alt="Your current workout image"
+                                             style="max-width: 50%; max-height: 50%">
 
-<br>
+                                    </div>
+                                    <!--                        <div class="about">-->
+                                    <!--                            <h1 class="edit-back">Edit Photos</h1>-->
+                                    <!--                        </div>-->
+                                    <!--UPDATE PHOTOS-->
+                                    <hr>
+                                    <div class="text-center">
+                                        <p class="text-white">Want to upload more pictures to use? Do it </p>
 
-<h3>Your workout's current image:</h3>
-<br>
-<img style="max-height: 250px; max-width: 250px" th:src="@{${currentImage.url}}" alt="Your current workout image"
-     id="currentImage">
-<br>
-<div style="display: flex">
-    <p>Want to upload more pictures to use? Do it </p>
-    <form method="get" th:action="@{/images/upload}">
-        <input type="hidden" name="directory" value="updateworkoutImage">
-        <input class="submit-button" type="submit" value="here!"/>
-    </form>
-</div>
-<br>
-<div class="m-auto justify-content-center">
-    <form th:action="@{/workouts/{id}/update(id=${workout.getId()})}" method="post">
+                                        <form method="get" th:action="@{/images/upload}">
+                                            <input type="hidden" name="directory" value="updateWorkoutImage">
 
-        <div style="display: flex; width: 33%; flex-wrap: wrap">
-            <label>
-                <input type="radio" name="imageId" th:value="${currentImage.id}" checked>
-                <img style="max-height: 250px; max-width: 250px" th:src="@{${currentImage.url}}">
-            </label>
-            <div th:each="image : ${userImages}">
-                <label>
-                    <input type="radio" name="imageId" th:value="${image.id}">
-                    <img style="max-height: 250px; max-width: 250px" th:src="@{${image.url}}">
-                </label>
+                                            <input class="upload-btn" type="submit" value="here!"/>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="card-edit h-100 edit-back">
+                            <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <form class="" th:action="@{/workouts/{id}/update(id=${workout.getId()})}"
+                                              method="post">
+                                            <h3 class="text-white">Your workout's current image:</h3>
+                                            <div class="current-img">
+                                                <img th:src="@{${currentImage.url}}" alt="Your current workout image"
+                                                     id="currentImage">
+                                            </div>
+                                            <hr>
+                                            <div class="row edit-rows">
+
+                                                <label>
+                                                    <input type="radio" name="imageId"
+                                                           th:value="${currentImage.id}"
+                                                           checked>
+                                                    <img th:src="@{${currentImage.url}}">
+                                                </label>
+
+                                                <div th:each="image : ${userImages}">
+                                                    <label>
+                                                        <input type="radio" name="imageId"
+                                                               th:value="${image.id}">
+                                                        <img th:src="@{${image.url}}">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row gutters">
+                                                <div class="ml-4">
+                                                    <h4 class="text-white">Only fields you fill out will be
+                                                        updated.</h4>
+                                                    <hr>
+                                                </div>
+
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="row gutters">
+                                                        <!--                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
+                                                        <!--                                                            <h6 class="mb-2 text-primary">Personal Details</h6>-->
+                                                        <!--
+
+
+                                                                                                            </div>-->
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="cat text-white">Select Category</label>
+                                                                <br>
+                                                                <div class="ml-2">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                           name="categoryNames"
+                                                                           th:value="${first.getName()}">
+                                                                    <label class="text-white" th:text="${first.getName()}"></label>
+                                                                </div>
+
+
+                                                                <th:block th:each="category : ${allCategories}">
+                                                                    <div class="ml-2">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               name="categoryNames"
+                                                                               th:value="${category.name}">
+                                                                        <label class="text-white" th:text="${category.name}"></label>
+                                                                    </div>
+
+                                                                </th:block>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white" for="title">Title</label>
+                                                                <input class="form-control" name="title" id="title"
+                                                                       type="text"
+                                                                       th:placeholder="${workout.title}">
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white"
+                                                                       for="body">Body</label>
+                                                                <input class="form-control" name="body"
+                                                                       id="body"
+                                                                       type="textarea" placeholder="Enter new password">
+                                                            </div>
+                                                        </div>-->
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white" for="body">Body</label>
+                                                                <textarea name="body" id="body" class="form-control"
+                                                                          type="text"
+                                                                          th:text="${workout.body}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="text-center">
+                                                        <input class="submit-button" type="submit"
+                                                               value="Update Workout!">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <br>
-
-        <label for="title">Title</label>
-        <input id="title" name="title" th:value="${workout.getTitle()}">
-        <p>Your previous title: <span th:text="${workout.getTitle()}"></span></p>
-
-        <br>
-
-        <label for="body">Body</label>
-        <input id="body" name="body" th:value="${workout.getBody()}">
-        <p>Your previous body: <span th:text="${workout.getBody()}"></span></p>
-        <br>
-        <div class="m-5 mb-5">
-            <input class="submit-button" type="submit" value="Update workout!">
-        </div>
-    </form>
-</div>
+    </div>
+</header>
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
