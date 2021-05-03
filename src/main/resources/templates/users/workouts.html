@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('workouts')"></head>
-<body  class="profile-page">
+<head th:replace="fragments/header :: main-head('User s Workouts')"></head>
+<body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<section class="details-card">
-    <main class="container">
-        <h1 th:text="${user.username +' Workouts'}"></h1>
-        <div class="workouts" th:each="workout : ${workouts}">
-            <div class="row-12 m-0">
-                <div class="col-12 m-0 photo-frame" style="background: inherit">
-                    <div class="card-content " style="background: inherit">
-                        <div class="card-desc">
-                            <div class="d-flex">
-                                    <span><img class="img-thumbnail mr-2" th:src="@{${workout.image.url}}"
-                                               alt="alt"/></span>
-                                <h5 class="text-white" th:text="${workout.user.username}"></h5>
+
+<div class="jumbotron d-none d-sm-block bg-dark text-white view-login mb-0">
+    <h1 class="display-4 recent-post">Search Results</h1>
+</div>
+
+<header class="login col-lg-12 p-0">
+    <!-- Full Page Intro -->
+    <div class="view-results col-lg-12 p-0">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center col-lg-12">
+            <!-- Content -->
+            <div class="container col-lg-12 d-flex flex-column justify-content-center">
+
+
+                <div class="d-flex">
+                    <h1 class="text-white">Workouts:</h1>
+                </div>
+                <div class="col-lg-12 mb-4 login-box pb-0 mt-0" th:each="workout : ${workouts}">
+
+                    <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
+                        <div class="white-text text-center">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
+                                th:text="${workout.title}"></h1>
+
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                        </div>
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <img class="img-thumbnail img-fluid text-center"
+                                     th:src="@{${workout.image.url}}"
+                                     alt="alt"/>
                             </div>
-                            <h1 th:text="${workout.title}"></h1>
-                            <p th:text="${workout.body}"></p>
-                            <small th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month+' '+ workout.datePosted.year+' '+workout.datePosted.toLocalTime()}"></small>
-                            <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                <form th:action="@{${'/workouts/'+workout.id}}" method="GET">
-                                    <input class="submit-button" type="submit" value="View Workout">
-                                </form>
+
+
+                            <hr class="hr-light">
+
+
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between p-2">
+                                    <small class="text-white" th:text="${workout.getUser().username}"></small>
+                                    <small class="text-white"
+                                           th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></small>
+                                </div>
+                                <hr class="hr-light">
+
+                                <div class="d-flex justify-content-center">
+                                    <div th:each="category: ${workout.categories}" class="m-1">
+                                        <p class="card-text text-white" th:text="${category.name}"></p>
+                                    </div>
+                                </div>
+
+
                             </div>
+                            <form th:action="${'/workouts/'+ workout.id}" method="GET">
+                                <input class="submit-button" type="submit" value="View Plan">
+                            </form>
                         </div>
                     </div>
+
                 </div>
             </div>
+
+            <div th:unless="${workoutsFound}">
+                <h4 class="text-white">No workouts found matching your search.</h4>
+            </div>
         </div>
-    </main>
-</section>
+    </div>
+</header>
 <footer th:replace="fragments/footer :: main-footer"></footer>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossOrigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossOrigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossOrigin="anonymous"></script>
-<script src="script.js"></script>
 </body>
 </html>
