@@ -181,6 +181,7 @@ public class UserController {
         User user = userDao.getOne(id);
         List<Workout> workout = workoutDao.getWorkoutsByUser(user);
         List<Comment> comment = commentDao.getCommentsByUser(user);
+        viewModel.addAttribute("imageDao", imageDao);
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("comments", comment);
         viewModel.addAttribute("workouts", workout);
