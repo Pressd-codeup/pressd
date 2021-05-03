@@ -45,9 +45,6 @@ public class PostController {
 		List<Image> defaultImages = imageDao.findImagesByUser(defaultUser);
 		userImages.addAll(defaultImages);
 		userImages.remove(currentImage);
-		for (Image i : userImages) {
-			System.out.println(i.getId());
-		}
 		vModel.addAttribute("userImages", userImages);
 	}
 
