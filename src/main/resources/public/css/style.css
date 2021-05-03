@@ -1711,7 +1711,24 @@ body.edit_profile {
     background-size: cover;
     background-position: center center;
 }
-
+.view-comments {
+    background-image: url('images/class/step-stretch.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.view-workouts {
+    background-image: url('images/class/back-stretch.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.view-posts {
+    background-image: url('images/class/bodyup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 .comments-box {
     margin-top: 80px;
     padding-bottom: 300px;
