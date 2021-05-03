@@ -1124,6 +1124,13 @@ a.btn-card {
     background-position: center center;
 }
 
+.view-results {
+    background-image: url('images/class/adventure.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .search-post {
     margin-top: 100px;
     padding-bottom: 200px;
