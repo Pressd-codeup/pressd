@@ -1094,10 +1094,10 @@ a.btn-card {
 }
 
 .display-content {
-    display: block;
-    margin-left: 355px;
-    margin-right: auto;
-    margin-bottom: 30px;
+    /*display: block;*/
+    /*margin-left: 100px;*/
+    /*margin-right: auto;*/
+    /*margin-bottom: 30px;*/
 }
 
 .form-lable-2 {
@@ -1105,7 +1105,7 @@ a.btn-card {
 }
 
 .view-login-2 {
-    background-image: url('images/class/hill.jpg');
+    background-image: url('images/class/mount.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1143,7 +1143,7 @@ a.btn-card {
 /*CREATE WORKOUT CSS*/
 
 .view-cat {
-    background-image: url('images/class/adventure.jpg');
+    background-image: url('images/class/trek.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

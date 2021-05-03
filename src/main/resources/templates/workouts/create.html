@@ -43,7 +43,7 @@
                     <!--Grid column-->
                     <!--Grid column-->
                     <!--Grid column-->
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 display-content">
+                    <div class="">
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
                                 <div class="row gutters">
@@ -71,8 +71,8 @@
                                                         <form method="get" th:action="@{/images/upload}">
                                                             <input type="hidden" name="directory"
                                                                    value="createWorkoutImage">
-                                                            <input class="btn submit-button" type="submit"
-                                                                   value="here!"/>
+                                                            <input class="btn submit-button login-button" type="submit"
+                                                                   value="Here!"/>
                                                         </form>
                                                     </div>
                                                     <hr class="hr-light">
@@ -148,7 +148,7 @@
                                                                                   th:field="*{body}" type="text"
                                                                                   id="body" required></textarea>
                                                                     </div>
-                                                                    <button type="submit" class="submit-button">Submit
+                                                                    <button type="submit" class="submit-button login-button">Submit
                                                                         Workout
                                                                     </button>
                                                                 </div>
