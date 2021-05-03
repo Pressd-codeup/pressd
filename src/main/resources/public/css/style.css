@@ -852,6 +852,13 @@ header.login,
     background-position: center center;
 }
 
+.view-jumbo {
+    background-image: url('images/class/swim.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 @media (max-width: 740px) {
     html.login_page,
     body.login_page,
@@ -1087,6 +1094,10 @@ a.btn-card {
     -moz-transition: all 0.5s ease 0s;
     -webkit-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
+}
+
+.main-card-post {
+    padding: 70px 300px 70px 300px;
 }
 
 /*END OF SHOW POST CSS*/
