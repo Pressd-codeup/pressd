@@ -17,7 +17,7 @@
 
 <!-- Jumbotron Header -->
 
-<div class="jumbotron d-none d-sm-block bg-dark text-white view-jumbo mb-0">
+<div class="jumbotron d-none d-sm-block bg-dark text-white view-login mb-0">
 
     <h1 th:switch="${type}" class="display-4 recent-post">
         <span th:case="partners">Recent Partner Posts</span>
@@ -39,59 +39,65 @@
         <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center col-lg-12">
             <!-- Content -->
-            <div class="container col-lg-12 col-sm-12 d-flex flex-column justify-content-center">
-
-                <div class="mb-4 login-box pb-0 mt-3 col-12" th:each="post : ${posts}">
-                    <div class="main-card-post">
-                        <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
-                            <div class="white-text text-center">
-                                <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
-                                    th:text="${post.title}"></h1>
-
-                                <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                                <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                                <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
-                            </div>
-
-                            <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <img style="max-width: 50%; max-height: 50%;"
-                                         class="img-thumbnail img-fluid text-center"
-                                         th:src="@{${post.image.url}}"
-                                         alt="alt"/>
-                                </div>
+            <div class="container col-lg-12 d-flex flex-column justify-content-center">
 
 
-                                <hr class="hr-light">
+                <!--Grid row-->
+
+                <!--Grid column-->
+                <div class="col-lg-12 mb-4 login-box pb-0" th:each="post : ${posts}">
 
 
-                                <div class="mb-4">
-                                    <div class="d-flex justify-content-between p-2">
-                                        <div>
-                                            <small class="text-white" th:text="${post.getUser().username}"></small>
-                                        </div>
-                                        <div>
-                                            <small class="text-white" th:text="${post.city}"></small>
-                                        </div>
-                                        <div>
-                                            <small class="text-white"
-                                                   th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></small>
-                                        </div>
-                                    </div>
-                                    <hr class="hr-light">
-                                </div>
-                                <form th:action="${'/posts/'+ post.id}" method="GET">
-                                    <input class="submit-button" type="submit" value="View Post">
-                                </form>
-                            </div>
+
+
+                    <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
+                        <div class="white-text text-center">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
+                                th:text="${post.title}"></h1>
+
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                         </div>
 
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <img class="img-thumbnail img-fluid text-center"
+                                     th:src="@{${post.image.url}}"
+                                     alt="alt"/>
+                            </div>
 
+
+                            <hr class="hr-light">
+
+
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between p-2">
+                                    <div>
+                                        <small class="text-white" th:text="${post.getUser().username}"></small>
+                                    </div>
+                                    <div>
+                                        <small class="text-white" th:text="${post.city}"></small>
+                                    </div>
+                                    <div>
+                                        <small class="text-white"
+                                               th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></small>
+                                    </div>
+                                </div>
+                                <hr class="hr-light">
+                            </div>
+                            <form th:action="${'/posts/'+ post.id}" method="GET">
+                                <input class="submit-button" type="submit" value="View Post">
+                            </form>
+                        </div>
                     </div>
+
+
 
                 </div>
 
             </div>
+
         </div>
     </div>
 </header>
@@ -99,7 +105,6 @@
 <!--<section class="details-card">
     <div class="container post col-lg-6 col-12 m-0 float-left" th:each="post : ${posts}">
         <div class="row-12 m-0 ">
-
             <div class="col-12 m-0 photo-frame" style="background: inherit">
                 <div class="card-content" style="background: inherit">
                     <div class="card-img">
@@ -119,9 +124,6 @@
                             <small class="text-white"
                                    th:text="${shortF.format(post.getDatePosted())}"></small>
                         </div>
-
-
-
                         <form th:action="${'/posts/'+ post.id}" method="GET" class="mt-2">
                             <input class="submit-button" type="submit" value="View Post">
                         </form>
