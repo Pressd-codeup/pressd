@@ -46,7 +46,8 @@
                     <!--Grid column-->
                     <!--Grid column-->
                     <!--                        <div class="col-md-6 col-xl-5 mb-4">&lt;!&ndash;th:if="${post.id == 0}"&ndash;&gt;-->
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 display-content">
+
+                    <div class="col-12">
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
                                 <div class="row gutters">
@@ -70,8 +71,8 @@
                                                     <form method="get" th:action="@{/images/upload}">
                                                         <input type="hidden" name="directory"
                                                                value="createPostImage">
-                                                        <input class="submit-button" type="submit"
-                                                               value="here!"/>
+                                                        <input class="submit-button login-button" type="submit"
+                                                               value="Here!"/>
                                                     </form>
                                                     <hr class="hr-light">
                                                 </div>
@@ -146,7 +147,7 @@
                                                     <input type="radio" name="type_id" value="3"
                                                            id="type3">
                                                     <div class="text-left mt-4">
-                                                        <button type="submit" class="submit-button">Submit Post
+                                                        <button type="submit" class="submit-button login-button">Submit Post
                                                         </button>
                                                         <hr class="hr-light mb-3 mt-4">
                                                         <div class="inline-ul text-center d-flex justify-content-center">
