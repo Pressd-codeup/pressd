@@ -1668,6 +1668,13 @@ body.edit_profile {
     background-position: center center;
 }
 
+.post-update {
+    background-image: url('images/class/road-bike.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .current-img {
     padding-top: 20px;
 }
