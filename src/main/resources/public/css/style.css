@@ -1235,8 +1235,8 @@ a.btn-card {
 .view-user-post {
     background-image: url('images/class/m.jpeg');
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 2800px;
+    background-size: auto;
+    background-position: center center;
 }
 
 .view-user-avatar {
