@@ -806,6 +806,12 @@ header.sign_up,
     /*background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
 
+.rgba-gradient-2 {
+    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    height: 100%;
+    width: 100%;
+}
+
 .card-sign {
     background-color: rgba(126, 123, 215, 0.2);
 }
@@ -845,6 +851,15 @@ header.login,
     height: 100%;
 }
 
+/*Workout_Show*/
+html.workout_show_page,
+body.workout_show_page,
+header.login,
+.view-user-post {
+    height: 2600px;
+}
+
+
 .view-login {
     background-image: url('images/class/swim.jpg');
     background-repeat: no-repeat;
@@ -869,11 +884,31 @@ header.login,
     }
 }
 
+@media (max-width: 740px) {
+    html.workout_show_page,
+    body.workout_show_page,
+    header.login,
+    .view-user-post  {
+        height: 1000px;
+    }
+}
+
+
+
 @media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
     header,
     .view-login {
+        height: 650px;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view-user-post {
         height: 650px;
     }
 }
@@ -1191,10 +1226,10 @@ a.btn-card {
 }
 
 .view-user-post {
-    background-image: url('images/class/crossfit.jpeg');
+    background-image: url('images/class/m.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
+    height: 2800px;
 }
 
 .view-user-avatar {
