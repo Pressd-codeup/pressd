@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="login_page" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Workouts')"></head>
 <style>
     [type=radio] + img {
@@ -99,14 +99,18 @@
 
 
 <!--START-->
-<body class="workout_show_page">
+<body class="">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<header class="login ">
+
+<header class="view-post-workout">
     <!-- Full Page Intro -->
-    <div class="view-user-post">
+    <div class="mask rgba-gradient">
+
+
+
         <!-- Mask & flexbox options-->
-        <div class="mask rgba-gradient-2 d-flex justify-content-center align-items-center">
+        <div class=" d-flex justify-content-center align-items-center">
             <!-- Content -->
             <div class="container d-flex justify-content-center mt-4">
                 <!--Grid row-->
@@ -379,6 +383,7 @@
         </div>
     </div>
 </header>
+
 <footer>
     <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
 </footer>
