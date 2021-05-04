@@ -853,8 +853,7 @@ header.login,
 
 /*Workout_Show*/
 html.workout_show_page,
-body.workout_show_page,
-.view-user-post {
+body.workout_show_page {
     height: 2600px;
 }
 
@@ -888,7 +887,6 @@ body.workout_show_page,
     html.workout_show_page,
     body.workout_show_page,
     header.login,
-    .view-user-post,
     .view-user {
         height: 1000px;
     }
@@ -910,7 +908,6 @@ body.workout_show_page,
     html,
     body,
     header,
-    .view-user-post,
     .view-user {
         height: 650px;
     }
@@ -1236,6 +1233,13 @@ a.btn-card {
     background-image: url('images/class/m.jpeg');
     background-repeat: no-repeat;
     background-size: auto;
+    background-position: center center;
+}
+
+.view-post-workout {
+    background-image: url('images/class/m.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center center;
 }
 
