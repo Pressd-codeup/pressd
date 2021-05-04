@@ -542,7 +542,7 @@ a:focus {
 -----------------------------------------*/
 
 .about {
-    background: var(--about-bg-color);
+   background-color: rebeccapurple;
 }
 
 .about-working-hours {
@@ -1735,12 +1735,7 @@ body.edit_profile {
     background-size: cover;
     background-position: center center;
 }
-.view-posts {
-    background-image: url('images/class/horse-field.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-}
+
 .comments-box {
     margin-top: 80px;
     padding-bottom: 300px;

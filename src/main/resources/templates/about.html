@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('About Us')"></head>
-<body>
+<body class="about">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<div>
+<div class="container">
     <h1>We are Pressd</h1>
     <h2>Creators: </h2> <h4><a href="https://www.linkedin.com/in/chrisagold/">Christopher Agold</a>, <a
         href="https://www.linkedin.com/in/jeremiahbaham/">Jeremiah Baham</a>, <a
@@ -12,7 +12,7 @@
     <hr>
     <div>
         <div>
-            <p class="m-5 ">
+            <p class="m-5" style="color: whitesmoke">
                 During the Covid 19 pandemic, gyms closed and people were confined to their homes contributing to the
                 decrease in sense of community and reduction in physical activity. As states and gyms open back up,
                 people are finding the need to be more social and active to improve their mental and physical health.
@@ -23,13 +23,14 @@
 
 
             </p>
-            <p class="m-5">Pressd was built using Java, Spring Boot, MySQL, Thymeleaf, HTML, CSS/Bootstrap, JavaScript,
+            <p class="m-5" style="color: whitesmoke">Pressd was built using Java, Spring Boot, MySQL, Thymeleaf, HTML, CSS/Bootstrap, JavaScript,
                 and jQuery. You can check out our GitHub repository <a href="https://github.com/Pressd-codeup/pressd">here.</a>
             </p>
+            <hr>
         </div>
         <h3>Christopher Agold</h3>
         <img class="chris-pic"/>
-        <h6>Passion for Design</h6>
+        <h6>Environmental Science undergraduate, Passion for Design</h6>
         <small><i class="bi bi-github" style=' color: ghostwhite;  font-size:24px'></i> <a
                 href="https://github.com/ChrisAgold" target="_blank">Visit</a></small>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
@@ -46,7 +47,7 @@
         <hr>
         <h3>Jeremiah Baham</h3>
         <img class="jeremiah-pic">
-        <h6>Marine Corps Veteran, Management Information Systems undergraduate, Passion for Continuous Learning</h6>
+        <h6>Marine Corps Veteran, Management Information Systems undergraduate student, Passion for Continuous Learning</h6>
         <small><i class="bi bi-github" style=' color: ghostwhite;  font-size:24px'></i> <a
                 href="https://github.com/jbaham1" target="_blank">Visit</a></small>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
