@@ -878,7 +878,8 @@ body.workout_show_page,
     html.login_page,
     body.login_page,
     header.login,
-    .view-login {
+    .view-login,
+    .view-user {
         height: 1000px;
     }
 }
@@ -887,7 +888,8 @@ body.workout_show_page,
     html.workout_show_page,
     body.workout_show_page,
     header.login,
-    .view-user-post  {
+    .view-user-post,
+    .view-user {
         height: 1000px;
     }
 }
@@ -898,7 +900,8 @@ body.workout_show_page,
     html,
     body,
     header,
-    .view-login {
+    .view-login,
+    .view-user {
         height: 650px;
     }
 }
@@ -907,7 +910,8 @@ body.workout_show_page,
     html,
     body,
     header,
-    .view-user-post {
+    .view-user-post,
+    .view-user {
         height: 650px;
     }
 }
@@ -1245,7 +1249,7 @@ a.btn-card {
 .view-image-upload {
     background-image: url('images/class/arch.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     background-position: center center;
 }
 
@@ -1783,7 +1787,7 @@ body.edit_profile {
 .view-user {
     background-image: url('images/class/sitting-on-the-dock-of-the-bay.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     background-position: center center;
 }
 .comments-box {
