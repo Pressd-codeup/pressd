@@ -1756,6 +1756,16 @@ body.edit_profile {
 }
 
 .chris-pic {
+    content:url("images/team/me.jpg");
+    max-height: 10%;
+    max-width: 10%;
+}
+.jeremiah-pic {
+    content:url("images/team/cp_march21-0043 copy.jpg");
+    max-height: 10%;
+    max-width: 10%;
+}
+.johnny-pic {
     content:url("images/team/pexels-mentatdgt-937481.jpg");
     max-height: 10%;
     max-width: 10%;
