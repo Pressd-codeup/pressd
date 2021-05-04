@@ -57,7 +57,7 @@
 				<div class="row mt-5">
 					<!--Grid column-->
 					<div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
-						<h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Filter Post</h1>
+						<h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Filter Posts</h1>
 						<hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
 						<h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
 					</div>
@@ -75,7 +75,7 @@
 									<div class="text-center">
 
 										<h3 class="white-text">
-											<i class="white-text"></i> Search Post:</h3>
+											<i class="white-text"></i> Search Posts:</h3>
 										<hr class="hr-light">
 									</div>
 									<!--BODY-->
@@ -104,36 +104,29 @@
 									  th:object="${filter}">
 									<input th:field="*{params}" type="hidden" id="params">
 									<div style="margin: 20px" th:field="${type_name}">
-										<div>What type of post is this?</div>
+										<div>What type of posts are you looking for?</div>
 										<br>
 										<label for="type1" class="form-label-2">Looking for Partners</label>
-										<input type="radio" name="type_name" value="Partners"
-											   id="type1" checked>
+										<input type="radio" name="type_name" value="Partners" id="type1" checked>
 										<br>
 										<label for="type2" class="form-label-2">Looking for Coaches</label>
-										<input type="radio" name="type_name" value="Coaches"
-											   id="type2">
+										<input type="radio" name="type_name" value="Coaches" id="type2">
 										<br>
 										<label for="type3" class="form-label-2">Looking for Clients</label>
-										<input type="radio" name="type_name" value="Clients"
-											   id="type3">
+										<input type="radio" name="type_name" value="Clients" id="type3">
+										<div class="text-center mt-4">
+											<button class="btn btn-indigo" type="button" value="set_filter" id="set_filter">Confirm</button>
+											<hr class="hr-light mb-3 mt-4">
+											<div class="inline-ul text-center d-flex justify-content-center"></div>
+										</div>
 										<div class="text-center mt-4">
 											<input class="btn btn-indigo" type="submit" value="submit" id="submit">
 											<hr class="hr-light mb-3 mt-4">
-											<div class="inline-ul text-center d-flex justify-content-center">
-											</div>
+											<div class="inline-ul text-center d-flex justify-content-center"></div>
 										</div>
 									</div>
-
 								</form>
-								<div class="text-center mt-4">
-									<button class="btn btn-indigo" type="button" value="set_filter" id="set_filter">Confirm</button>
-									<hr class="hr-light mb-3 mt-4">
-									<div class="inline-ul text-center d-flex justify-content-center">
-									</div>
-								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>

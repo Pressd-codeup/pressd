@@ -806,6 +806,12 @@ header.sign_up,
     /*background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
 
+.rgba-gradient-2 {
+    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    height: 100%;
+    width: 100%;
+}
+
 .card-sign {
     background-color: rgba(126, 123, 215, 0.2);
 }
@@ -845,6 +851,13 @@ header.login,
     height: 100%;
 }
 
+/*Workout_Show*/
+html.workout_show_page,
+body.workout_show_page {
+    height: 2600px;
+}
+
+
 .view-login {
     background-image: url('images/class/swim.jpg');
     background-repeat: no-repeat;
@@ -853,7 +866,8 @@ header.login,
 }
 
 .view-jumbo {
-    background-image: url('images/class/swim.jpg');
+    /*background-image: url('images/class/night.jpeg');*/
+    background: var(--dark-color);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -864,8 +878,30 @@ header.login,
     html.login_page,
     body.login_page,
     header.login,
-    .view-login {
+    .view-login,
+    .view-user {
         height: 1000px;
+    }
+}
+
+@media (max-width: 740px) {
+    html.workout_show_page,
+    body.workout_show_page,
+    header.login,
+    .view-user {
+        height: 1000px;
+    }
+}
+
+
+
+@media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view-login,
+    .view-user {
+        height: 650px;
     }
 }
 
@@ -873,7 +909,7 @@ header.login,
     html,
     body,
     header,
-    .view-login {
+    .view-user {
         height: 650px;
     }
 }
@@ -910,6 +946,10 @@ h6.sign {
     /*padding-bottom: 700px;*/
 }
 
+.profile-box {
+    -webkit-box-shadow: 0 0 11px 3px #FFFFFF;
+    box-shadow: 0 0 11px 3px #FFFFFF;
+}
 /*END OF LOGIN PAGE CSS*/
 
 /*******************************************************************/
@@ -1137,7 +1177,7 @@ a.btn-card {
 /*FILTER POST CSS*/
 
 .view-filter {
-    background-image: url('images/class/cycle.jpg');
+    background-image: url('images/class/thetrees.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1169,7 +1209,7 @@ a.btn-card {
 }
 
 .view-posts {
-    background-image: url('images/cover.jpg');
+    background-image: url('images/class/trek.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1191,7 +1231,14 @@ a.btn-card {
 }
 
 .view-user-post {
-    background-image: url('images/class/crossfit.jpeg');
+    background-image: url('images/class/m.jpeg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
+.view-post-workout {
+    background-image: url('images/class/m.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1207,7 +1254,7 @@ a.btn-card {
 .view-image-upload {
     background-image: url('images/class/arch.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     background-position: center center;
 }
 
@@ -1736,6 +1783,20 @@ body.edit_profile {
     background-position: center center;
 }
 
+.view-posts-show {
+    background-image: url('images/class/snows.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.view-user {
+    background-image: url('images/class/sitting-on-the-dock-of-the-bay.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
 .comments-box {
     margin-top: 80px;
     padding-bottom: 300px;
@@ -1765,3 +1826,4 @@ body.edit_profile {
     max-height: 10%;
     max-width: 10%;
 }
+

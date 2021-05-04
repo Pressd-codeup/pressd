@@ -99,20 +99,23 @@
 
 
 <!--START-->
-<body>
+<body class="">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<header class="login col-lg-12 p-0">
-    <!-- Full Page Intro -->
-    <div class="view-user-post col-lg-12 p-0">
-        <!-- Mask & flexbox options-->
-        <div class="mask rgba-gradient d-flex justify-content-center align-items-center col-lg-12">
-            <!-- Content -->
-            <div class="container col-lg-12 d-flex justify-content-center">
-                <!--Grid row-->
 
+<header class="view-post-workout">
+    <!-- Full Page Intro -->
+    <div class="mask rgba-gradient">
+
+
+
+        <!-- Mask & flexbox options-->
+        <div class=" d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container d-flex justify-content-center mt-4">
+                <!--Grid row-->
                 <!--Grid column-->
-                <div class="col-lg-12 mb-4 login-box">
+                <div class="col-lg-12 mb-5 ">
                     <div class="white-text text-center">
                         <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                             th:text="${workout.title}"></h1>
@@ -380,6 +383,7 @@
         </div>
     </div>
 </header>
+
 <footer>
     <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
 </footer>
