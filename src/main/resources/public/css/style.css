@@ -867,7 +867,7 @@ body.workout_show_page {
 
 .view-jumbo {
     /*background-image: url('images/class/night.jpeg');*/
-    background: var(--dark-color);
+    background-color: #181717 !important;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
