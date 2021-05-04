@@ -29,7 +29,7 @@
                 <!--Grid row-->
 
 
-                <div class="d-none d-sm-block">
+                <!--<div class="d-none d-sm-block">
                     <div class="d-flex">
                         <form th:action="@{workouts}" method="POST" class="mr-1">
 
@@ -62,9 +62,9 @@
                         </form>
                     </div>
 
-                </div>
+                </div>-->
 
-                <div class="d-block d-sm-none">
+                <div>
                     <form th:action="@{workouts}" method="POST" class="mb-1">
 
                         <div class="form-check text-white">
@@ -134,7 +134,7 @@
                                 <div class="d-flex justify-content-center">
                                     <img class="img-thumbnail img-fluid text-center"
                                          th:src="@{${workout.image.url}}"
-                                         alt="alt"/>
+                                         alt="alt" style="max-width: 50%; max-height: 50%" />
                                 </div>
 
 
