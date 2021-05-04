@@ -857,6 +857,7 @@ header.login,
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    max-height: 150px !important;
 }
 
 @media (max-width: 740px) {
@@ -1748,3 +1749,14 @@ body.edit_profile {
 /*END OF COMMENTS PAGE CSS*/
 /*******************************************************************/
 
+.dan-pic {
+    content:url("images/team/dan.png");
+    max-height: 10%;
+    max-width: 10%;
+}
+
+.chris-pic {
+    content:url("images/team/pexels-mentatdgt-937481.jpg");
+    max-height: 10%;
+    max-width: 10%;
+}

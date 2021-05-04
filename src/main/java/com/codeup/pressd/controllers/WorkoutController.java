@@ -262,7 +262,6 @@ public class WorkoutController {
     }
 
     @PostMapping("/workouts/{id}/update")
-
     public String editWorkout(@ModelAttribute Workout workout, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId, @RequestParam(required=false) String[] categoryNames) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -294,7 +293,7 @@ public class WorkoutController {
         //user validation is no longer necessary here because it's handled in GetMapping
         workoutDao.save(dbWorkout);
 
-        return "redirect:/workouts";
+        return "redirect:/workouts/" + id;
     }
 
 
