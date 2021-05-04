@@ -30,11 +30,11 @@
 </style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<header class="login">
+<header class="login view-user-avatar">
     <!-- Full Page Intro -->
-    <div class="view-user-avatar">
+    <div class="mask rgba-gradient">
         <!-- Mask & flexbox options-->
-        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
             <!-- Content -->
             <div class="container">
                 <!--Grid row-->
@@ -47,7 +47,7 @@
 
                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                             <!--<h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>-->
-                            <div style="display: flex">
+                            <div class="d-flex justify-content-center">
                                 <p class="text-white">Want to upload more pictures to use? Do it</p>
                                 <form method="get" th:action="@{/images/upload}" class="ml-1">
                                     <input type="hidden" name="directory" value="avatarImage">
