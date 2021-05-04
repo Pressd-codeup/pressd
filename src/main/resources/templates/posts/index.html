@@ -17,7 +17,7 @@
 
 <!-- Jumbotron Header -->
 
-<div class="jumbotron d-none d-sm-block bg-dark text-white view-login mb-0">
+<div class="jumbotron d-none d-lg-block bg-dark text-white view-jumbo mb-0">
 
     <h1 th:switch="${type}" class="display-4 recent-post">
         <span th:case="partners">Recent Partner Posts</span>
@@ -43,11 +43,9 @@
 
 
                 <!--Grid row-->
-
-                <!--Grid column-->
-                <div class="col-lg-12 mb-4 login-box pb-0" th:each="post : ${posts}">
-
-
+                <div class="d-flex flex-column align-items-center mt-3">
+                    <!--Grid column-->
+                    <div class="col-lg-8 mb-4 login-box pb-0" th:each="post : ${posts}">
 
 
                         <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
@@ -64,7 +62,7 @@
                                 <div class="d-flex justify-content-center">
                                     <img class="img-thumbnail img-fluid text-center"
                                          th:src="@{${post.image.url}}"
-                                         alt="alt"/>
+                                         alt="alt" style="max-width: 50%; max-height: 50%"/>
                                 </div>
 
 
@@ -93,19 +91,18 @@
                         </div>
 
 
-
+                    </div>
                 </div>
-
             </div>
 
         </div>
     </div>
+
 </header>
 
 <!--<section class="details-card">
     <div class="container post col-lg-6 col-12 m-0 float-left" th:each="post : ${posts}">
         <div class="row-12 m-0 ">
-
             <div class="col-12 m-0 photo-frame" style="background: inherit">
                 <div class="card-content" style="background: inherit">
                     <div class="card-img">
@@ -125,9 +122,6 @@
                             <small class="text-white"
                                    th:text="${shortF.format(post.getDatePosted())}"></small>
                         </div>
-
-
-
                         <form th:action="${'/posts/'+ post.id}" method="GET" class="mt-2">
                             <input class="submit-button" type="submit" value="View Post">
                         </form>
@@ -136,37 +130,37 @@
                 </div>
             </div>-->
 
-            <!--            <div class="col-md-4">-->
-            <!--                <div class="card-content">-->
-            <!--                    <div class="card-img">-->
-            <!--                        <img src="https://placeimg.com/380/230/animals" alt="">-->
-            <!--                        <span><h4>heading2</h4></span>-->
-            <!--                    </div>-->
-            <!--                    <div class="card-desc">-->
-            <!--                        <h3>Heading2</h3>-->
-            <!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis-->
-            <!--                            voluptas totam</p>-->
-            <!--                        <a href="#" class="btn-card">Read</a>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--            <div class="col-md-4">-->
-            <!--                <div class="card-content">-->
-            <!--                    <div class="card-img">-->
-            <!--                        <img src="https://placeimg.com/380/230/tech" alt="">-->
-            <!--                        <span><h4>heading3</h4></span>-->
-            <!--                    </div>-->
-            <!--                    <div class="card-desc">-->
-            <!--                        <h3>Heading3</h3>-->
-            <!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis-->
-            <!--                            voluptas totam</p>-->
-            <!--                        <a href="#" class="btn-card">Read</a>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card-content">-->
+<!--                    <div class="card-img">-->
+<!--                        <img src="https://placeimg.com/380/230/animals" alt="">-->
+<!--                        <span><h4>heading2</h4></span>-->
+<!--                    </div>-->
+<!--                    <div class="card-desc">-->
+<!--                        <h3>Heading2</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis-->
+<!--                            voluptas totam</p>-->
+<!--                        <a href="#" class="btn-card">Read</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="card-content">-->
+<!--                    <div class="card-img">-->
+<!--                        <img src="https://placeimg.com/380/230/tech" alt="">-->
+<!--                        <span><h4>heading3</h4></span>-->
+<!--                    </div>-->
+<!--                    <div class="card-desc">-->
+<!--                        <h3>Heading3</h3>-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis-->
+<!--                            voluptas totam</p>-->
+<!--                        <a href="#" class="btn-card">Read</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-        <!--</div>
-    </div>
+<!--</div>
+</div>
 </section>-->
 <!-- details card section starts from here -->
 <footer th:replace="fragments/footer :: main-footer"></footer>

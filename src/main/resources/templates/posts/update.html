@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-head('update post')"></head>
+<head th:replace="fragments/header :: main-head('Update Post')"></head>
 <style>
     /* HIDE RADIO */
     [type=radio] {
@@ -20,7 +20,7 @@
 
     /* CHECKED STYLES */
     [type=radio]:checked + img {
-        outline: 5px solid #f00;
+        outline: 5px solid #5b21a9;
     }
 
     #currentImage {
@@ -28,61 +28,146 @@
         width: 100px;
     }
 </style>
-<body>
+<body class="edit_profile view-login">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
+<header class="login">
+    <div class="post-update">
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+            <div class="container-edit">
+                <div class="row gutters">
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="card-edit h-100 card-sign edit-back">
+                            <div class="card-body">
+                                <div class="account-settings">
+                                    <div class="user-profile mb-0 pb-0">
+                                        <h2 class="edit-profile-title text-white">Edit Your Post</h2>
+                                        <hr>
 
-<h2>Update Your Post</h2>
+                                        <img th:src="@{${currentImage.url}}" alt="Your current post image"
+                                             style="max-width: 50%; max-height: 50%">
 
-<br>
+                                    </div>
+                                    <!--                        <div class="about">-->
+                                    <!--                            <h1 class="edit-back">Edit Photos</h1>-->
+                                    <!--                        </div>-->
+                                    <!--UPDATE PHOTOS-->
+                                    <hr>
+                                    <div class="text-center">
+                                        <p class="text-white">Want to upload more pictures to use? Do it </p>
 
-<h3>Your post's current image:</h3>
-<br>
-<img th:src="@{${currentImage.url}}" alt="Your current post image" id="currentImage">
-<br>
-<div style="display: flex">
-    <p>Want to upload more pictures to use? Do it </p>
-    <form method="get" th:action="@{/images/upload}">
-        <input type="hidden" name="directory" value="updatePostImage">
-        <input type="submit" value="here!"/>
-    </form>
-</div>
-<br>
-<div>
-    <form th:action="@{/posts/{id}/update(id=${post.getId()})}" method="post">
+                                        <form method="get" th:action="@{/images/upload}">
+                                            <input type="hidden" name="directory" value="updatePostImage">
 
-        <div style="display: flex; width: 33%; flex-wrap: wrap">
-            <label>
-                <input type="radio" name="imageId" th:value="${currentImage.id}" checked>
-                <img th:src="@{${currentImage.url}}">
-            </label>
-            <div th:each="image : ${userImages}">
-                <label>
-                    <input type="radio" name="imageId" th:value="${image.id}">
-                    <img th:src="@{${image.url}}">
-                </label>
+                                            <input class="upload-btn" type="submit" value="here!"/>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="card-edit h-100 edit-back">
+                            <div class="card-body">
+                                <div class="row gutters">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <form class="" th:action="@{/posts/{id}/update(id=${post.getId()})}"
+                                              method="post">
+                                            <h3 class="text-white">Your post's current image:</h3>
+                                            <div class="current-img">
+                                                <img th:src="@{${currentImage.url}}" alt="Your current post image"
+                                                     id="currentImage">
+                                            </div>
+                                            <hr>
+                                            <div class="row edit-rows">
+
+                                                <label>
+                                                    <input type="radio" name="imageId"
+                                                           th:value="${currentImage.id}"
+                                                           checked>
+                                                    <img th:src="@{${currentImage.url}}">
+                                                </label>
+
+                                                <div th:each="image : ${userImages}">
+                                                    <label>
+                                                        <input type="radio" name="imageId"
+                                                               th:value="${image.id}">
+                                                        <img th:src="@{${image.url}}">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row gutters">
+                                                <div class="ml-4">
+                                                    <h4 class="text-white">Only fields you fill out will be updated.</h4>
+                                                    <hr>
+                                                </div>
+
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="row gutters">
+                                                        <!--                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
+                                                        <!--                                                            <h6 class="mb-2 text-primary">Personal Details</h6>-->
+                                                        <!--
+
+
+                                                                                                            </div>-->
+
+
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white"
+                                                                       for="city">City</label>
+                                                                <input class="form-control" name="city"
+                                                                       id="city" th:placeholder="${post.city}"
+                                                                       type="text">
+                                                                <!--<input name="userId" type="hidden" th:value="${userId}">-->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white" for="title">Title</label>
+                                                                <input class="form-control" name="title" id="title"
+                                                                       type="text"
+                                                                       th:placeholder="${post.title}">
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white"
+                                                                       for="body">Body</label>
+                                                                <input class="form-control" name="body"
+                                                                       id="body"
+                                                                       type="textarea" placeholder="Enter new password">
+                                                            </div>
+                                                        </div>-->
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label class="text-white" for="body">Body</label>
+                                                                <textarea name="body" id="body" class="form-control"
+                                                                          type="text"
+                                                                          th:text="${post.body}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="text-center">
+                                                        <input class="submit-button" type="submit"
+                                                               value="Update Post!">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <br>
-
-        <label for="city">City</label>
-        <input id="city" name="city" th:placeholder="${post.getCity()}">
-
-        <label for="title">Title</label>
-        <input id="title" name="title">
-        <p>Your previous title: <span th:text="${post.getTitle()}"></span></p>
-
-        <br>
-
-        <label for="body">Body</label>
-        <input id="body" name="body">
-        <p>Your previous body: <span th:text="${post.getBody()}"></span></p>
-        <br>
-
-        <input type="submit" class="submit-button" value="Update Post!">
-
-    </form>
-</div>
-
+    </div>
+</header>
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

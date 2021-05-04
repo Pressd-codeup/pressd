@@ -33,6 +33,8 @@ public class WorkoutController {
         this.imageDao = imageDao;
     }
 
+
+
     @GetMapping("/workouts")
     public String seeAllWorkouts(Model viewModel) {
         List<Workout> workouts = workoutDao.findAll();
@@ -142,6 +144,13 @@ public class WorkoutController {
         viewModel.addAttribute("totalRatings", totalRatings);
         viewModel.addAttribute("rating", rating);
         viewModel.addAttribute("workout", workout);
+        viewModel.addAttribute("comment", new Comment());
+        viewModel.addAttribute("user", user);
+        List<Comment> comments = workout.getComments();
+        viewModel.addAttribute("comments", comments);
+        viewModel.addAttribute("imageDao", imageDao);
+
+
         return "workouts/show";
     }
 
@@ -241,6 +250,11 @@ public class WorkoutController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getOne(currentUser.getId());
         if (workoutDao.getOne(id).getUser() != user) return "redirect:/workouts";
+        List<Category> allCategories = categoryDao.findAll();
+        Category first = allCategories.get(0);
+        allCategories.remove(0);
+        vModel.addAttribute("first", first);
+        vModel.addAttribute("allCategories", allCategories);
         Workout workout = workoutDao.getOne(id);
 		PostController.addImages(vModel, user, workout.getImage(), userDao, imageDao);
 		vModel.addAttribute("workout", workout);
@@ -248,8 +262,7 @@ public class WorkoutController {
     }
 
     @PostMapping("/workouts/{id}/update")
-
-    public String editWorkout(@ModelAttribute Workout workout, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId) {
+    public String editWorkout(@ModelAttribute Workout workout, @PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("imageId") long imageId, @RequestParam(required=false) String[] categoryNames) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getOne(currentUser.getId());
@@ -258,10 +271,29 @@ public class WorkoutController {
         dbWorkout.setImage(newImage);
         if (title.length() != 0) dbWorkout.setTitle(title);
         if (body.length() != 0) dbWorkout.setBody(body);
+
+        if (categoryNames != null) {
+            List<Category> allCategories = categoryDao.findAll();
+
+            List<Category> categories = new ArrayList<>();
+
+            for (String catName : categoryNames) {
+                for (Category tempCat : allCategories) {
+                    if (catName.equals(tempCat.getName())) {
+                        categories.add(tempCat);
+                        break;
+                    }
+                }
+            }
+
+
+            workout.setCategories(categories);
+        }
+
         //user validation is no longer necessary here because it's handled in GetMapping
         workoutDao.save(dbWorkout);
 
-        return "redirect:/workouts";
+        return "redirect:/workouts/" + id;
     }
 
 

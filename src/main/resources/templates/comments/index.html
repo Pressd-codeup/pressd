@@ -3,8 +3,8 @@
 <head th:replace="fragments/header :: main-head('Posts')"></head>
 <body  class="profile-page">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<div class="jumbotron bg-dark text-white view-login">
-    <h1 class="display-4">Workout Comments</h1>
+<div class="jumbotron d-none d-sm-block mb-0 bg-dark text-white view-login">
+    <h1 class="display-4">Comments</h1>
 </div>
 <section class="details-card">
     <div class="container post col-lg-6 col-12 m-0">
@@ -38,7 +38,6 @@
             </div>
         </div>
     </div>
-
     <form th:action="@{'/workouts/'+ ${id}+ '/comments/create'}" method="GET">
         <input class="submit-button" type="submit" value="add comment">
     </form>

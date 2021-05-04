@@ -800,9 +800,16 @@ header.sign_up,
 
 .rgba-gradient {
     background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
-    /*padding-bottom: 30px;*/
-    /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
-    background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
+    height: 100%;
+    width: 100%;
+    /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));*/
+    /*background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
+}
+
+.rgba-gradient-2 {
+    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    height: 100%;
+    width: 100%;
 }
 
 .card-sign {
@@ -823,12 +830,11 @@ h6.sign {
 
 .bottom-fix {
    margin-top: 50px;
-
 }
 
 .sign-up-box {
-    margin-top: 200px;
-    padding-bottom: 200px;
+    /*margin-top: 200px;*/
+    /*padding-bottom: 200px;*/
 }
 
 /*END OF SIGN-UP PAGE CSS*/
@@ -838,12 +844,19 @@ h6.sign {
 /*LOGIN PAGE CSS*/
 
 /* Required for full background image */
-html.login,
-body.login,
+html.login_page,
+body.login_page,
 header.login,
 .view-login {
-    height: auto;
+    height: 100%;
 }
+
+/*Workout_Show*/
+html.workout_show_page,
+body.workout_show_page {
+    height: 2600px;
+}
+
 
 .view-login {
     background-image: url('images/class/swim.jpg');
@@ -852,12 +865,42 @@ header.login,
     background-position: center center;
 }
 
+.view-jumbo {
+    background-image: url('images/class/swim.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    max-height: 150px !important;
+}
+
 @media (max-width: 740px) {
+    html.login_page,
+    body.login_page,
+    header.login,
+    .view-login,
+    .view-user {
+        height: 1000px;
+    }
+}
+
+@media (max-width: 740px) {
+    html.workout_show_page,
+    body.workout_show_page,
+    header.login,
+    .view-user {
+        height: 1000px;
+    }
+}
+
+
+
+@media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
     header,
-    .view-login {
-        height: 1000px;
+    .view-login,
+    .view-user {
+        height: 650px;
     }
 }
 
@@ -865,13 +908,14 @@ header.login,
     html,
     body,
     header,
-    .view-login {
+    .view-user {
         height: 650px;
     }
 }
 
 .rgba-gradient {
-    background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    /*background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
+    /*padding: 30px*/
     /*background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
     background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);*/
 }
@@ -897,10 +941,14 @@ h6.sign {
 }
 
 .login-box {
-    margin-top: 200px;
-    padding-bottom: 300px;
+    /*margin-top: 200px;*/
+    /*padding-bottom: 700px;*/
 }
 
+.profile-box {
+    -webkit-box-shadow: 0 0 11px 3px #FFFFFF;
+    box-shadow: 0 0 11px 3px #FFFFFF;
+}
 /*END OF LOGIN PAGE CSS*/
 
 /*******************************************************************/
@@ -1088,6 +1136,10 @@ a.btn-card {
     -o-transition: all 0.5s ease 0s;
 }
 
+.main-card-post {
+    padding: 70px 300px 70px 300px;
+}
+
 /*END OF SHOW POST CSS*/
 
 /*******************************************************************/
@@ -1161,6 +1213,13 @@ a.btn-card {
     background-size: cover;
     background-position: center center;
 }
+
+.workout-update {
+    background-image: url('images/class/horse-field.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 /*END OF CREATE WORKOUT CSS*/
 
 /*******************************************************************/
@@ -1171,7 +1230,14 @@ a.btn-card {
 }
 
 .view-user-post {
-    background-image: url('images/class/crossfit.jpeg');
+    background-image: url('images/class/m.jpeg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
+.view-post-workout {
+    background-image: url('images/class/m.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -1187,7 +1253,7 @@ a.btn-card {
 .view-image-upload {
     background-image: url('images/class/arch.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     background-position: center center;
 }
 
@@ -1668,6 +1734,13 @@ body.edit_profile {
     background-position: center center;
 }
 
+.post-update {
+    background-image: url('images/class/road-bike.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .current-img {
     padding-top: 20px;
 }
@@ -1687,3 +1760,67 @@ body.edit_profile {
 
 /*END OF UPLOAD IMAGES PAGE*/
 /*******************************************************************/
+
+/*COMMENTS PAGE CSS*/
+
+.view-results {
+    background-image: url('images/class/adventure.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.view-comments {
+    background-image: url('images/class/step-stretch.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.view-workouts {
+    background-image: url('images/class/snow.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.view-posts {
+    background-image: url('images/class/horse-field.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.view-user {
+    background-image: url('images/class/sitting-on-the-dock-of-the-bay.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+.comments-box {
+    margin-top: 80px;
+    padding-bottom: 300px;
+}
+
+/*END OF COMMENTS PAGE CSS*/
+/*******************************************************************/
+
+.dan-pic {
+    content:url("images/team/dan.png");
+    max-height: 10%;
+    max-width: 10%;
+}
+
+.chris-pic {
+    content:url("images/team/me.jpg");
+    max-height: 10%;
+    max-width: 10%;
+}
+.jeremiah-pic {
+    content:url("images/team/cp_march21-0043 copy.jpg");
+    max-height: 10%;
+    max-width: 10%;
+}
+.johnny-pic {
+    content:url("images/team/pexels-mentatdgt-937481.jpg");
+    max-height: 10%;
+    max-width: 10%;
+}
+

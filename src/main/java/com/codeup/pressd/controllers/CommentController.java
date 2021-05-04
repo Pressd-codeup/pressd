@@ -33,7 +33,10 @@ public class CommentController {
 
     @GetMapping("/workouts/{id}/comments")
     public String allComments(@PathVariable long id, Model viewModel) {
-        List<Comment> comments = commentDao.findAll();
+        Workout workout = workoutDao.getOne(id);
+
+        List<Comment> comments = workout.getComments();
+        viewModel.addAttribute("workout", workout);
         viewModel.addAttribute("comments", comments);
         viewModel.addAttribute("imageDao", imageDao);
         return "comments/index";
@@ -63,7 +66,7 @@ public class CommentController {
         ++newId;
         comment.setId(newId);
         commentDao.save(comment);
-        return "redirect:/workouts/"+id+"/comments";
+        return "redirect:/workouts/" + id;
     }
 
     @GetMapping("/comments/{id}/update")
@@ -74,32 +77,33 @@ public class CommentController {
         return "comments/update";
     }
 
-    @PostMapping("/comments/{id}/update")
-    public String editComment(@PathVariable Long id, @ModelAttribute Comment commentToUpdate, @RequestParam("body") String body) {
+    @PostMapping("/comments/{id}/update/{commentId}")
+    public String editComment(@PathVariable long id, @PathVariable long commentId, @RequestParam("body") String body) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.getOne(user.getId());
 
-        commentToUpdate.setDatePosted(LocalDateTime.now());
+        Comment commentToUpdate = commentDao.getOne(commentId);
+        /*commentToUpdate.setDatePosted(LocalDateTime.now());
         Workout workout = workoutDao.getOne(id);
         commentToUpdate.setWorkout(workout);
         commentToUpdate.setId(id);
-        commentToUpdate.setUser(currentUser);
+        commentToUpdate.setUser(currentUser);*/
         if(body.length() != 0) {
             commentToUpdate.setBody(body);
         }
         commentDao.save(commentToUpdate);
-        return "redirect:/workouts";
+        return "redirect:/workouts/" + id;
     }
 
 
-    @PostMapping("/comments/{id}/delete")
-    public String deleteComment(@PathVariable Long id) {
+    @PostMapping("/comments/{id}/delete/{workoutId}")
+    public String deleteComment(@PathVariable long id, @PathVariable long workoutId) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Comment comment = commentDao.getOne(id);
         if (currentUser.getId() == comment.getUser().getId()) {
             commentDao.deleteById(id);
         }
-        return "redirect:/workouts";
+        return "redirect:/workouts/" + workoutId;
 
     }
 

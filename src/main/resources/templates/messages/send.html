@@ -9,11 +9,11 @@
         <form th:action="@{'/messages/send/' + ${to_id}}" th:method="POST" th:object="${message}">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <h1>Send new Message</h1>
+                    <h2 class="text-white">Send new message to <span th:text="${to.username}"></span></h2>
                     <div class="mb-3">
                         <label class="form-label" for="body" style="color: black;"> Your message
-                            <textarea class="form-control" th:field="*{body}" type="textarea" id="body"
-                                      placeholder="Body:"></textarea></label>
+                            <textarea rows="10" class="form-control" th:field="*{body}" type="textarea" id="body"
+                                      placeholder="Type something..."></textarea></label>
                     </div>
                     <button  class="submit-button" type="submit">Send
                     </button>
@@ -23,5 +23,6 @@
     </div>
 
 </section>
+<footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>
