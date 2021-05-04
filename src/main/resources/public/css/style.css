@@ -542,7 +542,7 @@ a:focus {
 -----------------------------------------*/
 
 .about {
-    background: var(--about-bg-color);
+   background-color: rebeccapurple;
 }
 
 .about-working-hours {
@@ -1782,6 +1782,7 @@ body.edit_profile {
     background-size: cover;
     background-position: center center;
 }
+
 .view-posts-show {
     background-image: url('images/class/snows.jpeg');
     background-repeat: no-repeat;
@@ -1795,6 +1796,7 @@ body.edit_profile {
     background-size: auto;
     background-position: center center;
 }
+
 .comments-box {
     margin-top: 80px;
     padding-bottom: 300px;
