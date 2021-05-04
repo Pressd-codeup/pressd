@@ -97,74 +97,77 @@
                 </div>
 
                 <!--Grid column-->
-                <div class="col-lg-12 mb-4 login-box pb-0" th:each="workout : ${workouts}">
+                <div class="d-flex flex-column align-items-center">
 
-                    <th:block th:if="${category == 0}">
+                    <div class="col-lg-8 mb-4 login-box pb-0" th:each="workout : ${workouts}">
 
-                        <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
+                        <th:block th:if="${category == 0}">
 
-                            <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <p class="text-white text-center">No workouts were found matching your category
-                                        search.</p>
-                                </div>
+                            <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
 
-
-                                <hr class="hr-light">
-
-
-                                <div class="mb-4"></div>
-                            </div>
-                        </div>
-
-                    </th:block>
-
-                    <th:block th:unless="${category == 0}">
-                        <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
-                            <div class="white-text text-center">
-                                <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
-                                    th:text="${workout.title}"></h1>
-
-                                <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                                <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                                <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
-                            </div>
-
-                            <div class="card-body">
-                                <div class="d-flex justify-content-center">
-                                    <img class="img-thumbnail img-fluid text-center"
-                                         th:src="@{${workout.image.url}}"
-                                         alt="alt" style="max-width: 50%; max-height: 50%" />
-                                </div>
-
-
-                                <hr class="hr-light">
-
-
-                                <div class="mb-4">
-                                    <div class="d-flex justify-content-between p-2">
-                                        <small class="text-white" th:text="${workout.getUser().username}"></small>
-                                        <small class="text-white"
-                                               th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></small>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-center">
+                                        <p class="text-white text-center">No workouts were found matching your category
+                                            search.</p>
                                     </div>
+
+
                                     <hr class="hr-light">
 
+
+                                    <div class="mb-4"></div>
+                                </div>
+                            </div>
+
+                        </th:block>
+
+                        <th:block th:unless="${category == 0}">
+                            <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
+                                <div class="white-text text-center">
+                                    <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
+                                        th:text="${workout.title}"></h1>
+
+                                    <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                                    <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
+                                    <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+                                </div>
+
+                                <div class="card-body">
                                     <div class="d-flex justify-content-center">
-                                        <div th:each="category: ${workout.categories}" class="m-1">
-                                            <p class="card-text text-white" th:text="${category.name}"></p>
-                                        </div>
+                                        <img class="img-thumbnail img-fluid text-center"
+                                             th:src="@{${workout.image.url}}"
+                                             alt="alt" style="max-width: 50%; max-height: 50%"/>
                                     </div>
 
 
+                                    <hr class="hr-light">
+
+
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between p-2">
+                                            <small class="text-white" th:text="${workout.getUser().username}"></small>
+                                            <small class="text-white"
+                                                   th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></small>
+                                        </div>
+                                        <hr class="hr-light">
+
+                                        <div class="d-flex justify-content-center">
+                                            <div th:each="category: ${workout.categories}" class="m-1">
+                                                <p class="card-text text-white" th:text="${category.name}"></p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <form th:action="${'/workouts/'+ workout.id}" method="GET">
+                                        <input class="submit-button" type="submit" value="View Plan">
+                                    </form>
                                 </div>
-                                <form th:action="${'/workouts/'+ workout.id}" method="GET">
-                                    <input class="submit-button" type="submit" value="View Plan">
-                                </form>
                             </div>
-                        </div>
-                    </th:block>
+                        </th:block>
 
 
+                    </div>
                 </div>
 
             </div>
