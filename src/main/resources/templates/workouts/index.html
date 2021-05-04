@@ -6,7 +6,7 @@
 
 
 <!-- Jumbotron Header -->
-<div class="jumbotron d-none d-lg-block bg-dark text-white view-jumbo mb-0 pt-3 pb-3">
+<div class="jumbotron d-none d-lg-block text-white view-jumbo mb-0 pt-3 pb-3">
 
     <h1 th:switch="${category}" class="display-4">
         <span th:case="1">Workout Plans</span>
@@ -103,7 +103,7 @@
 
                         <th:block th:if="${category == 0}">
 
-                            <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
+                            <div class="card-sign wow fadeInRight pb-2 " data-wow-delay="0.3s">
 
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center">
@@ -122,7 +122,7 @@
                         </th:block>
 
                         <th:block th:unless="${category == 0}">
-                            <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
+                            <div class="card-sign wow fadeInRight pb-2 pt-3" data-wow-delay="0.3s">
                                 <div class="white-text text-center">
                                     <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                                         th:text="${workout.title}"></h1>
