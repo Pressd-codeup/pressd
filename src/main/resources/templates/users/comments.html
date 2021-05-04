@@ -14,28 +14,26 @@
             <!-- Content -->
             <div class="container col-lg-12 d-flex flex-column justify-content-center">
                 <div class="d-flex">
-                    <h1 class="text-white">Comments:</h1>
+                    <h1 class="text-white"><span th:text="${user.username}"></span>'s Comments:</h1>
                 </div>
                 <div class="col-lg-12 mb-4 login-box pb-0 mt-0" th:each="comment : ${comments}">
 
                     <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
                         <div class="white-text text-center">
-                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
-                                th:text="${comment.workout.title}"></h1>
-
-                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <h2 class="h2-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
+                                th:text="${comment.workout.title}"></h2>
                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                             <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                         </div>
                         <div class="card-body">
                             <div class="d-flex">
                                 <span><img class="avatar mr-2" th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap"></span>
-                                <h5 class="text-white" th:text="${comment.user.username}"></h5>
+                                <h5 class="text-white" th:text="${user.username}"></h5>
                             </div>
                             <hr class="hr-light">
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between p-2">
-                                    <small class="text-white" th:text="${comment.user.username}"></small>
+                                    <small class="text-white" th:text="${comment.body}"></small>
                                     <small class="text-white"
                                            th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month +' '+ comment.datePosted.year}"></small>
                                 </div>
@@ -43,7 +41,7 @@
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="Second group">
                                 <form th:action="${'/workouts/'+ comment.workout.id}" method="GET">
-                                    <input class="submit-button" type="submit" value="View Comments">
+                                    <input class="submit-button" type="submit" value="View Comment Thread">
                                 </form>
 
                             </div>
