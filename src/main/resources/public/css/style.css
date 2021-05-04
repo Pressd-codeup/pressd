@@ -945,6 +945,10 @@ h6.sign {
     /*padding-bottom: 700px;*/
 }
 
+.profile-box {
+    -webkit-box-shadow: 0 0 11px 3px #FFFFFF;
+    box-shadow: 0 0 11px 3px #FFFFFF;
+}
 /*END OF LOGIN PAGE CSS*/
 
 /*******************************************************************/
@@ -1772,6 +1776,13 @@ body.edit_profile {
 }
 .view-posts {
     background-image: url('images/class/horse-field.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.view-user {
+    background-image: url('images/class/sitting-on-the-dock-of-the-bay.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
