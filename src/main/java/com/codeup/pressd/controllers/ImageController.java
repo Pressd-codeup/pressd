@@ -131,7 +131,7 @@ public class ImageController {
 				returnVal = "redirect:/posts/create";
 				break;
 			case "updatePostImage":
-				returnVal = "redirect:/posts/{id}/update"; //or whatever the mapping for user posts page
+				returnVal = "redirect:/users/posts"; //or whatever the mapping for user posts page
 				break;
 			case "avatarImage":
 				returnVal = "redirect:/users/avatar";
