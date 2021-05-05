@@ -327,6 +327,12 @@
                         </form>
                     </th:block>
 
+                    <th:block th:unless="${isLoggedIn}">
+                        <div class="d-flex my-3">
+                            <h5 class="text-white">Sign in to comment on this workout!</h5>
+                        </div>
+                    </th:block>
+
 
                     <div class="card-sign wow fadeInRight pb-2 mb-3" data-wow-delay="0.3s"
                          th:each="comment : ${comments}">
