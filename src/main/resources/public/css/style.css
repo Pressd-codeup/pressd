@@ -167,6 +167,44 @@ strong {
     color: var(--primary-color);
 }
 
+
+.about-btn {
+    background: transparent;
+    border-radius: var(--border-radius-small);
+    padding: 14px 24px;
+    color: var(--white-color);
+    font-size: var(--menu-font-size);
+    font-weight: var(--font-weight-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.about-btn:hover {
+    color: #A68CB6FF;
+}
+
+.about-btn:focus {
+    box-shadow: none;
+}
+
+.about-btn2 {
+    background: transparent;
+    border-radius: var(--border-radius-small);
+    padding: 14px 24px;
+    color: #A68CB6FF;
+    transition: all 0.3s ease;
+}
+
+.about-btn2:hover {
+    color: var(--white-color);
+}
+
+.about-btn2:focus {
+    box-shadow: none;
+}
+
 .bordered {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);

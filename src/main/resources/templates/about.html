@@ -4,37 +4,40 @@
 <body class="about">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <div class="container-fluid">
-    <h1>We are Pressd</h1>
-    <h2>Creators: </h2> <h4><a href="https://www.linkedin.com/in/chrisagold/">Christopher Agold</a>, <a
-        href="https://www.linkedin.com/in/jeremiahbaham/">Jeremiah Baham</a>, <a
-        href="https://www.linkedin.com/in/danielbenzion/">Daniel Benzion</a> , and <a
-        href="https://www.linkedin.com/in/johnny-fisher/"> Johnny Fisher</a></h4>
+    <h1 style="color: whitesmoke">We are Pressd</h1>
     <hr>
     <div>
         <div class="d-flex d-block">
             <div class="row">
-                <p class="col-sm-12 col-md-7 align-items-center " style="color: whitesmoke">
-                    During the Covid 19 pandemic, gyms closed and people were confined to their homes contributing to
-                    the
-                    decrease in sense of community and reduction in physical activity. As states and gyms open back up,
-                    people are finding the need to be more social and active to improve their mental and physical
-                    health.
-                    Local fitness centers were also greatly impacted financially by the coronavirus. Pressd seeks to be
-                    a
-                    user-driven platform to connect to other individuals who are passionate about their physical fitness
-                    while improving each other’s social life. This platform is meant to bring the community together in
-                    a
-                    fitness center by helping individuals build partnerships through working out.
+                <div class="d-flex">
+                    <div class="col-sm-12 col-md-7">
+                        <p class="" style="color: whitesmoke">
+                            During the Covid 19 pandemic, gyms closed and people were confined to their homes contributing to
+                            the
+                            decrease in sense of community and reduction in physical activity. As states and gyms open back up,
+                            people are finding the need to be more social and active to improve their mental and physical
+                            health.
+                            Local fitness centers were also greatly impacted financially by the coronavirus. Pressd seeks to be
+                            a
+                            user-driven platform to connect to other individuals who are passionate about their physical fitness
+                            while improving each other’s social life. This platform is meant to bring the community together in
+                            a
+                            fitness center by helping individuals build partnerships through working out.
 
-                </p>
-                <hr>
-                <p class="col-sm-12 col-md-4 align-items-center" style="color: whitesmoke">Pressd was built using Java, Spring Boot,
-                    MySQL, Thymeleaf,
-                    HTML,
-                    CSS/Bootstrap, JavaScript,
-                    and jQuery. You can check out our GitHub repository <a
-                            href="https://github.com/Pressd-codeup/pressd">here.</a>
-                </p>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-5">
+                        <div><p class="" style="color: whitesmoke">Pressd was built using Java, Spring Boot,
+                            MySQL, Thymeleaf,
+                            HTML,
+                            CSS/Bootstrap, JavaScript,
+                            and jQuery. You can check out our GitHub repository <a class="about-btn2 pl-0"
+                                    th:href="@{https://github.com/Pressd-codeup/pressd}">here.</a>
+                        </p></div>
+                    </div>
+                </div>
+
+
                 <hr>
             </div>
         </div>
@@ -42,103 +45,57 @@
             <div class="row">
                 <div class="card col-sm-12 col-md-5 align-items-center m-3" style="background: inherit; width: 18rem">
                     <h3 class="card-title" style="color: whitesmoke">Christopher Agold</h3>
-                    <img class="chris-pic card-img-top" alt="Chris">
-                    <div class="card-body align-items-center" style="color: whitesmoke">
-                        <p class="card-text" style="color: whitesmoke">Environmental Science undergraduate, Passion
+                    <img class="chris-pic" alt="Chris">
+                    <div class="card-body align-items-center pb-0" style="color: whitesmoke">
+                        <h6>Environmental Science undergraduate, Passion
                             for
-                            Design</p>
-                        <a href="https://github.com/ChrisAgold" target="_blank" class="btn submit-button"> <i
-                                class="bi bi-github"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-github" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/chrisagold/" target="_blank" class="btn submit-button">
-                            <i
-                                    class="bi bi-linkedin"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-linkedin"
-                                 viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                            </svg>
-                        </a>
+                            Design</h6>
+                        <a th:href="@{https://github.com/ChrisAgold}"><span class="btn about-btn"><i
+                                class="fab fa-github"></i></span></a>
+                        <a th:href="@{https://linkedin.com/in/chrisagold/}"><span class="btn about-btn"><i
+                                class="fab fa-linkedin"></i></span></a>
                     </div>
                 </div>
                 <div class="card col-sm-12 col-md-5 align-items-center m-3" style="background: inherit; width: 18rem">
                     <h3 class="card-title" style="color: whitesmoke;">Jeremiah Baham</h3>
                     <img class="jeremiah-pic">
-                    <div class="card-body align-items-center" style="color: whitesmoke">
-                        <p class="card-text" style="color: whitesmoke">Marine Corps Veteran, Management Information
+                    <div class="card-body align-items-center pb-0" style="color: whitesmoke">
+                        <h6>Marine Corps Veteran, Management Information
                             Systems
                             undergraduate student, Passion for Continuous
-                            Learning</p>
-                        <a href="https://github.com/jbaham1" target="_blank" class="btn submit-button"> <i
-                                class="bi bi-github"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-github" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/jeremiahbaham/" target="_blank"
-                           class="btn submit-button">
-                            <i
-                                    class="bi bi-linkedin"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-linkedin"
-                                 viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                            </svg>
-                        </a>
+                            Learning</h6>
+
+                        <a th:href="@{https://github.com/jbaham1}"><span class="btn about-btn"><i
+                                class="fab fa-github"></i></span></a>
+                        <a th:href="@{https://linkedin.com/in/jeremiahbaham/}"><span class="btn about-btn"><i
+                                class="fab fa-linkedin"></i></span></a>
                     </div>
                 </div>
                 <div class="card col-sm-12 col-md-5 align-items-center m-3" style="background: inherit; width: 18rem">
                     <h3 class="card-title" style="color: whitesmoke">Daniel Benzion</h3>
                     <img class="dan-pic">
-                    <div class="card-body align-items-center" style="color: whitesmoke">
+                    <div class="card-body pb-0" style="color: whitesmoke">
                         <h6>Army Veteran, Oracle Certified Associate Java SE8 Programmer, Passion for Problem
                             Solving</h6>
-                        <a href="https://github.com/jbaham1" target="_blank" class="btn submit-button"> <i
-                                class="bi bi-github"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-github" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/jeremiahbaham/" target="_blank"
-                           class="btn submit-button">
-                            <i
-                                    class="bi bi-linkedin"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-linkedin"
-                                 viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                            </svg>
-                        </a>
+
+
+                                <a th:href="@{https://github.com/daniel-benzion}"><span class="btn about-btn"><i
+                                        class="fab fa-github"></i></span></a>
+                                <a th:href="@{https://linkedin.com/in/danielbenzion/}"><span class="btn about-btn"><i
+                                        class="fab fa-linkedin"></i></span></a>
+
+
                     </div>
                 </div>
-                <div class="card col-sm-12 col-md-5 align-items-center m-3" style="background: inherit; width: 18rem">
+                <div class="card col-sm-12 col-md-5 align-items-center m-3 pb-0" style="background: inherit; width: 18rem">
                     <h3 class="card-title" style="color: whitesmoke">Johnny Fisher</h3>
                     <img class="johnny-pic">
                     <div class="card-body align-items-center" style="color: whitesmoke">
                         <h6>Certified Java Developer, Passion for Technology</h6>
-                        <a href="https://github.com/jbaham1" target="_blank" class="btn submit-button"> <i
-                                class="bi bi-github"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-github" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/jeremiahbaham/" target="_blank"
-                           class="btn submit-button">
-                            <i
-                                    class="bi bi-linkedin"></i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-linkedin"
-                                 viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                            </svg>
-                        </a>
+                        <a th:href="@{https://github.com/https://github.com/JohnnyLFisher}"><span class="btn about-btn"><i
+                                class="fab fa-github"></i></span></a>
+                        <a th:href="@{https://linkedin.com/in/johnny-fisher/}"><span class="btn about-btn"><i
+                                class="fab fa-linkedin"></i></span></a>
                     </div>
                 </div>
                 <hr>
