@@ -13,7 +13,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="planDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-dumbbell"></i>
                     Plans
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -21,10 +21,9 @@
                     <a class="dropdown-item" th:href="@{~/workouts/create}">Create a Plan</a>
                 </div>
             </li>
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="findDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                   aria-haspopup="true" aria-expanded="false"><i class="far fa-compass"></i>
                     Find
                 </a>
                 <!--style="background: #171819"-->
@@ -38,35 +37,30 @@
                     <a class="dropdown-item" th:href="@{~/posts/create}">Create a Post</a>
                 </div>
             </li>
-
             <th:block sec:authorize="isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/users/profile/}">Dashboard</a>
+                    <a class="nav-link" th:href="@{~/users/profile/}"><i class="fas fa-user-alt"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/messages}">Inbox</a>
+                    <a class="nav-link" th:href="@{~/messages}"><i class="fas fa-envelope"></i> Inbox</a>
                 </li>
             </th:block>
-
-
             <th:block sec:authorize="!isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/sign-up}">Sign-up</a>
+                    <a class="nav-link" th:href="@{~/sign-up}"><i class="fas fa-user-plus"></i> Sign-up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/login}">Login</a>
+                    <a class="nav-link" th:href="@{~/login}"><i class="fas fa-sign-in-alt"></i> Login</a>
                 </li>
             </th:block>
-
             <th:block sec:authorize="isAuthenticated()">
                 <li>
                     <form th:action="@{/logout}" th:method="POST">
-                        <button id="logout">Logout</button>
+                        <button id="logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
                     </form>
                 </li>
             </th:block>
         </ul>
-
         <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" name="term" aria-label="Search">
             <button class="submit-button" type="submit">Search</button>
