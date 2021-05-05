@@ -31,7 +31,7 @@
                                 </div>
                                 <!--OTHER USER'S MESSAGES-->
                                 <div class="received_withd_msg" th:case="*">
-                                    <div class="">
+                                    <div>
                                         <small style="color: white" th:text="${message.sentFrom.username}"></small>
                                         <span class="time_date"><small style="color: white"
                                                                        th:text="${shortF.format(message.datePosted)}"></small></span>

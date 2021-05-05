@@ -1353,12 +1353,12 @@ a.btn-card {
 
 .outgoing_msg {
     overflow: hidden;
-    margin: 26px 0 26px;
+    margin: 0;
 }
 
 .incoming_msg {
     overflow: hidden;
-    margin: 26px 0 26px;
+    margin: 0;
 }
 .sent_msg {
     float: right;
@@ -1867,16 +1867,12 @@ body.edit_profile {
     width: 12rem;
 }
 
+
 .checkstyle {
     display: inline-flex;
     cursor: pointer;
     position: relative;
 }
-
-/*.checkstyle {
-    color: #ffffff;
-    padding: 0.5rem 0.25rem;
-}*/
 
 .checkstyle {
     height: 14px;
@@ -1896,4 +1892,8 @@ body.edit_profile {
 .checkstyle:checked {
     border: 3px solid #ffffff;
     background-color: #5b21a9;
+}
+
+.messages-size {
+    width: 8300px;
 }
