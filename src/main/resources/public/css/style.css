@@ -1829,6 +1829,12 @@ body.edit_profile {
     background-size: cover;
     background-position: center center;
 }
+.view-about {
+    background-image: url('images/class/pexels-sheena-wood-574116.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
 .view-user {
     background-image: url('images/class/sitting-on-the-dock-of-the-bay.jpg');
