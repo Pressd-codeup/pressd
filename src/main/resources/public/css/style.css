@@ -542,7 +542,9 @@ a:focus {
 -----------------------------------------*/
 
 .about {
-   background-color: rebeccapurple;
+    background-image: repeating-linear-gradient(330deg, rgba(39, 46, 79, 0.9), #5b21a9);
+height: auto;
+    /*background-color: rgba(39, 46, 79, 0.9);*/
 }
 
 .about-working-hours {
@@ -1807,23 +1809,31 @@ body.edit_profile {
 
 .dan-pic {
     content:url("images/team/dan.png");
-    max-height: 10%;
-    max-width: 10%;
+    min-height: 49%;
+    min-width: 49%;
+    max-height: 50%;
+    max-width: 50%;
 }
 
 .chris-pic {
     content:url("images/team/me.jpg");
-    max-height: 10%;
-    max-width: 10%;
+    min-height: 49%;
+    min-width: 49%;
+    max-height: 50%;
+    max-width: 50%;
 }
 .jeremiah-pic {
     content:url("images/team/cp_march21-0043 copy.jpg");
-    max-height: 10%;
-    max-width: 10%;
+    min-height: 49%;
+    min-width: 49%;
+    max-height: 50%;
+    max-width: 50%;
 }
 .johnny-pic {
     content:url("images/team/pexels-mentatdgt-937481.jpg");
-    max-height: 10%;
-    max-width: 10%;
+    min-height: 49%;
+    min-width: 49%;
+    max-height: 50%;
+    max-width: 50%;
 }
 
