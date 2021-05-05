@@ -148,6 +148,7 @@ strong {
     letter-spacing: 0.5px;
     white-space: nowrap;
     transition: all 0.3s ease;
+    text-decoration: underline;
 }
 
 .custom-btn:hover {
@@ -965,9 +966,6 @@ label {
     display: contents !important;
 }
 
-.card-sign {
-    background-color: rgba(126, 123, 215, 0.2);
-}
 
 .md-form label {
     color: #ffffff;
@@ -1829,6 +1827,12 @@ body.edit_profile {
     background-size: cover;
     background-position: center center;
 }
+.view-about {
+    background-image: url('images/class/pexels-sheena-wood-574116.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
 .view-user {
     background-image: url('images/class/sitting-on-the-dock-of-the-bay.jpg');
@@ -1866,4 +1870,33 @@ body.edit_profile {
     height: 12rem;
     width: 12rem;
 }
+
+
+
+.checkstyle {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkstyle {
+    height: 14px;
+    width: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: 0.3s;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.checkstyle:checked {
+    border: 3px solid #ffffff;
+    background-color: #5b21a9;
+}
+
 

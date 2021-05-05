@@ -64,7 +64,7 @@ public class ImageController {
 		return "redirect:/users/" + id;
 	}
 
-	@GetMapping("/users/workouts")
+	/*@GetMapping("/users/workouts")
 	public String viewUserWorkouts(Model viewModel) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Workout> workouts = workoutDao.getWorkoutsByUser(user);
@@ -82,7 +82,7 @@ public class ImageController {
 		DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		viewModel.addAttribute("shortF", shortF);
 		return "users/posts";
-	}
+	}*/
 
 	@GetMapping("/images/upload")
 	public String viewUploadImageForm(@RequestParam("directory") String directory, Model viewModel) {
@@ -124,15 +124,15 @@ public class ImageController {
 			case "createWorkoutImage":
 				returnVal = "redirect:/workouts/create";
 				break;
-			case "updateWorkoutImage":
-				returnVal = "redirect:/users/workouts"; //or whatever the mapping for user workouts page
-				break;
+			/*case "updateWorkoutImage":
+				returnVal = "redirect:/users/workouts";*/ //or whatever the mapping for user workouts page
+				//break;
 			case "createPostImage":
 				returnVal = "redirect:/posts/create";
 				break;
-			case "updatePostImage":
-				returnVal = "redirect:/users/posts"; //or whatever the mapping for user posts page
-				break;
+			/*case "updatePostImage":
+				returnVal = "redirect:/users/posts";*/ //or whatever the mapping for user posts page
+				//break;
 			case "avatarImage":
 				returnVal = "redirect:/users/avatar";
 				break;
@@ -147,8 +147,45 @@ public class ImageController {
 		return returnVal;
 	}
 
+	@GetMapping("/images/upload/post")
+	public String viewUploadImagePostUpdate(@RequestParam("id") long id, Model viewModel) {
+		viewModel.addAttribute("id", id);
+		return "images/uploadPost";
+	}
 
 
+	@PostMapping("/images/upload/post")
+	public String uploadPostUpdateImage(@RequestParam String url, @RequestParam long id) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Image image = new Image();
+		image.setUser(user);
+		image.setUrl(url);
+		imageDao.save(image);
+
+		return "redirect:/posts/" + id + "/update";
+
+
+	}
+
+	@GetMapping("/images/upload/workout")
+	public String viewUploadImageWorkoutUpdate(@RequestParam("id") long id, Model viewModel) {
+		viewModel.addAttribute("id", id);
+		return "images/uploadWorkout";
+	}
+
+
+	@PostMapping("/images/upload/workout")
+	public String uploadWorkoutUpdateImage(@RequestParam String url, @RequestParam long id) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Image image = new Image();
+		image.setUser(user);
+		image.setUrl(url);
+		imageDao.save(image);
+
+		return "redirect:/workouts/" + id + "/update";
+
+
+	}
 
 
 	/*@PostMapping("/images/upload")
