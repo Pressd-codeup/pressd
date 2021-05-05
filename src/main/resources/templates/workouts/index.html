@@ -63,38 +63,47 @@
                     </div>
 
                 </div>-->
+                <div class="d-flex justify-content-center py-4">
+                    <div class="d-flex">
+                        <div>
+                            <form th:action="@{workouts}" method="POST" class="mb-1">
 
-                <div>
-                    <form th:action="@{workouts}" method="POST" class="mb-1">
 
-                        <div class="form-check text-white">
-                            <p class="text-white mr-2">Filter Workouts by Categories:</p>
+                                <div class="form-check-inline text-white mr-0">
+                                    <p class="text-white mr-2 mb-2 mt-1">Filter Workouts by Categories:</p>
 
-                            <div class="form-check text-white">
-                                <input class="form-check-input" type="checkbox" name="categoryNames"
-                                       th:value="${first.getName()}" checked>
-                                <label th:text="${first.getName()}"></label>
-                            </div>
+                                    <div class="form-check-inline text-white">
 
-                            <th:block th:each="category : ${allCategories}">
-                                <div class="form-check text-white">
-                                    <input class="form-check-input" type="checkbox" name="categoryNames"
-                                           th:value="${category.name}">
-                                    <label th:text="${category.name}"></label>
+                                        <input class="form-check-input checkstyle" type="checkbox" name="categoryNames" th:value="${first.getName()}" checked>
+                                        <label th:text="${first.getName()}">
+                                        </label>
+                                    </div>
+
+                                    <th:block th:each="category : ${allCategories}">
+                                        <div class="form-check-inline text-white">
+                                            <input class="form-check-input checkstyle" type="checkbox" name="categoryNames"
+                                                   th:value="${category.name}">
+                                            <label th:text="${category.name}"></label>
+                                        </div>
+                                    </th:block>
+
+                                    <input class="submit-button mt-1" type="submit" value="Go!">
                                 </div>
-                            </th:block>
 
 
+
+
+                            </form>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <form th:action="@{~/workouts}" method="GET">
+                                <input class="ml-1 submit-button" type="submit" value="Clear Filters">
+                            </form>
                         </div>
 
-                        <input class="submit-button mt-1 ml-3" type="submit" value="Go!">
-
-
-                    </form>
-                    <form th:action="@{~/workouts}" method="GET">
-                        <input class="submit-button ml-3" type="submit" value="Clear Filters">
-                    </form>
+                    </div>
                 </div>
+
 
                 <!--Grid column-->
                 <div class="d-flex flex-column align-items-center">

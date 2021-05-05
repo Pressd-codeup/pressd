@@ -1867,6 +1867,33 @@ body.edit_profile {
     width: 12rem;
 }
 
+
+.checkstyle {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkstyle {
+    height: 14px;
+    width: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: 0.3s;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.checkstyle:checked {
+    border: 3px solid #ffffff;
+    background-color: #5b21a9;
+}
+
 .messages-size {
     width: 8300px;
 }

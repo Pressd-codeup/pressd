@@ -120,14 +120,14 @@
                                                                     <label class="cat">Select Category</label>
                                                                     <br>
 
-                                                                    <input class="form-check-input" type="checkbox"
+                                                                    <input class="form-check-input checkstyle" type="checkbox"
                                                                            name="categoryNames"
                                                                            th:value="${first.getName()}" checked>
                                                                     <label th:text="${first.getName()}"></label>
                                                                     <br>
 
                                                                     <th:block th:each="category : ${allCategories}">
-                                                                        <input class="form-check-input" type="checkbox"
+                                                                        <input class="form-check-input checkstyle" type="checkbox"
                                                                                name="categoryNames"
                                                                                th:value="${category.name}">
                                                                         <label th:text="${category.name}"></label>
