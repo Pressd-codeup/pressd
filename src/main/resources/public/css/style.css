@@ -1353,12 +1353,12 @@ a.btn-card {
 
 .outgoing_msg {
     overflow: hidden;
-    margin: 26px 0 26px;
+    margin: 0;
 }
 
 .incoming_msg {
     overflow: hidden;
-    margin: 26px 0 26px;
+    margin: 0;
 }
 .sent_msg {
     float: right;
@@ -1867,3 +1867,6 @@ body.edit_profile {
     width: 12rem;
 }
 
+.messages-size {
+    width: 8300px;
+}
