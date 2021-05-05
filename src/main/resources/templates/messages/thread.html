@@ -21,20 +21,37 @@
                             <div class="received_msg" th:switch="${message.sentFrom.id}">
                                 <div class="outgoing_msg" th:case="${currentUser.id}">
                                     <div class="sent_msg">
-                                        <small style="color: white">You</small>
-                                        <span class="time_date"><small
-                                                th:text="${shortF.format(message.datePosted)}"
-                                                style="color: white"></small></span>
+                                        <div class="d-flex justify-content-between mb-0">
+
+                                            <div>
+                                                <span class="time_date"><small style="color: white">You</small></span>
+                                            </div>
+                                            <div>
+                                                <span class="time_date">
+                                            <small
+                                                    th:text="${shortF.format(message.datePosted)}"
+                                                    style="color: white"></small></span>
+                                            </div>
+
+                                        </div>
                                         <p th:text="${message.body}"></p>
                                     </div>
                                     <!--                <div th:case="${currentUser.id}">-->
                                 </div>
                                 <!--OTHER USER'S MESSAGES-->
                                 <div class="received_withd_msg" th:case="*">
-                                    <div>
-                                        <small style="color: white" th:text="${message.sentFrom.username}"></small>
-                                        <span class="time_date"><small style="color: white"
-                                                                       th:text="${shortF.format(message.datePosted)}"></small></span>
+                                    <div class="">
+                                        <div class="d-flex justify-content-between mb-0">
+                                            <div>
+                                                <span class="time_date"><small style="color: white"
+                                                                               th:text="${message.sentFrom.username}"></small></span>
+                                            </div>
+                                            <div>
+                                                <span class="time_date"><small style="color: white"
+                                                                               th:text="${shortF.format(message.datePosted)}"></small></span>
+                                            </div>
+                                        </div>
+
                                         <p th:text="${message.body}"></p>
 
                                     </div>
