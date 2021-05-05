@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Upload')"></head>
-<body class="upload">
+<body class="login view-image-upload">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <style>
     #json img {
@@ -10,9 +10,9 @@
     }
 </style>
 
-<header class="login view-image-upload">
+<header class="mask rgba-gradient" style="background-size: auto">
     <!-- Full Page Intro -->
-    <div class="mask rgba-gradient" style="background-size: auto">
+    <div >
         <!-- Mask & flexbox options-->
         <div class="d-flex justify-content-center align-items-center">
             <!-- Content -->
@@ -30,9 +30,9 @@
 
                             <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                         </div>
-                        <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
+                        <div class="wow fadeInRight" data-wow-delay="0.3s">
                             <!--Header-->
-                            <div class="card-body upload-box">
+                            <div class="card-body upload-box mt-2">
 
 
 
@@ -43,17 +43,7 @@
 
                                     <hr class="hr-light">
 
-                                    <div id="json" class="d-flex flex-column align-items-center"></div>
 
-                                    <hr class="hr-light">
-
-                                    <form id="uploadForm" th:action="@{/images/upload}" th:method="post" style="display: none">
-                                        <input type="hidden" name="directory" th:value="${directory}">
-                                        <input type="hidden" name="url" id="url">
-                                        <input class="submit-button" type="submit" value="Save your image!">
-                                    </form>
-
-                                    <hr class="hr-light">
 
 
 
@@ -62,11 +52,25 @@
                             </div>
 
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="d-flex flex-column align-items-center">
+        <div id="json" class="d-flex flex-column align-items-center text-white"></div>
+
+        <form id="uploadForm" th:action="@{/images/upload}" class="mt-1" th:method="post" style="display: none">
+            <input type="hidden" name="directory" th:value="${directory}">
+            <input type="hidden" name="url" id="url">
+            <input class="submit-button" type="submit" value="Save your image!">
+        </form>
+    </div>
+
+
 </header>
 
 <script type="text/javascript" src="/keys.js"></script>
