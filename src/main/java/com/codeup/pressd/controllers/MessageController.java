@@ -33,7 +33,8 @@ public class MessageController {
 
     @GetMapping("/messages")
     public String viewMessageCenter(Model viewModel) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.getOne(user.getId());
         List<Message> messages = messageDao.findAllBySentFromOrSentTo(currentUser, currentUser);
         List<User> threads = new ArrayList<>();
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);

@@ -211,7 +211,7 @@ public class PostController {
 		//user validation is no longer necessary here because it's handled in GetMapping
 		postDao.save(dbPost);
 
-		return "redirect:/posts";
+		return "redirect:/posts/" + id;
 	}
 
 
