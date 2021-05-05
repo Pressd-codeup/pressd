@@ -167,6 +167,44 @@ strong {
     color: var(--primary-color);
 }
 
+
+.about-btn {
+    background: transparent;
+    border-radius: var(--border-radius-small);
+    padding: 14px 24px;
+    color: var(--white-color);
+    font-size: var(--menu-font-size);
+    font-weight: var(--font-weight-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.about-btn:hover {
+    color: #A68CB6FF;
+}
+
+.about-btn:focus {
+    box-shadow: none;
+}
+
+.about-btn2 {
+    background: transparent;
+    border-radius: var(--border-radius-small);
+    padding: 14px 24px;
+    color: #A68CB6FF;
+    transition: all 0.3s ease;
+}
+
+.about-btn2:hover {
+    color: var(--white-color);
+}
+
+.about-btn2:focus {
+    box-shadow: none;
+}
+
 .bordered {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
@@ -542,7 +580,9 @@ a:focus {
 -----------------------------------------*/
 
 .about {
-   background-color: rebeccapurple;
+    background-image: repeating-linear-gradient(330deg, rgba(39, 46, 79, 0.9), #5b21a9);
+height: auto;
+    /*background-color: rgba(39, 46, 79, 0.9);*/
 }
 
 .about-working-hours {
@@ -1807,23 +1847,23 @@ body.edit_profile {
 
 .dan-pic {
     content:url("images/team/dan.png");
-    max-height: 10%;
-    max-width: 10%;
+    height: 12rem;
+    width: 12rem;
 }
 
 .chris-pic {
     content:url("images/team/me.jpg");
-    max-height: 10%;
-    max-width: 10%;
+    height: 12rem;
+    width: 12rem;
 }
 .jeremiah-pic {
     content:url("images/team/cp_march21-0043 copy.jpg");
-    max-height: 10%;
-    max-width: 10%;
+    height: 12rem;
+    width: 12rem;
 }
 .johnny-pic {
     content:url("images/team/pexels-mentatdgt-937481.jpg");
-    max-height: 10%;
-    max-width: 10%;
+    height: 12rem;
+    width: 12rem;
 }
 

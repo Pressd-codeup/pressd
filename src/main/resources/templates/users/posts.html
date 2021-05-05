@@ -34,7 +34,7 @@
                                 <div class="d-flex justify-content-center">
                                     <img class="img-thumbnail img-fluid text-center"
                                          th:src="@{${post.image.url}}"
-                                         alt="alt"/>
+                                         alt="alt" style="width: 20rem; height: 20rem" />
                                 </div>
 
 
@@ -47,12 +47,13 @@
                                             <small class="text-white" th:text="${post.getUser().username}"></small>
                                         </div>
                                         <div>
+                                            <small class="text-white" th:text="${post.city}"></small>
+                                        </div>
+                                        <div>
                                             <small class="text-white"
                                                    th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></small>
                                         </div>
-                                        <div>
-                                            <small class="text-white" th:text="${post.city}"></small>
-                                        </div>
+
 
                                     </div>
                                     <hr class="hr-light">

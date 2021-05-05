@@ -127,7 +127,7 @@
                     <div class="card-sign wow fadeInRight pb-2 mb-5" data-wow-delay="0.3s">
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <img class="img-thumbnail img-fluid text-center" style="max-width: 50%; max-height: 50%"
+                                <img class="img-thumbnail img-fluid text-center" style="width: 20rem; height: 20rem"
                                      th:src="@{${workout.image.url}}"
                                      alt="alt"/>
                             </div>
@@ -325,6 +325,12 @@
                                 <button class="submit-button">Submit</button>
                             </div>
                         </form>
+                    </th:block>
+
+                    <th:block th:unless="${isLoggedIn}">
+                        <div class="d-flex my-3">
+                            <h5 class="text-white">Sign in to comment on this workout!</h5>
+                        </div>
                     </th:block>
 
 
