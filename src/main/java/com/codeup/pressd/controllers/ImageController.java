@@ -137,7 +137,7 @@ public class ImageController {
 				returnVal = "redirect:/users/avatar";
 				break;
 			case "updateProfileImage":
-				returnVal ="redirect:/users/editProfile";
+				returnVal = "redirect:/users/edit";
 				break;
 			default:
 				returnVal = "redirect:/images"; //this is if they access the upload form directly from the Image Center
