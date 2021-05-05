@@ -21,9 +21,6 @@ public class Post {
 	@Column(nullable = false)
 	private String city;
 
-	/*@Column(nullable = false)
-	private long zipcode;*/
-
 	@Column(name = "date_posted", nullable = false)
 	private LocalDateTime datePosted;
 

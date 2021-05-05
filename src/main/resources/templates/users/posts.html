@@ -47,12 +47,13 @@
                                             <small class="text-white" th:text="${post.getUser().username}"></small>
                                         </div>
                                         <div>
+                                            <small class="text-white" th:text="${post.city}"></small>
+                                        </div>
+                                        <div>
                                             <small class="text-white"
                                                    th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></small>
                                         </div>
-                                        <div>
-                                            <small class="text-white" th:text="${post.city}"></small>
-                                        </div>
+
 
                                     </div>
                                     <hr class="hr-light">
