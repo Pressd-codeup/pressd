@@ -1872,6 +1872,7 @@ body.edit_profile {
 }
 
 
+
 .checkstyle {
     display: inline-flex;
     cursor: pointer;
@@ -1898,6 +1899,4 @@ body.edit_profile {
     background-color: #5b21a9;
 }
 
-.messages-size {
-    width: 8300px;
-}
+
