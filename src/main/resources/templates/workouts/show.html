@@ -327,15 +327,17 @@
                             <!--                                    <iframe width="560" height="315" th:src="@{https://www.youtube.com/embed/RjexvOAsVtI}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
                             <div class="d-flex justify-content-between mt-4">
                                 <th:block th:if="${isUser}">
-                                    <form th:action="${'/workouts/'+workout.id+'/update'}" method="GET">
-                                        <input class="submit-button" type="submit" value="Edit Workout">
+
+                                    <form th:action="${'/users/'+ workout.user.id}" method="GET">
+                                        <input class="submit-button" type="submit" value="View Profile">
                                     </form>
                                     <form th:action="${'/workouts/'+workout.id+'/delete'}" method="POST">
                                         <input class="submit-button" type="submit" value="Delete Workout">
                                     </form>
-                                    <form th:action="${'/users/'+ workout.user.id}" method="GET">
-                                        <input class="submit-button" type="submit" value="View Profile">
+                                    <form th:action="${'/workouts/'+workout.id+'/update'}" method="GET">
+                                        <input class="submit-button" type="submit" value="Edit Workout">
                                     </form>
+
                                 </th:block>
 
 
