@@ -90,8 +90,9 @@ public class CommentController {
         commentToUpdate.setUser(currentUser);*/
         if(body.length() != 0) {
             commentToUpdate.setBody(body);
+            commentDao.save(commentToUpdate);
         }
-        commentDao.save(commentToUpdate);
+
         return "redirect:/workouts/" + id;
     }
 

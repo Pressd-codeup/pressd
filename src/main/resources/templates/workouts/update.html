@@ -55,8 +55,8 @@
                                     <div class="text-center">
                                         <p class="text-white">Want to upload more pictures to use? Do it </p>
 
-                                        <form method="get" th:action="@{/images/upload}">
-                                            <input type="hidden" name="directory" value="updateWorkoutImage">
+                                        <form method="get" th:action="@{/images/upload/workout}">
+                                            <input type="hidden" name="id" th:value="${workout.id}">
 
                                             <input class="upload-btn" type="submit" value="here!"/>
 
