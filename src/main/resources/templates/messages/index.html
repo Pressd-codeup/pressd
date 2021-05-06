@@ -36,11 +36,11 @@
                 <div class="chat_list active_chat" style="background: inherit;" th:each="thread : ${threads}">
                     <div class="chat_people d-flex align-content-center" style="background: inherit;">
                         <img class="avatar avatar-md"
-                                                   th:src="@{${imageDao.getOne(thread.getAvatarId()).url}}" alt="sunil">
+                             th:src="@{${imageDao.getOne(thread.getAvatarId()).url}}" alt="sunil">
 
                         <div class="chat_ib posts d-flex align-items-center" style="background: inherit;">
 
-                            <a th:href="@{/messages/{id}(id=${thread.getId()})}" class="text-white">
+                            <a th:href="@{/messages/{id}(id=${thread.getId()})}" class="text-white" style="text-decoration: none;">
 
                                 <h5> Your messages with:</h5>
                                 <span th:text="${thread.getUsername()}"></span>
