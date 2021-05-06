@@ -49,18 +49,6 @@ public class WorkoutController {
 
         return "workouts/index";
     }
-
-    /*@GetMapping("/workouts/categories")
-    public String viewWorkoutsByCategory(@ModelAttribute List<Workout> workouts, @ModelAttribute long category, Model viewModel) {
-        List<Category> allCategories = categoryDao.findAll();
-        viewModel.addAttribute("allCategories", allCategories);
-        viewModel.addAttribute("workouts", workouts);
-        viewModel.addAttribute("category", category);
-
-        return "workouts/index";
-    }*/
-
-
     @PostMapping("/workouts")
     public String selectWorkoutsByCategory(@RequestParam String[] categoryNames, Model viewModel) {
 
@@ -174,13 +162,7 @@ public class WorkoutController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserWorkoutRating uwr = userWorkoutRatingDao.getUserWorkoutRatingByWorkoutAndUser(workout, user);
-        //userWorkoutRatingDao.deleteById(uwr.getId());
         long ratingLong = Long.parseLong(newRating);
-        //UserWorkoutRating newUwr = new UserWorkoutRating();
-
-        //newUwr.setUser(user);
-        //newUwr.setWorkout(workout);
-        //newUwr.setRating(ratingDao.getOne(ratingLong));
         uwr.setRating(ratingDao.getOne(ratingLong));
         userWorkoutRatingDao.save(uwr);
         return "redirect:/workouts/" + id;
@@ -290,7 +272,6 @@ public class WorkoutController {
             workout.setCategories(categories);
         }
 
-        //user validation is no longer necessary here because it's handled in GetMapping
         workoutDao.save(dbWorkout);
 
         return "redirect:/workouts/" + id;

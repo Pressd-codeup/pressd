@@ -165,12 +165,7 @@ public class UserController {
         viewModel.addAttribute("posts", post);
         return "users/posts";
     }
-/*
-    @GetMapping("/users/posts")
-    public String showUsersPostsForUpdate() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return "redirect:/" + user.getId() + "/posts";
-    }*/
+
 
     @GetMapping("/{id}/workouts")
     public String showUsersWorkouts(@PathVariable long id, Model viewModel) {
@@ -181,12 +176,6 @@ public class UserController {
         viewModel.addAttribute("workouts", workout);
         return "users/workouts";
     }
-/*
-    @GetMapping("/users/workouts")
-    public String showUsersWorkoutsForUpdate() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return "redirect:/" + user.getId() + "/workouts";
-    }*/
 
     @GetMapping("/{id}/comments")
     public String showUsersComments(@PathVariable long id, Model viewModel) {

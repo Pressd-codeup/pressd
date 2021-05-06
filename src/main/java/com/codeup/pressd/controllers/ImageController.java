@@ -186,20 +186,6 @@ public class ImageController {
 
 
 	}
-
-
-	/*@PostMapping("/images/upload")
-	public String uploadImage(@RequestParam String url) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		*//*String url = imageString.substring(0, imageString.indexOf(","));
-		String delete = imageString.substring(imageString.indexOf(",") + 1);*//*
-		Image image = new Image();
-		image.setUser(user);
-		image.setUrl(url);
-		imageDao.save(image);
-		return "redirect:/images";
-	}*/
-
 	@GetMapping("/images")
 	public String viewAllImages(Model viewModel) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

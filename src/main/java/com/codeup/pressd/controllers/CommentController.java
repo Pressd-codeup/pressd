@@ -83,11 +83,7 @@ public class CommentController {
         User currentUser = userDao.getOne(user.getId());
 
         Comment commentToUpdate = commentDao.getOne(commentId);
-        /*commentToUpdate.setDatePosted(LocalDateTime.now());
-        Workout workout = workoutDao.getOne(id);
-        commentToUpdate.setWorkout(workout);
-        commentToUpdate.setId(id);
-        commentToUpdate.setUser(currentUser);*/
+
         if(body.length() != 0) {
             commentToUpdate.setBody(body);
             commentDao.save(commentToUpdate);
@@ -108,9 +104,4 @@ public class CommentController {
 
     }
 
-//    GetMapping("/{id}/comments")
-//        public String viewUserComments(@PathVariable long id){
-//
-//        return ""
-//        }
 }
