@@ -33,16 +33,16 @@
             </div>
 
             <div class="inbox_chat" style="background: inherit;">
-                <div class="chat_list active_chat" style="background: inherit;" th:each="thread : ${threads}">
-                    <div class="chat_people d-flex align-content-center" style="background: inherit;">
+                <div class="chat_list active_chat" style="background: inherit; padding-top: 14px; padding-bottom: 14px" th:each="thread : ${threads}">
+                    <div class="chat_people d-flex align-items-center" style="background: inherit;">
                         <img class="avatar avatar-md"
                              th:src="@{${imageDao.getOne(thread.getAvatarId()).url}}" alt="sunil">
 
-                        <div class="chat_ib posts d-flex align-items-center" style="background: inherit;">
+                        <div class="chat_ib posts d-flex align-items-center pl-1" style="background: inherit;">
 
                             <a th:href="@{/messages/{id}(id=${thread.getId()})}" class="text-white" style="text-decoration: none;">
 
-                                <h5> Your messages with:</h5>
+                                <h5 class="mb-0"> Your messages with:</h5>
                                 <span th:text="${thread.getUsername()}"></span>
                             </a>
 
