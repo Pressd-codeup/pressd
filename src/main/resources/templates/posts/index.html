@@ -65,24 +65,28 @@
                                          alt="alt" style="width: 20rem; height: 20rem" />
                                 </div>
 
+                                <div class="d-flex justify-content-center">
+                                    <div>
+                                        <p class="text-white mb-0 mt-3" th:text="${post.city}"></p>
+                                    </div>
+                                </div>
 
                                 <hr class="hr-light">
 
 
                                 <div class="mb-4">
                                     <div class="d-flex justify-content-between p-2">
-                                        <div>
-                                            <p class="text-white" th:text="${post.getUser().username}"></p>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <p class="text-white mb-0" th:text="${post.getUser().username}"></p>
                                         </div>
-                                        <div>
-                                            <p class="text-white" th:text="${post.city}"></p>
-                                        </div>
-                                        <div>
-                                            <p class="text-white"
+
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <p class="text-white mb-0"
                                                    th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></p>
                                         </div>
                                     </div>
                                     <hr class="hr-light">
+
                                 </div>
                                 <form th:action="${'/posts/'+ post.id}" method="GET">
                                     <input class="submit-button" type="submit" value="View Post">
