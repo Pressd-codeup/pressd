@@ -4,17 +4,6 @@
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-<!--ORIGINAL CODE-->
-
-<!--<main class="container">-->
-<!--    <div class="post" th:each="thread : ${threads}">-->
-<!--        <a th:href="@{/messages/{id}(id=${thread.getId()})}">-->
-<!--            <h5> Your messages with: <span th:text="${thread.getUsername()}"></span></h5>-->
-<!--        </a>-->
-<!--        <hr>-->
-<!--    </div>-->
-
-<!--</main>-->
 
 <div class="messaging">
     <div class="inbox_msg">
@@ -23,13 +12,6 @@
                 <div class="recent_heading" style="background: inherit;">
                     <h4 class="text-white">Recent</h4>
                 </div>
-                <!--                <div class="srch_bar">-->
-                <!--                    <div class="stylish-input-group">-->
-                <!--                        <input type="text" class="search-bar" placeholder="Search">-->
-                <!--                        <span class="input-group-addon">-->
-                <!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
-                <!--                </span></div>-->
-                <!--                </div>-->
             </div>
 
             <div class="inbox_chat" style="background: inherit;">
