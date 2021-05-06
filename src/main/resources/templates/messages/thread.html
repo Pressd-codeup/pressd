@@ -66,16 +66,30 @@
                         </div>
                     </div>
 
-                    <div class="publisher"
+                    <div class="publisher pr-2"
                          style="background: rgba(126, 123, 215, 0.2); border-top: 1px solid; border-color: inherit">
-                        <img class="float-right avatar avatar-xs"
-                             th:src="${imageDao.getOne(currentUser.getAvatarId()).url}"
-                             alt="...">
-                        <form th:action="@{'/messages/send/' + ${id}}" th:method="POST" th:object="${newMessage}">
-                            <input style="background: white; border-radius: .25rem" class="publisher-input"
-                                   th:field="*{body}" type="text" placeholder="Write something" required>
-                            <button type="submit" class="submit-button"><i class="fa fa-paper-plane"></i></button>
-                        </form>
+                        <div class="d-flex justify-content-end flex-grow-1 mr-0">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-1">
+                                    <img class="float-right avatar avatar-xs"
+                                         th:src="${imageDao.getOne(currentUser.getAvatarId()).url}"
+                                         alt="...">
+                                </div>
+                                <div>
+                                    <form th:action="@{'/messages/send/' + ${id}}" th:method="POST" th:object="${newMessage}">
+                                        <div class="d-flex align-items-center">
+                                            <textarea style="background: white; border-radius: .25rem" class="publisher-input"
+                                                      th:field="*{body}" cols="59" rows="1" type="text" placeholder="Write something" required></textarea>
+                                            <button type="submit" class="submit-button ml-1"><i class="fa fa-paper-plane"></i></button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>

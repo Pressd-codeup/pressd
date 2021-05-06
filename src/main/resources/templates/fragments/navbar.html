@@ -62,8 +62,14 @@
             </th:block>
         </ul>
         <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="term" aria-label="Search">
-            <button class="submit-button" type="submit">Search</button>
+
+
+                <input class="form-control" type="search" placeholder="Search" name="term" aria-label="Search" style="border-radius: 3px 0px 0px 3px; border: 1px solid #fff; box-shadow: none; transition: none">
+
+                    <button class="submit-button" type="submit" style="height: 38px; width: 39px; border-radius: 0px 3px 3px 0px; border-top-width: 2px;"><i style="height: 17px; width: 17px" class="fas fa-search"></i></button>
+
+
+
         </form>
     </div>
 </nav>
