@@ -55,12 +55,14 @@
                                     <img class="img-thumbnail img-fluid text-center" th:src="@{${post.image.url}}"
                                          alt="alt" style="height: 20rem; width: 20rem" />
                                 </div>
+                                <div class="d-flex justify-content-center">
+                                    <p class="text-white mb-0 mt-3" th:text="${post.city}"></p>
+                                </div>
                                 <hr class="hr-light">
                                 <div>
                                     <div class="d-flex justify-content-between p-2">
-                                        <p class="text-white" th:text="${post.getUser().username}"></p>
-                                        <p class="text-white" th:text="${post.city}"></p>
-                                        <p class="text-white"
+                                        <p class="text-white mb-0" th:text="${post.getUser().username}"></p>
+                                        <p class="text-white mb-0"
                                                th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></p>
                                     </div>
                                     <hr class="hr-light">
