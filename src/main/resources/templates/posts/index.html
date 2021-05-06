@@ -3,106 +3,62 @@
 <head th:replace="fragments/header :: main-head('Posts')"></head>
 <body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<!--<div class="container">-->
-<!--    <div class="post" th:each="post : ${posts}">-->
-<!--        <h1 th:text="${post.title}"></h1>-->
-<!--        <h4 th:text="${post.body}"></h4>-->
-
-<!--        <form th:action="${'/users/'+ post.user.id}" method="GET">-->
-<!--            <input type="submit" value="View user">-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!-- Jumbotron Header -->
-
 <div class="jumbotron d-none d-lg-block text-white view-jumbo mb-0 pt-3 pb-3">
-
     <h1 th:switch="${type}" class="display-4 recent-post">
         <span th:case="partners">Recent Partner Posts</span>
         <span th:case="coaches">Recent Posts From Coaches</span>
         <span th:case="clients">Recent Posts From Clients</span>
         <span th:case="*">Recent Posts</span>
     </h1>
-    <!--    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>-->
-    <!--    <hr class="my-4">-->
-    <!--    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
-    <!--    <p class="lead">-->
-    <!--        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>-->
-    <!--    </p>-->
 </div>
-
 <header class="login col-lg-12 p-0">
-    <!-- Full Page Intro -->
     <div class="view-posts-show col-lg-12 p-0">
-        <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center col-lg-12">
-            <!-- Content -->
             <div class="container col-lg-12 d-flex flex-column justify-content-center">
-
-
-                <!--Grid row-->
                 <div class="d-flex flex-column align-items-center mt-3">
-                    <!--Grid column-->
                     <div class="col-lg-8 mb-4 login-box pb-0" th:each="post : ${posts}">
-
-
                         <div class="card-sign wow fadeInRight pb-2 pt-3" data-wow-delay="0.3s">
                             <div class="white-text text-center">
                                 <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                                     th:text="${post.title}"></h1>
-
                                 <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                 <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                             </div>
-
                             <div class="card-body">
                                 <div class="d-flex justify-content-center">
                                     <img class="img-thumbnail img-fluid text-center"
                                          th:src="@{${post.image.url}}"
                                          alt="alt" style="width: 20rem; height: 20rem" />
                                 </div>
-
                                 <div class="d-flex justify-content-center">
                                     <div>
                                         <p class="text-white mb-0 mt-3" th:text="${post.city}"></p>
                                     </div>
                                 </div>
-
                                 <hr class="hr-light">
-
-
                                 <div class="mb-4">
                                     <div class="d-flex justify-content-between p-2">
                                         <div class="d-flex flex-column justify-content-center">
                                             <p class="text-white mb-0" th:text="${post.getUser().username}"></p>
                                         </div>
-
                                         <div class="d-flex flex-column justify-content-center">
                                             <p class="text-white mb-0"
                                                    th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></p>
                                         </div>
                                     </div>
                                     <hr class="hr-light">
-
                                 </div>
                                 <form th:action="${'/posts/'+ post.id}" method="GET">
                                     <input class="submit-button" type="submit" value="View Post">
                                 </form>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </header>
-
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

@@ -4,28 +4,19 @@
 
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
 <header class="login view-user-post">
-    <!-- Full Page Intro -->
     <div class="mask rgba-gradient">
-        <!-- Mask & flexbox options-->
         <div class="d-flex justify-content-center align-items-center">
-            <!-- Content -->
             <div class="container mt-4">
-                <!--Grid row-->
                 <div class="row mt-5">
-                    <!--Grid column-->
                     <div class="col-lg-12 mb-4 login-box">
                         <div class="white-text text-center">
                             <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                                 th:text="${post.title}"></h1>
-
                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                         </div>
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
-                            <!--Header-->
                             <div class="card-body">
                                 <div class="d-flex justify-content-center">
                                     <img class="img-thumbnail img-fluid text-center" th:src="@{${post.image.url}}"
@@ -44,10 +35,7 @@
                                     <hr class="hr-light">
 
                                     <p class="card-text text-white" th:text="${post.body}"></p>
-
                                 </div>
-
-                                <!--BUTTONS-->
                                 <div class="d-flex justify-content-between mt-4" role="group">
                                     <form th:action="${'/users/'+ post.user.id}" method="GET">
                                         <input class="submit-button" type="submit" value="View User">
@@ -60,12 +48,8 @@
                                             <input class="submit-button" type="submit" value="Edit Post">
                                         </form>
                                     </th:block>
-
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>

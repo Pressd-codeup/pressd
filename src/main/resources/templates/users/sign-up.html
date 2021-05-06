@@ -3,50 +3,31 @@
 <head th:replace="fragments/header :: main-head('Sign Up')"></head>
 <body class="sign_up">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
 <header class="sign_up">
-    <!-- Full Page Intro -->
     <div class="view">
-        <!--         style="background-image: url('/public/css/images/group.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">-->
-        <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-            <!-- Content -->
             <div class="container">
-                <!--Grid row-->
                 <div class="row col-12 dong mt-5">
-                    <!--Grid column-->
                     <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
                         <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up! </h1>
                         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                         <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s">Join the growing community of
                             like-minded individuals reaching their fitness goals!</h6>
-                        <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                     </div>
-                    <!--Grid column-->
-                    <!--Grid column-->
                     <div class="bottom-fix col-md-6 col-xl-5 mb-4 sign-up-box">
-                        <!--Form-->
                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                             <div class="card-body">
-
-                                <!--Header-->
                                 <div class="text-center">
                                     <h3 class="white-text">
                                         <i class="fa fa-user white-text"></i> Register:</h3>
-
                                 </div>
-
                                 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                                     <hr class="hr-light">
-
-                                    <!--Body-->
                                     <div class="md-form">
                                         <span>
                                             <i class="fa fa-user prefix white-text active"></i>
                                             <label for="username" class="active">Username</label>
                                         </span>
-
-
                                         <input class="form-control mb-3" id="username" th:field="*{username}"/>
                                     </div>
 

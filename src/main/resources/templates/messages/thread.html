@@ -12,10 +12,11 @@
                     <div class="card-header">
                         <h4 class="card-title text-white"><strong>Messages</strong></h4>
 
+
+
                     </div>
                     <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
                          style="overflow-y: scroll !important; height:400px !important;">
-                        <!--YOUR MESSAGES-->
                         <div class="incoming_msg" th:each="message : ${messages}">
                             <div class="received_msg" th:switch="${message.sentFrom.id}">
                                 <div class="outgoing_msg" th:case="${currentUser.id}">
@@ -31,11 +32,12 @@
                                                     th:text="${shortF.format(message.datePosted)}"
                                                     style="color: white"></small></span>
                                             </div>
-
                                         </div>
                                         <p th:text="${message.body}"></p>
                                     </div>
                                 </div>
+
+
 
                                 <div class="received_withd_msg" th:case="*">
                                     <div class="">
@@ -63,21 +65,21 @@
                             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                         </div>
                     </div>
-                    <div class="row p-2 m-2"
+                    <div class="row p-2 mt-2 ml-2 mr-0 mb-0"
                          style="background: rgba(126, 123, 215, 0.2); border-top: 1px solid; border-color: inherit">
-                        <div class="col-12">
+                        <div class="col-12 pr-0">
                             <div class="d-flex align-items-center">
                                 <div class="mr-1">
                                     <img class="float-right avatar avatar-xs"
                                          th:src="${imageDao.getOne(currentUser.getAvatarId()).url}" alt="...">
                                 </div>
-                                <div class="col">
+                                <div class="col px-0">
                                     <form th:action="@{'/messages/send/' + ${id}}" th:method="POST"
                                           th:object="${newMessage}">
                                         <div class="d-flex align-items-center">
-                                            <textarea style="background: white; border-radius: .25rem"
-                                                      class="publisher-input" th:field="*{body}" cols="59" rows="1"
-                                                      type="text" placeholder="Write something" required=""></textarea>
+                                            <input style="background: white; border-radius: .25rem"
+                                                      class="publisher-input" th:field="*{body}"
+                                                      type="text" placeholder="Write something..." required>
                                             <button type="submit" class="submit-button ml-1"><i
                                                     class="fa fa-paper-plane"></i></button>
                                         </div>
@@ -93,15 +95,5 @@
 </div>
 
 <footer th:replace="fragments/footer :: main-footer"></footer>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossOrigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossOrigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossOrigin="anonymous"></script>
-<script src="script.js"></script>
 </body>
 </html>

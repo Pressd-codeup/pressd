@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <style>
+
+
     [type=radio] + img {
         cursor: pointer;
         height: 75px;
@@ -21,16 +23,10 @@
 </style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<!--</header>-->
 <header class="login">
-    <!-- Full Page Intro -->
     <div class="view-login-2">
-        <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-            <!-- Content -->
             <div class="container-create-post">
-                <!--Grid row-->
                 <div class="row mt-5">
 
                     <div class="col-12">
@@ -38,7 +34,6 @@
                             <div class="card-body">
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <!--Form-->
                                         <div class="white-text text-center">
                                             <h1 class="h1-responsive font-weight-bold wow fadeInLeft"
                                                 data-wow-delay="0.3s">Create a
@@ -63,8 +58,6 @@
                                                 </div>
                                                 <form th:action="@{/posts/create}" th:method="post"
                                                       th:object="${post}">
-                                                    <!--Header-->
-                                                    <!--Body-->
                                                     <div class="md-form">
                                                         <div style="display: flex; justify-content: center">
                                                             <div>Select an image for your workout plan:</div>
@@ -93,6 +86,7 @@
                                                     </div>
                                                     <div class="md-form">
                                                         <i class="prefix white-text active"></i>
+
                                                         <label class="form-label mt-3" for="title">Title your
                                                             post:</label>
                                                         <input class="form-control mb-3" id="title" type="text"
@@ -124,21 +118,16 @@
                                                         Clients</label>
                                                     <hr class="hr-light mb-3 mt-4">
                                                     <div class="text-left mt-4">
-                                                        <button type="submit" class="submit-button login-button">Submit Post
+                                                        <button type="submit" class="submit-button">Submit Post
                                                         </button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                        <!--/.Form-->
                                     </div>
-                                    <!--Grid column-->
                                 </div>
-                                <!--Grid row-->
                             </div>
-                            <!-- Content -->
                         </div>
-                        <!-- Mask & flexbox options-->
                     </div>
                 </div>
             </div>
