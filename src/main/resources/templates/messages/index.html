@@ -3,19 +3,6 @@
 <head th:replace="fragments/header :: main-head('Inbox')"></head>
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<!--ORIGINAL CODE-->
-
-<!--<main class="container">-->
-<!--    <div class="post" th:each="thread : ${threads}">-->
-<!--        <a th:href="@{/messages/{id}(id=${thread.getId()})}">-->
-<!--            <h5> Your messages with: <span th:text="${thread.getUsername()}"></span></h5>-->
-<!--        </a>-->
-<!--        <hr>-->
-<!--    </div>-->
-
-<!--</main>-->
-
 <div class="messaging">
     <div class="inbox_msg">
         <div class="inbox_people col-10" style="background: inherit;">
@@ -23,29 +10,26 @@
                 <div class="recent_heading" style="background: inherit;">
                     <h4 class="text-white">Recent</h4>
                 </div>
-                <!--                <div class="srch_bar">-->
-                <!--                    <div class="stylish-input-group">-->
-                <!--                        <input type="text" class="search-bar" placeholder="Search">-->
-                <!--                        <span class="input-group-addon">-->
-                <!--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
-                <!--                </span></div>-->
-                <!--                </div>-->
             </div>
-
             <div class="inbox_chat" style="background: inherit;">
                 <div class="chat_list active_chat" style="background: inherit; padding-top: 14px; padding-bottom: 14px" th:each="thread : ${threads}">
                     <div class="chat_people d-flex align-items-center" style="background: inherit;">
                         <img class="avatar avatar-md"
                              th:src="@{${imageDao.getOne(thread.getAvatarId()).url}}" alt="sunil">
 
+                        <div class="chat_ib posts d-flex align-items-center" style="background: inherit;">
+                            <a th:href="@{/messages/{id}(id=${thread.getId()})}" class="text-white" style="text-decoration: none;">
+                                <h5> Your messages with:</h5>
+
+
                         <div class="chat_ib posts d-flex align-items-center pl-1" style="background: inherit;">
 
                             <a th:href="@{/messages/{id}(id=${thread.getId()})}" class="text-white" style="text-decoration: none;">
 
                                 <h5 class="mb-0"> Your messages with:</h5>
+
                                 <span th:text="${thread.getUsername()}"></span>
                             </a>
-
                         </div>
                     </div>
                 </div>
