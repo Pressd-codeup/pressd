@@ -72,14 +72,14 @@
                                 <div class="mb-4">
                                     <div class="d-flex justify-content-between p-2">
                                         <div>
-                                            <small class="text-white" th:text="${post.getUser().username}"></small>
+                                            <p class="text-white" th:text="${post.getUser().username}"></p>
                                         </div>
                                         <div>
-                                            <small class="text-white" th:text="${post.city}"></small>
+                                            <p class="text-white" th:text="${post.city}"></p>
                                         </div>
                                         <div>
-                                            <small class="text-white"
-                                                   th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></small>
+                                            <p class="text-white"
+                                                   th:text="${post.datePosted.dayOfMonth +' '+ post.datePosted.month +' '+ post.datePosted.year}"></p>
                                         </div>
                                     </div>
                                     <hr class="hr-light">
