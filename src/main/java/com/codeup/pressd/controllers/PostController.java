@@ -112,35 +112,6 @@ public class PostController {
 	}
 
 
-	/*@GetMapping("/posts/filter")
-	public String filterPosts(Model viewModel){
-		viewModel.addAttribute("filter", new Filter());
-		return "posts/filter";
-	}
-
-	@PostMapping("/posts/filter")
-	public String showFilteredPosts(@ModelAttribute Filter filter, Model viewModel) {
-		Post placeHolder = new Post();
-		List<Post> posts = postDao.getPostsByTypeName(filter.getType_name());
-		System.out.println("filter.getType_name() = " + filter.getType_name());
-		System.out.println();
-		System.out.println("filter.getParams() = " + filter.getParams());
-		ArrayList<Post> filteredPosts = new ArrayList<>();
-		filteredPosts.add(0,placeHolder);
-		for (Post post : posts) {
-			if (filter.getParams().contains(String.valueOf(post.getZipcode()))) {
-				filteredPosts.add(post);
-			}
-		}
-		if(filteredPosts.size() == 1){
-			return "/posts/no_results";
-		} else {
-			filteredPosts.remove(0);
-			viewModel.addAttribute("posts", filteredPosts);
-		}
-		return "/posts/index";
-	}*/
-
 	@GetMapping("/posts/create")
 	public String showCreatePost(Model viewModel) {
 		viewModel.addAttribute("post", new Post());

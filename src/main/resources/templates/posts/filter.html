@@ -3,48 +3,6 @@
 <head th:replace="fragments/header :: main-head('Filter Posts')"></head>
 <body class="filter">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<!--ORIGINAL CODE-->
-
-<!--<form name="zipcode_form">-->
-<!--    <button type="button" value="Set Filter" id="set_filter"></button>-->
-<!--    <div>-->
-<!--        <label for="zip">Zipcode</label>-->
-<!--        <input type="number" id="zip" name="zip">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <label for="range">Range <em>(miles)</em></label>-->
-<!--        <input type="number" id="range" name="range">-->
-<!--    </div>-->
-<!--</form>-->
-<!--&lt;!&ndash;/*@thymesVar id="filter" type="com.codeup.pressd.models.Filter"*/&ndash;&gt;-->
-<!--<form name="filter_form" th:action="@{/posts/filter}" th:method="post" th:object="${filter}">-->
-<!--    <input th:field="*{params}" type="hidden" id="params">-->
-<!--    &lt;!&ndash;	/*@thymesVar id="type_name" type="com.codeup.pressd.models.Filter"*/&ndash;&gt;-->
-<!--    <div class="dropdown" style="margin: 20px" th:field="${type_name}">-->
-<!--        <button type="button"-->
-<!--                class="btn bg-dark text-center btn-outline-danger dropdown-toggle"-->
-<!--                data-toggle="dropdown">-->
-<!--            Type-->
-<!--        </button>-->
-<!--        <div class="dropdown-menu bg-dark" style="color: red; border: 2px solid red">-->
-<!--            <label for="type1" class="form-lable">Partners</label>-->
-<!--            <input class="dropdown-item" type="radio" name="type_name" value="partners"-->
-<!--                   id="type1">-->
-<!--            <label for="type2" class="form-lable">Coaches</label>-->
-<!--            <input class="dropdown-item" type="radio" name="type_name" value="coaches"-->
-<!--                   id="type2">-->
-<!--            <label for="type3" class="form-lable">Clients</label>-->
-<!--            <input class="dropdown-item" type="radio" name="type_name" value="clients"-->
-<!--                   id="type3">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <input type="submit" value="submit">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</form>-->
-
-
 <!--START-->
 <header class="login">
 	<!-- Full Page Intro -->
