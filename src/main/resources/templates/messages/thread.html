@@ -11,12 +11,9 @@
                 <div class="card card-bordered bg-transparent">
                     <div class="card-header">
                         <h4 class="card-title text-white"><strong>Messages</strong></h4>
-                        <!--                        <a class="btn btn-xs btn-secondary" href="#"-->
-                        <!--                           data-abc="true"></a>-->
                     </div>
                     <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
                          style="overflow-y: scroll !important; height:400px !important;">
-                        <!--YOUR MESSAGES-->
                         <div class="incoming_msg" th:each="message : ${messages}">
                             <div class="received_msg" th:switch="${message.sentFrom.id}">
                                 <div class="outgoing_msg" th:case="${currentUser.id}">
@@ -32,13 +29,10 @@
                                                     th:text="${shortF.format(message.datePosted)}"
                                                     style="color: white"></small></span>
                                             </div>
-
                                         </div>
                                         <p th:text="${message.body}"></p>
                                     </div>
-                                    <!--                <div th:case="${currentUser.id}">-->
                                 </div>
-                                <!--OTHER USER'S MESSAGES-->
                                 <div class="received_withd_msg" th:case="*">
                                     <div class="">
                                         <div class="d-flex justify-content-between mb-0">
