@@ -2,15 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <style>
-    /* HIDE RADIO
-    [type=radio] {
-        position: absolute;
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-    */
-
     /* IMAGE STYLES */
     [type=radio] + img {
         cursor: pointer;
@@ -31,35 +22,22 @@
 </style>
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-<!--</header>-->
 <header class="login">
-    <!-- Full Page Intro -->
     <div class="view-login-2">
-        <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-            <!-- Content -->
             <div class="container-create-post">
-                <!--Grid row-->
                 <div class="row mt-5">
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <!--                        <div class="col-md-6 col-xl-5 mb-4">&lt;!&ndash;th:if="${post.id == 0}"&ndash;&gt;-->
-
                     <div class="col-12">
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <!--Form-->
                                         <div class="white-text text-center">
                                             <h1 class="h1-responsive font-weight-bold wow fadeInLeft"
                                                 data-wow-delay="0.3s">Create a
                                                 Post!</h1>
                                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                                         </div>
                                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                                             <div class="card-body">
@@ -78,8 +56,6 @@
                                                 </div>
                                                 <form th:action="@{/posts/create}" th:method="post"
                                                       th:object="${post}">
-                                                    <!--Header-->
-                                                    <!--Body-->
                                                     <div class="md-form">
                                                         <div style="display: flex; justify-content: center">
                                                             <div>Select an image for your workout plan:</div>
@@ -102,18 +78,13 @@
                                                             </div>
                                                         </div>
                                                         <i class="prefix white-text active"></i>
-                                                        <!--<input type="text" id="form3" class="white-text form-control">-->
-                                                        <!--ZIP CODE-->
-                                                        <!--<label class="form-label mt-3" for="zipcode">Zip Code</label>
-                                                        <input class="form-control mb-3" id="zipcode" type="number"
-                                                               min="00501" max="99950" th:field="*{zipcode}" required/>-->
                                                         <label class="form-label mt-3" for="city">City</label>
                                                         <input class="form-control mb-3" id="city" type="text"
                                                                th:field="*{city}" required/>
                                                     </div>
                                                     <div class="md-form">
                                                         <i class="prefix white-text active"></i>
-                                                        <!--                                    <input type="text" id="form3" class="white-text form-control">-->
+
                                                         <label class="form-label mt-3" for="title">Title your
                                                             post:</label>
                                                         <input class="form-control mb-3" id="title" type="text"
@@ -122,8 +93,6 @@
                                                     </div>
                                                     <div class="md-form">
                                                         <i class="prefix white-text active"></i>
-                                                        <!--                                        <input class="form-control" id="password" name="password"-->
-                                                        <!--                                               type="password"/>-->
                                                         <label class="form-label mt-3" for="body">Give your post a
                                                             body:</label>
                                                         <textarea class="form-control" rows="6" th:field="*{body}"
@@ -149,31 +118,14 @@
                                                     <div class="text-left mt-4">
                                                         <button type="submit" class="submit-button">Submit Post
                                                         </button>
-
-                                                        <!--<div class="inline-ul text-center d-flex justify-content-center">
-                                                            <a class="p-2 m-2 tw-ic">
-                                                                <i class="fa fa-twitter white-text"></i>
-                                                            </a>
-                                                            <a class="p-2 m-2 li-ic">
-                                                                <i class="fa fa-linkedin white-text"> </i>
-                                                            </a>
-                                                            <a class="p-2 m-2 ins-ic">
-                                                                <i class="fa fa-instagram white-text"> </i>
-                                                            </a>
-                                                        </div>-->
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                        <!--/.Form-->
                                     </div>
-                                    <!--Grid column-->
                                 </div>
-                                <!--Grid row-->
                             </div>
-                            <!-- Content -->
                         </div>
-                        <!-- Mask & flexbox options-->
                     </div>
                 </div>
             </div>
