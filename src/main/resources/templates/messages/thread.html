@@ -3,7 +3,6 @@
 <head th:replace="fragments/header :: main-head('Messages')"></head>
 <body class="thread">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
 <div class="page-content page-container" id="page-content">
     <div class="padding d-flex justify-content-center mt-5">
         <div class="row container">
@@ -19,7 +18,6 @@
                                 <div class="outgoing_msg" th:case="${currentUser.id}">
                                     <div class="sent_msg">
                                         <div class="d-flex justify-content-between mb-0">
-
                                             <div>
                                                 <span class="time_date"><small style="color: white">You</small></span>
                                             </div>
@@ -33,9 +31,6 @@
                                         <p th:text="${message.body}"></p>
                                     </div>
                                 </div>
-
-
-
                                 <div class="received_withd_msg" th:case="*">
                                     <div class="">
                                         <div class="d-flex justify-content-between mb-0">
@@ -48,9 +43,7 @@
                                                                                th:text="${shortF.format(message.datePosted)}"></small></span>
                                             </div>
                                         </div>
-
                                         <p th:text="${message.body}"></p>
-
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +83,6 @@
         </div>
     </div>
 </div>
-
 <footer th:replace="fragments/footer :: main-footer"></footer>
 </body>
 </html>

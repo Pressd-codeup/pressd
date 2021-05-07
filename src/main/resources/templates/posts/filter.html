@@ -3,61 +3,36 @@
 <head th:replace="fragments/header :: main-head('Filter Posts')"></head>
 <body class="filter">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-<!--START-->
 <header class="login">
-	<!-- Full Page Intro -->
 	<div class="view-filter">
-		<!-- Mask & flexbox options-->
 		<div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-			<!-- Content -->
 			<div class="container">
-				<!--Grid row-->
 				<div class="row mt-5">
-					<!--Grid column-->
 					<div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
 						<h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Filter Posts</h1>
 						<hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
 						<h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
 					</div>
-					<!--Grid column-->
-					<!--Grid column-->
-
 					<div class="col-md-6 col-xl-5 mb-4 search-post">
-						<!--Form-->
 						<div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
 							<div class="card-body">
-
-								<!--START-->
 								<form name="zipcode_form">
-
 									<div class="text-center">
-
 										<h3 class="white-text">
 											<i class="white-text"></i> Search Posts:</h3>
 										<hr class="hr-light">
 									</div>
-									<!--BODY-->
 									<div class="md-form">
-
 										<i class="prefix white-text active"></i>
-
 										<input id="zipcode" name="zipcode"  type="text">
 										<label for="zipcode" class="white-text">Zipcode</label>
 									</div>
-
-									<!--Body-->
-
 									<div class="md-form">
 										<i class="prefix white-text active"></i>
-
 										<input class="form-lable mb-3" id="range" name="range"  type="text">
 										<label class="form-label mt-3" for="range">Range <em>(miles)</em></label>
 									</div>
-
 								</form>
-
-
-								<!--POST-->
 								<form id="filter_form" name="filter_form" th:action="@{/posts/filter}" th:method="post"
 									  th:object="${filter}">
 									<input th:field="*{params}" type="hidden" id="params">
@@ -91,7 +66,6 @@
 			</div>
 		</div>
 	</div>
-
 </header>
 <script type="text/javascript" src="/keys.js"></script>
 <script type="text/javascript" th:src="@{/js/cssandjs/filter.js}"></script>
