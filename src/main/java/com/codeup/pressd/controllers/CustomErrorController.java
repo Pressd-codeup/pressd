@@ -16,14 +16,15 @@ public class CustomErrorController implements ErrorController {
 	@RequestMapping("/error")
 	public String handleError(HttpServletRequest request, Model viewModel) {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-//		Object exception = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+
 		CustomError error = new CustomError();
 
 
 		if (status != null) {
-			Integer statusCode = Integer.valueOf(status.toString());
-			error.setErrorCode(statusCode.toString());
-//			error.setErrorExeption(exception.toString());
+
+			int statusCode = Integer.parseInt(status.toString());
+			error.setErrorCode(Integer.toString(statusCode));
+
 
 			if(statusCode == HttpStatus.NOT_FOUND.value()) {
 				error.setErrorMessage("Unfortunately the page you're looking for either doesn't exist or is currently unavailable.");

@@ -2,14 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Create a Plan')"></head>
 <style>
-    /* HIDE RADIO
-    [type=radio] {
-        position: absolute;
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-    */
 
     /* IMAGE STYLES */
     [type=radio] + img {
@@ -40,9 +32,6 @@
             <div class="container-create-post">
                 <!--Grid row-->
                 <div class="row mt-5">
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <!--Grid column-->
                     <div class="">
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
@@ -55,7 +44,6 @@
                                                 Workout!</h1>
                                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                                            <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
                                         </div>
                                         <!--Form-->
                                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
@@ -65,17 +53,15 @@
                                                 <div class="text-center">
                                                     <h3 class="white-text">
                                                         <i class="white-text"></i> New Plan:</h3>
-                                                    <p class="text-white">Want to upload more pictures to use? </p>
+                                                    <p class="text-white">Want to upload more pictures to use? Do
+                                                        it </p>
 
-                                                        <div>
-                                                            <p class="text-white mb-1">Do it</p>
-                                                        </div>
-
-                                                            <form method="get" th:action="@{/images/upload}">
-                                                                <input type="hidden" name="directory"
-                                                                       value="createWorkoutImage">
-                                                                <button class="submit-button" type="submit">here!</button>
-                                                            </form>
+                                                    <form method="get" th:action="@{/images/upload}">
+                                                        <input type="hidden" name="directory"
+                                                               value="createWorkoutImage">
+                                                        <input class="submit-button" type="submit"
+                                                               value="Here!"/>
+                                                    </form>
 
                                                     <hr class="hr-light">
                                                 </div>
@@ -84,7 +70,6 @@
                                                       th:object="${workout}">
                                                     <div class="md-form">
                                                         <i class="prefix white-text active"></i>
-                                                        <!--<input type="text" id="form3" class="white-text form-control">-->
                                                         <div style="display: flex; justify-content: center">
                                                             <div>Select an image for your workout plan:</div>
                                                         </div>
@@ -110,7 +95,6 @@
 
                                                         <div>
                                                             <i class="prefix white-text active"></i>
-                                                            <!--                                    <input type="text" id="form3" class="white-text form-control">-->
                                                             <br>
                                                             <div class="form-check"
                                                                  style="color: white; font-weight: bolder;">
@@ -120,14 +104,16 @@
                                                                     <label class="cat">Select Category</label>
                                                                     <br>
 
-                                                                    <input class="form-check-input checkstyle" type="checkbox"
+                                                                    <input class="form-check-input checkstyle"
+                                                                           type="checkbox"
                                                                            name="categoryNames"
                                                                            th:value="${first.getName()}" checked>
                                                                     <label th:text="${first.getName()}"></label>
                                                                     <br>
 
                                                                     <th:block th:each="category : ${allCategories}">
-                                                                        <input class="form-check-input checkstyle" type="checkbox"
+                                                                        <input class="form-check-input checkstyle"
+                                                                               type="checkbox"
                                                                                name="categoryNames"
                                                                                th:value="${category.name}">
                                                                         <label th:text="${category.name}"></label>
