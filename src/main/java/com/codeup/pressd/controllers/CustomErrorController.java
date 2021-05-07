@@ -21,8 +21,8 @@ public class CustomErrorController implements ErrorController {
 
 
 		if (status != null) {
-			Integer statusCode = Integer.valueOf(status.toString());
-			error.setErrorCode(statusCode.toString());
+			int statusCode = Integer.parseInt(status.toString());
+			error.setErrorCode(Integer.toString(statusCode));
 //			error.setErrorExeption(exception.toString());
 
 			if(statusCode == HttpStatus.NOT_FOUND.value()) {

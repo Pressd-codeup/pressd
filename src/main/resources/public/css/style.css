@@ -168,6 +168,23 @@ strong {
 }
 
 
+.comment-btn {
+    background: transparent;
+    border-radius: var(--border-radius-small);
+    color: var(--white-color);
+    transition: all 0.3s ease;
+    text-decoration: underline;
+}
+
+.comment-btn:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.comment-btn:focus {
+    box-shadow: none;
+}
+
 .about-btn {
     background: transparent;
     border-radius: var(--border-radius-small);

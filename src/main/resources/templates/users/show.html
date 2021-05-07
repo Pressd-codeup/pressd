@@ -81,22 +81,22 @@
 
                             <div class="d-flex justify-content-between">
                                 <form th:unless="${noPosts}" th:action="@{/{id}/posts(id=${user.getId()})}" method="get">
-                                    <input type="submit" class="submit-button" value="View posts">
+                                    <input type="submit" class="submit-button" value="View Posts">
                                 </form>
                                 <form class="" th:unless="${noWorkouts}" th:action="@{/{id}/workouts(id=${user.getId()})}"
                                       method="get">
-                                    <input type="submit" class="submit-button" value="View workouts">
+                                    <input type="submit" class="submit-button" value="View Workouts">
                                 </form>
                                 <!--                        <form th:action="@{'/users/'+user.id+'/images'}">-->
                                 <!--                            <input type="submit" value="view user's posts">-->
                                 <!--                        </form>-->
                                 <form class="" th:unless="${noComments}" th:action="@{/{id}/comments(id=${user.id})}" method="get">
-                                    <input type="submit" class="submit-button" value="View comments">
+                                    <input type="submit" class="submit-button" value="View Comments">
                                 </form>
 
                                 <form class="" th:if="${isLoggedIn}" th:unless="${isUser}" th:action="@{'/messages/send/' +${id}}"
                                       method="GET">
-                                    <input type="submit" class="submit-button" value="Message this user!">
+                                    <input type="submit" class="submit-button" value="Message User">
                                 </form>
                             </div>
 

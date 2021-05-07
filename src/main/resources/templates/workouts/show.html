@@ -355,10 +355,6 @@
 
                                 </th:block>
 
-
-                                <!--<form th:action="${'/workouts/'+workout.id+'/comments'}" method="GET">
-                                    <input class="submit-button" type="submit" value="View Comments">
-                                </form>-->
                                 <th:block th:unless="${isUser}">
                                     <form th:action="${'/users/'+ workout.user.id}" method="GET">
                                         <input class="submit-button" type="submit" value="View User">
@@ -405,7 +401,7 @@
                                     <span><img class="avatar mr-2"
                                                th:src="@{${imageDao.getOne(comment.user.avatarId).url}}"
                                                alt="avatar"></span>
-                                <h5 class="text-white" th:text="${comment.user.username}"></h5>
+                                <a class="comment-btn" th:href="@{~/users/{id}(id = ${comment.user.id})}"><h5 th:text="${comment.user.username}"></h5></a>
                             </div>
                             <p class="text-white" th:text="${comment.body}"></p>
                             <p class="text-white"><small
@@ -428,7 +424,7 @@
                                                 <div>
                                                     <label for="commentBody">Edit Comment</label>
                                                     <br>
-                                                    <textarea rows="6" name="body" id="commentBody" type="text"
+                                                    <textarea class="form-control" rows="6" name="body" id="commentBody" type="text"
                                                               th:text="${comment.body}"></textarea>
                                                 </div>
 
