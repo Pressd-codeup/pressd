@@ -1,104 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-
 <head th:replace="fragments/header :: main-head('Home Page')">
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-
 <!-- HERO -->
 <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
-
-	<div class="bg-overlay"><div class="mask rgba-gradient"></div></div>
-
-	<div class="container">
-		<div class="row">
-
-			<div class="col-lg-8 col-md-10 mx-auto col-12">
-				<div class="hero-text mt-5 text-center">
-
-					<h6 class="slogan" data-aos="fade-up" data-aos-delay="300">A new way to build a healthy
-						lifestyle!</h6>
-
-					<h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Find Fitness Anywhere With
-						Pressd</h1>
-
-					<a href="/sign-up" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get
-						started</a>
-
-					<a href="/about" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="700">learn
-						more</a>
-
-				</div>
-			</div>
-
-		</div>
-
-	</div>
+    <div class="bg-overlay">
+        <div class="mask rgba-gradient"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto col-12">
+                <div class="hero-text mt-5 text-center">
+                    <h6 class="slogan" data-aos="fade-up" data-aos-delay="300">A new way to build a healthy
+                        lifestyle!</h6>
+                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Find Fitness Anywhere With
+                        Pressd</h1>
+                    <a href="/sign-up" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get
+                        started</a>
+                    <a href="/about" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="700">learn
+                        more</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
-
 <section class="feature" id="feature">
-	<div class="container">
-		<div class="row">
-
-			<div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-				<h2 class="mb-3 text-white" data-aos="fade-up">New to the Pressd?</h2>
-
-				<p data-aos="fade-up" data-aos-delay="200" class="text-white">Join the growing community of fitness enthusiasts!</p>
-
-
-				<a href="/sign-up" class="btn custom-btn mt-3">Become a member today</a>
-			</div>
-
-			<div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
-				<div class="about-working-hours">
-					<div class="d-flex flex-column">
-
-						<h2 class="mb-2 text-white" data-aos="fade-up" data-aos-delay="500">Find</h2>
-
-						<a th:href="@{~/coaches}"><strong class="btn custom-btn" data-aos="fade-up" data-aos-delay="600">Trainers</strong></a>
-
-						<a th:href="@{~/clients}"><strong class="btn custom-btn mt-1" data-aos="fade-up" data-aos-delay="600">New Clients</strong></a>
-
-						<a th:href="@{~/partners}"><strong class="btn custom-btn mt-1" data-aos="fade-up" data-aos-delay="600">Workout Partners</strong></a>
-
-
-
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
+                <h2 class="mb-3 text-white" data-aos="fade-up">New to the Pressd?</h2>
+                <p data-aos="fade-up" data-aos-delay="200" class="text-white">Join the growing community of fitness
+                    enthusiasts!</p>
+                <a href="/sign-up" class="btn custom-btn mt-3">Become a member today</a>
+            </div>
+            <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
+                <div class="about-working-hours">
+                    <div class="d-flex flex-column">
+                        <h2 class="mb-2 text-white" data-aos="fade-up" data-aos-delay="500">Find</h2>
+                        <a th:href="@{~/coaches}"><strong class="btn custom-btn" data-aos="fade-up"
+                                                          data-aos-delay="600">Trainers</strong></a>
+                        <a th:href="@{~/clients}"><strong class="btn custom-btn mt-1" data-aos="fade-up"
+                                                          data-aos-delay="600">New Clients</strong></a>
+                        <a th:href="@{~/partners}"><strong class="btn custom-btn mt-1" data-aos="fade-up"
+                                                           data-aos-delay="600">Workout Partners</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
-
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossOrigin="anonymous"></script>
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossOrigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossOrigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossOrigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossOrigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossOrigin="anonymous"></script>
 <script src="../../public/js/script.js"></script>
-
 <footer th:replace="fragments/footer :: main-footer"></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossOrigin="anonymous"></script>
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossOrigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossOrigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossOrigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossOrigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossOrigin="anonymous"></script>
 <script src="../../public/js/script.js"></script>
-
 </body>
 </html>

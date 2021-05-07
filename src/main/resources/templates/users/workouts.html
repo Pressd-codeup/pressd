@@ -12,27 +12,20 @@
             <div class="container col-lg-12 d-flex flex-column justify-content-center">
             <div class="d-flex flex-column align-items-center">
                     <div class="col-lg-8 mb-4 login-box pb-0 mt-0" th:each="workout : ${workouts}">
-
                         <div class="card-sign wow fadeInRight pb-2" data-wow-delay="0.3s">
                             <div class="white-text text-center">
                                 <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                                     th:text="${workout.title}"></h1>
-
                                 <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                 <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                             </div>
-
                             <div class="card-body">
                                 <div class="d-flex justify-content-center">
                                     <img class="img-thumbnail img-fluid text-center"
                                          th:src="@{${workout.image.url}}"
                                          alt="alt" style="width: 20rem; height: 20rem" />
                                 </div>
-
-
                                 <hr class="hr-light">
-
-
                                 <div class="mb-4">
                                     <div class="d-flex justify-content-between p-2">
                                         <small class="text-white" th:text="${workout.getUser().username}"></small>
@@ -40,25 +33,20 @@
                                                th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></small>
                                     </div>
                                     <hr class="hr-light">
-
                                     <div class="d-flex justify-content-center">
                                         <div th:each="category: ${workout.categories}" class="m-1">
                                             <p class="card-text text-white" th:text="${category.name}"></p>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <form th:action="${'/workouts/'+ workout.id}" method="GET">
                                     <input class="submit-button" type="submit" value="View Plan">
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </header>

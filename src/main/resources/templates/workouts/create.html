@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Create a Plan')"></head>
 <style>
-
     /* IMAGE STYLES */
     [type=radio] + img {
         cursor: pointer;
@@ -10,12 +9,10 @@
         width: 75px;
         margin: 5px;
     }
-
     /* CHECKED STYLES */
     [type=radio]:checked + img {
         outline: 5px solid #5b21a9;
     }
-
     #currentImage {
         height: 100px;
         width: 100px;
@@ -24,20 +21,15 @@
 <body>
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 <header class="login">
-    <!-- Full Page Intro -->
     <div class="view-cat">
-        <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-            <!-- Content -->
             <div class="container-create-post">
-                <!--Grid row-->
                 <div class="row mt-5">
-                    <div class="">
+                    <div>
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
                                         <div class="white-text text-center">
                                             <h1 class="h1-responsive font-weight-bold wow fadeInLeft"
                                                 data-wow-delay="0.3s">Create a
@@ -45,27 +37,21 @@
                                             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                                         </div>
-                                        <!--Form-->
                                         <div class="card-sign wow fadeInRight" data-wow-delay="0.3s">
                                             <div class="card-body">
-
-                                                <!--Header-->
                                                 <div class="text-center">
                                                     <h3 class="white-text">
                                                         <i class="white-text"></i> New Plan:</h3>
                                                     <p class="text-white">Want to upload more pictures to use? Do
                                                         it </p>
-
                                                     <form method="get" th:action="@{/images/upload}">
                                                         <input type="hidden" name="directory"
                                                                value="createWorkoutImage">
                                                         <input class="submit-button" type="submit"
                                                                value="Here!"/>
                                                     </form>
-
                                                     <hr class="hr-light">
                                                 </div>
-                                                <!--Body-->
                                                 <form th:action="@{/workouts/create}" th:method="post"
                                                       th:object="${workout}">
                                                     <div class="md-form">
@@ -74,7 +60,6 @@
                                                             <div>Select an image for your workout plan:</div>
                                                         </div>
                                                         <div style="display: flex; justify-content: center; flex-wrap: wrap">
-
                                                             <label>
                                                                 <input style="position: absolute; opacity: 0; width: 0; height: 0"
                                                                        type="radio" name="imageId"
@@ -89,28 +74,23 @@
                                                                            th:value="${image.id}">
                                                                     <img th:src="@{${image.url}}">
                                                                 </label>
-
                                                             </div>
                                                         </div>
-
                                                         <div>
                                                             <i class="prefix white-text active"></i>
                                                             <br>
                                                             <div class="form-check"
                                                                  style="color: white; font-weight: bolder;">
                                                                 <div>
-
                                                                     <hr>
                                                                     <label class="cat">Select Category</label>
                                                                     <br>
-
                                                                     <input class="form-check-input checkstyle"
                                                                            type="checkbox"
                                                                            name="categoryNames"
                                                                            th:value="${first.getName()}" checked>
                                                                     <label th:text="${first.getName()}"></label>
                                                                     <br>
-
                                                                     <th:block th:each="category : ${allCategories}">
                                                                         <input class="form-check-input checkstyle"
                                                                                type="checkbox"
@@ -119,7 +99,6 @@
                                                                         <label th:text="${category.name}"></label>
                                                                         <br>
                                                                     </th:block>
-
                                                                     <br>
                                                                     <hr>
                                                                     <br>

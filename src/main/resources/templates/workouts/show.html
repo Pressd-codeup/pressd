@@ -8,14 +8,11 @@
         width: 75px;
         margin: 5px;
     }
-
-    /* CHECKED STYLES */
     [type=radio]:checked + img {
         outline: 3px solid rgb(91, 33, 169);
     }
 </style>
 <script>
-
     $.fn.stars = function () {
         return $(this).each(function () {
 
@@ -33,24 +30,16 @@
         $('span.stars').stars();
     });
 </script>
-
-
 <body class="">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
-
 <header class="view-post-workout">
     <div class="mask rgba-gradient">
-
         <div class=" d-flex justify-content-center align-items-center">
-
             <div class="container d-flex justify-content-center mt-4">
-
                 <div class="col-lg-12 mb-5 ">
                     <div class="white-text text-center">
                         <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                             th:text="${workout.title}"></h1>
-
                         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                         <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                     </div>
@@ -61,30 +50,22 @@
                                      th:src="@{${workout.image.url}}"
                                      alt="alt"/>
                             </div>
-
                             <div class="d-flex justify-content-center">
                                 <div th:each="category: ${workout.categories}" class="m-1">
                                     <p class="card-text text-white mb-0 mt-3" th:text="${category.name}"></p>
                                 </div>
                             </div>
-
                             <hr class="hr-light">
-
-
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between p-2">
                                     <p class="text-white mb-0" th:text="${workout.getUser().username}"></p>
                                     <p class="text-white mb-0"
-                                           th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></p>
+                                       th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></p>
                                 </div>
                                 <hr class="hr-light">
-
                                 <p class="card-text text-white" th:text="${workout.body}"></p>
-
                             </div>
-
                             <div class="d-flex justify-content-between">
-
                                 <div class="d-flex flex-column">
                                     <p class="workout-text mb-0">Total ratings: <span th:text="${totalRatings}"></span>
                                     </p>
@@ -95,7 +76,6 @@
                                     <div class="d-flex flex-column">
                                         <div th:if="${userRating} == 0">
                                             <p class="text-white mb-0">You haven't rated this workout yet!</p>
-
                                             <form th:action="@{/ratings/{id}/create(id=${workout.getId()})}"
                                                   method="post">
                                                 <div>Add your rating:</div>
@@ -120,7 +100,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -131,7 +110,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -142,7 +120,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -157,12 +134,9 @@
                                                 <div class="d-flex justify-content-end">
                                                     <input class="submit-button" type="submit" value="Submit!">
                                                 </div>
-
                                             </form>
                                         </div>
                                     </div>
-
-
                                     <div th:unless="${userRating} == 0">
                                         <div class="d-flex flex-column">
                                             <p class="text-white mb-0 mr-1">Your current rating:</p>
@@ -179,9 +153,7 @@
                                             </div>
                                             <form th:action="@{/ratings/{id}/update(id=${workout.getId()})}"
                                                   method="post">
-
                                                 <div class="d-flex flex-column">
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -192,7 +164,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -203,7 +174,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -214,7 +184,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -225,7 +194,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-
                                                     <div class="d-flex justify-content-end">
                                                         <div>
                                                             <label>
@@ -235,10 +203,7 @@
                                                                      style="width: initial; height: initial">
                                                             </label>
                                                         </div>
-
                                                     </div>
-
-
                                                 </div>
                                                 <div class="d-flex justify-content-end">
                                                     <input class="submit-button" type="submit" value="Update!">
@@ -246,12 +211,10 @@
                                             </form>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between mt-4">
                                 <th:block th:if="${isUser}">
-
                                     <form th:action="${'/users/'+ workout.user.id}" method="GET">
                                         <input class="submit-button" type="submit" value="View Profile">
                                     </form>
@@ -261,9 +224,7 @@
                                     <form th:action="${'/workouts/'+workout.id+'/update'}" method="GET">
                                         <input class="submit-button" type="submit" value="Edit Workout">
                                     </form>
-
                                 </th:block>
-
                                 <th:block th:unless="${isUser}">
                                     <form th:action="${'/users/'+ workout.user.id}" method="GET">
                                         <input class="submit-button" type="submit" value="View User">
@@ -271,20 +232,15 @@
                                 </th:block>
                             </div>
                         </div>
-
                     </div>
-
                     <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-
                     <div class="white-text text-center">
                         <h2 class="h2-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Comments</h2>
                     </div>
-
                     <th:block th:if="${isLoggedIn}">
                         <form th:action="@{'/workouts/'+${workout.id}+'/comments/create'}" th:method="POST"
                               th:object="${comment}">
                             <div class="col-6 mb-3 pl-0">
-
                                 <label for="body" class="form-label">Add a comment:</label>
                                 <textarea class="form-control mb-1" rows="5" th:field="*{body}" id="body"
                                           placeholder="Type something..." required></textarea>
@@ -292,14 +248,11 @@
                             </div>
                         </form>
                     </th:block>
-
                     <th:block th:unless="${isLoggedIn}">
                         <div class="d-flex my-3">
                             <h5 class="text-white">Sign in to comment on this workout!</h5>
                         </div>
                     </th:block>
-
-
                     <div class="card-sign wow fadeInRight pb-2 mb-3" data-wow-delay="0.3s"
                          th:each="comment : ${comments}">
                         <div class="card-body">
@@ -307,19 +260,17 @@
                                     <span><img class="avatar mr-2"
                                                th:src="@{${imageDao.getOne(comment.user.avatarId).url}}"
                                                alt="avatar"></span>
-                                <a class="comment-btn" th:href="@{~/users/{id}(id = ${comment.user.id})}"><h5 th:text="${comment.user.username}"></h5></a>
+                                <a class="comment-btn" th:href="@{~/users/{id}(id = ${comment.user.id})}"><h5
+                                        th:text="${comment.user.username}"></h5></a>
                                 <div class="d-flex justify-content-end flex-grow-1">
                                     <p class="text-white"><small
                                             th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
                                     </p>
                                 </div>
-
                             </div>
                             <p class="text-white" th:text="${comment.body}"></p>
-
                             <th:block th:if="${user.id == comment.user.id}">
                                 <div class="d-flex flex-column">
-
                                     <div class="mb-5">
                                         <form th:action="${'/comments/'+ comment.id +'/delete/' + workout.id}"
                                               method="POST">
@@ -330,35 +281,27 @@
                                         <form th:action="${'/comments/'+workout.id+'/update/' +comment.id}"
                                               method="POST">
                                             <div class="d-flex flex-column">
-
                                                 <div class="d-flex flex-column">
                                                     <p class="text-white mb-0">Edit Comment:</p>
-                                                    <textarea class="form-control mt-0 mb-1" rows="6" name="body" id="commentBody" type="text"
+                                                    <textarea class="form-control mt-0 mb-1" rows="6" name="body"
+                                                              id="commentBody" type="text"
                                                               th:text="${comment.body}"></textarea>
                                                 </div>
-
                                                 <div>
                                                     <button class="submit-button" type="submit">Update</button>
                                                 </div>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>
                             </th:block>
-
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
-
         </div>
     </div>
 </header>
-
 <footer>
     <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
 </footer>

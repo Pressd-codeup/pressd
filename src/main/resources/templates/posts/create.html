@@ -2,20 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: main-head('Create Posts')"></head>
 <style>
-
-
     [type=radio] + img {
         cursor: pointer;
         height: 75px;
         width: 75px;
         margin: 5px;
     }
-
     /* CHECKED STYLES */
     [type=radio]:checked + img {
         outline: 5px solid rgb(91, 33, 169);
     }
-
     #currentImage {
         height: 100px;
         width: 100px;
@@ -28,7 +24,6 @@
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container-create-post">
                 <div class="row mt-5">
-
                     <div class="col-12">
                         <div class="card-edit h-100 edit-back">
                             <div class="card-body">
@@ -86,7 +81,6 @@
                                                     </div>
                                                     <div class="md-form">
                                                         <i class="prefix white-text active"></i>
-
                                                         <label class="form-label mt-3" for="title">Title your
                                                             post:</label>
                                                         <input class="form-control mb-3" id="title" type="text"

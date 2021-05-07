@@ -3,43 +3,28 @@
 <head th:replace="fragments/header :: main-head('Workouts')"></head>
 <body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
-
 <div class="jumbotron d-none d-lg-block text-white view-jumbo mb-0 pt-3 pb-3">
-
     <h1 th:switch="${category}" class="display-4">
         <span th:case="1">Workout Plans</span>
         <span th:case="2">Workout Plans By Category</span>
         <span th:case="*">No Results Found</span>
     </h1>
-
 </div>
-
-
 <header class="login col-lg-12 p-0">
-    <!-- Full Page Intro -->
     <div class="view-filter col-lg-12 p-0">
-        <!-- Mask & flexbox options-->
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center col-lg-12">
-            <!-- Content -->
             <div class="container col-lg-12 d-flex flex-column justify-content-center">
-
-
                 <div class="d-flex justify-content-center py-4">
                     <div class="d-flex">
                         <div>
                             <form th:action="@{workouts}" method="POST" class="mb-1">
-
-
                                 <div class="form-check-inline text-white mr-0">
                                     <p class="text-white mr-2 mb-2 mt-1">Filter Workouts by Categories:</p>
-
                                     <div class="form-check-inline text-white">
-
                                         <input class="form-check-input checkstyle" type="checkbox" name="categoryNames" th:value="${first.getName()}" checked>
                                         <label th:text="${first.getName()}">
                                         </label>
                                     </div>
-
                                     <th:block th:each="category : ${allCategories}">
                                         <div class="form-check-inline text-white">
                                             <input class="form-check-input checkstyle" type="checkbox" name="categoryNames"
@@ -47,13 +32,8 @@
                                             <label th:text="${category.name}"></label>
                                         </div>
                                     </th:block>
-
                                     <input class="submit-button mt-1" type="submit" value="Go!">
                                 </div>
-
-
-
-
                             </form>
                         </div>
                         <div class="d-flex align-items-center">
@@ -61,61 +41,42 @@
                                 <input class="ml-1 submit-button" type="submit" value="Clear Filters">
                             </form>
                         </div>
-
                     </div>
                 </div>
-
                 <div class="d-flex flex-column align-items-center">
-
                     <div class="col-lg-8 mb-4 login-box pb-0" th:each="workout : ${workouts}">
-
                         <th:block th:if="${category == 0}">
-
                             <div class="card-sign wow fadeInRight pb-2 " data-wow-delay="0.3s">
-
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center">
                                         <p class="text-white text-center">No workouts were found matching your category
                                             search.</p>
                                     </div>
-
-
                                     <hr class="hr-light">
-
-
                                     <div class="mb-4"></div>
                                 </div>
                             </div>
-
                         </th:block>
-
                         <th:block th:unless="${category == 0}">
                             <div class="card-sign wow fadeInRight pb-2 pt-3" data-wow-delay="0.3s">
                                 <div class="white-text text-center">
                                     <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"
                                         th:text="${workout.title}"></h1>
-
                                     <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                     <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-
                                 </div>
-
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center">
                                         <img class="img-thumbnail img-fluid text-center"
                                              th:src="@{${workout.image.url}}"
                                              alt="alt" style="width: 20rem; height: 20rem" />
                                     </div>
-
                                     <div class="d-flex justify-content-center">
                                         <div th:each="category: ${workout.categories}" class="m-1">
                                             <p class="card-text text-white mb-0 mt-3" th:text="${category.name}"></p>
                                         </div>
                                     </div>
-
                                     <hr class="hr-light">
-
-
                                     <div class="mb-4">
                                         <div class="d-flex justify-content-between p-2">
                                             <p class="text-white mb-0" th:text="${workout.getUser().username}"></p>
@@ -123,10 +84,6 @@
                                                    th:text="${workout.datePosted.dayOfMonth +' '+ workout.datePosted.month +' '+ workout.datePosted.year}"></p>
                                         </div>
                                         <hr class="hr-light">
-
-
-
-
                                     </div>
                                     <form th:action="${'/workouts/'+ workout.id}" method="GET">
                                         <input class="submit-button" type="submit" value="View Plan">
@@ -134,17 +91,12 @@
                                 </div>
                             </div>
                         </th:block>
-
-
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </header>
-
 <footer th:replace="fragments/footer :: main-footer"></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

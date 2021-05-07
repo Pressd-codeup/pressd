@@ -9,7 +9,6 @@
         width: 0;
         height: 0;
     }
-
     /* IMAGE STYLES */
     [type=radio] + img {
         cursor: pointer;
@@ -17,12 +16,10 @@
         width: 75px;
         margin: 5px;
     }
-
     /* CHECKED STYLES */
     [type=radio]:checked + img {
         outline: 5px solid #5b21a9;
     }
-
     #currentImage {
         height: 100px;
         width: 100px;
@@ -52,15 +49,11 @@
                                     <hr>
                                     <div class="text-center">
                                         <p class="text-white">Want to upload more pictures to use? Do it </p>
-
                                         <form method="get" th:action="@{/images/upload}">
                                             <input type="hidden" name="directory" value="updateProfileImage">
-
                                             <input class="submit-btn" type="submit" value="here!"/>
-
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -79,14 +72,12 @@
                                             </div>
                                             <hr>
                                             <div class="row edit-rows">
-
                                                 <label>
                                                     <input type="radio" name="avatarId"
                                                            th:value="${currentImage.id}"
                                                            checked>
                                                     <img th:src="@{${currentImage.url}}">
                                                 </label>
-
                                                 <div th:each="image : ${userImages}">
                                                     <label>
                                                         <input type="radio" name="avatarId"
@@ -101,10 +92,8 @@
                                                     <h4 class="text-white">Only fields you fill out will be updated.</h4>
                                                     <hr>
                                                 </div>
-
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="row gutters">
-
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                             <div class="form-group">
                                                                 <label class="text-white"
@@ -145,7 +134,6 @@
                                                     <div class="text-center">
                                                         <input class="submit-button" type="submit"
                                                                value="Update Profile!">
-                                                        <!--                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>-->
                                                     </div>
                                                 </div>
                                             </div>

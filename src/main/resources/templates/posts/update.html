@@ -9,7 +9,6 @@
         width: 0;
         height: 0;
     }
-
     /* IMAGE STYLES */
     [type=radio] + img {
         cursor: pointer;
@@ -17,12 +16,10 @@
         width: 75px;
         margin: 5px;
     }
-
     /* CHECKED STYLES */
     [type=radio]:checked + img {
         outline: 5px solid #5b21a9;
     }
-
     #currentImage {
         height: 100px;
         width: 100px;
@@ -42,23 +39,17 @@
                                     <div class="user-profile mb-0 pb-0">
                                         <h2 class="edit-profile-title text-white">Edit Your Post</h2>
                                         <hr>
-
                                         <img th:src="@{${currentImage.url}}" alt="Your current post image"
                                              style="max-width: 50%; max-height: 50%">
-
                                     </div>
                                     <hr>
                                     <div class="text-center">
                                         <p class="text-white">Want to upload more pictures to use? Do it </p>
-
                                         <form method="get" th:action="@{/images/upload/post}">
                                             <input type="hidden" name="id" th:value="${post.id}">
-
                                             <input class="submit-button" type="submit" value="here!"/>
-
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -77,14 +68,12 @@
                                             </div>
                                             <hr>
                                             <div class="row edit-rows">
-
                                                 <label>
                                                     <input type="radio" name="imageId"
                                                            th:value="${currentImage.id}"
                                                            checked>
                                                     <img th:src="@{${currentImage.url}}">
                                                 </label>
-
                                                 <div th:each="image : ${userImages}">
                                                     <label>
                                                         <input type="radio" name="imageId"
@@ -100,11 +89,9 @@
                                                         updated.</h4>
                                                     <hr>
                                                 </div>
-
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="row gutters">
                                                         <div class="d-flex col-12 justify-content-between">
-
                                                             <div class="d-flex flex-column">
                                                                 <div class="form-group mb-1">
                                                                     <label class="text-white" for="title">Title</label>
@@ -113,7 +100,6 @@
                                                                               rows="1" cols="45" type="text"
                                                                               th:placeholder="${post.title}"></textarea>
                                                                 </div>
-
                                                                 <div class="form-group mb-0 mt-1">
                                                                     <label class="text-white"
                                                                            for="city">City</label>
