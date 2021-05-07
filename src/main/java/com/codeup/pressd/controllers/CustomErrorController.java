@@ -21,8 +21,10 @@ public class CustomErrorController implements ErrorController {
 
 
 		if (status != null) {
-			Integer statusCode = Integer.valueOf(status.toString());
-			error.setErrorCode(statusCode.toString());
+
+			int statusCode = Integer.parseInt(status.toString());
+			error.setErrorCode(Integer.toString(statusCode));
+
 
 			if(statusCode == HttpStatus.NOT_FOUND.value()) {
 				error.setErrorMessage("Unfortunately the page you're looking for either doesn't exist or is currently unavailable.");

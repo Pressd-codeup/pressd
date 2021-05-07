@@ -45,12 +45,12 @@ public class UserController {
     public String saveUser(@ModelAttribute User user, Model model) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        user.setAbout("Tell people about you!");
         user.setMessagesFrom(new ArrayList<>());
         user.setMessagesTo(new ArrayList<>());
         user.setComments(new ArrayList<>());
         user.setPosts(new ArrayList<>());
         user.setDateJoined(LocalDateTime.now());
+        user.setAbout("Pressd member since " + user.getDateJoined().getDayOfMonth() + " " + user.getDateJoined().getMonth() + " " + user.getDateJoined().getYear() + ".");
         user.setAvatarId(1L);
         userDao.save(user);
         return "redirect:login";

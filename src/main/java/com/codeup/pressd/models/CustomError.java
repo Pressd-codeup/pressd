@@ -3,7 +3,7 @@ package com.codeup.pressd.models;
 public class CustomError {
 	private String ErrorCode;
 	private String ErrorMessage;
-	private String ErrorExeption;
+	private String ErrorException;
 
 	public String getErrorCode() {
 		return ErrorCode;
@@ -14,7 +14,7 @@ public class CustomError {
 	}
 
 	public String getErrorExeption() {
-		return ErrorExeption;
+		return ErrorException;
 	}
 
 	public void setErrorCode(String ErrorCode) {
@@ -25,8 +25,8 @@ public class CustomError {
 		this.ErrorMessage = ErrorMessage;
 	}
 
-	public void setErrorExeption(String ErrorExeption) {
-		this.ErrorExeption = ErrorExeption;
+	public void setErrorException(String ErrorException) {
+		this.ErrorException = ErrorException;
 	}
 
 }
