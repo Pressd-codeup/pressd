@@ -23,16 +23,19 @@
                             <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex">
-                                <span><img class="avatar mr-2" th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap"></span>
-                                <h5 class="text-white" th:text="${user.username}"></h5>
+                            <div class="d-flex align-items-center">
+                                <div><img class="avatar mr-2" th:src="@{${imageDao.getOne(comment.user.avatarId).url}}" alt="Card Image cap"></div>
+                                <div>
+                                    <h5 class="text-white mb-0" th:text="${user.username}"></h5>
+                                </div>
+
                             </div>
                             <hr class="hr-light">
                             <div class="mb-4">
                                 <div class="d-flex justify-content-between p-2">
-                                    <small class="text-white" th:text="${comment.body}"></small>
-                                    <small class="text-white"
-                                           th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month +' '+ comment.datePosted.year}"></small>
+                                    <p class="text-white" th:text="${comment.body}"></p>
+                                    <p class="text-white"
+                                           th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month +' '+ comment.datePosted.year}"></p>
                                 </div>
                                 <hr class="hr-light">
                             </div>

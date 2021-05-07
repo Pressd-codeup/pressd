@@ -309,15 +309,19 @@
                                                th:src="@{${imageDao.getOne(comment.user.avatarId).url}}"
                                                alt="avatar"></span>
                                 <a class="comment-btn" th:href="@{~/users/{id}(id = ${comment.user.id})}"><h5 th:text="${comment.user.username}"></h5></a>
+                                <div class="d-flex justify-content-end flex-grow-1">
+                                    <p class="text-white"><small
+                                            th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
+                                    </p>
+                                </div>
+
                             </div>
                             <p class="text-white" th:text="${comment.body}"></p>
-                            <p class="text-white"><small
-                                    th:text="${comment.datePosted.dayOfMonth +' '+ comment.datePosted.month+' '+ comment.datePosted.year+' '+comment.datePosted.toLocalTime()}"></small>
-                            </p>
+
                             <th:block th:if="${user.id == comment.user.id}">
                                 <div class="d-flex flex-column">
 
-                                    <div class="mb-2">
+                                    <div class="mb-5">
                                         <form th:action="${'/comments/'+ comment.id +'/delete/' + workout.id}"
                                               method="POST">
                                             <button class="submit-button" type="submit">Delete</button>
@@ -328,10 +332,9 @@
                                               method="POST">
                                             <div class="d-flex flex-column">
 
-                                                <div>
-                                                    <label for="commentBody">Edit Comment</label>
-                                                    <br>
-                                                    <textarea class="form-control" rows="6" name="body" id="commentBody" type="text"
+                                                <div class="d-flex flex-column">
+                                                    <p class="text-white mb-0">Edit Comment:</p>
+                                                    <textarea class="form-control mt-0 mb-1" rows="6" name="body" id="commentBody" type="text"
                                                               th:text="${comment.body}"></textarea>
                                                 </div>
 
