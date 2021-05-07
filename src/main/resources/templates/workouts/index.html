@@ -4,8 +4,6 @@
 <body class="post-body">
 <nav th:replace="fragments/navbar :: mainNav"></nav>
 
-
-<!-- Jumbotron Header -->
 <div class="jumbotron d-none d-lg-block text-white view-jumbo mb-0 pt-3 pb-3">
 
     <h1 th:switch="${category}" class="display-4">
@@ -15,7 +13,7 @@
     </h1>
 
 </div>
-<!-- details card section starts from here -->
+
 
 <header class="login col-lg-12 p-0">
     <!-- Full Page Intro -->
@@ -26,43 +24,6 @@
             <div class="container col-lg-12 d-flex flex-column justify-content-center">
 
 
-                <!--Grid row-->
-
-
-                <!--<div class="d-none d-sm-block">
-                    <div class="d-flex">
-                        <form th:action="@{workouts}" method="POST" class="mr-1">
-
-                            <div class="form-check form-check-inline text-white">
-                                <span class="text-white mr-2">Filter Workouts by Categories:</span>
-
-                                <div class="form-check form-check-inline text-white">
-                                    <input class="form-check-input" type="checkbox" name="categoryNames"
-                                           th:value="${first.getName()}" checked>
-                                    <label th:text="${first.getName()}"></label>
-                                </div>
-
-                                <th:block th:each="category : ${allCategories}">
-                                    <div class="form-check form-check-inline text-white">
-                                        <input class="form-check-input" type="checkbox" name="categoryNames"
-                                               th:value="${category.name}">
-                                        <label th:text="${category.name}"></label>
-                                    </div>
-                                </th:block>
-
-
-                            </div>
-
-                            <input class="submit-button" type="submit" value="Go!">
-
-
-                        </form>
-                        <form th:action="@{~/workouts}" method="GET">
-                            <input class="submit-button" type="submit" value="Clear Filters">
-                        </form>
-                    </div>
-
-                </div>-->
                 <div class="d-flex justify-content-center py-4">
                     <div class="d-flex">
                         <div>
@@ -104,8 +65,6 @@
                     </div>
                 </div>
 
-
-                <!--Grid column-->
                 <div class="d-flex flex-column align-items-center">
 
                     <div class="col-lg-8 mb-4 login-box pb-0" th:each="workout : ${workouts}">
@@ -138,7 +97,7 @@
 
                                     <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                                     <h6 class="sign mb-3 wow fadeInLeft" data-wow-delay="0.3s"></h6>
-                                    <!--                        <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>-->
+
                                 </div>
 
                                 <div class="card-body">
@@ -186,42 +145,6 @@
     </div>
 </header>
 
-
-<!--<section class="details-card">
-    <div class="container d-flex justify-content-center col-lg-12">
-        <div class="col-lg-12">
-            <div th:each="workout : ${workouts}">
-                <div class="row-12 m-0">
-
-                    <div class="col-12 m-0 photo-frame" style="background: inherit">
-                        <div class="card-content" style="background: inherit">
-                            <div class="card-img">
-                                &lt;!&ndash;ADD IMAGE&ndash;&gt;
-                                <img th:src="@{${workout.image.url}}" alt="">
-                            </div>
-                            <div class="card-desc">
-                                <h3 class="text-white" th:text="${workout.title}"></h3>
-                                <div>
-                                    <small class="text-white" th:text="${workout.user.username}"></small>
-                                </div>
-                                <div>
-                                    <small class="text-white"
-                                           th:text="${workout.datePosted.dayOfMonth +' '+workout.datePosted.month +' '+workout.datePosted.year}"></small>
-                                </div>
-                                <form th:action="${'/workouts/'+ workout.id}" method="GET">
-                                    <input class="submit-button" type="submit" value="View Plan">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
-</section>-->
 <footer th:replace="fragments/footer :: main-footer"></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

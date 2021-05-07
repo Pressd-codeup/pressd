@@ -51,26 +51,6 @@ public class MessageController {
         return "messages/index";
     }
 
-    /*
-    @GetMapping("/fragments/navbar")
-    public String showMessageAlert(Model viewModel) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.getOne(currentUser.getId());
-        List<Message> messages = messageDao.findAllBySentTo(user);
-        boolean unreadMessages = false;
-        for (Message message : messages) {
-            if (message.isRead() == 0) {
-                unreadMessages = true;
-                break;
-            }
-        }
-        viewModel.addAttribute("unreadMessages", unreadMessages);
-        System.out.println("UNREAD = " + unreadMessages);
-        return "fragments/navbar";
-    }
-
-     */
-
     @GetMapping("/messages/{id}")
     public String showMessageThread(Model viewModel, @PathVariable long id) {
 
