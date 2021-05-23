@@ -1,5 +1,6 @@
 package com.codeup.pressd;
 
+import com.codeup.pressd.models.Post;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.repository.PostRepository;
 import com.codeup.pressd.repository.UserRepository;
@@ -79,5 +80,40 @@ public class PostIntegrationTests {
 	@Test
 	public void contextLoads() {
 		assertNotNull(mvc);
+	}
+
+	@Test
+	public void testShowPost() throws Exception {
+
+		Post existingPost = postsDao.findAll().get(0);
+
+		this.mvc.perform(get("/posts/" + existingPost.getId()))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString(existingPost.getTitle())));
+	}
+
+	@Test
+	public void testCreatePost() throws Exception {
+
+		Post newPost = new Post();
+
+		newPost.setTitle("Junit Test post");
+		newPost.setBody("JUnit Test Body");
+
+		this.mvc.perform(
+				post("/posts/create")
+				.with(csrf())
+				.session((MockHttpSession) httpSession)
+						.flashAttr("post", newPost)
+				.param("type_id", "1")
+				.param("imageId", "1")
+				.param("city", "Los Angeles"))
+				.andExpect(status().is3xxRedirection());
+
+		this.mvc.perform(get("/posts")
+		.session((MockHttpSession) httpSession)).andExpect(content().string(containsString("Los Angeles")));
+
+
+
 	}
 }
