@@ -116,4 +116,22 @@ public class PostIntegrationTests {
 
 
 	}
+
+	@Test
+	public void testUpdatePost() throws Exception {
+
+		Post post = postsDao.findAll().get(0);
+
+
+		this.mvc.perform(post("/posts/" + post.getId() + "/update").with(csrf())
+		.session((MockHttpSession) httpSession)
+				.param("title", "")
+				.param("body", "")
+				.param("imageId", "" + post.getImage().getId())
+				.param("city", "Monterey")
+		).andExpect(status().is3xxRedirection());
+
+
+		this.mvc.perform(get("/posts/" + post.getId()).session((MockHttpSession) httpSession)).andExpect(status().isOk()).andExpect(content().string(containsString("Monterey")));
+	}
 }
