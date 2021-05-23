@@ -83,4 +83,13 @@ public class WorkoutIntegrationTests {
 	public void contextLoads() {
 		assertNotNull(mvc);
 	}
+
+	@Test
+	public void testShowWorkouts() throws Exception {
+
+		this.mvc.perform(
+				get("/workouts"))
+				.andExpect(status().isOk());
+	}
+	
 }
