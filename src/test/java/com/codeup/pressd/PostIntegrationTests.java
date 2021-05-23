@@ -15,6 +15,7 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -133,5 +135,39 @@ public class PostIntegrationTests {
 
 
 		this.mvc.perform(get("/posts/" + post.getId()).session((MockHttpSession) httpSession)).andExpect(status().isOk()).andExpect(content().string(containsString("Monterey")));
+	}
+
+	@Test
+	public void testDeletePost() throws Exception {
+
+		Post newPost = new Post();
+
+		newPost.setTitle("Junit Test post");
+		newPost.setBody("JUnit Test Body");
+
+		this.mvc.perform(
+				post("/posts/create")
+						.with(csrf())
+						.session((MockHttpSession) httpSession)
+						.flashAttr("post", newPost)
+						.param("type_id", "1")
+						.param("imageId", "1")
+						.param("city", "testDeleteCity"));
+
+		this.mvc.perform(
+				get("/posts").session((MockHttpSession) httpSession)
+		).andExpect(content().string(containsString("testDeleteCity")));
+
+
+		this.mvc.perform(
+				post("/posts/" + newPost.getId() + "/delete").with(csrf()).session((MockHttpSession) httpSession)
+		).andExpect(status().is3xxRedirection());
+
+		MvcResult result = this.mvc.perform(get("/posts")
+				.session((MockHttpSession) httpSession)
+		).andExpect(status().isOk()).andReturn();
+
+		String stringResult = result.getResponse().getContentAsString();
+		assertFalse(stringResult.contains("testDeleteCity"));
 	}
 }
