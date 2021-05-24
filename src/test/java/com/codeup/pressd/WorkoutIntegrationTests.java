@@ -1,6 +1,7 @@
 package com.codeup.pressd;
 
 import com.codeup.pressd.models.User;
+import com.codeup.pressd.models.Workout;
 import com.codeup.pressd.repository.UserRepository;
 import com.codeup.pressd.repository.WorkoutRepository;
 import org.junit.Before;
@@ -91,5 +92,14 @@ public class WorkoutIntegrationTests {
 				get("/workouts"))
 				.andExpect(status().isOk());
 	}
-	
+
+	@Test
+	public void showOneWorkout() throws Exception {
+
+		Workout workout = workoutDao.findAll().get(0);
+
+		this.mvc.perform(
+				get("/workouts/" + workout.getId())
+		).andExpect(status().isOk());
+	}
 }
