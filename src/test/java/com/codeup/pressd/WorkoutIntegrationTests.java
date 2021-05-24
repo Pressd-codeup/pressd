@@ -94,12 +94,35 @@ public class WorkoutIntegrationTests {
 	}
 
 	@Test
-	public void showOneWorkout() throws Exception {
+	public void testShowOneWorkout() throws Exception {
 
 		Workout workout = workoutDao.findAll().get(0);
 
 		this.mvc.perform(
 				get("/workouts/" + workout.getId())
 		).andExpect(status().isOk());
+	}
+
+	@Test
+	public void testCreateWorkout() throws Exception {
+
+		Workout workout = new Workout();
+		workout.setTitle("TestCreateTitle");
+		workout.setBody("TestCreateBody");
+
+		this.mvc.perform(
+				post("/workouts/create").with(csrf()).session((MockHttpSession) httpSession)
+						.flashAttr("workout", workout)
+				.param("imageId", "1")
+				.param("categoryNames", "Endurance")
+		).andExpect(status().is3xxRedirection());
+
+		long id = workout.getId();
+
+		this.mvc.perform(
+				get("/workouts/" + id)
+		).andExpect(content().string(containsString("TestCreateBody")));
+
+		workoutDao.delete(workout);
 	}
 }
