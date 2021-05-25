@@ -192,4 +192,33 @@ public class WorkoutIntegrationTests {
 
 		workoutDao.delete(workout);
 	}
+
+	@Test
+	public void testCreateRating() throws Exception {
+
+		Workout workout = new Workout();
+		workout.setTitle("TestCreateTitle");
+		workout.setBody("TestCreateBody");
+
+		this.mvc.perform(
+				post("/workouts/create").with(csrf()).session((MockHttpSession) httpSession)
+						.flashAttr("workout", workout)
+				.param("imageId", "1")
+				.param("categoryNames", "Endurance")
+		).andExpect(status().is3xxRedirection());
+
+		long id = workout.getId();
+
+		this.mvc.perform(
+				get("/workouts/" + id)
+				.with(csrf()).session((MockHttpSession) httpSession)
+		).andExpect(content().string(containsString("Add your rating")));
+
+
+		this.mvc.perform(
+			post("/ratings/" + id + "/create").with(csrf()).session((MockHttpSession) httpSession).param("newRating", "4")
+		).andExpect(status().is3xxRedirection());
+
+		workoutDao.delete(workout);
+	}
 }
