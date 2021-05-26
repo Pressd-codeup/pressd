@@ -1,5 +1,6 @@
 package com.codeup.pressd;
 
+import com.codeup.pressd.models.Comment;
 import com.codeup.pressd.models.User;
 import com.codeup.pressd.models.Workout;
 import com.codeup.pressd.repository.UserRepository;
@@ -253,5 +254,42 @@ public class WorkoutIntegrationTests {
 
 		workoutDao.delete(workout);
 
+	}
+
+	@Test
+	public void testCreateComment() throws Exception {
+
+		Workout workout = new Workout();
+		workout.setTitle("TestCreateTitle");
+		workout.setBody("TestCreateBody");
+
+		this.mvc.perform(
+				post("/workouts/create").with(csrf()).session((MockHttpSession) httpSession)
+						.flashAttr("workout", workout)
+				.param("imageId", "1")
+				.param("categoryNames", "Endurance")
+		).andExpect(status().is3xxRedirection());
+
+		long id = workout.getId();
+
+		this.mvc.perform(
+				get("/workouts/" + id)
+				.with(csrf()).session((MockHttpSession) httpSession)
+		).andExpect(content().string(containsString("TestCreateBody")));
+
+		Comment comment = new Comment();
+
+		this.mvc.perform(
+			post("/workouts/" + id + "/comments/create")
+			.with(csrf()).session((MockHttpSession) httpSession)
+			.flashAttr("comment", comment)
+			.param("body", "CreateCommentBody")
+		).andExpect(status().is3xxRedirection());
+
+		this.mvc.perform(
+			get("/workouts/" + id)
+		).andExpect(content().string(containsString("CreateCommentBody")));
+
+		workoutDao.delete(workout);
 	}
 }
