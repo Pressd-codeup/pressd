@@ -292,4 +292,58 @@ public class WorkoutIntegrationTests {
 
 		workoutDao.delete(workout);
 	}
+
+	@Test
+	public void testDeleteComment() throws Exception {
+
+		Workout workout = new Workout();
+		workout.setTitle("TestCreateTitle");
+		workout.setBody("TestCreateBody");
+
+		this.mvc.perform(
+				post("/workouts/create").with(csrf()).session((MockHttpSession) httpSession)
+						.flashAttr("workout", workout)
+				.param("imageId", "1")
+				.param("categoryNames", "Endurance")
+		).andExpect(status().is3xxRedirection());
+
+		long id = workout.getId();
+
+		this.mvc.perform(
+				get("/workouts/" + id)
+				.with(csrf()).session((MockHttpSession) httpSession)
+		).andExpect(content().string(containsString("TestCreateBody")));
+
+		Comment comment = new Comment();
+
+		this.mvc.perform(
+			post("/workouts/" + id + "/comments/create")
+			.with(csrf()).session((MockHttpSession) httpSession)
+			.flashAttr("comment", comment)
+			.param("body", "CreateCommentBody")
+		).andExpect(status().is3xxRedirection());
+
+		this.mvc.perform(
+			get("/workouts/" + id)
+		).andExpect(content().string(containsString("CreateCommentBody")));
+
+		long commentId = comment.getId();
+
+		this.mvc.perform(
+			post("/comments/" + commentId + "/delete/" + id).with(csrf()).session((MockHttpSession) httpSession)
+		).andExpect(status().is3xxRedirection());
+
+
+		MvcResult result = this.mvc.perform(get("/workouts/" + id)
+				.session((MockHttpSession) httpSession)
+		).andExpect(status().isOk()).andReturn();
+
+		String stringResult = result.getResponse().getContentAsString();
+
+		
+		assertFalse(stringResult.contains("CreateCommentBody"));
+
+
+		workoutDao.delete(workout);
+	}
 }
