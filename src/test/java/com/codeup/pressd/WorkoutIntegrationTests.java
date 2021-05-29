@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -340,8 +342,62 @@ public class WorkoutIntegrationTests {
 
 		String stringResult = result.getResponse().getContentAsString();
 
-		
+
 		assertFalse(stringResult.contains("CreateCommentBody"));
+
+
+		workoutDao.delete(workout);
+	}
+
+	@Test
+	public void testUpdateComment() throws Exception {
+
+		Workout workout = new Workout();
+		workout.setTitle("TestCreateTitle");
+		workout.setBody("TestCreateBody");
+
+		this.mvc.perform(
+				post("/workouts/create").with(csrf()).session((MockHttpSession) httpSession)
+						.flashAttr("workout", workout)
+				.param("imageId", "1")
+				.param("categoryNames", "Endurance")
+		).andExpect(status().is3xxRedirection());
+
+		long id = workout.getId();
+
+		this.mvc.perform(
+				get("/workouts/" + id)
+				.with(csrf()).session((MockHttpSession) httpSession)
+		).andExpect(content().string(containsString("TestCreateBody")));
+
+		Comment comment = new Comment();
+
+		this.mvc.perform(
+			post("/workouts/" + id + "/comments/create")
+			.with(csrf()).session((MockHttpSession) httpSession)
+			.flashAttr("comment", comment)
+			.param("body", "CreateCommentBody")
+		).andExpect(status().is3xxRedirection());
+
+		this.mvc.perform(
+			get("/workouts/" + id)
+		).andExpect(content().string(containsString("CreateCommentBody")));
+
+		long commentId = comment.getId();
+
+		this.mvc.perform(
+			post("/comments/" + id + "/update/" + commentId).with(csrf()).session((MockHttpSession) httpSession).param("body", "UpdateCommentBody")
+		).andExpect(status().is3xxRedirection());
+
+
+		MvcResult result = this.mvc.perform(get("/workouts/" + id)
+				.session((MockHttpSession) httpSession)
+		).andExpect(status().isOk()).andReturn();
+
+		String stringResult = result.getResponse().getContentAsString();
+
+
+		assertTrue(stringResult.contains("UpdateCommentBody"));
 
 
 		workoutDao.delete(workout);
